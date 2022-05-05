@@ -1,0 +1,10 @@
+serve
+serve/trame-vuetify.umd.min.js.map
+serve/trame-vuetify.umd.js
+serve/trame-vuetify.umd.js.map
+# serve/trame-vuetify.umd.min.js
+serve/trame-vuetify.common.js
+serve/trame-vuetify.common.js.map
+# serve/trame-vuetify.css
+# serve/fonts
+serve/demo.html

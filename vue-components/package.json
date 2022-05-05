@@ -1,0 +1,41 @@
+{
+    "name": "trame-vuetify",
+    "version": "2.0.0",
+    "description": "Vuetify widgets and ui for trame",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build --target lib --name trame_vuetify --filename trame-vuetify src/use.js",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+        "@mdi/font": "^6.6.96",
+        "core-js": "^3.20.3",
+        "lodash": "^4.17.21",
+        "typeface-roboto": "^1.1.13",
+        "vue": "^2.6.14",
+        "vuetify": "^2.6.5"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.16",
+        "@babel/eslint-parser": "^7.12.16",
+        "@vue/cli-plugin-babel": "~5.0.4",
+        "@vue/cli-plugin-eslint": "~5.0.0",
+        "@vue/cli-service": "~5.0.4",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-prettier": "^4.0.0",
+        "eslint-plugin-vue": "^8.0.3",
+        "prettier": "^2.4.1",
+        "vue-template-compiler": "^2.6.14",
+        "deepmerge": "^4.2.2",
+        "sass": "~1.32",
+        "sass-loader": "^10.1.1",
+        "vuetify-loader": "^1.7.2"
+    },
+    "keywords": [
+        "Kitware",
+        "trame"
+    ],
+    "license": "MIT"
+}
