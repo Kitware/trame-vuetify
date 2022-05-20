@@ -2,6 +2,12 @@ from trame_client.ui.core import AbstractLayout
 from trame_client.widgets import html
 from trame_vuetify.widgets import vuetify
 
+__all__ = [
+    "VAppLayout",
+    "SinglePageLayout",
+    "SinglePageWithDrawerLayout",
+]
+
 
 def get_trame_versions():
     import pkg_resources
@@ -15,6 +21,13 @@ def get_trame_versions():
 
 
 class VAppLayout(AbstractLayout):
+    """
+    Layout composed of just a `<v-app />`
+
+    :param _server: Server to bound the layout to
+    :param template_name: Name of the template (default: main)
+    """
+
     def __init__(self, _server, template_name="main", **kwargs):
         super().__init__(
             _server,
@@ -25,6 +38,30 @@ class VAppLayout(AbstractLayout):
 
 
 class SinglePageLayout(VAppLayout):
+    """
+    Layout composed of the following structure:
+
+    :param _server: Server to bound the layout to
+    :param template_name: Name of the template (default: main)
+
+
+    .. code-block::
+
+        <v-app id="app">
+            <v-app-bar app>                     # layout.toolbar
+                <v-app-bar-nav-icon />          # layout.icon
+                <v-toolbar-title>               # layout.title
+                    Trame application
+                </v-toolbar-title>
+            </v-app-bar>
+            <v-main />                          # layout.content
+            <v-footer app class="my-0 py-0">    # layout.footer
+                < ... />
+            </v-footer>
+        </v-app>
+
+    """
+
     def __init__(self, _server, template_name="main", **kwargs):
         super().__init__(_server, template_name=template_name, **kwargs)
         with self:
@@ -77,16 +114,35 @@ class SinglePageLayout(VAppLayout):
 
 class SinglePageWithDrawerLayout(SinglePageLayout):
     """
-    A layout that takes the whole screen, adding a |layout_vuetify_link| for a toolbar, a content, a drawer, and a footer.
-    :param name: Text for this page's browser tab (required)
-    :type name: str
-    :param show_drawer: Whether the drawer is open. Default True
-    :type show_drawer: bool
-    :param width: How many pixels wide the drawer should be
-    :type width: Number
-    :param show_drawer_name: The name referencing the drawer's state. Default "drawerOpen".
-    :type show_drawer_name: str
-    >>> SinglePageWithDrawer("Page with drawer").start()
+    Layout composed of the following structure:
+
+    :param _server: Server to bound the layout to
+    :param template_name: Name of the template (default: main)
+    :param show_drawer: Start with drawer open (default: True)
+    :param width: Drawer width in pixel (default: 300)
+
+    .. code-block::
+
+        <v-app id="app">
+            <v-app-bar app>                     # layout.toolbar
+                <v-app-bar-nav-icon />          # layout.icon
+                <v-toolbar-title>               # layout.title
+                    Trame application
+                </v-toolbar-title>
+            </v-app-bar>
+            <v-main />                          # layout.content
+            <v-footer app class="my-0 py-0">    # layout.footer
+                < ... />
+            </v-footer>
+            <v-navigation-drawer                # layout.drawer
+                app
+                clipped
+                stateless
+                v-model="{template_name}_drawer"
+                width="width"
+            />
+        </v-app>
+
     """
 
     def __init__(
