@@ -143,6 +143,7 @@ Template.slot_names.update(slot_names)
 
 
 __all__ = [
+    "Template",
     "VAlert",
     "VApp",
     "VAppBar",

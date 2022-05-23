@@ -160,6 +160,7 @@ def generate_vuetify(input_file, output_file):
     generated_module = ""
     slots_names = set()
     _all = set()
+    _all.add("Template")
 
     # Extract information and generate class definitions
     for tag in tags:
