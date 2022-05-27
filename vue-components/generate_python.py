@@ -92,7 +92,7 @@ def get_docs(tag):
         description = event.get("description")
 
         # Ignore calendar events, AbstractElement events
-        if not "<" in entry and entry not in ["mouseup", "mousedown", "click"]:
+        if "<" not in entry and entry not in ["mouseup", "mousedown", "click"]:
             entry = entry.replace(":", "_").replace("-", "_")
             event_params += f"\n    :param {entry}: {description}"
 
@@ -212,10 +212,16 @@ class {name}(HtmlElement):{docs}
     generated_all.append("]")
 
     with open(output_file, "w") as vuetify_module:
-        vuetify_module.write("##########################################################\n")
+        vuetify_module.write(
+            "##########################################################\n"
+        )
         vuetify_module.write("# DO NOT EDIT: GENERATED FILE\n")
-        vuetify_module.write("# => instead run: $ROOT/vue-components/generate_python.py\n")
-        vuetify_module.write("##########################################################\n\n")
+        vuetify_module.write(
+            "# => instead run: $ROOT/vue-components/generate_python.py\n"
+        )
+        vuetify_module.write(
+            "##########################################################\n\n"
+        )
         vuetify_module.write(module_header)
         vuetify_module.write("\n\n")
         vuetify_module.write("\n".join(generated_slot_names))

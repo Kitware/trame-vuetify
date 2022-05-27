@@ -1,4 +1,4 @@
-from trame_client.widgets.core import AbstractElement, Template
+from trame_client.widgets.core import AbstractElement
 from trame_vuetify import module
 
 
@@ -12,7 +12,7 @@ class HtmlElement(AbstractElement):
 try:
     import numpy as np
     from numbers import Number
-except:
+except Exception:
     # dataframe_to_grid won't work
     pass
 

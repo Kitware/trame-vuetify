@@ -4,7 +4,7 @@ trame-vuetify: Material Design widgets for trame
 Trame-vuetify extend trame **widgets** and **ui** with all the beautiful Vuetify UI components.
 Vuetify is a UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.
 
-This package is not supposed to be used by iteself but rather should come as a dependency of **trame**.
+This package is not supposed to be used by itself but rather should come as a dependency of **trame**.
 For any specificity, please refer to `the trame documentation <https://kitware.github.io/trame/>`_.
 
 

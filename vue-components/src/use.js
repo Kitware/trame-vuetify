@@ -11,7 +11,7 @@ export default {
     // Get our own custom vuetify
     Vue.use(Vuetify);
 
-    // Configue the root view option
+    // Configure the root view option
     OPTIONS.vuetify = new Vuetify(options);
   },
   getOptions() {

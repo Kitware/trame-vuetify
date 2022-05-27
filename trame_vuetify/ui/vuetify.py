@@ -82,7 +82,7 @@ class SinglePageLayout(VAppLayout):
                     classes="ml-n3 mr-1",
                 ),
                 footer.add_child(
-                    f'<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by trame</a>'
+                    '<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by trame</a>'
                 )
                 vuetify.VSpacer()
                 reload = self.server.controller.on_server_reload
