@@ -1,6 +1,10 @@
 trame-vuetify: Material Design widgets for trame
 ===========================================================================
 
+.. image:: https://github.com/Kitware/trame-vuetify/actions/workflows/test_and_release.yml/badge.svg
+    :target: https://github.com/Kitware/trame-vuetify/actions/workflows/test_and_release.yml
+    :alt: Test and Release
+
 Trame-vuetify extend trame **widgets** and **ui** with all the beautiful Vuetify UI components.
 Vuetify is a UI Library with beautifully handcrafted Material Components. No design skills required — everything you need to create amazing applications is at your fingertips.
 
