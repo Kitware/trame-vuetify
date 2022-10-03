@@ -161,6 +161,7 @@ def generate_vuetify(input_file, output_file):
     slots_names = set()
     _all = set()
     _all.add("Template")
+    _all.add("dataframe_to_grid")
 
     # Extract information and generate class definitions
     for tag in tags:

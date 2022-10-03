@@ -1,4 +1,4 @@
-from trame_client.widgets.core import AbstractElement
+from trame_client.widgets.core import AbstractElement, Template  # noqa
 from trame_vuetify import module
 
 

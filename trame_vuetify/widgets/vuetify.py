@@ -17,7 +17,7 @@ class HtmlElement(AbstractElement):
 try:
     import numpy as np
     from numbers import Number
-except:
+except Exception:
     # dataframe_to_grid won't work
     pass
 
@@ -290,6 +290,7 @@ __all__ = [
     "VVirtualScroll",
     "VWindow",
     "VWindowItem",
+    "dataframe_to_grid",
 ]
 
 
