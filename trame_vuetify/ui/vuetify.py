@@ -90,7 +90,7 @@ class SinglePageLayout(VAppLayout):
                     with vuetify.VBtn(
                         x_small=True,
                         icon=True,
-                        click=f"trigger('{self.server.trigger_name(reload)}')",
+                        click=self.on_server_reload,
                         classes="mx-2",
                     ):
                         vuetify.VIcon("mdi-autorenew", x_small=True)
@@ -110,6 +110,9 @@ class SinglePageLayout(VAppLayout):
                 footer.add_child(
                     '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>'
                 )
+
+    def on_server_reload(self):
+        self.server.controller.on_server_reload(self.server)
 
 
 class SinglePageWithDrawerLayout(SinglePageLayout):
