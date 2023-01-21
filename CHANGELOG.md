@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.1.0 (2023-01-21)
+### Feature
+* **on_server_reload:** Pass server instance to ctrl.on_server_reload ([`e552141`](https://github.com/Kitware/trame-vuetify/commit/e552141b88e41be258a1edd3bc47aaf1f0a287f7))
+
 ## v2.0.2 (2022-10-03)
 ### Fix
 * Expose dataframe_to_grid() in __all__ ([`94675c6`](https://github.com/Kitware/trame-vuetify/commit/94675c6c0e5d9e8cc645219123e0616d81537f84))
