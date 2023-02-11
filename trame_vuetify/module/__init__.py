@@ -1,20 +1,17 @@
-from pathlib import Path
+def setup(server, **kargs):
+    client_type = "vue2"
+    if hasattr(server, "client_type"):
+        client_type = server.client_type
 
-# Compute local path to serve
-serve_path = str(Path(__file__).with_name("serve").resolve())
+    if client_type == "vue2":
+        from . import vue2
 
-# Serve directory for JS/CSS files
-serve = {"__trame_vuetify": serve_path}
+        server.enable_module(vue2)
+    elif client_type == "vue3":
+        from . import vue3
 
-# List of JS files to load (usually from the serve path above)
-scripts = [
-    "__trame_vuetify/trame-vuetify.umd.min.js",
-]
-
-# List of CSS files to load (usually from the serve path above)
-styles = [
-    "__trame_vuetify/trame-vuetify.css",
-]
-
-# List of Vue plugins to install/load
-vue_use = ["trame_vuetify"]
+        server.enable_module(vue3)
+    else:
+        raise TypeError(
+            f"Trying to initialize trame_vuetify with unknown client_type={client_type}"
+        )
