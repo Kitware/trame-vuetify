@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.0 (2023-02-11)
+### Feature
+* **vue3:** Add support for vue3 ([`494bfa6`](https://github.com/Kitware/trame-vuetify/commit/494bfa6d207114d8297b1b4c11e937e100dc2db8))
+
 ## v2.1.0 (2023-01-21)
 ### Feature
 * **on_server_reload:** Pass server instance to ctrl.on_server_reload ([`e552141`](https://github.com/Kitware/trame-vuetify/commit/e552141b88e41be258a1edd3bc47aaf1f0a287f7))
