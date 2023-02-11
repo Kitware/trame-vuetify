@@ -1,3 +1,4 @@
-graft trame_vuetify/module/serve/fonts
-recursive-include trame_vuetify/module/serve *.min.js *.css
+graft trame_vuetify/module/vue2-serve/fonts
+graft trame_vuetify/module/vue3-serve
+recursive-include trame_vuetify/module/vue2-serve *.min.js *.css
 include trame_vuetify/LICENSE
