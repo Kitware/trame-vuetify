@@ -2,6 +2,11 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.1 (2023-02-13)
+### Fix
+* **vue3:** Layout attr update ([`d7a2492`](https://github.com/Kitware/trame-vuetify/commit/d7a24928141722415f8c8e2e94a63e3336bae19d))
+* **vue3:** Convert CamelCase attributes to snake_case ([`8a2d7c0`](https://github.com/Kitware/trame-vuetify/commit/8a2d7c0d3ddbd95bfbe0bd4194f5b5f012e9533e))
+
 ## v2.2.0 (2023-02-11)
 ### Feature
 * **vue3:** Add support for vue3 ([`494bfa6`](https://github.com/Kitware/trame-vuetify/commit/494bfa6d207114d8297b1b4c11e937e100dc2db8))
