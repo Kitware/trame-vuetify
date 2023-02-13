@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
+import re
 import argparse
 import json
 from pathlib import Path
@@ -28,6 +29,11 @@ def to_class_name(name):
     return "".join(tokens)
 
 
+def to_attr_name(name):
+    s1 = re.sub("(.)([A-Z][a-z]+)", r"\1_\2", name)
+    return re.sub("([a-z0-9])([A-Z])", r"\1_\2", s1).lower()
+
+
 def get_attributes(tag):
     attributes = []
     for attribute in tag.get("attributes"):
@@ -35,7 +41,12 @@ def get_attributes(tag):
         if "(" in name:
             entry = expand_parenthetical(name, attributes)
         else:
-            entry = '"' + name.replace("-", "_") + '",'
+            py_name = to_attr_name(name.replace("-", "_"))
+            if py_name != name:
+                entry = f'("{py_name}", "{name}"),'
+            else:
+                entry = f'"{name}",'
+
             types = attribute.get("value", {}).get("type")
             if "function" in types:
                 entry += "  # JS functions unimplemented"
@@ -78,7 +89,7 @@ def get_docs(tag):
     params = ""
     for attribute in attributes:
         raw_name = attribute.get("name")
-        attribute_name = raw_name.replace("-", "_")
+        attribute_name = to_attr_name(raw_name.replace("-", "_"))
         attribute_type = attribute.get("value", {}).get("type", "string")
         description = attribute.get("description")
         if "](" in description:
@@ -117,6 +128,7 @@ def get_docs(tag):
 
 
 def expand_parenthetical(attribute, attributes):
+    print("expand_parenthetical", attribute)
     sizes = ["sm", "md", "lg", "xl"]
     numbers = list(range(13)) if "0" in attribute else list(range(1, 13))
 
