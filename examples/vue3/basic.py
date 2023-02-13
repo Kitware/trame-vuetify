@@ -38,10 +38,10 @@ with SinglePageWithDrawerLayout(server) as layout:
         vuetify3.VCheckboxBtn(
             v_model="theme.value",
             density="compact",
-            falseIcon="mdi-theme-light-dark",
-            falseValue="dark",
-            trueIcon="mdi-theme-light-dark",
-            trueValue="light",
+            false_icon="mdi-theme-light-dark",
+            false_value="dark",
+            true_icon="mdi-theme-light-dark",
+            true_value="light",
             classes="pa-0 ma-0",
         )
         with vuetify3.VBtn(icon=True, click=busy):
