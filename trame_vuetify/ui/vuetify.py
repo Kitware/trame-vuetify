@@ -73,7 +73,7 @@ class SinglePageLayout(VAppLayout):
             with vuetify.VFooter(app=True, classes="my-0 py-0") as footer:
                 self.footer = footer
                 vuetify.VProgressCircular(
-                    indeterminate=("trame__busy",),
+                    indeterminate=("!!trame__busy",),
                     background_opacity=1,
                     bg_color="#01549b",
                     color="#04a94d",
