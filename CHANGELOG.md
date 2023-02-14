@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.2 (2023-02-14)
+### Fix
+* **warn:** Prevent prop type warning ([`e53aae7`](https://github.com/Kitware/trame-vuetify/commit/e53aae76c563b7bcc6a16584b8573747b293d057))
+
 ## v2.2.1 (2023-02-13)
 ### Fix
 * **vue3:** Layout attr update ([`d7a2492`](https://github.com/Kitware/trame-vuetify/commit/d7a24928141722415f8c8e2e94a63e3336bae19d))
