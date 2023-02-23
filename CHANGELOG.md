@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.3 (2023-02-23)
+### Fix
+* **version:** Add __version__ ([`fdf7ff5`](https://github.com/Kitware/trame-vuetify/commit/fdf7ff57d2f13c4bc58edb051aff922c2da93508))
+
 ## v2.2.2 (2023-02-14)
 ### Fix
 * **warn:** Prevent prop type warning ([`e53aae7`](https://github.com/Kitware/trame-vuetify/commit/e53aae76c563b7bcc6a16584b8573747b293d057))
