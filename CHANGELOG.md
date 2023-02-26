@@ -2,6 +2,10 @@
 
 <!--next-version-placeholder-->
 
+## v2.2.4 (2023-02-26)
+### Fix
+* **vue3:** Update to new template syntax ([`b839955`](https://github.com/Kitware/trame-vuetify/commit/b8399555bfce9370474347d16182458b756bdb55))
+
 ## v2.2.3 (2023-02-23)
 ### Fix
 * **version:** Add __version__ ([`fdf7ff5`](https://github.com/Kitware/trame-vuetify/commit/fdf7ff57d2f13c4bc58edb051aff922c2da93508))
