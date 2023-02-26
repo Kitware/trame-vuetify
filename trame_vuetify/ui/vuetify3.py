@@ -81,7 +81,7 @@ class SinglePageLayout(VAppLayout):
                 ) as footer:
                     self.footer = footer
                     vuetify3.VProgressCircular(
-                        indeterminate=("!!trame__busy.value",),
+                        indeterminate=("!!trame__busy",),
                         color="#04a94d",
                         size=16,
                         width=3,
@@ -170,7 +170,7 @@ class SinglePageWithDrawerLayout(SinglePageLayout):
                 disable_route_watcher=True,
                 permanent=True,
                 location="left",
-                v_model=(f"{drawer_name}.value", {drawer_name: show_drawer}),
+                v_model=(f"{drawer_name}", {drawer_name: show_drawer}),
                 width=width,
             )
-        self.icon.click = f"{drawer_name}.value = !{drawer_name}.value"
+        self.icon.click = f"{drawer_name} = !{drawer_name}"
