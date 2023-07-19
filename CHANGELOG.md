@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.3.1 (2023-07-19)
+
+### Fix
+
+* **vuetify2:** Add vuetify2 namespace ([`4d9c9e1`](https://github.com/Kitware/trame-vuetify/commit/4d9c9e1278c26989362cde28d6a9c862426d5846))
+
 ## v2.3.0 (2023-07-19)
 
 ### Feature
