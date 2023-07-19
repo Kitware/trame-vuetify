@@ -31,18 +31,19 @@ async def busy():
 state.trame__title = "Menu example"
 
 with SinglePageWithDrawerLayout(server) as layout:
-    layout.root.theme = ("theme.value",)
+    layout.root.theme = ("theme",)
     with layout.toolbar as toolbar:
         toolbar.dense = "compact"
         vuetify3.VSpacer()
         vuetify3.VCheckboxBtn(
-            v_model="theme.value",
+            v_model="theme",
             density="compact",
             false_icon="mdi-theme-light-dark",
             false_value="dark",
             true_icon="mdi-theme-light-dark",
             true_value="light",
             classes="pa-0 ma-0",
+            style="max-width: 30px",
         )
         with vuetify3.VBtn(icon=True, click=busy):
             vuetify3.VIcon("mdi-sleep")
@@ -52,7 +53,7 @@ with SinglePageWithDrawerLayout(server) as layout:
                     vuetify3.VIcon("mdi-dots-vertical")
             with vuetify3.VList():
                 with vuetify3.VListItem(
-                    v_for="(item, i) in menu_items.value",
+                    v_for="(item, i) in menu_items",
                     key="i",
                     value=["item"],
                 ):

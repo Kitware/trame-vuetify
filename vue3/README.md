@@ -7,7 +7,7 @@ This directory capture the steps to enable Vuetify 3.x into trame-vuewtify.
 ```bash
 export SRC_URL=https://cdn.jsdelivr.net/npm
 export DST_PATH=../trame_vuetify/module/vue3-serve
-export VUETIFY=vuetify@3.1.3
+export VUETIFY=vuetify@3.3.9
 
 mkdir -p $DST_PATH/{fonts,css}
 ```
@@ -22,8 +22,8 @@ curl $SRC_URL/$VUETIFY/dist/vuetify.min.js -Lo $DST_PATH/vuetify3.js
 ## Material Design icons
 
 ```bash
-curl $SRC_URL/@mdi/font@5.x/css/materialdesignicons.min.css -Lo $DST_PATH/css/mdi.css
-curl $SRC_URL/@mdi/font@5.x/fonts/materialdesignicons-webfont.woff2 -Lo $DST_PATH/fonts/materialdesignicons-webfont.woff2
+curl $SRC_URL/@mdi/font@7.x/css/materialdesignicons.min.css -Lo $DST_PATH/css/mdi.css
+curl $SRC_URL/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo $DST_PATH/fonts/materialdesignicons-webfont.woff2
 ```
 
 ## Update Python definition
