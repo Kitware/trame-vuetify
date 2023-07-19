@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.3.0 (2023-07-19)
+
+### Feature
+
+* **versions:** Bump to v2.7.0 and v3.3.9 ([`e691dee`](https://github.com/Kitware/trame-vuetify/commit/e691dee9564e91f872114e6dd611d500c2d251f7))
+
 ## v2.2.4 (2023-02-26)
 ### Fix
 * **vue3:** Update to new template syntax ([`b839955`](https://github.com/Kitware/trame-vuetify/commit/b8399555bfce9370474347d16182458b756bdb55))
