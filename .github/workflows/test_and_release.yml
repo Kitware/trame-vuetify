@@ -79,7 +79,7 @@ jobs:
       - name: Set Up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Build Vue2 Components
         run: |
@@ -91,10 +91,10 @@ jobs:
         run: |
           mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
           cd trame_vuetify/module/vue3-serve
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.1.3/dist/vuetify.min.css -Lo vuetify3.css
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.1.3/dist/vuetify.min.js -Lo vuetify3.js
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css -Lo css/mdi.css
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@5.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.css -Lo vuetify3.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.js -Lo vuetify3.js
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
 
   release:
     needs: [pre-commit, pytest, test-npm-build]
@@ -110,7 +110,7 @@ jobs:
       - name: Set Up Node
         uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: 18
 
       - name: Build Vue2 Components
         run: |
@@ -122,13 +122,13 @@ jobs:
         run: |
           mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
           cd trame_vuetify/module/vue3-serve
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.1.3/dist/vuetify.min.css -Lo vuetify3.css
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.1.3/dist/vuetify.min.js -Lo vuetify3.js
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css -Lo css/mdi.css
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@5.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.css -Lo vuetify3.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.3.9/dist/vuetify.min.js -Lo vuetify3.js
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
 
       - name: Python Semantic Release
-        uses: relekang/python-semantic-release@master
+        uses: relekang/python-semantic-release@v7.34.6
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           repository_username: __token__

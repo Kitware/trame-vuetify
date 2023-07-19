@@ -25,8 +25,10 @@ tts_sensitive_elements = [
 
 
 def to_class_name(name):
-    tokens = [word.capitalize() for word in name.split("-")]
-    return "".join(tokens)
+    if "-" in name:
+        tokens = [word.capitalize() for word in name.split("-")]
+        return "".join(tokens)
+    return name
 
 
 def to_attr_name(name):
@@ -90,7 +92,7 @@ def get_docs(tag):
     for attribute in attributes:
         raw_name = attribute.get("name")
         attribute_name = to_attr_name(raw_name.replace("-", "_"))
-        attribute_type = attribute.get("value", {}).get("type", "string")
+        attribute_type = attribute.get("value", {}).get("type", "string").strip()
         description = attribute.get("description")
         if "](" in description:
             # Hide descriptions with markdown
@@ -187,7 +189,8 @@ def generate_vuetify(input_file, output_file):
         events = get_events(tag)
         docs = get_docs(tag)
         for slot in tag.get("slots", []):
-            slots_names.add(slot.get("name"))
+            if "[" not in slot.get("name"):
+                slots_names.add(slot.get("name"))
 
         # Add to __all__
         _all.add(class_name)
