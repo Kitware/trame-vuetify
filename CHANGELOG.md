@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.1 (2024-01-17)
+
+### Fix
+
+* **vuetify3:** Allow to provide config ([`9aebd64`](https://github.com/Kitware/trame-vuetify/commit/9aebd64728ed6746604569561633e0cd4f7c1ff8))
+
 ## v2.4.0 (2024-01-17)
 
 ### Feature
