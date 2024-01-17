@@ -1,5 +1,5 @@
 def setup(server, **kargs):
-    client_type = "vue2"
+    client_type = "vue3"  # new default since 2024
     if hasattr(server, "client_type"):
         client_type = server.client_type
 
