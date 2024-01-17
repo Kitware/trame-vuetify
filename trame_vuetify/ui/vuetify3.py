@@ -26,15 +26,18 @@ class VAppLayout(AbstractLayout):
 
     :param _server: Server to bound the layout to
     :param template_name: Name of the template (default: main)
+    :param vuetify_config: Dict structure to configure vuetify
     """
 
-    def __init__(self, _server, template_name="main", **kwargs):
+    def __init__(self, _server, template_name="main", vuetify_config=None, **kwargs):
         super().__init__(
             _server,
             vuetify3.VApp(trame_server=_server, **kwargs),
             template_name=template_name,
             **kwargs,
         )
+        if vuetify_config:
+            self.server.state.trame__vuetify3_config = vuetify_config
 
 
 class SinglePageLayout(VAppLayout):
@@ -43,6 +46,7 @@ class SinglePageLayout(VAppLayout):
 
     :param _server: Server to bound the layout to
     :param template_name: Name of the template (default: main)
+    :param vuetify_config: Dict structure to configure vuetify
 
 
     .. code-block::
@@ -128,6 +132,8 @@ class SinglePageWithDrawerLayout(SinglePageLayout):
 
     :param _server: Server to bound the layout to
     :param template_name: Name of the template (default: main)
+    :param vuetify_config: Dict structure to configure vuetify
+
     :param show_drawer: Start with drawer open (default: True)
     :param width: Drawer width in pixel (default: 300)
 
