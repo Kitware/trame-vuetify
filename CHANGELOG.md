@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.0 (2024-01-17)
+
+### Feature
+
+* **vue3:** Update to vuetify 3.4.10 ([`814d428`](https://github.com/Kitware/trame-vuetify/commit/814d4283900f5bc5a7234058ee493a3a304931ce))
+* **vue2:** Update to vuetify 2.7.1 ([`9a97abf`](https://github.com/Kitware/trame-vuetify/commit/9a97abf81aa32060403b5e4d32274927727bcd7a))
+
+### Documentation
+
+* **datatable:** Advanced slot usage ([`74f77be`](https://github.com/Kitware/trame-vuetify/commit/74f77be2a9b7a43f5438615ea59d0e5e483f0474))
+
 ## v2.3.1 (2023-07-19)
 
 ### Fix
