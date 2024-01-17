@@ -31,7 +31,7 @@ class VAppLayout(AbstractLayout):
     def __init__(self, _server, template_name="main", **kwargs):
         super().__init__(
             _server,
-            vuetify3.VApp(id="app", trame_server=_server),
+            vuetify3.VApp(trame_server=_server, **kwargs),
             template_name=template_name,
             **kwargs,
         )
@@ -47,9 +47,9 @@ class SinglePageLayout(VAppLayout):
 
     .. code-block::
 
-        <v-app id="app">
+        <v-app>
             <v-layout>                              # layout.app_layout
-                <v-app-bar app>                     # layout.toolbar
+                <v-app-bar>                         # layout.toolbar
                     <v-app-bar-nav-icon />          # layout.icon
                     <v-toolbar-title>               # layout.title
                         Trame application
@@ -69,7 +69,7 @@ class SinglePageLayout(VAppLayout):
         with self:
             with vuetify3.VLayout() as app_layout:
                 self.app_layout = app_layout
-                with vuetify3.VAppBar(app=True) as toolbar:
+                with vuetify3.VAppBar() as toolbar:
                     self.toolbar = toolbar
                     self.icon = vuetify3.VAppBarNavIcon()
                     self.title = vuetify3.VToolbarTitle("Trame application")
@@ -133,9 +133,9 @@ class SinglePageWithDrawerLayout(SinglePageLayout):
 
     .. code-block::
 
-        <v-app id="app">
+        <v-app>
             <v-layout>                              # layout.app_layout
-                <v-app-bar app>                     # layout.toolbar
+                <v-app-bar>                        # layout.toolbar
                     <v-app-bar-nav-icon />          # layout.icon
                     <v-toolbar-title>               # layout.title
                         Trame application
