@@ -611,8 +611,6 @@ class VAutocomplete(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-autocomplete" target="_blank">here</a>
 
 
-    :param allow_overflow: Allow the menu to overflow off the screen
-    :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -671,9 +669,7 @@ class VAutocomplete(HtmlElement):
     :type ['boolean', 'string']:
     :param hide_no_data: Hides the menu when there are no options to show.  Useful for preventing the menu from opening before results are fetched asynchronously.  Also has the effect of opening the menu when the `items` array changes if not already open.
     :type boolean:
-    :param hide_selected: Do not display in the select menu items that are already selected
-    :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :param hide_selected: Do not display in the select menu items that are already selected. Also removes checkboxes from the list when multiple
     :type boolean:
     :param hint: Hint text
     :type string:
@@ -751,8 +747,6 @@ class VAutocomplete(HtmlElement):
     :type ['string', 'array']:
     :param suffix: Displays suffix text
     :type string:
-    :param type: Sets input type
-    :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
     :param value: The input's value
@@ -780,7 +774,6 @@ class VAutocomplete(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("v-autocomplete", children, **kwargs)
         self._attr_names += [
-            "allow_overflow",
             "append_icon",
             "append_outer_icon",
             "attach",
@@ -811,7 +804,6 @@ class VAutocomplete(HtmlElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
-            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -850,7 +842,6 @@ class VAutocomplete(HtmlElement):
             "success",
             "success_messages",
             "suffix",
-            "type",
             "validate_on_blur",
             "value",
             "value_comparator",  # JS functions unimplemented
@@ -1205,7 +1196,7 @@ class VBottomSheet(HtmlElement):
     :type any:
     :param attach: Specifies which DOM element that this component should detach to. String can be any valid querySelector and Object can be any valid Node. This will attach to the root `v-app` component by default.
     :type any:
-    :param close_delay: Milliseconds to wait before closing component.
+    :param close_delay: Milliseconds to wait before closing component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param content_class: Applies a custom class to the detached element. This is useful because the content is moved to the beginning of the `v-app` component (unless the **attach** prop is provided) and is not targetable by classes passed directly on the component.
     :type string:
@@ -1229,13 +1220,11 @@ class VBottomSheet(HtmlElement):
     :type ['string', 'number']:
     :param no_click_animation: Disables the bounce effect when clicking outside of a `v-dialog`'s content when using the **persistent** prop.
     :type boolean:
-    :param open_delay: Milliseconds to wait before opening component.
+    :param open_delay: Milliseconds to wait before opening component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param open_on_click:
     :type boolean:
     :param open_on_focus:
-    :type boolean:
-    :param open_on_hover: Designates whether component should activate when its activator is hovered.
     :type boolean:
     :param origin: See description |VBottomSheet_vuetify_link|.
     :type string:
@@ -1280,7 +1269,6 @@ class VBottomSheet(HtmlElement):
             "open_delay",
             "open_on_click",
             "open_on_focus",
-            "open_on_hover",
             "origin",
             "overlay_color",
             "overlay_opacity",
@@ -2619,8 +2607,6 @@ class VCheckbox(HtmlElement):
     :type any:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -2689,7 +2675,6 @@ class VCheckbox(HtmlElement):
             "error_messages",
             "false_value",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "indeterminate",
@@ -3092,8 +3077,6 @@ class VCombobox(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-combobox" target="_blank">here</a>
 
 
-    :param allow_overflow: Allow the menu to overflow off the screen
-    :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -3142,7 +3125,7 @@ class VCombobox(HtmlElement):
     :type ['string', 'array']:
     :param filled: Applies the alternate filled input style
     :type boolean:
-    :param filter: See description |VCombobox_vuetify_link|.
+    :param filter: The function used for filtering items
     :type function:
     :param flat: Removes elevation (shadow) added to element when using the **solo** or **solo-inverted** props
     :type boolean:
@@ -3154,9 +3137,7 @@ class VCombobox(HtmlElement):
     :type ['boolean', 'string']:
     :param hide_no_data: Hides the menu when there are no options to show.  Useful for preventing the menu from opening before results are fetched asynchronously.  Also has the effect of opening the menu when the `items` array changes if not already open.
     :type boolean:
-    :param hide_selected: Do not display in the select menu items that are already selected
-    :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :param hide_selected: Do not display in the select menu items that are already selected. Also removes checkboxes from the list when multiple
     :type boolean:
     :param hint: Hint text
     :type string:
@@ -3216,7 +3197,7 @@ class VCombobox(HtmlElement):
     :type boolean:
     :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`
     :type array:
-    :param search_input: Search value. Can be used with `.sync` modifier.
+    :param search_input: Use the **.sync** modifier to catch user input from the search input
     :type string:
     :param shaped: Round if `outlined` and increase `border-radius` if `filled`. Must be used with either `outlined` or `filled`
     :type boolean:
@@ -3233,8 +3214,6 @@ class VCombobox(HtmlElement):
     :param success_messages: Puts the input in a success state and passes through custom success messages.
     :type ['string', 'array']:
     :param suffix: Displays suffix text
-    :type string:
-    :param type: Sets input type
     :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
@@ -3263,7 +3242,6 @@ class VCombobox(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("v-combobox", children, **kwargs)
         self._attr_names += [
-            "allow_overflow",
             "append_icon",
             "append_outer_icon",
             "attach",
@@ -3295,7 +3273,6 @@ class VCombobox(HtmlElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
-            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -3334,7 +3311,6 @@ class VCombobox(HtmlElement):
             "success",
             "success_messages",
             "suffix",
-            "type",
             "validate_on_blur",
             "value",
             "value_comparator",  # JS functions unimplemented
@@ -3588,136 +3564,141 @@ class VDataFooter(HtmlElement):
 
 class VDataTable(HtmlElement):
     """
-    Vuetify's VDataTable component. See more info and examples |VDataTable_vuetify_link|.
+        Vuetify's VDataTable component. See more info and examples |VDataTable_vuetify_link|.
 
-    .. |VDataTable_vuetify_link| raw:: html
+        .. |VDataTable_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-data-table" target="_blank">here</a>
+            <a href="https://vuetifyjs.com/api/v-data-table" target="_blank">here</a>
 
 
-    :param calculate_widths: Enables calculation of column widths. `widths` property will be available in select scoped slots
-    :type boolean:
-    :param caption: Set the caption (using `<caption>`)
-    :type string:
-    :param checkbox_color: Set the color of the checkboxes (showSelect must be used)
-    :type string:
-    :param custom_filter: Function to filter items
-    :type function:
-    :param custom_group: Function used to group items
-    :type function:
-    :param custom_sort: Function used to sort items
-    :type function:
-    :param dark: See description |VDataTable_vuetify_link|.
-    :type boolean:
-    :param dense: Decreases the height of rows
-    :type boolean:
-    :param disable_filtering: Disables filtering completely
-    :type boolean:
-    :param disable_pagination: Disables pagination completely
-    :type boolean:
-    :param disable_sort: Disables sorting completely
-    :type boolean:
-    :param expand_icon: Icon used for expand toggle button.
-    :type string:
-    :param expanded: Array of expanded items. Can be used with `.sync` modifier
-    :type array:
-    :param fixed_header: Fixed header to top of table. **NOTE:** Does not work in IE11
-    :type boolean:
-    :param footer_props: See description |VDataTable_vuetify_link|.
-    :type object:
-    :param group_by: Changes which item property should be used for grouping items. Currently only supports a single grouping in the format: `group` or `['group']`. When using an array, only the first element is considered. Can be used with `.sync` modifier
-    :type ['string', 'array']:
-    :param group_desc: Changes which direction grouping is done. Can be used with `.sync` modifier
-    :type ['boolean', 'array']:
-    :param header_props: See description |VDataTable_vuetify_link|.
-    :type object:
-    :param headers: An array of objects that each describe a header column. See the example below for a definition of all properties
-    :type DataTableHeader[]:
-    :param headers_length: Can be used in combination with `hide-default-header` to specify the number of columns in the table to allow expansion rows and loading bar to function properly
-    :type number:
-    :param height: Set an explicit height of table
-    :type ['number', 'string']:
-    :param hide_default_footer: Hides default footer
-    :type boolean:
-    :param hide_default_header: Hide the default headers
-    :type boolean:
-    :param item_class: Property on supplied `items` that contains item's row class or function that takes an item as an argument and returns the class of corresponding row
-    :type ['string', 'function']:
-    :param item_key: The property on each item that is used as a unique key
-    :type string:
-    :param items: The array of items to display
-    :type array:
-    :param items_per_page: Changes how many items per page should be visible. Can be used with `.sync` modifier. Setting this prop to `-1` will display all items on the page
-    :type number:
-    :param light: Applies the light theme variant to the component.
-    :type boolean:
-    :param loader_height: Specifies the height of the loader
-    :type ['number', 'string']:
-    :param loading: If `true` and no items are provided, then a loading text will be shown
-    :type ['boolean', 'string']:
-    :param loading_text: Text shown when `loading` is true and no items are provided
-    :type string:
-    :param locale: See description |VDataTable_vuetify_link|.
-    :type string:
-    :param mobile_breakpoint: Used to set when to toggle between regular table and mobile view
-    :type ['number', 'string']:
-    :param multi_sort: If `true` then one can sort on multiple properties
-    :type boolean:
-    :param must_sort: If `true` then one can not disable sorting, it will always switch between ascending and descending
-    :type boolean:
-    :param no_data_text: Text shown when no items are provided to the component
-    :type string:
-    :param no_results_text: Text shown when `search` prop is used and there are no results
-    :type string:
-    :param options:
-    :type DataOptions:
-    :param page: The current displayed page number (1-indexed)
-    :type number:
-    :param search: Text input used to filter items
-    :type string:
-    :param selectable_key: The property on each item that is used to determine if it is selectable or not
-    :type string:
-    :param server_items_length: Used only when data is provided by a server. Should be set to the total amount of items available on server so that pagination works correctly
-    :type number:
-    :param show_expand: Shows the expand toggle in default rows
-    :type boolean:
-    :param show_group_by: Shows the group by toggle in the header and enables grouped rows
-    :type boolean:
-    :param show_select: Shows the select checkboxes in both the header and rows (if using default rows)
-    :type boolean:
-    :param single_expand: Changes expansion mode to single expand
-    :type boolean:
-    :param single_select: Changes selection mode to single select
-    :type boolean:
-    :param sort_by: Changes which item property (or properties) should be used for sort order. Can be used with `.sync` modifier
-    :type ['string', 'array']:
-    :param sort_desc: Changes which direction sorting is done. Can be used with `.sync` modifier
-    :type ['boolean', 'array']:
-    :param value: Used for controlling selected rows
-    :type array:
+        :param calculate_widths: Enables calculation of column widths. `widths` property will be available in select scoped slots
+        :type boolean:
+        :param caption: Set the caption (using `<caption>`)
+        :type string:
+        :param checkbox_color: Set the color of the checkboxes (showSelect must be used)
+        :type string:
+        :param custom_filter: Function to filter items
+        :type function:
+        :param custom_group: Function used to group items
+        :type function:
+        :param custom_sort: Function used to sort items
+        :type function:
+        :param dark: See description |VDataTable_vuetify_link|.
+        :type boolean:
+        :param dense: Decreases the height of rows
+        :type boolean:
+        :param disable_filtering: Disables filtering completely
+        :type boolean:
+        :param disable_pagination: Disables pagination completely
+        :type boolean:
+        :param disable_sort: Disables sorting completely
+        :type boolean:
+        :param expand_icon: Icon used for expand toggle button.
+        :type string:
+        :param expanded: Array of expanded items. Can be used with `.sync` modifier
+        :type array:
+        :param filter_mode: Controls how how custom column filters are combined with the default filtering. Both modes only apply the default filter to columns not specified in `customKeyFilter`.
 
-    Events
+    - **union**: There is at least one match from the default filter, OR all custom column filters match.
+    - **intersection**: There is at least one match from the default filter, AND all custom column filters match.
+        :type string:
+        :param fixed_header: Fixed header to top of table. **NOTE:** Does not work in IE11
+        :type boolean:
+        :param footer_props: See description |VDataTable_vuetify_link|.
+        :type object:
+        :param group_by: Changes which item property should be used for grouping items. Currently only supports a single grouping in the format: `group` or `['group']`. When using an array, only the first element is considered. Can be used with `.sync` modifier
+        :type ['string', 'array']:
+        :param group_desc: Changes which direction grouping is done. Can be used with `.sync` modifier
+        :type ['boolean', 'array']:
+        :param header_props: See description |VDataTable_vuetify_link|.
+        :type object:
+        :param headers: An array of objects that each describe a header column. See the example below for a definition of all properties
+        :type DataTableHeader[]:
+        :param headers_length: Can be used in combination with `hide-default-header` to specify the number of columns in the table to allow expansion rows and loading bar to function properly
+        :type number:
+        :param height: Set an explicit height of table
+        :type ['number', 'string']:
+        :param hide_default_footer: Hides default footer
+        :type boolean:
+        :param hide_default_header: Hide the default headers
+        :type boolean:
+        :param item_class: Property on supplied `items` that contains item's row class or function that takes an item as an argument and returns the class of corresponding row
+        :type ['string', 'function']:
+        :param item_key: The property on each item that is used as a unique key
+        :type string:
+        :param item_style:
+        :type ['string', 'function']:
+        :param items: The array of items to display
+        :type array:
+        :param items_per_page: Changes how many items per page should be visible. Can be used with `.sync` modifier. Setting this prop to `-1` will display all items on the page
+        :type number:
+        :param light: Applies the light theme variant to the component.
+        :type boolean:
+        :param loader_height: Specifies the height of the loader
+        :type ['number', 'string']:
+        :param loading: If `true` and no items are provided, then a loading text will be shown
+        :type ['boolean', 'string']:
+        :param loading_text: Text shown when `loading` is true and no items are provided
+        :type string:
+        :param locale: See description |VDataTable_vuetify_link|.
+        :type string:
+        :param mobile_breakpoint: Used to set when to toggle between regular table and mobile view
+        :type ['number', 'string']:
+        :param multi_sort: If `true` then one can sort on multiple properties
+        :type boolean:
+        :param must_sort: If `true` then one can not disable sorting, it will always switch between ascending and descending
+        :type boolean:
+        :param no_data_text: Text shown when no items are provided to the component
+        :type string:
+        :param no_results_text: Text shown when `search` prop is used and there are no results
+        :type string:
+        :param options:
+        :type DataOptions:
+        :param page: The current displayed page number (1-indexed)
+        :type number:
+        :param search: Text input used to filter items
+        :type string:
+        :param selectable_key: The property on each item that is used to determine if it is selectable or not
+        :type string:
+        :param server_items_length: Used only when data is provided by a server. Should be set to the total amount of items available on server so that pagination works correctly
+        :type number:
+        :param show_expand: Shows the expand toggle in default rows
+        :type boolean:
+        :param show_group_by: Shows the group by toggle in the header and enables grouped rows
+        :type boolean:
+        :param show_select: Shows the select checkboxes in both the header and rows (if using default rows)
+        :type boolean:
+        :param single_expand: Changes expansion mode to single expand
+        :type boolean:
+        :param single_select: Changes selection mode to single select
+        :type boolean:
+        :param sort_by: Changes which item property (or properties) should be used for sort order. Can be used with `.sync` modifier
+        :type ['string', 'array']:
+        :param sort_desc: Changes which direction sorting is done. Can be used with `.sync` modifier
+        :type ['boolean', 'array']:
+        :param value: Used for controlling selected rows
+        :type array:
 
-    :param click_row: Emits when a table row is clicked. This event provides 2 arguments: the first is the item data that was clicked and the second is the other related data provided by the `item` slot. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
-    :param contextmenu_row: Emits when a table row is right-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
-    :param current_items: Emits the items provided via the **items** prop, every time the internal **computedItems** is changed.
-    :param dblclick_row: Emits when a table row is double-clicked. The item for the row is included. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
-    :param input: Array of selected items
-    :param item_expanded: Event emitted when an item is expanded or closed
-    :param item_selected: Event emitted when an item is selected or deselected
-    :param page_count: Emits when the **pageCount** property of the **pagination** prop is updated
-    :param pagination: Emits when something changed to the `pagination` which can be provided via the `pagination` prop
-    :param toggle_select_all: Emits when the `select-all` checkbox in table header is clicked. This checkbox is enabled by the **show-select** prop
-    :param update_expanded: The `.sync` event for `expanded` prop
-    :param update_group_by: Emits when the **group-by** property of the **options** property is updated
-    :param update_group_desc: Emits when the **group-desc** property of the **options** prop is updated
-    :param update_items_per_page: Emits when the **items-per-page** property of the **options** prop is updated
-    :param update_multi_sort: Emits when the **multi-sort** property of the **options** prop is updated
-    :param update_must_sort: Emits when the **must-sort** property of the **options** prop is updated
-    :param update_options: Emits when one of the **options** properties is updated
-    :param update_page: Emits when the **page** property of the **options** prop is updated
-    :param update_sort_by: Emits when the **sort-by** property of the **options** prop is updated
-    :param update_sort_desc: Emits when the **sort-desc** property of the **options** prop is updated
+        Events
+
+        :param click_row: Emits when a table row is clicked. This event provides 3 arguments: the first is the item data that was clicked, the second is the other related data provided by the `item` slot, and the third is the native click event. **NOTE:** will not emit when table rows are defined through a slot such as `item` or `body`.
+        :param current_items: Emits the items provided via the **items** prop, every time the internal **computedItems** is changed.
+        :param input: Array of selected items
+        :param item_expanded: Event emitted when an item is expanded or closed
+        :param item_selected: Event emitted when an item is selected or deselected
+        :param page_count: Emits when the **pageCount** property of the **pagination** prop is updated
+        :param pagination: Emits when something changed to the `pagination` which can be provided via the `pagination` prop
+        :param toggle_select_all: Emits when the `select-all` checkbox in table header is clicked. This checkbox is enabled by the **show-select** prop
+        :param update_expanded: The `.sync` event for `expanded` prop
+        :param update_group_by: Emits when the **group-by** property of the **options** property is updated
+        :param update_group_desc: Emits when the **group-desc** property of the **options** prop is updated
+        :param update_items_per_page: Emits when the **items-per-page** property of the **options** prop is updated
+        :param update_multi_sort: Emits when the **multi-sort** property of the **options** prop is updated
+        :param update_must_sort: Emits when the **must-sort** property of the **options** prop is updated
+        :param update_options: Emits when one of the **options** properties is updated
+        :param update_page: Emits when the **page** property of the **options** prop is updated
+        :param update_sort_by: Emits when the **sort-by** property of the **options** prop is updated
+        :param update_sort_desc: Emits when the **sort-desc** property of the **options** prop is updated
     """
 
     def __init__(self, children=None, **kwargs):
@@ -3737,6 +3718,7 @@ class VDataTable(HtmlElement):
             "disable_sort",
             "expand_icon",
             "expanded",
+            "filter_mode",
             "fixed_header",
             "footer_props",
             "group_by",
@@ -3749,6 +3731,7 @@ class VDataTable(HtmlElement):
             "hide_default_header",
             "item_class",  # JS functions unimplemented
             "item_key",
+            "item_style",  # JS functions unimplemented
             "items",
             "items_per_page",
             "light",
@@ -3776,10 +3759,38 @@ class VDataTable(HtmlElement):
             "value",
         ]
         self._event_names += [
+            ("click_date", "click:date"),
+            ("click_month", "click:month"),
+            ("click_year", "click:year"),
+            ("dblclick_date", "dblclick:date"),
+            ("dblclick_month", "dblclick:month"),
+            ("dblclick_year", "dblclick:year"),
+            ("mousedown_date", "mousedown:date"),
+            ("mousedown_month", "mousedown:month"),
+            ("mousedown_year", "mousedown:year"),
+            ("mouseenter_date", "mouseenter:date"),
+            ("mouseenter_month", "mouseenter:month"),
+            ("mouseenter_year", "mouseenter:year"),
+            ("mouseleave_date", "mouseleave:date"),
+            ("mouseleave_month", "mouseleave:month"),
+            ("mouseleave_year", "mouseleave:year"),
+            ("mousemove_date", "mousemove:date"),
+            ("mousemove_month", "mousemove:month"),
+            ("mousemove_year", "mousemove:year"),
+            ("mouseover_date", "mouseover:date"),
+            ("mouseover_month", "mouseover:month"),
+            ("mouseover_year", "mouseover:year"),
+            ("mouseout_date", "mouseout:date"),
+            ("mouseout_month", "mouseout:month"),
+            ("mouseout_year", "mouseout:year"),
+            ("mouseup_date", "mouseup:date"),
+            ("mouseup_month", "mouseup:month"),
+            ("mouseup_year", "mouseup:year"),
+            ("focus_date", "focus:date"),
+            ("focus_month", "focus:month"),
+            ("focus_year", "focus:year"),
             ("click_row", "click:row"),
-            ("contextmenu_row", "contextmenu:row"),
             ("current_items", "current-items"),
-            ("dblclick_row", "dblclick:row"),
             "input",
             ("item_expanded", "item-expanded"),
             ("item_selected", "item-selected"),
@@ -4210,7 +4221,7 @@ class VDialog(HtmlElement):
     :type any:
     :param attach: Specifies which DOM element that this component should detach to. String can be any valid querySelector and Object can be any valid Node. This will attach to the root `v-app` component by default.
     :type any:
-    :param close_delay: Milliseconds to wait before closing component.
+    :param close_delay: Milliseconds to wait before closing component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param content_class: Applies a custom class to the detached element. This is useful because the content is moved to the beginning of the `v-app` component (unless the **attach** prop is provided) and is not targetable by classes passed directly on the component.
     :type string:
@@ -4232,13 +4243,11 @@ class VDialog(HtmlElement):
     :type ['string', 'number']:
     :param no_click_animation: Disables the bounce effect when clicking outside of a `v-dialog`'s content when using the **persistent** prop.
     :type boolean:
-    :param open_delay: Milliseconds to wait before opening component.
+    :param open_delay: Milliseconds to wait before opening component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param open_on_click:
     :type boolean:
     :param open_on_focus:
-    :type boolean:
-    :param open_on_hover: Designates whether component should activate when its activator is hovered.
     :type boolean:
     :param origin: See description |VDialog_vuetify_link|.
     :type string:
@@ -4287,7 +4296,6 @@ class VDialog(HtmlElement):
             "open_delay",
             "open_on_click",
             "open_on_focus",
-            "open_on_hover",
             "origin",
             "overlay_color",
             "overlay_opacity",
@@ -4562,8 +4570,6 @@ class VFileInput(HtmlElement):
     :type ['boolean', 'string']:
     :param hide_input: Display the icon only without the input (file names)
     :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -4620,8 +4626,6 @@ class VFileInput(HtmlElement):
     :type string:
     :param truncate_length: The length of a filename before it is truncated with ellipsis
     :type ['number', 'string']:
-    :param type: Sets input type
-    :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
     :param value: See description |VFileInput_vuetify_link|.
@@ -4669,7 +4673,6 @@ class VFileInput(HtmlElement):
             "height",
             "hide_details",
             "hide_input",
-            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -4698,7 +4701,6 @@ class VFileInput(HtmlElement):
             "success_messages",
             "suffix",
             "truncate_length",
-            "type",
             "validate_on_blur",
             "value",
         ]
@@ -5321,11 +5323,11 @@ class VHover(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-hover" target="_blank">here</a>
 
 
-    :param close_delay: Milliseconds to wait before closing component.
+    :param close_delay: Milliseconds to wait before closing component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param disabled: Turns off hover functionality
     :type boolean:
-    :param open_delay: Milliseconds to wait before opening component.
+    :param open_delay: Milliseconds to wait before opening component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param value: Controls whether the component is visible or hidden.
     :type boolean:
@@ -6256,6 +6258,8 @@ class VMenu(HtmlElement):
     :type boolean:
     :param content_class: Applies a custom class to the detached element. This is useful because the content is moved to the beginning of the `v-app` component (unless the **attach** prop is provided) and is not targetable by classes passed directly on the component.
     :type string:
+    :param content_props: Applies props/attributes to the detached menu. This is useful because the content is moved to the beginning of the `v-app` component (unless the attach prop is provided) and is not targetable by classes passed directly on the component. You could use this for example for applying a `data-cy` for cypress testing purposes.
+    :type object:
     :param dark: See description |VMenu_vuetify_link|.
     :type boolean:
     :param disable_keys: Removes all keyboard interaction
@@ -6341,6 +6345,7 @@ class VMenu(HtmlElement):
             "close_on_click",
             "close_on_content_click",
             "content_class",
+            "content_props",
             "dark",
             "disable_keys",
             "disabled",
@@ -6505,8 +6510,6 @@ class VOtpInput(HtmlElement):
     :type boolean:
     :param disabled: Disable the input
     :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param id: Sets the DOM id on the component
     :type string:
     :param length: The OTP field's length
@@ -6532,7 +6535,6 @@ class VOtpInput(HtmlElement):
         self._attr_names += [
             "dark",
             "disabled",
-            "hide_spin_buttons",
             "id",
             "length",
             "plain",
@@ -6556,8 +6558,6 @@ class VOverflowBtn(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-overflow-btn" target="_blank">here</a>
 
 
-    :param allow_overflow: Allow the menu to overflow off the screen
-    :type boolean:
     :param append_icon: Appends an icon to the component, uses the same syntax as `v-icon`
     :type string:
     :param append_outer_icon: Appends an icon to the outside the component's input, uses same syntax as `v-icon`
@@ -6606,7 +6606,7 @@ class VOverflowBtn(HtmlElement):
     :type ['string', 'array']:
     :param filled: Applies the alternate filled input style
     :type boolean:
-    :param filter: See description |VOverflowBtn_vuetify_link|.
+    :param filter: The function used for filtering items
     :type function:
     :param flat: Removes elevation (shadow) added to element when using the **solo** or **solo-inverted** props
     :type boolean:
@@ -6618,9 +6618,7 @@ class VOverflowBtn(HtmlElement):
     :type ['boolean', 'string']:
     :param hide_no_data: Hides the menu when there are no options to show.  Useful for preventing the menu from opening before results are fetched asynchronously.  Also has the effect of opening the menu when the `items` array changes if not already open.
     :type boolean:
-    :param hide_selected: Do not display in the select menu items that are already selected
-    :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :param hide_selected: Do not display in the select menu items that are already selected. Also removes checkboxes from the list when multiple
     :type boolean:
     :param hint: Hint text
     :type string:
@@ -6660,7 +6658,7 @@ class VOverflowBtn(HtmlElement):
     :type boolean:
     :param persistent_hint: Forces hint to always be visible
     :type boolean:
-    :param persistent_placeholder: Forces placeholder to always be visible
+    :param persistent_placeholder: Forces label to always be visible
     :type boolean:
     :param placeholder: Sets the input's placeholder text
     :type string:
@@ -6680,7 +6678,7 @@ class VOverflowBtn(HtmlElement):
     :type boolean:
     :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`
     :type array:
-    :param search_input: Search value. Can be used with `.sync` modifier.
+    :param search_input: Use the **.sync** modifier to catch user input from the search input
     :type string:
     :param segmented: Creates a segmented button
     :type boolean:
@@ -6699,8 +6697,6 @@ class VOverflowBtn(HtmlElement):
     :param success_messages: Puts the input in a success state and passes through custom success messages.
     :type ['string', 'array']:
     :param suffix: Displays suffix text
-    :type string:
-    :param type: Sets input type
     :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
@@ -6729,7 +6725,6 @@ class VOverflowBtn(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("v-overflow-btn", children, **kwargs)
         self._attr_names += [
-            "allow_overflow",
             "append_icon",
             "append_outer_icon",
             "attach",
@@ -6761,7 +6756,6 @@ class VOverflowBtn(HtmlElement):
             "hide_details",
             "hide_no_data",
             "hide_selected",
-            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -6801,7 +6795,6 @@ class VOverflowBtn(HtmlElement):
             "success",
             "success_messages",
             "suffix",
-            "type",
             "validate_on_blur",
             "value",
             "value_comparator",  # JS functions unimplemented
@@ -6889,6 +6882,10 @@ class VPagination(HtmlElement):
     :type number:
     :param light: Applies the light theme variant to the component.
     :type boolean:
+    :param navigation_color:
+    :type string:
+    :param navigation_text_color:
+    :type string:
     :param next_aria_label:
     :type string:
     :param next_icon: Specify the icon to use for the next icon
@@ -6923,6 +6920,8 @@ class VPagination(HtmlElement):
             "disabled",
             "length",
             "light",
+            "navigation_color",
+            "navigation_text_color",
             "next_aria_label",
             "next_icon",
             "page_aria_label",
@@ -7186,8 +7185,6 @@ class VRadioGroup(HtmlElement):
     :type ['string', 'array']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -7251,7 +7248,6 @@ class VRadioGroup(HtmlElement):
             "error_count",
             "error_messages",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -7386,8 +7382,6 @@ class VRangeSlider(HtmlElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -7470,7 +7464,6 @@ class VRangeSlider(HtmlElement):
             "error_messages",
             "height",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "inverse_label",
@@ -7523,11 +7516,11 @@ class VRating(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-rating" target="_blank">here</a>
 
 
-    :param background_color: The color used empty icons
+    :param background_color: The color used for empty icons
     :type string:
     :param clearable: Allows for the component to be cleared. Triggers when the icon containing the current value is clicked.
     :type boolean:
-    :param close_delay: Milliseconds to wait before closing component.
+    :param close_delay: Milliseconds to wait before closing component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param color: See description |VRating_vuetify_link|.
     :type string:
@@ -7553,7 +7546,7 @@ class VRating(HtmlElement):
     :type ['number', 'string']:
     :param light: Applies the light theme variant to the component.
     :type boolean:
-    :param open_delay: Milliseconds to wait before opening component.
+    :param open_delay: Milliseconds to wait before opening component. Only applies to hover and focus events.
     :type ['number', 'string']:
     :param readonly: Removes all hover effects and pointer events
     :type boolean:
@@ -7711,9 +7704,7 @@ class VSelect(HtmlElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_selected: Do not display in the select menu items that are already selected
-    :type boolean:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
+    :param hide_selected: Do not display in the select menu items that are already selected. Also removes checkboxes from the list when multiple
     :type boolean:
     :param hint: Hint text
     :type string:
@@ -7787,8 +7778,6 @@ class VSelect(HtmlElement):
     :type ['string', 'array']:
     :param suffix: Displays suffix text
     :type string:
-    :param type: Sets input type
-    :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
     :param value: The input's value
@@ -7844,7 +7833,6 @@ class VSelect(HtmlElement):
             "height",
             "hide_details",
             "hide_selected",
-            "hide_spin_buttons",
             "hint",
             "id",
             "item_color",
@@ -7881,7 +7869,6 @@ class VSelect(HtmlElement):
             "success",
             "success_messages",
             "suffix",
-            "type",
             "validate_on_blur",
             "value",
             "value_comparator",  # JS functions unimplemented
@@ -7927,6 +7914,8 @@ class VSkeletonLoader(HtmlElement):
     :type boolean:
     :param loading: Applies a loading animation with a on-hover loading cursor. A value of **false** will only work when there is content in the `default` slot.
     :type boolean:
+    :param loading_text:
+    :type string:
     :param max_height: Sets the maximum height for the component.
     :type ['number', 'string']:
     :param max_width: Sets the maximum width for the component.
@@ -7957,6 +7946,7 @@ class VSkeletonLoader(HtmlElement):
             "height",
             "light",
             "loading",
+            "loading_text",
             "max_height",
             "max_width",
             "min_height",
@@ -8001,8 +7991,6 @@ class VSlider(HtmlElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -8085,7 +8073,6 @@ class VSlider(HtmlElement):
             "error_messages",
             "height",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "inverse_label",
@@ -8722,8 +8709,6 @@ class VSwitch(HtmlElement):
     :type boolean:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -8788,7 +8773,6 @@ class VSwitch(HtmlElement):
             "false_value",
             "flat",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "input_value",
@@ -8995,6 +8979,8 @@ class VTab(HtmlElement):
     :type boolean:
     :param ripple: See description |VTab_vuetify_link|.
     :type ['boolean', 'object']:
+    :param tab_value:
+    :type any:
     :param tag: Specify a custom tag used on the root element.
     :type string:
     :param target: Designates the target attribute. This should only be applied when using the **href** prop.
@@ -9024,6 +9010,7 @@ class VTab(HtmlElement):
             "nuxt",
             "replace",
             "ripple",
+            "tab_value",
             "tag",
             "target",
             "to",
@@ -9226,8 +9213,6 @@ class VTextarea(HtmlElement):
     :type ['number', 'string']:
     :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display
     :type ['boolean', 'string']:
-    :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
-    :type boolean:
     :param hint: Hint text
     :type string:
     :param id: Sets the DOM id on the component
@@ -9284,8 +9269,6 @@ class VTextarea(HtmlElement):
     :type ['string', 'array']:
     :param suffix: Displays suffix text
     :type string:
-    :param type: Sets input type
-    :type string:
     :param validate_on_blur: Delays validation until blur event
     :type boolean:
     :param value: The input's value
@@ -9330,7 +9313,6 @@ class VTextarea(HtmlElement):
             "full_width",
             "height",
             "hide_details",
-            "hide_spin_buttons",
             "hint",
             "id",
             "label",
@@ -9359,7 +9341,6 @@ class VTextarea(HtmlElement):
             "success",
             "success_messages",
             "suffix",
-            "type",
             "validate_on_blur",
             "value",
         ]
@@ -9698,6 +9679,8 @@ class VTimePicker(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-time-picker" target="_blank">here</a>
 
 
+    :param active_picker: Determines which picker is being displayed. Allowed values: `'HOUR'`, `'MINUTE'`, `'SECOND'`
+    :type string:
     :param allowed_hours: Restricts which hours can be selected
     :type ['function', 'array']:
     :param allowed_minutes: Restricts which minutes can be selected
@@ -9750,12 +9733,14 @@ class VTimePicker(HtmlElement):
     :param click_minute: Emitted when user selects the minute
     :param click_second: Emitted when user selects the second
     :param input: The updated bound model
+    :param update_active_picker: The `.sync` event for `active-picker` prop
     :param update_period: Emitted when user clicks the AM/PM button
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("v-time-picker", children, **kwargs)
         self._attr_names += [
+            "active_picker",
             "allowed_hours",  # JS functions unimplemented
             "allowed_minutes",  # JS functions unimplemented
             "allowed_seconds",  # JS functions unimplemented
@@ -9785,6 +9770,7 @@ class VTimePicker(HtmlElement):
             ("click_minute", "click:minute"),
             ("click_second", "click:second"),
             "input",
+            ("update_active_picker", "update:active-picker"),
             ("update_period", "update:period"),
         ]
 
