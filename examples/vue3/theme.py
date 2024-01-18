@@ -1,4 +1,4 @@
-# require trame-client>=2.15
+# require trame-vuetify>=2.4.1
 from trame.app import get_server
 from trame.widgets import vuetify3
 from trame.ui.vuetify3 import SinglePageLayout
