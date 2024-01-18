@@ -2,6 +2,16 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.2 (2024-01-18)
+
+### Fix
+
+* **release:** Patch ci to release the proper version ([`ebbdf80`](https://github.com/Kitware/trame-vuetify/commit/ebbdf80db78a15c9f25658222c55e2703d17704e))
+
+### Documentation
+
+* **examples:** More vuetify3 examples ([`015c81e`](https://github.com/Kitware/trame-vuetify/commit/015c81e8426a6a86c6d2fcd3ddaaaf51f86fff9d))
+
 ## v2.4.1 (2024-01-17)
 
 ### Fix
