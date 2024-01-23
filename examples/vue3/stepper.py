@@ -13,6 +13,9 @@ class StepperExample:
         self.server = get_server(server, client_type="vue3")
         self.ui = self._build_ui()
 
+    def done(self):
+        print("We are done...")
+
     def _build_ui(self):
         with SinglePageLayout(self.server, full_height=True) as layout:
             with layout.toolbar.clear() as toolbar:
@@ -21,7 +24,8 @@ class StepperExample:
 
             with layout.content:
                 with vuetify3.VStepper(
-                    items=("steps", [f"Step {i+1}" for i in range(NB_STEPS)])
+                    v_model=("current_step", 0),
+                    items=("steps", [f"Step {i+1}" for i in range(NB_STEPS)]),
                 ):
                     with vuetify3.Template(raw_attrs=["v-slot:item.1"]):
                         with vuetify3.VCard(title="Step one", flat=True):
@@ -38,6 +42,26 @@ class StepperExample:
                                 vuetify3.VCardText(
                                     f"You are getting close {i}/{NB_STEPS}"
                                 )
+
+                    # Custom Actions
+                    with vuetify3.Template(raw_attrs=['v-slot:actions="{prev, next}"']):
+                        with vuetify3.VCardActions():
+                            vuetify3.VBtn(
+                                "Previous",
+                                disabled=("current_step === 1",),
+                                click="prev",
+                            )
+                            vuetify3.VSpacer()
+                            vuetify3.VBtn(
+                                "Next",
+                                v_show=f"current_step < {NB_STEPS}",
+                                click="next",
+                            )
+                            vuetify3.VBtn(
+                                "Finish",
+                                v_show=f"current_step === {NB_STEPS}",
+                                click=self.done,
+                            )
 
             return layout
 
