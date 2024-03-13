@@ -2,6 +2,16 @@
 
 <!--next-version-placeholder-->
 
+## v2.4.3 (2024-03-13)
+
+### Fix
+
+* Uniform __init__.py for package ([`28deeaa`](https://github.com/Kitware/trame-vuetify/commit/28deeaaae6c569e3059975e4275a573fd1a9d7e4))
+
+### Documentation
+
+* **example:** Expend stepper with custom actions ([`66720b6`](https://github.com/Kitware/trame-vuetify/commit/66720b6cc4ad346aa24900b219bfe85836ac35df))
+
 ## v2.4.2 (2024-01-18)
 
 ### Fix
