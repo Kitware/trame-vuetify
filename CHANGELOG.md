@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.5.0 (2024-05-06)
+
+### Feature
+
+* **3.6.3:** Expose Vuetify v3.6.3 ([`55bac1b`](https://github.com/Kitware/trame-vuetify/commit/55bac1b08112ee949a4982ebccd93a708aade9e3))
+
 ## v2.4.3 (2024-03-13)
 
 ### Fix
