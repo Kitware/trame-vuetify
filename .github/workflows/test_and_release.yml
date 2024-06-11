@@ -102,7 +102,7 @@ jobs:
           npm ci
           npm run build
           cd ../trame_vuetify/module
-          mkdir -p vue3-serve/{fonts,css}
+          mkdir -p vue3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo vue3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo vue3-lab-serve/fonts/materialdesignicons-webfont.woff2
   release:
@@ -142,7 +142,7 @@ jobs:
           npm ci
           npm run build
           cd ../trame_vuetify/module
-          mkdir -p vue3-serve/{fonts,css}
+          mkdir -p vue3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo vue3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo vue3-lab-serve/fonts/materialdesignicons-webfont.woff2
 
