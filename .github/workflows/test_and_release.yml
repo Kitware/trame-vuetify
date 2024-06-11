@@ -98,7 +98,7 @@ jobs:
 
       - name: Build Vue3-lab Components
         run: |
-            cd vue3-labs
+            cd vue3-lab
             npm ci
             npm run build
             cd ../trame_vuetify/module/vue3-lab-serve
@@ -138,7 +138,7 @@ jobs:
 
       - name: Build Vue3-lab Components
         run: |
-          cd vue3-labs
+          cd vue3-lab
           npm ci
           npm run build
           cd ../trame_vuetify/module/vue3-lab-serve
