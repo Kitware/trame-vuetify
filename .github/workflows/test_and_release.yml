@@ -91,10 +91,19 @@ jobs:
         run: |
           mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
           cd trame_vuetify/module/vue3-serve
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.3/dist/vuetify.min.css -Lo vuetify3.css
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.3/dist/vuetify.min.js -Lo vuetify3.js
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.8/dist/vuetify.min.css -Lo vuetify3.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.8/dist/vuetify.min.js -Lo vuetify3.js
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vue3-lab Components
+        run: |
+            cd vue3-labs
+            npm ci
+            npm run build
+            cd ../trame_vuetify/module/vue3-lab-serve
+            curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+            curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
 
   release:
     needs: [pre-commit, pytest, test-npm-build]
@@ -122,10 +131,20 @@ jobs:
         run: |
           mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
           cd trame_vuetify/module/vue3-serve
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.3/dist/vuetify.min.css -Lo vuetify3.css
-          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.3/dist/vuetify.min.js -Lo vuetify3.js
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.8/dist/vuetify.min.css -Lo vuetify3.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@3.6.8/dist/vuetify.min.js -Lo vuetify3.js
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vue3-lab Components
+        run: |
+          cd vue3-labs
+          npm ci
+          npm run build
+          cd ../trame_vuetify/module/vue3-lab-serve
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+
 
       - name: Python Semantic Release
         uses: relekang/python-semantic-release@v7.34.6

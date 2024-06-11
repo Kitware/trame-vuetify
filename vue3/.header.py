@@ -1,12 +1,25 @@
 from trame_client.widgets.core import AbstractElement, Template  # noqa
-from trame_vuetify.module import vue3
+
+USE_LAB = False
+
+
+def enable_lab():
+    global USE_LAB
+    USE_LAB = True
 
 
 class HtmlElement(AbstractElement):
     def __init__(self, _elem_name, children=None, **kwargs):
         super().__init__(_elem_name, children, **kwargs)
         if self.server:
-            self.server.enable_module(vue3)
+            if USE_LAB:
+                from trame_vuetify.module import vue3_lab
+
+                self.server.enable_module(vue3_lab)
+            else:
+                from trame_vuetify.module import vue3
+
+                self.server.enable_module(vue3)
 
 
 try:
