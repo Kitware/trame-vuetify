@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.6.0 (2024-06-11)
+
+### Feature
+
+* **lab:** Add option to enable lab components ([`8e06f4d`](https://github.com/Kitware/trame-vuetify/commit/8e06f4da534c279ffc0f338ba6cc342031105621))
+
 ## v2.5.0 (2024-05-06)
 
 ### Feature
