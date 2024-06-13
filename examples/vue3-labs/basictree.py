@@ -1,5 +1,5 @@
 from trame.app import get_server
-from trame.widgets import vuetify3
+from trame.widgets import vuetify3, html
 from trame.ui.vuetify3 import SinglePageLayout
 import itertools
 import random
@@ -35,20 +35,22 @@ def generate_node(n_children, depth=0):
 
 TREE = [generate_node(random.randint(0, 5), 0) for i in range(5)]
 
-
-def new_tree_select(event):
-    print(event)
-
-
 with SinglePageLayout(server) as layout:
+    with layout.toolbar:
+        html.Div("{{ active_node }}")
     with layout.content:
         vuetify3.VTreeview(
+            # style
+            slim=True,
+            density="compact",
+            # data
             item_value="id",
             items=("tree", TREE),
-            click_select=(
-                new_tree_select,
-                "[$event]",
-            ),  # Emits the item when it is clicked to select.)
+            # activation logic
+            activated=("active_node", []),
+            activatable=True,
+            active_strategy="single-independent",
+            update_activated="active_node = $event",  # Emits the item when it is clicked to select.)
         )
 
 if __name__ == "__main__":
