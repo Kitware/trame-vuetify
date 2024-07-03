@@ -2,6 +2,17 @@
 
 <!--next-version-placeholder-->
 
+## v2.6.1 (2024-07-03)
+
+### Fix
+
+* Avoid pkg_resources for get_trame_versions() ([`49010b3`](https://github.com/Kitware/trame-vuetify/commit/49010b30eb9cff1202822f494af50a54cd338e6c))
+
+### Documentation
+
+* **example:** Update tree example ([`4648a2c`](https://github.com/Kitware/trame-vuetify/commit/4648a2cd3ba9314f222c5ae4c3513a97f7426884))
+* **lab:** Add another tree example ([`67381d0`](https://github.com/Kitware/trame-vuetify/commit/67381d04d6242602ff482a5c14ecc3a711516443))
+
 ## v2.6.0 (2024-06-11)
 
 ### Feature
