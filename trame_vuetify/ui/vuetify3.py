@@ -10,12 +10,15 @@ __all__ = [
 
 
 def get_trame_versions():
-    import pkg_resources
+    import importlib.metadata
+    from trame_client.utils.version import get_version
 
     output = []
-    for pkg in pkg_resources.working_set:
-        if pkg.key.startswith("trame"):
-            output.append(f"{pkg.key.replace('trame-', '')} == {pkg.version}")
+    for pkg in importlib.metadata.distributions():
+        name = pkg.metadata["Name"]
+        if name.startswith("trame"):
+            version = get_version(name)
+            output.append(f"{name.replace('trame-', '')} == {version}")
 
     return "\n".join(output)
 
