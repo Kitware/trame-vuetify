@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.6.2 (2024-07-21)
+
+### Fix
+
+* **get_trame_versions:** Avoid errors ([`ce320be`](https://github.com/Kitware/trame-vuetify/commit/ce320be356876c48f6117a7fae0bbd774c313440))
+
 ## v2.6.1 (2024-07-03)
 
 ### Fix
