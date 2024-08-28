@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.7.0 (2024-08-28)
+
+### Feature
+
+* **3.7.1:** Update to vuetify 3.7.1 ([`78f2616`](https://github.com/Kitware/trame-vuetify/commit/78f2616690cb8993b6c6d3a15ea26e810daf75e2))
+
 ## v2.6.2 (2024-07-21)
 
 ### Fix
