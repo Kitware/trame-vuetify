@@ -371,72 +371,79 @@ __all__ = [
 
 class VAlert(HtmlElement):
     """
-    Vuetify's VAlert component. See more info and examples |VAlert_vuetify_link|.
+      Vuetify's VAlert component. See more info and examples |VAlert_vuetify_link|.
 
-    .. |VAlert_vuetify_link| raw:: html
+      .. |VAlert_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-alert" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-alert" target="_blank">here</a>
 
 
-    :param title: Specify a title text for the component.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param border: Adds a colored border to the component.
-    :type boolean | 'top' | 'end' | 'bottom' | 'start':
-    :param border_color: Specifies the color of the border. Accepts any color value.
-    :type string:
-    :param closable: Adds a close icon that can hide the alert.
-    :type boolean:
-    :param close_icon: Change the default icon used for **closable** alerts.
-    :type any:
-    :param type: Create a specialized alert that uses a contextual color and has a pre-defined icon.
-    :type 'success' | 'info' | 'warning' | 'error':
-    :param close_label: See description |VAlert_vuetify_link|.
-    :type string:
-    :param icon: See description |VAlert_vuetify_link|.
-    :type any:
-    :param model_value: Controls whether the component is visible or hidden.
-    :type boolean:
-    :param prominent: Displays a larger vertically centered icon to draw more attention.
-    :type boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VAlert_vuetify_link|.
-    :type string | number:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param rounded: See description |VAlert_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes the component's border-radius.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VAlert_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param title: Specify a title text for the component.
+      :type string:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Adds a colored border to the component.
+      :type boolean | 'top' | 'end' | 'bottom' | 'start':
+      :param border_color: Specifies the color of the border. Accepts any color value.
+      :type string:
+      :param closable: Adds a close icon that can hide the alert.
+      :type boolean:
+      :param close_icon: Change the default icon used for **closable** alerts.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param type: Create a specialized alert that uses a contextual color and has a pre-defined icon.
+      :type 'success' | 'info' | 'warning' | 'error':
+      :param close_label: See description |VAlert_vuetify_link|.
+      :type string:
+      :param icon: See description |VAlert_vuetify_link|.
+      :type | false
+    | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param model_value: Controls whether the component is visible or hidden.
+      :type boolean:
+      :param prominent: Displays a larger vertically centered icon to draw more attention.
+      :type boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VAlert_vuetify_link|.
+      :type string | number:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param rounded: See description |VAlert_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes the component's border-radius.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VAlert_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain':
 
-    Events
+      Events
 
-    :param click_close: Emitted when close icon is clicked.
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param click_close: Emitted when close icon is clicked.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -584,6 +591,7 @@ class VAppBar(HtmlElement):
       :param scroll_behavior: Specify an action to take when the scroll position of **scroll-target** reaches **scroll-threshold**. Accepts any combination of hide, inverted, collapse, elevate, and fade-image. Multiple values can be used, separated by a space.
       :type | (string & {})
     | 'hide'
+    | 'fully-hide'
     | 'inverted'
     | 'collapse'
     | 'elevate'
@@ -629,91 +637,103 @@ class VAppBar(HtmlElement):
 
 class VAppBarNavIcon(HtmlElement):
     """
-    Vuetify's VAppBarNavIcon component. See more info and examples |VAppBarNavIcon_vuetify_link|.
+      Vuetify's VAppBarNavIcon component. See more info and examples |VAppBarNavIcon_vuetify_link|.
 
-    .. |VAppBarNavIcon_vuetify_link| raw:: html
+      .. |VAppBarNavIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-app-bar-nav-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-app-bar-nav-icon" target="_blank">here</a>
 
 
-    :param symbol: See description |VAppBarNavIcon_vuetify_link|.
-    :type any:
-    :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
-    :type boolean:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type boolean:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param prepend_icon: See description |VAppBarNavIcon_vuetify_link|.
-    :type any:
-    :param append_icon: See description |VAppBarNavIcon_vuetify_link|.
-    :type any:
-    :param block: Expands the button to 100% of available space.
-    :type boolean:
-    :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
-    :type boolean:
-    :param slim: Reduces padding to 0 8px.
-    :type boolean:
-    :param stacked: Displays the button as a flex-column.
-    :type boolean:
-    :param ripple: See description |VAppBarNavIcon_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param text: Specify content text for the component.
-    :type string:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VAppBarNavIcon_vuetify_link|.
-    :type string | number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param rounded: See description |VAppBarNavIcon_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VAppBarNavIcon_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VAppBarNavIcon_vuetify_link|.
-    :type boolean:
-    :param to: See description |VAppBarNavIcon_vuetify_link|.
-    :type RouteLocationRaw:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VAppBarNavIcon_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
-    :param icon: See description |VAppBarNavIcon_vuetify_link|.
-    :type any:
+      :param symbol: See description |VAppBarNavIcon_vuetify_link|.
+      :type any:
+      :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
+      :type boolean:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type boolean:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param prepend_icon: See description |VAppBarNavIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VAppBarNavIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param block: Expands the button to 100% of available space.
+      :type boolean:
+      :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
+      :type boolean:
+      :param slim: Reduces padding to 0 8px.
+      :type boolean:
+      :param stacked: Displays the button as a flex-column.
+      :type boolean:
+      :param ripple: See description |VAppBarNavIcon_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VAppBarNavIcon_vuetify_link|.
+      :type string | number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param rounded: See description |VAppBarNavIcon_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VAppBarNavIcon_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VAppBarNavIcon_vuetify_link|.
+      :type boolean:
+      :param to: See description |VAppBarNavIcon_vuetify_link|.
+      :type RouteLocationRaw:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VAppBarNavIcon_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param icon: See description |VAppBarNavIcon_vuetify_link|.
+      :type | boolean
+    | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
 
     """
 
@@ -723,6 +743,7 @@ class VAppBarNavIcon(HtmlElement):
             "symbol",
             "flat",
             "active",
+            ("active_color", "activeColor"),
             ("base_color", "baseColor"),
             ("prepend_icon", "prependIcon"),
             ("append_icon", "appendIcon"),
@@ -893,7 +914,10 @@ class VAutocomplete(HtmlElement):
         :param menu: Renders with the menu open by default.
         :type boolean:
         :param menu_icon: Sets the the spin icon.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param menu_props: See description |VAutocomplete_vuetify_link|.
         :type unknown:
         :param id: Sets the DOM id on the component.
@@ -925,11 +949,17 @@ class VAutocomplete(HtmlElement):
         :param role: The role attribute applied to the input.
         :type string:
         :param append_icon: See description |VAutocomplete_vuetify_link|.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
         :type boolean:
         :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
         :type boolean:
         :param hint: See description |VAutocomplete_vuetify_link|.
@@ -951,16 +981,28 @@ class VAutocomplete(HtmlElement):
         :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
         :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/validation.ts#L16-L20" target="_blank">ValidationRule</a>[]:
         :param validate_on: Change what type of event triggers validation to run.
-        :type | 'lazy'
+        :type | 'eager'
+      | 'lazy'
       | 'blur'
       | 'input'
       | 'submit'
+      | 'invalid-input'
       | 'blur lazy'
       | 'input lazy'
       | 'submit lazy'
+      | 'invalid-input lazy'
+      | 'blur eager'
+      | 'input eager'
+      | 'submit eager'
+      | 'invalid-input eager'
       | 'lazy blur'
       | 'lazy input'
-      | 'lazy submit':
+      | 'lazy submit'
+      | 'lazy invalid-input'
+      | 'eager blur'
+      | 'eager input'
+      | 'eager submit'
+      | 'eager invalid-input':
         :param focused: Forces a focused state styling on the component.
         :type boolean:
         :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
@@ -968,13 +1010,19 @@ class VAutocomplete(HtmlElement):
         :param clearable: Allows for the component to be cleared.
         :type boolean:
         :param clear_icon: The icon used when the **clearable** prop is set to true.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param active: Controls the **active** state of the item. This is typically used to highlight the component.
         :type boolean:
         :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
         :type boolean:
         :param prepend_inner_icon: See description |VAutocomplete_vuetify_link|.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param single_line: Label does not move on focus/dirty.
         :type boolean:
         :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
@@ -1099,39 +1147,44 @@ class VAutocomplete(HtmlElement):
 
 class VAvatar(HtmlElement):
     """
-    Vuetify's VAvatar component. See more info and examples |VAvatar_vuetify_link|.
+      Vuetify's VAvatar component. See more info and examples |VAvatar_vuetify_link|.
 
-    .. |VAvatar_vuetify_link| raw:: html
+      .. |VAvatar_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-avatar" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-avatar" target="_blank">here</a>
 
 
-    :param start: Applies margin at the end of the component.
-    :type boolean:
-    :param end: Applies margin at the start of the component.
-    :type boolean:
-    :param icon: See description |VAvatar_vuetify_link|.
-    :type any:
-    :param image: See description |VAvatar_vuetify_link|.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param rounded: See description |VAvatar_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VAvatar_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param start: Applies margin at the end of the component.
+      :type boolean:
+      :param end: Applies margin at the start of the component.
+      :type boolean:
+      :param icon: See description |VAvatar_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param image: See description |VAvatar_vuetify_link|.
+      :type string:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param rounded: See description |VAvatar_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VAvatar_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
 
     """
 
@@ -1143,6 +1196,7 @@ class VAvatar(HtmlElement):
             "icon",
             "image",
             "text",
+            "border",
             "density",
             "rounded",
             "tile",
@@ -1157,51 +1211,54 @@ class VAvatar(HtmlElement):
 
 class VBadge(HtmlElement):
     """
-    Vuetify's VBadge component. See more info and examples |VBadge_vuetify_link|.
+      Vuetify's VBadge component. See more info and examples |VBadge_vuetify_link|.
 
-    .. |VBadge_vuetify_link| raw:: html
+      .. |VBadge_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-badge" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-badge" target="_blank">here</a>
 
 
-    :param bordered: Applies a **2px** by default and **1.5px** border around the badge when using the **dot** property.
-    :type boolean:
-    :param color: See description |VBadge_vuetify_link|.
-    :type string:
-    :param content: Text content to show in the badge.
-    :type string | number:
-    :param dot: Reduce the size of the badge and hide its contents.
-    :type boolean:
-    :param floating: Elevates the badge above the slotted content.
-    :type boolean:
-    :param icon: See description |VBadge_vuetify_link|.
-    :type any:
-    :param inline: Moves the badge to be inline with the wrapping element. Supports the usage of the **left** prop.
-    :type boolean:
-    :param label: The **aria-label** used for the badge.
-    :type string:
-    :param max: Sets the maximum number allowed when using the **content** prop with a `number` like value. If the content number exceeds the maximum value, a `+` suffix is added.
-    :type string | number:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type boolean:
-    :param offset_x: Offset the badge on the x-axis.
-    :type string | number:
-    :param offset_y: Offset the badge on the y-axis.
-    :type string | number:
-    :param text_color: See description |VBadge_vuetify_link|.
-    :type string:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param rounded: See description |VBadge_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param transition: See description |VBadge_vuetify_link|.
-    :type string | boolean | (TransitionProps & { component: Component }):
+      :param bordered: Applies a **2px** by default and **1.5px** border around the badge when using the **dot** property.
+      :type boolean:
+      :param color: See description |VBadge_vuetify_link|.
+      :type string:
+      :param content: Text content to show in the badge.
+      :type string | number:
+      :param dot: Reduce the size of the badge and hide its contents.
+      :type boolean:
+      :param floating: Elevates the badge above the slotted content.
+      :type boolean:
+      :param icon: See description |VBadge_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param inline: Moves the badge to be inline with the wrapping element. Supports the usage of the **left** prop.
+      :type boolean:
+      :param label: The **aria-label** used for the badge.
+      :type string:
+      :param max: Sets the maximum number allowed when using the **content** prop with a `number` like value. If the content number exceeds the maximum value, a `+` suffix is added.
+      :type string | number:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type boolean:
+      :param offset_x: Offset the badge on the x-axis.
+      :type string | number:
+      :param offset_y: Offset the badge on the y-axis.
+      :type string | number:
+      :param text_color: See description |VBadge_vuetify_link|.
+      :type string:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param rounded: See description |VBadge_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param transition: See description |VBadge_vuetify_link|.
+      :type string | boolean | (TransitionProps & { component: Component }):
 
     """
 
@@ -1233,63 +1290,66 @@ class VBadge(HtmlElement):
 
 class VBanner(HtmlElement):
     """
-    Vuetify's VBanner component. See more info and examples |VBanner_vuetify_link|.
+      Vuetify's VBanner component. See more info and examples |VBanner_vuetify_link|.
 
-    .. |VBanner_vuetify_link| raw:: html
+      .. |VBanner_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-banner" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-banner" target="_blank">here</a>
 
 
-    :param text: Specify content text for the component.
-    :type string:
-    :param avatar: Designates a specific src image to pass to the thumbnail.
-    :type string:
-    :param bg_color: See description |VBanner_vuetify_link|.
-    :type string:
-    :param color: See description |VBanner_vuetify_link|.
-    :type string:
-    :param icon: See description |VBanner_vuetify_link|.
-    :type any:
-    :param stacked: Forces the banner actions onto a new line. This is not applicable when the banner has `lines="one"`.
-    :type boolean:
-    :param sticky: See description |VBanner_vuetify_link|.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param mobile: Applies the mobile banner styles.
-    :type boolean:
-    :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param elevation: See description |VBanner_vuetify_link|.
-    :type string | number:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'sticky' | 'static' | 'relative' | 'fixed' | 'absolute':
-    :param rounded: See description |VBanner_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param lines: The amount of visible lines of text before it truncates.
-    :type 'one' | 'two' | 'three':
+      :param text: Specify content text for the component.
+      :type string:
+      :param avatar: Designates a specific src image to pass to the thumbnail.
+      :type string:
+      :param bg_color: See description |VBanner_vuetify_link|.
+      :type string:
+      :param color: See description |VBanner_vuetify_link|.
+      :type string:
+      :param icon: See description |VBanner_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param stacked: Forces the banner actions onto a new line. This is not applicable when the banner has `lines="one"`.
+      :type boolean:
+      :param sticky: See description |VBanner_vuetify_link|.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param mobile: Applies the mobile banner styles.
+      :type boolean:
+      :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param elevation: See description |VBanner_vuetify_link|.
+      :type string | number:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'sticky' | 'static' | 'relative' | 'fixed' | 'absolute':
+      :param rounded: See description |VBanner_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param lines: The amount of visible lines of text before it truncates.
+      :type 'one' | 'two' | 'three':
 
     """
 
@@ -1558,10 +1618,10 @@ class VBottomSheet(HtmlElement):
       :param theme: Specify a theme for this component and all of its children.
       :type string:
       :param transition: See description |VBottomSheet_vuetify_link|.
-      :type | { component: Component }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component }:
       :param attach: Specifies which DOM element the overlay content should teleport to. Can be a direct element reference, querySelector string, or `true` to disable teleporting. Uses `body` by default.
       :type string | boolean | Element:
 
@@ -1641,7 +1701,10 @@ class VBreadcrumbs(HtmlElement):
         :param disabled: Removes the ability to click or target the component.
         :type boolean:
         :param icon: See description |VBreadcrumbs_vuetify_link|.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param items: An array of strings or objects used for automatically generating children components.
         :type (
       | string
@@ -1753,95 +1816,107 @@ class VBreadcrumbsItem(HtmlElement):
 
 class VBtn(HtmlElement):
     """
-    Vuetify's VBtn component. See more info and examples |VBtn_vuetify_link|.
+      Vuetify's VBtn component. See more info and examples |VBtn_vuetify_link|.
 
-    .. |VBtn_vuetify_link| raw:: html
+      .. |VBtn_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-btn" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-btn" target="_blank">here</a>
 
 
-    :param symbol: See description |VBtn_vuetify_link|.
-    :type any:
-    :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
-    :type boolean:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type boolean:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param prepend_icon: See description |VBtn_vuetify_link|.
-    :type any:
-    :param append_icon: See description |VBtn_vuetify_link|.
-    :type any:
-    :param block: Expands the button to 100% of available space.
-    :type boolean:
-    :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
-    :type boolean:
-    :param slim: Reduces padding to 0 8px.
-    :type boolean:
-    :param stacked: Displays the button as a flex-column.
-    :type boolean:
-    :param ripple: See description |VBtn_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param text: Specify content text for the component.
-    :type string:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VBtn_vuetify_link|.
-    :type string | number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param rounded: See description |VBtn_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VBtn_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VBtn_vuetify_link|.
-    :type boolean:
-    :param to: See description |VBtn_vuetify_link|.
-    :type RouteLocationRaw:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VBtn_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
-    :param icon: See description |VBtn_vuetify_link|.
-    :type any:
+      :param symbol: See description |VBtn_vuetify_link|.
+      :type any:
+      :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
+      :type boolean:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type boolean:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param prepend_icon: See description |VBtn_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VBtn_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param block: Expands the button to 100% of available space.
+      :type boolean:
+      :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
+      :type boolean:
+      :param slim: Reduces padding to 0 8px.
+      :type boolean:
+      :param stacked: Displays the button as a flex-column.
+      :type boolean:
+      :param ripple: See description |VBtn_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VBtn_vuetify_link|.
+      :type string | number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param rounded: See description |VBtn_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VBtn_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VBtn_vuetify_link|.
+      :type boolean:
+      :param to: See description |VBtn_vuetify_link|.
+      :type RouteLocationRaw:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VBtn_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param icon: See description |VBtn_vuetify_link|.
+      :type | boolean
+    | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
 
-    Events
+      Events
 
-    :param group_selected: Event that is emitted when an item is selected within a group.
+      :param group_selected: Event that is emitted when an item is selected within a group.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -1850,6 +1925,7 @@ class VBtn(HtmlElement):
             "symbol",
             "flat",
             "active",
+            ("active_color", "activeColor"),
             ("base_color", "baseColor"),
             ("prepend_icon", "prependIcon"),
             ("append_icon", "appendIcon"),
@@ -2044,6 +2120,8 @@ class VCalendar(HtmlElement):
     :type number[]:
     :param weeks_in_month: A dynamic number of weeks in a month will grow and shrink depending on how many days are in the month. A static number always shows 7 weeks.
     :type 'dynamic' | 'static':
+    :param first_day_of_week: See description |VCalendar_vuetify_link|.
+    :type string | number:
     :param allowed_dates: Determines which dates are selectable.
     :type unknown[] | ((date: unknown) => boolean):
     :param display_value: Value to display for the component, possibly a formatted date.
@@ -2103,6 +2181,7 @@ class VCalendar(HtmlElement):
             "year",
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
+            ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
             ("display_value", "displayValue"),
             ("model_value", "modelValue"),
@@ -2345,83 +2424,89 @@ class VCalendarMonthDay(HtmlElement):
 
 class VCard(HtmlElement):
     """
-    Vuetify's VCard component. See more info and examples |VCard_vuetify_link|.
+      Vuetify's VCard component. See more info and examples |VCard_vuetify_link|.
 
-    .. |VCard_vuetify_link| raw:: html
+      .. |VCard_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-card" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-card" target="_blank">here</a>
 
 
-    :param title: Specify a title text for the component.
-    :type string | number:
-    :param subtitle: Specify a subtitle text for the component.
-    :type string | number:
-    :param text: Specify content text for the component.
-    :type string | number:
-    :param image: Apply a specific background image to the component.
-    :type string:
-    :param flat: Removes the card's elevation.
-    :type boolean:
-    :param append_avatar: See description |VCard_vuetify_link|.
-    :type string:
-    :param append_icon: See description |VCard_vuetify_link|.
-    :type any:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param hover: See description |VCard_vuetify_link|.
-    :type boolean:
-    :param link: Designates that the component is a link. This is automatic when using the href or to prop.
-    :type boolean:
-    :param prepend_avatar: See description |VCard_vuetify_link|.
-    :type string:
-    :param prepend_icon: See description |VCard_vuetify_link|.
-    :type any:
-    :param ripple: See description |VCard_vuetify_link|.
-    :type boolean | { class: string }:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VCard_vuetify_link|.
-    :type string | number:
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param rounded: See description |VCard_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VCard_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VCard_vuetify_link|.
-    :type boolean:
-    :param to: See description |VCard_vuetify_link|.
-    :type RouteLocationRaw:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VCard_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param title: Specify a title text for the component.
+      :type string | number:
+      :param subtitle: Specify a subtitle text for the component.
+      :type string | number:
+      :param text: Specify content text for the component.
+      :type string | number:
+      :param image: Apply a specific background image to the component.
+      :type string:
+      :param flat: Removes the card's elevation.
+      :type boolean:
+      :param append_avatar: See description |VCard_vuetify_link|.
+      :type string:
+      :param append_icon: See description |VCard_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param hover: See description |VCard_vuetify_link|.
+      :type boolean:
+      :param link: Designates that the component is a link. This is automatic when using the href or to prop.
+      :type boolean:
+      :param prepend_avatar: See description |VCard_vuetify_link|.
+      :type string:
+      :param prepend_icon: See description |VCard_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VCard_vuetify_link|.
+      :type boolean | { class: string }:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VCard_vuetify_link|.
+      :type string | number:
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param rounded: See description |VCard_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VCard_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VCard_vuetify_link|.
+      :type boolean:
+      :param to: See description |VCard_vuetify_link|.
+      :type RouteLocationRaw:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VCard_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'text' | 'flat' | 'elevated' | 'tonal' | 'outlined' | 'plain':
 
     """
 
@@ -2487,27 +2572,33 @@ class VCardActions(HtmlElement):
 
 class VCardItem(HtmlElement):
     """
-    Vuetify's VCardItem component. See more info and examples |VCardItem_vuetify_link|.
+      Vuetify's VCardItem component. See more info and examples |VCardItem_vuetify_link|.
 
-    .. |VCardItem_vuetify_link| raw:: html
+      .. |VCardItem_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-card-item" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-card-item" target="_blank">here</a>
 
 
-    :param title: Specify a title text for the component.
-    :type string | number:
-    :param subtitle: Specify a subtitle text for the component.
-    :type string | number:
-    :param append_avatar: See description |VCardItem_vuetify_link|.
-    :type string:
-    :param append_icon: See description |VCardItem_vuetify_link|.
-    :type any:
-    :param prepend_avatar: See description |VCardItem_vuetify_link|.
-    :type string:
-    :param prepend_icon: See description |VCardItem_vuetify_link|.
-    :type any:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
+      :param title: Specify a title text for the component.
+      :type string | number:
+      :param subtitle: Specify a subtitle text for the component.
+      :type string | number:
+      :param append_avatar: See description |VCardItem_vuetify_link|.
+      :type string:
+      :param append_icon: See description |VCardItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prepend_avatar: See description |VCardItem_vuetify_link|.
+      :type string:
+      :param prepend_icon: See description |VCardItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
 
     """
 
@@ -2599,61 +2690,70 @@ class VCardTitle(HtmlElement):
 
 class VCarousel(HtmlElement):
     """
-    Vuetify's VCarousel component. See more info and examples |VCarousel_vuetify_link|.
+      Vuetify's VCarousel component. See more info and examples |VCarousel_vuetify_link|.
 
-    .. |VCarousel_vuetify_link| raw:: html
+      .. |VCarousel_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-carousel" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-carousel" target="_blank">here</a>
 
 
-    :param color: See description |VCarousel_vuetify_link|.
-    :type string:
-    :param cycle: Determines if the carousel should cycle through images.
-    :type boolean:
-    :param delimiter_icon: Sets icon for carousel delimiter.
-    :type any:
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param hide_delimiters: Hides the carousel's bottom delimiters.
-    :type boolean:
-    :param hide_delimiter_background: Hides the bottom delimiter background.
-    :type boolean:
-    :param interval: The duration between image cycles. Requires the **cycle** prop.
-    :type string | number:
-    :param progress: Displays a carousel progress bar. Requires the **cycle** prop and **interval**.
-    :type string | boolean:
-    :param continuous: Determines whether carousel is continuous.
-    :type boolean:
-    :param next_icon: The displayed icon for forcing pagination to the next item.
-    :type any:
-    :param prev_icon: The displayed icon for forcing pagination to the previous item.
-    :type any:
-    :param reverse: Reverse the normal transition direction.
-    :type boolean:
-    :param show_arrows: Displays arrows for next/previous navigation.
-    :type string | boolean:
-    :param touch: Provide a custom **left** and **right** function when swiped left or right.
-    :type boolean | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/directives/touch/index.ts#L9-L17" target="_blank">TouchHandlers</a>:
-    :param direction: The transition direction when changing windows.
-    :type 'horizontal' | 'vertical':
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param vertical_delimiters: Displays carousel delimiters vertically.
-    :type boolean | 'left' | 'right':
+      :param color: See description |VCarousel_vuetify_link|.
+      :type string:
+      :param cycle: Determines if the carousel should cycle through images.
+      :type boolean:
+      :param delimiter_icon: Sets icon for carousel delimiter.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param hide_delimiters: Hides the carousel's bottom delimiters.
+      :type boolean:
+      :param hide_delimiter_background: Hides the bottom delimiter background.
+      :type boolean:
+      :param interval: The duration between image cycles. Requires the **cycle** prop.
+      :type string | number:
+      :param progress: Displays a carousel progress bar. Requires the **cycle** prop and **interval**.
+      :type string | boolean:
+      :param continuous: Determines whether carousel is continuous.
+      :type boolean:
+      :param next_icon: The displayed icon for forcing pagination to the next item.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: The displayed icon for forcing pagination to the previous item.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param reverse: Reverse the normal transition direction.
+      :type boolean:
+      :param show_arrows: Displays arrows for next/previous navigation.
+      :type string | boolean:
+      :param touch: Provide a custom **left** and **right** function when swiped left or right.
+      :type boolean | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/directives/touch/index.ts#L9-L17" target="_blank">TouchHandlers</a>:
+      :param direction: The transition direction when changing windows.
+      :type 'horizontal' | 'vertical':
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param vertical_delimiters: Displays carousel delimiters vertically.
+      :type boolean | 'left' | 'right':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -2696,6 +2796,8 @@ class VCarouselItem(HtmlElement):
             <a href="https://vuetifyjs.com/api/v-carousel-item" target="_blank">here</a>
 
 
+        :param absolute: See description |VCarouselItem_vuetify_link|.
+        :type boolean:
         :param alt: Alternate text for screen readers. Leave empty for decorative images.
         :type string:
         :param cover: Resizes the background image to cover the entire container.
@@ -2771,6 +2873,7 @@ class VCarouselItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VCarouselItem", children, **kwargs)
         self._attr_names += [
+            "absolute",
             "alt",
             "cover",
             "color",
@@ -2819,13 +2922,19 @@ class VCheckbox(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VCheckbox_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param type: Provides the default type for children selection controls.
       :type string:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VCheckbox_vuetify_link|.
@@ -2866,13 +2975,25 @@ class VCheckbox(HtmlElement):
       :type | 'input'
     | 'blur'
     | 'submit'
+    | 'invalid-input'
     | 'input lazy'
     | 'blur lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'input eager'
+    | 'blur eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy input'
     | 'lazy blur'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager input'
+    | 'eager blur'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -2882,7 +3003,10 @@ class VCheckbox(HtmlElement):
       :param indeterminate: Sets an indeterminate state for the checkbox.
       :type boolean:
       :param indeterminate_icon: The icon used when in an indeterminate state.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param base_color: Sets the color of the input when it is not focused.
       :type string:
       :param true_value: Sets value for truthy state.
@@ -2896,9 +3020,15 @@ class VCheckbox(HtmlElement):
       :param defaults_target: The target component to provide defaults values for.
       :type string:
       :param false_icon: The icon used when inactive.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param true_icon: The icon used when active.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param ripple: See description |VCheckbox_vuetify_link|.
       :type boolean | { class: string }:
       :param multiple: Changes expected model to an array.
@@ -2969,66 +3099,75 @@ class VCheckbox(HtmlElement):
 
 class VCheckboxBtn(HtmlElement):
     """
-    Vuetify's VCheckboxBtn component. See more info and examples |VCheckboxBtn_vuetify_link|.
+      Vuetify's VCheckboxBtn component. See more info and examples |VCheckboxBtn_vuetify_link|.
 
-    .. |VCheckboxBtn_vuetify_link| raw:: html
+      .. |VCheckboxBtn_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-checkbox-btn" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-checkbox-btn" target="_blank">here</a>
 
 
-    :param label: See description |VCheckboxBtn_vuetify_link|.
-    :type string:
-    :param indeterminate: See description |VCheckboxBtn_vuetify_link|.
-    :type boolean:
-    :param indeterminate_icon: Icon used when the component is in an indeterminate state.
-    :type any:
-    :param type: Provides the default type for children selection controls.
-    :type string:
-    :param base_color: Sets the color of the input when it is not focused.
-    :type string:
-    :param true_value: Sets value for truthy state.
-    :type any:
-    :param false_value: Sets value for falsy state.
-    :type any:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param color: See description |VCheckboxBtn_vuetify_link|.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param defaults_target: The target component to provide defaults values for.
-    :type string:
-    :param error: Puts the input in a manual error state.
-    :type boolean:
-    :param id: Sets the DOM id on the component.
-    :type string:
-    :param inline: Puts children inputs into a row.
-    :type boolean:
-    :param false_icon: The icon used when inactive.
-    :type any:
-    :param true_icon: The icon used when active.
-    :type any:
-    :param ripple: See description |VCheckboxBtn_vuetify_link|.
-    :type boolean | { class: string }:
-    :param multiple: Changes select to multiple. Accepts array for value.
-    :type boolean:
-    :param name: Sets the component's name attribute.
-    :type string:
-    :param readonly: Puts input in readonly state.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
-    :type (a: any, b: any) => boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param label: See description |VCheckboxBtn_vuetify_link|.
+      :type string:
+      :param indeterminate: See description |VCheckboxBtn_vuetify_link|.
+      :type boolean:
+      :param indeterminate_icon: Icon used when the component is in an indeterminate state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param type: Provides the default type for children selection controls.
+      :type string:
+      :param base_color: Sets the color of the input when it is not focused.
+      :type string:
+      :param true_value: Sets value for truthy state.
+      :type any:
+      :param false_value: Sets value for falsy state.
+      :type any:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param color: See description |VCheckboxBtn_vuetify_link|.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param defaults_target: The target component to provide defaults values for.
+      :type string:
+      :param error: Puts the input in a manual error state.
+      :type boolean:
+      :param id: Sets the DOM id on the component.
+      :type string:
+      :param inline: Puts children inputs into a row.
+      :type boolean:
+      :param false_icon: The icon used when inactive.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param true_icon: The icon used when active.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VCheckboxBtn_vuetify_link|.
+      :type boolean | { class: string }:
+      :param multiple: Changes select to multiple. Accepts array for value.
+      :type boolean:
+      :param name: Sets the component's name attribute.
+      :type string:
+      :param readonly: Puts input in readonly state.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
+      :type (a: any, b: any) => boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
-    :param update_indeterminate: Event that is emitted when the component's indeterminate state changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_indeterminate: Event that is emitted when the component's indeterminate state changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -3067,88 +3206,97 @@ class VCheckboxBtn(HtmlElement):
 
 class VChip(HtmlElement):
     """
-    Vuetify's VChip component. See more info and examples |VChip_vuetify_link|.
+      Vuetify's VChip component. See more info and examples |VChip_vuetify_link|.
 
-    .. |VChip_vuetify_link| raw:: html
+      .. |VChip_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-chip" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-chip" target="_blank">here</a>
 
 
-    :param label: Applies a medium size border radius.
-    :type boolean:
-    :param filter: Displays a selection icon when selected.
-    :type boolean:
-    :param active_class: See description |VChip_vuetify_link|.
-    :type string:
-    :param append_avatar: See description |VChip_vuetify_link|.
-    :type string:
-    :param append_icon: See description |VChip_vuetify_link|.
-    :type any:
-    :param closable: Adds remove button and then a chip can be closed.
-    :type boolean:
-    :param close_icon: Change the default icon used for **close** chips.
-    :type any:
-    :param close_label: See description |VChip_vuetify_link|.
-    :type string:
-    :param draggable: Makes the chip draggable.
-    :type boolean:
-    :param filter_icon: Change the default icon used for **filter** chips.
-    :type string:
-    :param link: Designates that the component is a link. This is automatic when using the href or to prop.
-    :type boolean:
-    :param pill: Remove `v-avatar` padding.
-    :type boolean:
-    :param prepend_avatar: See description |VChip_vuetify_link|.
-    :type string:
-    :param prepend_icon: See description |VChip_vuetify_link|.
-    :type any:
-    :param ripple: See description |VChip_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: See description |VChip_vuetify_link|.
-    :type any:
-    :param text: Specify content text for the component.
-    :type string:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param elevation: See description |VChip_vuetify_link|.
-    :type string | number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param rounded: See description |VChip_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VChip_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VChip_vuetify_link|.
-    :type boolean:
-    :param to: See description |VChip_vuetify_link|.
-    :type RouteLocationRaw:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VChip_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param label: Applies a medium size border radius.
+      :type boolean:
+      :param filter: Displays a selection icon when selected.
+      :type boolean:
+      :param active_class: See description |VChip_vuetify_link|.
+      :type string:
+      :param append_avatar: See description |VChip_vuetify_link|.
+      :type string:
+      :param append_icon: See description |VChip_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param closable: Adds remove button and then a chip can be closed.
+      :type boolean:
+      :param close_icon: Change the default icon used for **close** chips.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param close_label: See description |VChip_vuetify_link|.
+      :type string:
+      :param draggable: Makes the chip draggable.
+      :type boolean:
+      :param filter_icon: Change the default icon used for **filter** chips.
+      :type string:
+      :param link: Designates that the component is a link. This is automatic when using the href or to prop.
+      :type boolean:
+      :param pill: Remove `v-avatar` padding.
+      :type boolean:
+      :param prepend_avatar: See description |VChip_vuetify_link|.
+      :type string:
+      :param prepend_icon: See description |VChip_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VChip_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: See description |VChip_vuetify_link|.
+      :type any:
+      :param text: Specify content text for the component.
+      :type string:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param elevation: See description |VChip_vuetify_link|.
+      :type string | number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param rounded: See description |VChip_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VChip_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VChip_vuetify_link|.
+      :type boolean:
+      :param to: See description |VChip_vuetify_link|.
+      :type RouteLocationRaw:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VChip_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
 
-    Events
+      Events
 
-    :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VChip.json))
-    :param click_close: Emitted when close icon is clicked.
-    :param update_modelValue: Event that is emitted when the component's model changes.
-    :param group_selected: Event that is emitted when an item is selected within a group.
+      :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VChip.json))
+      :param click_close: Emitted when close icon is clicked.
+      :param update_modelValue: Event that is emitted when the component's model changes.
+      :param group_selected: Event that is emitted when an item is selected within a group.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -3200,59 +3348,65 @@ class VChip(HtmlElement):
 
 class VChipGroup(HtmlElement):
     """
-    Vuetify's VChipGroup component. See more info and examples |VChipGroup_vuetify_link|.
+      Vuetify's VChipGroup component. See more info and examples |VChipGroup_vuetify_link|.
 
-    .. |VChipGroup_vuetify_link| raw:: html
+      .. |VChipGroup_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-chip-group" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-chip-group" target="_blank">here</a>
 
 
-    :param symbol: See description |VChipGroup_vuetify_link|.
-    :type any:
-    :param column: Remove horizontal pagination and wrap items as needed.
-    :type boolean:
-    :param filter: Applies an checkmark icon in front of every chip for using it like a filter.
-    :type boolean:
-    :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
-    :type (a: any, b: any) => boolean:
-    :param center_active: Forces the selected chip to be centered.
-    :type boolean:
-    :param direction: Switch between horizontal and vertical modes.
-    :type 'horizontal' | 'vertical':
-    :param next_icon: Specify the icon to use for the next icon.
-    :type any:
-    :param prev_icon: Specify the icon to use for the prev icon.
-    :type any:
-    :param show_arrows: Force the display of the pagination arrows.
-    :type string | boolean:
-    :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
-    :type boolean:
-    :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param multiple: Allows one to select multiple items.
-    :type boolean:
-    :param max: Sets a maximum number of selections that can be made.
-    :type number:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param disabled: Puts all children components into a disabled state.
-    :type boolean:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VChipGroup_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
+      :param symbol: See description |VChipGroup_vuetify_link|.
+      :type any:
+      :param column: Remove horizontal pagination and wrap items as needed.
+      :type boolean:
+      :param filter: Applies an checkmark icon in front of every chip for using it like a filter.
+      :type boolean:
+      :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
+      :type (a: any, b: any) => boolean:
+      :param center_active: Forces the selected chip to be centered.
+      :type boolean:
+      :param direction: Switch between horizontal and vertical modes.
+      :type 'horizontal' | 'vertical':
+      :param next_icon: Specify the icon to use for the next icon.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: Specify the icon to use for the prev icon.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param show_arrows: Force the display of the pagination arrows.
+      :type string | boolean:
+      :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
+      :type boolean:
+      :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param multiple: Allows one to select multiple items.
+      :type boolean:
+      :param max: Sets a maximum number of selections that can be made.
+      :type number:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param disabled: Puts all children components into a disabled state.
+      :type boolean:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VChipGroup_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -3287,17 +3441,20 @@ class VChipGroup(HtmlElement):
 
 class VClassIcon(HtmlElement):
     """
-    Vuetify's VClassIcon component. See more info and examples |VClassIcon_vuetify_link|.
+      Vuetify's VClassIcon component. See more info and examples |VClassIcon_vuetify_link|.
 
-    .. |VClassIcon_vuetify_link| raw:: html
+      .. |VClassIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-class-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-class-icon" target="_blank">here</a>
 
 
-    :param icon: See description |VClassIcon_vuetify_link|.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param icon: See description |VClassIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -3624,7 +3781,10 @@ class VCombobox(HtmlElement):
         :param menu: Renders with the menu open by default.
         :type boolean:
         :param menu_icon: Sets the the spin icon.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param menu_props: See description |VCombobox_vuetify_link|.
         :type unknown:
         :param id: Sets the DOM id on the component.
@@ -3656,11 +3816,17 @@ class VCombobox(HtmlElement):
         :param role: The role attribute applied to the input.
         :type string:
         :param append_icon: See description |VCombobox_vuetify_link|.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
         :type boolean:
         :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
         :type boolean:
         :param hint: See description |VCombobox_vuetify_link|.
@@ -3682,16 +3848,28 @@ class VCombobox(HtmlElement):
         :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
         :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/validation.ts#L16-L20" target="_blank">ValidationRule</a>[]:
         :param validate_on: Change what type of event triggers validation to run.
-        :type | 'lazy'
+        :type | 'eager'
+      | 'lazy'
       | 'blur'
       | 'input'
       | 'submit'
+      | 'invalid-input'
       | 'blur lazy'
       | 'input lazy'
       | 'submit lazy'
+      | 'invalid-input lazy'
+      | 'blur eager'
+      | 'input eager'
+      | 'submit eager'
+      | 'invalid-input eager'
       | 'lazy blur'
       | 'lazy input'
-      | 'lazy submit':
+      | 'lazy submit'
+      | 'lazy invalid-input'
+      | 'eager blur'
+      | 'eager input'
+      | 'eager submit'
+      | 'eager invalid-input':
         :param focused: Forces a focused state styling on the component.
         :type boolean:
         :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
@@ -3699,13 +3877,19 @@ class VCombobox(HtmlElement):
         :param clearable: Allows for the component to be cleared.
         :type boolean:
         :param clear_icon: The icon used when the **clearable** prop is set to true.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param active: Controls the **active** state of the item. This is typically used to highlight the component.
         :type boolean:
         :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
         :type boolean:
         :param prepend_inner_icon: See description |VCombobox_vuetify_link|.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param single_line: Label does not move on focus/dirty.
         :type boolean:
         :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
@@ -3832,17 +4016,20 @@ class VCombobox(HtmlElement):
 
 class VComponentIcon(HtmlElement):
     """
-    Vuetify's VComponentIcon component. See more info and examples |VComponentIcon_vuetify_link|.
+      Vuetify's VComponentIcon component. See more info and examples |VComponentIcon_vuetify_link|.
 
-    .. |VComponentIcon_vuetify_link| raw:: html
+      .. |VComponentIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-component-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-component-icon" target="_blank">here</a>
 
 
-    :param icon: See description |VComponentIcon_vuetify_link|.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param icon: See description |VComponentIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -3906,6 +4093,18 @@ class VContainer(HtmlElement):
 
     :param fluid: Removes viewport maximum-width size breakpoints.
     :type boolean:
+    :param height: Sets the height for the component.
+    :type string | number:
+    :param max_height: Sets the maximum height for the component.
+    :type string | number:
+    :param max_width: Sets the maximum width for the component.
+    :type string | number:
+    :param min_height: Sets the minimum height for the component.
+    :type string | number:
+    :param min_width: Sets the minimum width for the component.
+    :type string | number:
+    :param width: Sets the width for the component.
+    :type string | number:
     :param tag: Specify a custom tag used on the root element.
     :type string:
 
@@ -3915,6 +4114,12 @@ class VContainer(HtmlElement):
         super().__init__("VContainer", children, **kwargs)
         self._attr_names += [
             "fluid",
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "tag",
         ]
         self._event_names += []
@@ -3938,10 +4143,10 @@ class VCounter(HtmlElement):
       :param value: Sets the current counter value.
       :type string | number:
       :param transition: See description |VCounter_vuetify_link|.
-      :type | { component: Component }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component }:
 
     """
 
@@ -4024,10 +4229,10 @@ class VDataIterator(HtmlElement):
         :param tag: Specify a custom tag used on the root element.
         :type string:
         :param transition: See description |VDataIterator_vuetify_link|.
-        :type | { component: Component; hideOnLeave: boolean }
-      | string
+        :type | string
       | boolean
-      | (TransitionProps & { component: Component }):
+      | (TransitionProps & { component: Component })
+      | { component: Component; hideOnLeave: boolean }:
 
         Events
 
@@ -4206,9 +4411,15 @@ class VDataTable(HtmlElement):
         :param disable_sort: Disables sorting completely.
         :type boolean:
         :param sort_asc_icon: Icon used for ascending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param sort_desc_icon: Icon used for descending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param fixed_header: Fixed header to top of table.
         :type boolean:
         :param fixed_footer: Use the fixed-footer prop together with the height prop to fix the footer to the bottom of the table.
@@ -4239,13 +4450,25 @@ class VDataTable(HtmlElement):
         :param filter_keys: Array of specific keys to filter on the item.
         :type string | string[]:
         :param prev_icon: Previous icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param next_icon: Next icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param first_icon: First icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param last_icon: Last icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param items_per_page_text: Text for items-per-page dropdown.
         :type string:
         :param page_text: Label for page number.
@@ -4374,33 +4597,39 @@ class VDataTableFooter(HtmlElement):
 
 class VDataTableHeaders(HtmlElement):
     """
-    Vuetify's VDataTableHeaders component. See more info and examples |VDataTableHeaders_vuetify_link|.
+      Vuetify's VDataTableHeaders component. See more info and examples |VDataTableHeaders_vuetify_link|.
 
-    .. |VDataTableHeaders_vuetify_link| raw:: html
+      .. |VDataTableHeaders_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-data-table-headers" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-data-table-headers" target="_blank">here</a>
 
 
-    :param color: See description |VDataTableHeaders_vuetify_link|.
-    :type string:
-    :param sticky: Sticks the header to the top of the table.
-    :type boolean:
-    :param disable_sort: Toggles rendering of sort button.
-    :type boolean:
-    :param multi_sort: See description |VDataTableHeaders_vuetify_link|.
-    :type boolean:
-    :param sort_asc_icon: Icon used for ascending sort button.
-    :type any:
-    :param sort_desc_icon: Icon used for descending sort button.
-    :type any:
-    :param header_props: See description |VDataTableHeaders_vuetify_link|.
-    :type unknown:
-    :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
-    :type boolean:
-    :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
+      :param color: See description |VDataTableHeaders_vuetify_link|.
+      :type string:
+      :param sticky: Sticks the header to the top of the table.
+      :type boolean:
+      :param disable_sort: Toggles rendering of sort button.
+      :type boolean:
+      :param multi_sort: See description |VDataTableHeaders_vuetify_link|.
+      :type boolean:
+      :param sort_asc_icon: Icon used for ascending sort button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param sort_desc_icon: Icon used for descending sort button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param header_props: See description |VDataTableHeaders_vuetify_link|.
+      :type unknown:
+      :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
+      :type boolean:
+      :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
 
     """
 
@@ -4681,9 +4910,15 @@ class VDataTableServer(HtmlElement):
         :param disable_sort: Toggles rendering of sort button.
         :type boolean:
         :param sort_asc_icon: Icon used for ascending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param sort_desc_icon: Icon used for descending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param fixed_header: Use the fixed-header prop together with the height prop to fix the header to the top of the table.
         :type boolean:
         :param fixed_footer: Use the fixed-footer prop together with the height prop to fix the footer to the bottom of the table.
@@ -4699,13 +4934,25 @@ class VDataTableServer(HtmlElement):
         :param theme: Specify a theme for this component and all of its children.
         :type string:
         :param prev_icon: Previous icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param next_icon: Next icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param first_icon: First icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param last_icon: Last icon.
-        :type string:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param items_per_page_text: Text for items-per-page dropdown.
         :type string:
         :param page_text: Label for page number.
@@ -4958,9 +5205,15 @@ class VDataTableVirtual(HtmlElement):
         :param disable_sort: Toggles rendering of sort button.
         :type boolean:
         :param sort_asc_icon: Icon used for ascending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param sort_desc_icon: Icon used for descending sort button.
-        :type any:
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
         :param fixed_header: Use the fixed-header prop together with the height prop to fix the header to the top of the table.
         :type boolean:
         :param fixed_footer: Use the fixed-footer prop together with the height prop to fix the footer to the bottom of the table.
@@ -5112,11 +5365,17 @@ class VDateInput(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VDateInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VDateInput_vuetify_link|.
@@ -5163,25 +5422,43 @@ class VDateInput(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
       :type boolean | 'auto':
       :param append_inner_icon: See description |VDateInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param bg_color: See description |VDateInput_vuetify_link|.
       :type string:
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param base_color: Sets the color of the input when it is not focused.
@@ -5191,7 +5468,10 @@ class VDateInput(HtmlElement):
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: See description |VDateInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param variant: Applies a distinct style to the component.
@@ -5215,11 +5495,20 @@ class VDateInput(HtmlElement):
       :param header: Text shown when no **display-date** is set.
       :type string:
       :param next_icon: Sets the icon for next month/year button.
-      :type string:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param prev_icon: Sets the icon for previous month/year button.
-      :type string:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param mode_icon: Icon displayed next to the current month and year, toggles year selection when clicked.
-      :type string:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param view_mode: Determines which picker in the date or month picker is being displayed. Allowed values: `'month'`, `'months'`, `'year'`.
       :type 'month' | 'months' | 'year':
       :param month: The current month number to show
@@ -5240,6 +5529,8 @@ class VDateInput(HtmlElement):
       :type number[]:
       :param weeks_in_month: A dynamic number of weeks in a month will grow and shrink depending on how many days are in the month. A static number always shows 7 weeks.
       :type 'dynamic' | 'static':
+      :param first_day_of_week: Sets the first day of the week, starting with 0 for Sunday.
+      :type string | number:
       :param allowed_dates: Restricts which dates can be selected.
       :type unknown[] | ((date: unknown) => boolean):
       :param display_value: The value that determines the month to show. This is different from modelValue, which determines the selected value.
@@ -5357,6 +5648,7 @@ class VDateInput(HtmlElement):
             ("show_adjacent_months", "showAdjacentMonths"),
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
+            ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
             ("display_value", "displayValue"),
             "max",
@@ -5384,104 +5676,115 @@ class VDateInput(HtmlElement):
 
 class VDatePicker(HtmlElement):
     """
-    Vuetify's VDatePicker component. See more info and examples |VDatePicker_vuetify_link|.
+      Vuetify's VDatePicker component. See more info and examples |VDatePicker_vuetify_link|.
 
-    .. |VDatePicker_vuetify_link| raw:: html
+      .. |VDatePicker_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-date-picker" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-date-picker" target="_blank">here</a>
 
 
-    :param header: Text shown when no **display-date** is set.
-    :type string:
-    :param title: Specify a title text for the component.
-    :type string:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type string | string[]:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param next_icon: Sets the icon for next month/year button.
-    :type string:
-    :param prev_icon: Sets the icon for previous month/year button.
-    :type string:
-    :param mode_icon: Icon displayed next to the current month and year, toggles year selection when clicked.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param view_mode: Determines which picker in the date or month picker is being displayed. Allowed values: `'month'`, `'months'`, `'year'`.
-    :type 'month' | 'months' | 'year':
-    :param month: The current month number to show
-    :type string | number:
-    :param year: The current year number to show
-    :type number:
-    :param color: See description |VDatePicker_vuetify_link|.
-    :type string:
-    :param hide_weekdays: Hide the days of the week letters.
-    :type boolean:
-    :param show_week: Toggles visibility of the week numbers in the body of the calendar.
-    :type boolean:
-    :param transition: The transition used when changing months into the future
-    :type string:
-    :param reverse_transition: The transition used when changing months into the past
-    :type string:
-    :param show_adjacent_months: Toggles visibility of days from previous and next months.
-    :type boolean:
-    :param weekdays: An array of weekdays to display.
-    :type number[]:
-    :param weeks_in_month: A dynamic number of weeks in a month will grow and shrink depending on how many days are in the month. A static number always shows 7 weeks.
-    :type 'dynamic' | 'static':
-    :param allowed_dates: Restricts which dates can be selected.
-    :type unknown[] | ((date: unknown) => boolean):
-    :param display_value: The value that determines the month to show. This is different from modelValue, which determines the selected value.
-    :type unknown:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param max: Maximum allowed date/month (ISO 8601 format).
-    :type unknown:
-    :param min: Minimum allowed date/month (ISO 8601 format).
-    :type unknown:
-    :param multiple: Allow the selection of multiple dates. The **range** value selects all dates between two selections.
-    :type number | boolean | (string & {}) | 'range':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param bg_color: See description |VDatePicker_vuetify_link|.
-    :type string:
-    :param landscape: Puts the picker into landscape mode.
-    :type boolean:
-    :param hide_header: Hide the picker header.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Width of the picker.
-    :type string | number:
-    :param elevation: See description |VDatePicker_vuetify_link|.
-    :type string | number:
-    :param location: Specifies the component's location. Can combine by using a space separated string.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param rounded: See description |VDatePicker_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param header: Text shown when no **display-date** is set.
+      :type string:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type string | string[]:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param next_icon: Sets the icon for next month/year button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: Sets the icon for previous month/year button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param mode_icon: Icon displayed next to the current month and year, toggles year selection when clicked.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param text: Specify content text for the component.
+      :type string:
+      :param view_mode: Determines which picker in the date or month picker is being displayed. Allowed values: `'month'`, `'months'`, `'year'`.
+      :type 'month' | 'months' | 'year':
+      :param month: The current month number to show
+      :type string | number:
+      :param year: The current year number to show
+      :type number:
+      :param color: See description |VDatePicker_vuetify_link|.
+      :type string:
+      :param hide_weekdays: Hide the days of the week letters.
+      :type boolean:
+      :param show_week: Toggles visibility of the week numbers in the body of the calendar.
+      :type boolean:
+      :param transition: The transition used when changing months into the future
+      :type string:
+      :param reverse_transition: The transition used when changing months into the past
+      :type string:
+      :param show_adjacent_months: Toggles visibility of days from previous and next months.
+      :type boolean:
+      :param weekdays: An array of weekdays to display.
+      :type number[]:
+      :param weeks_in_month: A dynamic number of weeks in a month will grow and shrink depending on how many days are in the month. A static number always shows 7 weeks.
+      :type 'dynamic' | 'static':
+      :param first_day_of_week: Sets the first day of the week, starting with 0 for Sunday.
+      :type string | number:
+      :param allowed_dates: Restricts which dates can be selected.
+      :type unknown[] | ((date: unknown) => boolean):
+      :param display_value: The value that determines the month to show. This is different from modelValue, which determines the selected value.
+      :type unknown:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param max: Maximum allowed date/month (ISO 8601 format).
+      :type unknown:
+      :param min: Minimum allowed date/month (ISO 8601 format).
+      :type unknown:
+      :param multiple: Allow the selection of multiple dates. The **range** value selects all dates between two selections.
+      :type number | boolean | (string & {}) | 'range':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param bg_color: See description |VDatePicker_vuetify_link|.
+      :type string:
+      :param landscape: Puts the picker into landscape mode.
+      :type boolean:
+      :param hide_header: Hide the picker header.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Width of the picker.
+      :type string | number:
+      :param elevation: See description |VDatePicker_vuetify_link|.
+      :type string | number:
+      :param location: Specifies the component's location. Can combine by using a space separated string.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param rounded: See description |VDatePicker_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
-    :param update_month: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
-    :param update_year: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
-    :param update_viewMode: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
+      :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_month: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
+      :param update_year: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
+      :param update_viewMode: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePicker.json))
     """
 
     def __init__(self, children=None, **kwargs):
@@ -5506,6 +5809,7 @@ class VDatePicker(HtmlElement):
             ("show_adjacent_months", "showAdjacentMonths"),
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
+            ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
             ("display_value", "displayValue"),
             ("model_value", "modelValue"),
@@ -5540,35 +5844,44 @@ class VDatePicker(HtmlElement):
 
 class VDatePickerControls(HtmlElement):
     """
-    Vuetify's VDatePickerControls component. See more info and examples |VDatePickerControls_vuetify_link|.
+      Vuetify's VDatePickerControls component. See more info and examples |VDatePickerControls_vuetify_link|.
 
-    .. |VDatePickerControls_vuetify_link| raw:: html
+      .. |VDatePickerControls_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-date-picker-controls" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-date-picker-controls" target="_blank">here</a>
 
 
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type string | string[]:
-    :param disabled: Removes the ability to click or target the component.
-    :type string | boolean | string[]:
-    :param next_icon: See description |VDatePickerControls_vuetify_link|.
-    :type string:
-    :param prev_icon: See description |VDatePickerControls_vuetify_link|.
-    :type string:
-    :param mode_icon: See description |VDatePickerControls_vuetify_link|.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param view_mode: See description |VDatePickerControls_vuetify_link|.
-    :type 'month' | 'months' | 'year':
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type string | string[]:
+      :param disabled: Removes the ability to click or target the component.
+      :type string | boolean | string[]:
+      :param next_icon: See description |VDatePickerControls_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: See description |VDatePickerControls_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param mode_icon: See description |VDatePickerControls_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param text: Specify content text for the component.
+      :type string:
+      :param view_mode: See description |VDatePickerControls_vuetify_link|.
+      :type 'month' | 'months' | 'year':
 
-    Events
+      Events
 
-    :param click_year: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
-    :param click_month: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
-    :param click_prev: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
-    :param click_next: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
-    :param click_text: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
+      :param click_year: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
+      :param click_month: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
+      :param click_prev: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
+      :param click_next: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
+      :param click_text: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerControls.json))
     """
 
     def __init__(self, children=None, **kwargs):
@@ -5659,6 +5972,8 @@ class VDatePickerMonth(HtmlElement):
     :type number[]:
     :param weeks_in_month: A dynamic number of weeks in a month will grow and shrink depending on how many days are in the month. A static number always shows 7 weeks.
     :type 'dynamic' | 'static':
+    :param first_day_of_week: See description |VDatePickerMonth_vuetify_link|.
+    :type string | number:
     :param allowed_dates: See description |VDatePickerMonth_vuetify_link|.
     :type unknown[] | ((date: unknown) => boolean):
     :param display_value: The value that determines the month to show. This is different from modelValue, which determines the selected value.
@@ -5693,6 +6008,7 @@ class VDatePickerMonth(HtmlElement):
             "year",
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
+            ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
             ("display_value", "displayValue"),
             ("model_value", "modelValue"),
@@ -5914,16 +6230,17 @@ class VDialog(HtmlElement):
       :param theme: Specify a theme for this component and all of its children.
       :type string:
       :param transition: See description |VDialog_vuetify_link|.
-      :type | { component: Component }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component }:
       :param attach: Specifies which DOM element the overlay content should teleport to. Can be a direct element reference, querySelector string, or `true` to disable teleporting. Uses `body` by default.
       :type string | boolean | Element:
 
       Events
 
       :param update_modelValue: Event that is emitted when the component's model changes.
+      :param afterEnter: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDialog.json))
       :param afterLeave: Event that fires after the overlay has finished transitioning out.
     """
 
@@ -5972,6 +6289,7 @@ class VDialog(HtmlElement):
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
+            "afterEnter",
             "afterLeave",
         ]
 
@@ -6114,57 +6432,60 @@ class VDivider(HtmlElement):
 
 class VEmptyState(HtmlElement):
     """
-    Vuetify's VEmptyState component. See more info and examples |VEmptyState_vuetify_link|.
+      Vuetify's VEmptyState component. See more info and examples |VEmptyState_vuetify_link|.
 
-    .. |VEmptyState_vuetify_link| raw:: html
+      .. |VEmptyState_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-empty-state" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-empty-state" target="_blank">here</a>
 
 
-    :param headline: A large headline often used for 404 pages.
-    :type string:
-    :param title: Specify a title text for the component.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param action_text: The text used for the action button.
-    :type string:
-    :param bg_color: See description |VEmptyState_vuetify_link|.
-    :type string:
-    :param color: See description |VEmptyState_vuetify_link|.
-    :type string:
-    :param icon: See description |VEmptyState_vuetify_link|.
-    :type any:
-    :param image: See description |VEmptyState_vuetify_link|.
-    :type string:
-    :param justify: Control the justification of the text.
-    :type 'start' | 'center' | 'end':
-    :param text_width: Sets the width of the text container.
-    :type string | number:
-    :param href: The URL the action button links to.
-    :type string:
-    :param to: The URL the action button links to.
-    :type string:
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param headline: A large headline often used for 404 pages.
+      :type string:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param text: Specify content text for the component.
+      :type string:
+      :param action_text: The text used for the action button.
+      :type string:
+      :param bg_color: See description |VEmptyState_vuetify_link|.
+      :type string:
+      :param color: See description |VEmptyState_vuetify_link|.
+      :type string:
+      :param icon: See description |VEmptyState_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param image: See description |VEmptyState_vuetify_link|.
+      :type string:
+      :param justify: Control the justification of the text.
+      :type 'start' | 'center' | 'end':
+      :param text_width: Sets the width of the text container.
+      :type string | number:
+      :param href: The URL the action button links to.
+      :type string:
+      :param to: The URL the action button links to.
+      :type string:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param click_action: Event emitted when the action button is clicked.
+      :param click_action: Event emitted when the action button is clicked.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6254,55 +6575,73 @@ class VExpandXTransition(HtmlElement):
 
 class VExpansionPanel(HtmlElement):
     """
-    Vuetify's VExpansionPanel component. See more info and examples |VExpansionPanel_vuetify_link|.
+      Vuetify's VExpansionPanel component. See more info and examples |VExpansionPanel_vuetify_link|.
 
-    .. |VExpansionPanel_vuetify_link| raw:: html
+      .. |VExpansionPanel_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-expansion-panel" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-expansion-panel" target="_blank">here</a>
 
 
-    :param title: Specify a title text for the component.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param bg_color: See description |VExpansionPanel_vuetify_link|.
-    :type string:
-    :param elevation: See description |VExpansionPanel_vuetify_link|.
-    :type string | number:
-    :param value: Controls the opened/closed state of content.
-    :type any:
-    :param disabled: Disables the expansion-panel content.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param rounded: See description |VExpansionPanel_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param color: See description |VExpansionPanel_vuetify_link|.
-    :type string:
-    :param expand_icon: Icon used when the expansion panel is in a expandable state.
-    :type any:
-    :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
-    :type any:
-    :param hide_actions: Hide the expand icon in the content title.
-    :type boolean:
-    :param focusable: See description |VExpansionPanel_vuetify_link|.
-    :type boolean:
-    :param static: Remove title size expansion when selected.
-    :type boolean:
-    :param ripple: See description |VExpansionPanel_vuetify_link|.
-    :type boolean | { class: string }:
-    :param readonly: Makes the expansion-panel content read only.
-    :type boolean:
-    :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param text: Specify content text for the component.
+      :type string:
+      :param bg_color: See description |VExpansionPanel_vuetify_link|.
+      :type string:
+      :param elevation: See description |VExpansionPanel_vuetify_link|.
+      :type string | number:
+      :param value: Controls the opened/closed state of content.
+      :type any:
+      :param disabled: Disables the expansion-panel content.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param rounded: See description |VExpansionPanel_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param color: See description |VExpansionPanel_vuetify_link|.
+      :type string:
+      :param expand_icon: Icon used when the expansion panel is in a expandable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param hide_actions: Hide the expand icon in the content title.
+      :type boolean:
+      :param focusable: See description |VExpansionPanel_vuetify_link|.
+      :type boolean:
+      :param static: Remove title size expansion when selected.
+      :type boolean:
+      :param ripple: See description |VExpansionPanel_vuetify_link|.
+      :type boolean | { class: string }:
+      :param readonly: Makes the expansion-panel content read only.
+      :type boolean:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
+      :type boolean:
 
-    Events
+      Events
 
-    :param group_selected: Event that is emitted when an item is selected within a group.
+      :param group_selected: Event that is emitted when an item is selected within a group.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6326,6 +6665,12 @@ class VExpansionPanel(HtmlElement):
             "static",
             "ripple",
             "readonly",
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "eager",
         ]
         self._event_names += [
@@ -6357,29 +6702,47 @@ class VExpansionPanelText(HtmlElement):
 
 class VExpansionPanelTitle(HtmlElement):
     """
-    Vuetify's VExpansionPanelTitle component. See more info and examples |VExpansionPanelTitle_vuetify_link|.
+      Vuetify's VExpansionPanelTitle component. See more info and examples |VExpansionPanelTitle_vuetify_link|.
 
-    .. |VExpansionPanelTitle_vuetify_link| raw:: html
+      .. |VExpansionPanelTitle_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-expansion-panel-title" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-expansion-panel-title" target="_blank">here</a>
 
 
-    :param color: See description |VExpansionPanelTitle_vuetify_link|.
-    :type string:
-    :param expand_icon: Icon used when the expansion panel is in a expandable state.
-    :type any:
-    :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
-    :type any:
-    :param hide_actions: Hide the expand icon in the content title.
-    :type boolean:
-    :param focusable: See description |VExpansionPanelTitle_vuetify_link|.
-    :type boolean:
-    :param static: Remove title size expansion when selected.
-    :type boolean:
-    :param ripple: See description |VExpansionPanelTitle_vuetify_link|.
-    :type boolean | { class: string }:
-    :param readonly: See description |VExpansionPanelTitle_vuetify_link|.
-    :type boolean:
+      :param color: See description |VExpansionPanelTitle_vuetify_link|.
+      :type string:
+      :param expand_icon: Icon used when the expansion panel is in a expandable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param hide_actions: Hide the expand icon in the content title.
+      :type boolean:
+      :param focusable: See description |VExpansionPanelTitle_vuetify_link|.
+      :type boolean:
+      :param static: Remove title size expansion when selected.
+      :type boolean:
+      :param ripple: See description |VExpansionPanelTitle_vuetify_link|.
+      :type boolean | { class: string }:
+      :param readonly: See description |VExpansionPanelTitle_vuetify_link|.
+      :type boolean:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
 
     """
 
@@ -6394,75 +6757,81 @@ class VExpansionPanelTitle(HtmlElement):
             "static",
             "ripple",
             "readonly",
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
         ]
         self._event_names += []
 
 
 class VExpansionPanels(HtmlElement):
     """
-    Vuetify's VExpansionPanels component. See more info and examples |VExpansionPanels_vuetify_link|.
+      Vuetify's VExpansionPanels component. See more info and examples |VExpansionPanels_vuetify_link|.
 
-    .. |VExpansionPanels_vuetify_link| raw:: html
+      .. |VExpansionPanels_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-expansion-panels" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-expansion-panels" target="_blank">here</a>
 
 
-    :param flat: Removes the expansion-panel's elevation and borders.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type any:
-    :param multiple: Allows one to select multiple items.
-    :type boolean:
-    :param max: Sets a maximum number of selections that can be made.
-    :type number:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param disabled: Puts all children components into a disabled state.
-    :type boolean:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param title: Specify a title text for the component.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param bg_color: See description |VExpansionPanels_vuetify_link|.
-    :type string:
-    :param elevation: See description |VExpansionPanels_vuetify_link|.
-    :type string | number:
-    :param value: Controls the opened/closed state of content in the expansion-panel. Corresponds to a zero-based index of the currently opened content. If the `multiple` prop (previously `expand` in 1.5.x) is used then it is an array of numbers where each entry corresponds to the index of the opened content.  The index order is not relevant.
-    :type any:
-    :param rounded: See description |VExpansionPanels_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes the border-radius.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param color: See description |VExpansionPanels_vuetify_link|.
-    :type string:
-    :param expand_icon: Icon used when the expansion panel is in a expandable state.
-    :type any:
-    :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
-    :type any:
-    :param hide_actions: Hide the expand icon in the content title.
-    :type boolean:
-    :param focusable: Makes the expansion-panel headers focusable.
-    :type boolean:
-    :param static: Remove title size expansion when selected.
-    :type boolean:
-    :param ripple: See description |VExpansionPanels_vuetify_link|.
-    :type boolean | { class: string }:
-    :param readonly: Makes the entire expansion-panel read only.
-    :type boolean:
-    :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'default' | 'accordion' | 'inset' | 'popout':
+      :param flat: Removes the expansion-panel's elevation and borders.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type any:
+      :param multiple: Allows one to select multiple items.
+      :type boolean:
+      :param max: Sets a maximum number of selections that can be made.
+      :type number:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param disabled: Puts all children components into a disabled state.
+      :type boolean:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param bg_color: See description |VExpansionPanels_vuetify_link|.
+      :type string:
+      :param elevation: See description |VExpansionPanels_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VExpansionPanels_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes the border-radius.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param color: See description |VExpansionPanels_vuetify_link|.
+      :type string:
+      :param expand_icon: Icon used when the expansion panel is in a expandable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param hide_actions: Hide the expand icon in the content title.
+      :type boolean:
+      :param focusable: Makes the expansion-panel headers focusable.
+      :type boolean:
+      :param static: Remove title size expansion when selected.
+      :type boolean:
+      :param ripple: See description |VExpansionPanels_vuetify_link|.
+      :type boolean | { class: string }:
+      :param readonly: Makes the entire expansion-panel read only.
+      :type boolean:
+      :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
+      :type boolean:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'default' | 'accordion' | 'inset' | 'popout':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6475,11 +6844,8 @@ class VExpansionPanels(HtmlElement):
             ("selected_class", "selectedClass"),
             "disabled",
             "mandatory",
-            "title",
-            "text",
             ("bg_color", "bgColor"),
             "elevation",
-            "value",
             "rounded",
             "tile",
             "tag",
@@ -6502,115 +6868,127 @@ class VExpansionPanels(HtmlElement):
 
 class VFab(HtmlElement):
     """
-    Vuetify's VFab component. See more info and examples |VFab_vuetify_link|.
+      Vuetify's VFab component. See more info and examples |VFab_vuetify_link|.
 
-    .. |VFab_vuetify_link| raw:: html
+      .. |VFab_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-fab" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-fab" target="_blank">here</a>
 
 
-    :param symbol: See description |VFab_vuetify_link|.
-    :type any:
-    :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
-    :type boolean:
-    :param app: If true, attaches to the closest layout and positions according to the value of **location**.
-    :type boolean:
-    :param appear: Used to control the animation of the FAB.
-    :type boolean:
-    :param extended: An alternate style for the FAB that expects text.
-    :type boolean:
-    :param layout: If true, will effect layout dimensions based on size and position.
-    :type boolean:
-    :param location: The location of the fab relative to the layout. Only works when using **app**.
-    :type 'start' | 'end' | 'left' | 'right' | 'top' | 'bottom':
-    :param offset: Translates the Fab up or down, depending on if location is set to **top** or **bottom**.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type boolean:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type boolean:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param prepend_icon: See description |VFab_vuetify_link|.
-    :type any:
-    :param append_icon: See description |VFab_vuetify_link|.
-    :type any:
-    :param block: Expands the button to 100% of available space.
-    :type boolean:
-    :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
-    :type boolean:
-    :param slim: Reduces padding to 0 8px.
-    :type boolean:
-    :param stacked: Displays the button as a flex-column.
-    :type boolean:
-    :param ripple: See description |VFab_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param text: Specify content text for the component.
-    :type string:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VFab_vuetify_link|.
-    :type string | number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
-    :param position: Sets the position for the component.
-    :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
-    :param absolute: Applies **position: absolute** to the component.
-    :type boolean:
-    :param rounded: See description |VFab_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VFab_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VFab_vuetify_link|.
-    :type boolean:
-    :param to: See description |VFab_vuetify_link|.
-    :type RouteLocationRaw:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VFab_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
-    :param icon: See description |VFab_vuetify_link|.
-    :type any:
-    :param name: Assign a specific name for layout registration.
-    :type string:
-    :param order: Adjust the order of the component in relation to its registration order.
-    :type string | number:
-    :param transition: See description |VFab_vuetify_link|.
-    :type string | boolean | (TransitionProps & { component: Component }):
+      :param symbol: See description |VFab_vuetify_link|.
+      :type any:
+      :param flat: Removes the button box shadow. This is different than using the 'flat' variant.
+      :type boolean:
+      :param app: If true, attaches to the closest layout and positions according to the value of **location**.
+      :type boolean:
+      :param appear: Used to control the animation of the FAB.
+      :type boolean:
+      :param extended: An alternate style for the FAB that expects text.
+      :type boolean:
+      :param layout: If true, will effect layout dimensions based on size and position.
+      :type boolean:
+      :param offset: Translates the Fab up or down, depending on if location is set to **top** or **bottom**.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type boolean:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type boolean:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param prepend_icon: See description |VFab_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VFab_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param block: Expands the button to 100% of available space.
+      :type boolean:
+      :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
+      :type boolean:
+      :param slim: Reduces padding to 0 8px.
+      :type boolean:
+      :param stacked: Displays the button as a flex-column.
+      :type boolean:
+      :param ripple: See description |VFab_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VFab_vuetify_link|.
+      :type string | number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
+      :param location: The location of the fab relative to the layout. Only works when using **app**.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/anchor.ts#L8-L14" target="_blank">Anchor</a>:
+      :param position: Sets the position for the component.
+      :type 'static' | 'relative' | 'fixed' | 'absolute' | 'sticky':
+      :param absolute: Applies **position: absolute** to the component.
+      :type boolean:
+      :param rounded: See description |VFab_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VFab_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VFab_vuetify_link|.
+      :type boolean:
+      :param to: See description |VFab_vuetify_link|.
+      :type RouteLocationRaw:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VFab_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param icon: See description |VFab_vuetify_link|.
+      :type | boolean
+    | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param name: Assign a specific name for layout registration.
+      :type string:
+      :param order: Adjust the order of the component in relation to its registration order.
+      :type string | number:
+      :param transition: See description |VFab_vuetify_link|.
+      :type string | boolean | (TransitionProps & { component: Component }):
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6622,10 +7000,10 @@ class VFab(HtmlElement):
             "appear",
             "extended",
             "layout",
-            "location",
             "offset",
             ("model_value", "modelValue"),
             "active",
+            ("active_color", "activeColor"),
             ("base_color", "baseColor"),
             ("prepend_icon", "prependIcon"),
             ("append_icon", "appendIcon"),
@@ -6648,6 +7026,7 @@ class VFab(HtmlElement):
             "disabled",
             ("selected_class", "selectedClass"),
             "loading",
+            "location",
             "position",
             "absolute",
             "rounded",
@@ -6765,13 +7144,19 @@ class VField(HtmlElement):
       :param flat: Removes box shadow when using a variant with elevation.
       :type boolean:
       :param append_inner_icon: See description |VField_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param bg_color: See description |VField_vuetify_link|.
       :type string:
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
@@ -6789,7 +7174,10 @@ class VField(HtmlElement):
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: See description |VField_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param variant: Applies a distinct style to the component.
@@ -6910,11 +7298,17 @@ class VFileInput(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VFileInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VFileInput_vuetify_link|.
@@ -6957,13 +7351,25 @@ class VFileInput(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -6971,13 +7377,19 @@ class VFileInput(HtmlElement):
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
       :type boolean | 'auto':
       :param append_inner_icon: See description |VFileInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param bg_color: See description |VFileInput_vuetify_link|.
       :type string:
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param color: See description |VFileInput_vuetify_link|.
@@ -6989,7 +7401,10 @@ class VFileInput(HtmlElement):
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: See description |VFileInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param variant: Applies a distinct style to the component.
@@ -7164,13 +7579,25 @@ class VForm(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
 
       Events
 
@@ -7231,29 +7658,32 @@ class VHover(HtmlElement):
 
 class VIcon(HtmlElement):
     """
-    Vuetify's VIcon component. See more info and examples |VIcon_vuetify_link|.
+      Vuetify's VIcon component. See more info and examples |VIcon_vuetify_link|.
 
-    .. |VIcon_vuetify_link| raw:: html
+      .. |VIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-icon" target="_blank">here</a>
 
 
-    :param color: See description |VIcon_vuetify_link|.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param start: Applies margin at the end of the component.
-    :type boolean:
-    :param end: Applies margin at the start of the component.
-    :type boolean:
-    :param icon: See description |VIcon_vuetify_link|.
-    :type any:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param color: See description |VIcon_vuetify_link|.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param start: Applies margin at the end of the component.
+      :type boolean:
+      :param end: Applies margin at the start of the component.
+      :type boolean:
+      :param icon: See description |VIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
     """
 
@@ -7281,6 +7711,8 @@ class VImg(HtmlElement):
             <a href="https://vuetifyjs.com/api/v-img" target="_blank">here</a>
 
 
+        :param absolute: See description |VImg_vuetify_link|.
+        :type boolean:
         :param alt: Alternate text for screen readers. Leave empty for decorative images.
         :type string:
         :param cover: Resizes the background image to cover the entire container.
@@ -7353,6 +7785,7 @@ class VImg(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VImg", children, **kwargs)
         self._attr_names += [
+            "absolute",
             "alt",
             "cover",
             "color",
@@ -7465,11 +7898,17 @@ class VInput(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VInput_vuetify_link|.
@@ -7512,13 +7951,25 @@ class VInput(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -7839,17 +8290,20 @@ class VLazy(HtmlElement):
 
 class VLigatureIcon(HtmlElement):
     """
-    Vuetify's VLigatureIcon component. See more info and examples |VLigatureIcon_vuetify_link|.
+      Vuetify's VLigatureIcon component. See more info and examples |VLigatureIcon_vuetify_link|.
 
-    .. |VLigatureIcon_vuetify_link| raw:: html
+      .. |VLigatureIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-ligature-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-ligature-icon" target="_blank">here</a>
 
 
-    :param icon: See description |VLigatureIcon_vuetify_link|.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param icon: See description |VLigatureIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -7881,9 +8335,9 @@ class VList(HtmlElement):
         :type string:
         :param disabled: Puts all children inputs into a disabled state.
         :type boolean:
-        :param expand_icon: See description |VList_vuetify_link|.
+        :param expand_icon: Icon to display when the list item is collapsed.
         :type string:
-        :param collapse_icon: See description |VList_vuetify_link|.
+        :param collapse_icon: Icon to display when the list item is expanded.
         :type string:
         :param lines: See description |VList_vuetify_link|.
         :type false | 'one' | 'two' | 'three':
@@ -7928,7 +8382,7 @@ class VList(HtmlElement):
     - **multiple:** Any number of groups can be open at once.
     - **single:** Only one group at each level can be open, opening a group will cause others to close.
     - **list:** Multiple, but all other groups will close when an item is selected.
-        :type 'single' | 'multiple' | 'list' | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/nested/openStrategies.ts#L20-L23" target="_blank">OpenStrategy</a>:
+        :type 'single' | 'multiple' | 'list' | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/nested/openStrategies.ts#L23-L26" target="_blank">OpenStrategy</a>:
         :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
         :type string | number | boolean:
         :param density: Adjusts the vertical height used by the component.
@@ -7980,8 +8434,8 @@ class VList(HtmlElement):
 
         :param click_open: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
         :param click_select: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
-        :param update_selected: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
         :param update_opened: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
+        :param update_selected: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
         :param update_activated: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
         :param click_activate: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VList.json))
     """
@@ -8035,8 +8489,8 @@ class VList(HtmlElement):
         self._event_names += [
             ("click_open", "click:open"),
             ("click_select", "click:select"),
-            ("update_selected", "update:selected"),
             ("update_opened", "update:opened"),
+            ("update_selected", "update:selected"),
             ("update_activated", "update:activated"),
             ("click_activate", "click:activate"),
         ]
@@ -8044,37 +8498,49 @@ class VList(HtmlElement):
 
 class VListGroup(HtmlElement):
     """
-    Vuetify's VListGroup component. See more info and examples |VListGroup_vuetify_link|.
+      Vuetify's VListGroup component. See more info and examples |VListGroup_vuetify_link|.
 
-    .. |VListGroup_vuetify_link| raw:: html
+      .. |VListGroup_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-list-group" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-list-group" target="_blank">here</a>
 
 
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param color: See description |VListGroup_vuetify_link|.
-    :type string:
-    :param collapse_icon: Icon to display when the list item is expanded.
-    :type any:
-    :param expand_icon: Icon to display when the list item is collapsed.
-    :type any:
-    :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-    :type any:
-    :param append_icon: See description |VListGroup_vuetify_link|.
-    :type any:
-    :param fluid: See description |VListGroup_vuetify_link|.
-    :type boolean:
-    :param subgroup: Designate the component as nested list group.
-    :type boolean:
-    :param title: Specify a title text for the component.
-    :type string:
-    :param value: Expands / Collapse the list-group.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param color: See description |VListGroup_vuetify_link|.
+      :type string:
+      :param collapse_icon: Icon to display when the list item is expanded.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param expand_icon: Icon to display when the list item is collapsed.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VListGroup_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param fluid: See description |VListGroup_vuetify_link|.
+      :type boolean:
+      :param subgroup: Designate the component as nested list group.
+      :type boolean:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param value: Expands / Collapse the list-group.
+      :type any:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -8121,89 +8587,95 @@ class VListImg(HtmlElement):
 
 class VListItem(HtmlElement):
     """
-    Vuetify's VListItem component. See more info and examples |VListItem_vuetify_link|.
+      Vuetify's VListItem component. See more info and examples |VListItem_vuetify_link|.
 
-    .. |VListItem_vuetify_link| raw:: html
+      .. |VListItem_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-list-item" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-list-item" target="_blank">here</a>
 
 
-    :param title: See description |VListItem_vuetify_link|.
-    :type string | number:
-    :param subtitle: Specify a subtitle text for the component.
-    :type string | number:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type boolean:
-    :param active_class: See description |VListItem_vuetify_link|.
-    :type string:
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param append_avatar: See description |VListItem_vuetify_link|.
-    :type string:
-    :param append_icon: See description |VListItem_vuetify_link|.
-    :type any:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param link: Designates that the component is a link. This is automatic when using the href or to prop.
-    :type boolean:
-    :param nav: See description |VListItem_vuetify_link|.
-    :type boolean:
-    :param prepend_avatar: See description |VListItem_vuetify_link|.
-    :type string:
-    :param prepend_icon: See description |VListItem_vuetify_link|.
-    :type any:
-    :param ripple: See description |VListItem_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used for selection.
-    :type any:
-    :param slim: See description |VListItem_vuetify_link|.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VListItem_vuetify_link|.
-    :type string | number:
-    :param rounded: See description |VListItem_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VListItem_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VListItem_vuetify_link|.
-    :type boolean:
-    :param to: See description |VListItem_vuetify_link|.
-    :type RouteLocationRaw:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VListItem_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
-    :param lines: See description |VListItem_vuetify_link|.
-    :type false | 'one' | 'two' | 'three':
+      :param title: See description |VListItem_vuetify_link|.
+      :type string | number:
+      :param subtitle: Specify a subtitle text for the component.
+      :type string | number:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type boolean:
+      :param active_class: See description |VListItem_vuetify_link|.
+      :type string:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param append_avatar: See description |VListItem_vuetify_link|.
+      :type string:
+      :param append_icon: See description |VListItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param link: Designates that the component is a link. This is automatic when using the href or to prop.
+      :type boolean:
+      :param nav: Reduces the width v-list-item takes up as well as adding a border radius.
+      :type boolean:
+      :param prepend_avatar: See description |VListItem_vuetify_link|.
+      :type string:
+      :param prepend_icon: See description |VListItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VListItem_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: See description |VListItem_vuetify_link|.
+      :type any:
+      :param slim: Reduces horizontal spacing for badges, icons, tooltips, and avatars to create a more compact visual representation.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VListItem_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VListItem_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VListItem_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VListItem_vuetify_link|.
+      :type boolean:
+      :param to: See description |VListItem_vuetify_link|.
+      :type RouteLocationRaw:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VListItem_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
+      :param lines: The line declaration specifies the minimum height of the item and can also be controlled from v-list with the same prop.
+      :type false | 'one' | 'two' | 'three':
 
-    Events
+      Events
 
-    :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VListItem.json))
+      :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VListItem.json))
     """
 
     def __init__(self, children=None, **kwargs):
@@ -8476,6 +8948,8 @@ class VMenu(HtmlElement):
       :type Element | 'parent' | (string & {}) | ComponentPublicInstance:
       :param id: The unique identifier of the component.
       :type string:
+      :param submenu: Opens with right arrow and closes on left instead of up/down. Implies `location="end"`. Directions are reversed for RTL.
+      :type boolean:
       :param close_on_back: Closes the overlay content when the browser's back button is pressed or `$router.back()` is called, cancelling the original navigation. `persistent` overlays will cancel navigation and animate as if they were clicked outside instead of closing.
       :type boolean:
       :param contained: Limits the size of the component and scrim to its offset parent. Implies `absolute` and `attach`. (Note: The parent element must have position: relative.).
@@ -8546,10 +9020,10 @@ class VMenu(HtmlElement):
       :param theme: Specify a theme for this component and all of its children.
       :type string:
       :param transition: See description |VMenu_vuetify_link|.
-      :type | { component: Component }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component }:
       :param attach: Specifies which DOM element the overlay content should teleport to. Can be a direct element reference, querySelector string, or `true` to disable teleporting. Uses `body` by default. Generally not recommended except as a last resort: the default positioning algorithm should handle most scenarios better than is possible without teleporting, and you may have unexpected behavior if the menu ends up as child of its activator.
       :type string | boolean | Element:
 
@@ -8563,6 +9037,7 @@ class VMenu(HtmlElement):
         self._attr_names += [
             "activator",
             "id",
+            "submenu",
             ("close_on_back", "closeOnBack"),
             "contained",
             ("content_class", "contentClass"),
@@ -8619,10 +9094,10 @@ class VMessages(HtmlElement):
       :param messages: Displays a list of messages or a single message if using a string.
       :type string | string[]:
       :param transition: See description |VMessages_vuetify_link|.
-      :type | { component: Component; leaveAbsolute: boolean; group: boolean }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component; leaveAbsolute: boolean; group: boolean }:
 
     """
 
@@ -8792,6 +9267,8 @@ class VNumberInput(HtmlElement):
       :type boolean:
       :param hide_input: See description |VNumberInput_vuetify_link|.
       :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type Number:
       :param min: See description |VNumberInput_vuetify_link|.
       :type number:
       :param type: Sets input type.
@@ -8817,11 +9294,17 @@ class VNumberInput(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VNumberInput_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VNumberInput_vuetify_link|.
@@ -8858,19 +9341,29 @@ class VNumberInput(HtmlElement):
       :type boolean:
       :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
       :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/validation.ts#L16-L20" target="_blank">ValidationRule</a>[]:
-      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-      :type any:
       :param validate_on: Change what type of event triggers validation to run.
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -8882,7 +9375,10 @@ class VNumberInput(HtmlElement):
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param color: See description |VNumberInput_vuetify_link|.
@@ -8934,6 +9430,7 @@ class VNumberInput(HtmlElement):
             ("control_variant", "controlVariant"),
             "inset",
             ("hide_input", "hideInput"),
+            ("model_value", "modelValue"),
             "min",
             "type",
             "max",
@@ -8967,7 +9464,6 @@ class VNumberInput(HtmlElement):
             "name",
             "readonly",
             "rules",
-            ("model_value", "modelValue"),
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
             "focused",
@@ -9250,79 +9746,91 @@ class VOverlay(HtmlElement):
 
 class VPagination(HtmlElement):
     """
-    Vuetify's VPagination component. See more info and examples |VPagination_vuetify_link|.
+      Vuetify's VPagination component. See more info and examples |VPagination_vuetify_link|.
 
-    .. |VPagination_vuetify_link| raw:: html
+      .. |VPagination_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-pagination" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-pagination" target="_blank">here</a>
 
 
-    :param length: The number of pages.
-    :type string | number:
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param start: Specify the starting page.
-    :type string | number:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param total_visible: Specify the total visible pagination numbers.
-    :type string | number:
-    :param first_icon: The icon to use for the first button.
-    :type any:
-    :param prev_icon: The icon to use for the prev button.
-    :type any:
-    :param next_icon: The icon to use for the next button.
-    :type any:
-    :param last_icon: The icon to use for the last button.
-    :type any:
-    :param aria_label: Label for the root element.
-    :type string:
-    :param page_aria_label: Label for each page button.
-    :type string:
-    :param current_page_aria_label: Label for the currently selected page.
-    :type string:
-    :param first_aria_label: Label for the go to first button.
-    :type string:
-    :param previous_aria_label: Label for the previous button.
-    :type string:
-    :param next_aria_label: Label for the next button.
-    :type string:
-    :param last_aria_label: Label for the go to last button.
-    :type string:
-    :param ellipsis: Text to show between page buttons when truncating the list.
-    :type string:
-    :param show_first_last_page: Show buttons for going to first and last page.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param elevation: See description |VPagination_vuetify_link|.
-    :type string | number:
-    :param rounded: See description |VPagination_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VPagination_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
+      :param length: The number of pages.
+      :type string | number:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param start: Specify the starting page.
+      :type string | number:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param total_visible: Specify the total visible pagination numbers.
+      :type string | number:
+      :param first_icon: The icon to use for the first button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: The icon to use for the prev button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param next_icon: The icon to use for the next button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param last_icon: The icon to use for the last button.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param aria_label: Label for the root element.
+      :type string:
+      :param page_aria_label: Label for each page button.
+      :type string:
+      :param current_page_aria_label: Label for the currently selected page.
+      :type string:
+      :param first_aria_label: Label for the go to first button.
+      :type string:
+      :param previous_aria_label: Label for the previous button.
+      :type string:
+      :param next_aria_label: Label for the next button.
+      :type string:
+      :param last_aria_label: Label for the go to last button.
+      :type string:
+      :param ellipsis: Text to show between page buttons when truncating the list.
+      :type string:
+      :param show_first_last_page: Show buttons for going to first and last page.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param elevation: See description |VPagination_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VPagination_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VPagination_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
 
-    Events
+      Events
 
-    :param first: Emitted when clicking on go to first button.
-    :param prev: Emitted when clicking on go to previous button.
-    :param next: Emitted when clicking on go to next button.
-    :param last: Emitted when clicking on go to last button.
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param first: Emitted when clicking on go to first button.
+      :param prev: Emitted when clicking on go to previous button.
+      :param next: Emitted when clicking on go to next button.
+      :param last: Emitted when clicking on go to last button.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -9635,6 +10143,8 @@ class VPullToRefresh(HtmlElement):
         <a href="https://vuetifyjs.com/api/v-pull-to-refresh" target="_blank">here</a>
 
 
+    :param disabled: Removes the ability to click or target the component.
+    :type boolean:
     :param pull_down_threshold: See description |VPullToRefresh_vuetify_link|.
     :type number:
 
@@ -9646,6 +10156,7 @@ class VPullToRefresh(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VPullToRefresh", children, **kwargs)
         self._attr_names += [
+            "disabled",
             ("pull_down_threshold", "pullDownThreshold"),
         ]
         self._event_names += [
@@ -9655,57 +10166,63 @@ class VPullToRefresh(HtmlElement):
 
 class VRadio(HtmlElement):
     """
-    Vuetify's VRadio component. See more info and examples |VRadio_vuetify_link|.
+      Vuetify's VRadio component. See more info and examples |VRadio_vuetify_link|.
 
-    .. |VRadio_vuetify_link| raw:: html
+      .. |VRadio_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-radio" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-radio" target="_blank">here</a>
 
 
-    :param label: See description |VRadio_vuetify_link|.
-    :type string:
-    :param base_color: Sets the color of the input when it is not focused.
-    :type string:
-    :param true_value: Sets value for truthy state.
-    :type any:
-    :param false_value: Sets value for falsy state.
-    :type any:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param color: See description |VRadio_vuetify_link|.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param defaults_target: The target component to provide defaults values for.
-    :type string:
-    :param error: Puts the input in a manual error state.
-    :type boolean:
-    :param id: Sets the DOM id on the component.
-    :type string:
-    :param inline: Puts children inputs into a row.
-    :type boolean:
-    :param false_icon: The icon used when inactive.
-    :type any:
-    :param true_icon: The icon used when active.
-    :type any:
-    :param ripple: See description |VRadio_vuetify_link|.
-    :type boolean | { class: string }:
-    :param multiple: Changes select to multiple. Accepts array for value.
-    :type boolean:
-    :param name: Sets the component's name attribute.
-    :type string:
-    :param readonly: Puts input in readonly state.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type any:
-    :param type: Provides the default type for children selection controls.
-    :type string:
-    :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
-    :type (a: any, b: any) => boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param label: See description |VRadio_vuetify_link|.
+      :type string:
+      :param base_color: Sets the color of the input when it is not focused.
+      :type string:
+      :param true_value: Sets value for truthy state.
+      :type any:
+      :param false_value: Sets value for falsy state.
+      :type any:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param color: See description |VRadio_vuetify_link|.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param defaults_target: The target component to provide defaults values for.
+      :type string:
+      :param error: Puts the input in a manual error state.
+      :type boolean:
+      :param id: Sets the DOM id on the component.
+      :type string:
+      :param inline: Puts children inputs into a row.
+      :type boolean:
+      :param false_icon: The icon used when inactive.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param true_icon: The icon used when active.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VRadio_vuetify_link|.
+      :type boolean | { class: string }:
+      :param multiple: Changes select to multiple. Accepts array for value.
+      :type boolean:
+      :param name: Sets the component's name attribute.
+      :type string:
+      :param readonly: Puts input in readonly state.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type any:
+      :param type: Provides the default type for children selection controls.
+      :type string:
+      :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
+      :type (a: any, b: any) => boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
     """
 
@@ -9756,11 +10273,17 @@ class VRadioGroup(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VRadioGroup_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VRadioGroup_vuetify_link|.
@@ -9801,13 +10324,25 @@ class VRadioGroup(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -9821,9 +10356,15 @@ class VRadioGroup(HtmlElement):
       :param inline: Displays radio buttons in row.
       :type boolean:
       :param false_icon: The icon used when inactive.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param true_icon: The icon used when active.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param ripple: See description |VRadioGroup_vuetify_link|.
       :type boolean | { class: string }:
       :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
@@ -9903,11 +10444,17 @@ class VRangeSlider(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VRangeSlider_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VRangeSlider_vuetify_link|.
@@ -9948,13 +10495,25 @@ class VRangeSlider(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
@@ -10068,57 +10627,63 @@ class VRangeSlider(HtmlElement):
 
 class VRating(HtmlElement):
     """
-    Vuetify's VRating component. See more info and examples |VRating_vuetify_link|.
+      Vuetify's VRating component. See more info and examples |VRating_vuetify_link|.
 
-    .. |VRating_vuetify_link| raw:: html
+      .. |VRating_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-rating" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-rating" target="_blank">here</a>
 
 
-    :param length: The amount of items to show.
-    :type string | number:
-    :param name: Sets the component's name attribute.
-    :type string:
-    :param item_aria_label: See description |VRating_vuetify_link|.
-    :type string:
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param color: See description |VRating_vuetify_link|.
-    :type string:
-    :param clearable: Allows for the component to be cleared by clicking on the current value.
-    :type boolean:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param empty_icon: The icon displayed when empty.
-    :type any:
-    :param full_icon: The icon displayed when full.
-    :type any:
-    :param half_increments: Allows the selection of half increments.
-    :type boolean:
-    :param hover: Provides visual feedback when hovering over icons.
-    :type boolean:
-    :param readonly: Removes all hover effects and pointer events.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type string | number:
-    :param item_label_position: Position of item labels. Accepts 'top' and 'bottom'.
-    :type string:
-    :param ripple: See description |VRating_vuetify_link|.
-    :type boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param item_labels: Array of labels to display next to each item..
-    :type string[]:
+      :param length: The amount of items to show.
+      :type string | number:
+      :param name: Sets the component's name attribute.
+      :type string:
+      :param item_aria_label: See description |VRating_vuetify_link|.
+      :type string:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param color: See description |VRating_vuetify_link|.
+      :type string:
+      :param clearable: Allows for the component to be cleared by clicking on the current value.
+      :type boolean:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param empty_icon: The icon displayed when empty.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param full_icon: The icon displayed when full.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param half_increments: Allows the selection of half increments.
+      :type boolean:
+      :param hover: Provides visual feedback when hovering over icons.
+      :type boolean:
+      :param readonly: Removes all hover effects and pointer events.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type string | number:
+      :param item_label_position: Position of item labels. Accepts 'top' and 'bottom'.
+      :type string:
+      :param ripple: See description |VRating_vuetify_link|.
+      :type boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param item_labels: Array of labels to display next to each item..
+      :type string[]:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -10614,7 +11179,10 @@ class VSelect(HtmlElement):
       :param menu: Renders with the menu open by default.
       :type boolean:
       :param menu_icon: Sets the the spin icon.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param menu_props: See description |VSelect_vuetify_link|.
       :type unknown:
       :param id: Sets the DOM id on the component.
@@ -10649,11 +11217,17 @@ class VSelect(HtmlElement):
       :param role: The role attribute applied to the input.
       :type string:
       :param append_icon: See description |VSelect_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VSelect_vuetify_link|.
@@ -10675,16 +11249,28 @@ class VSelect(HtmlElement):
       :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
       :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/validation.ts#L16-L20" target="_blank">ValidationRule</a>[]:
       :param validate_on: Change what type of event triggers validation to run.
-      :type | 'lazy'
+      :type | 'eager'
+    | 'lazy'
     | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
-    | 'lazy submit':
+    | 'lazy submit'
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input':
       :param focused: Forces a focused state styling on the component.
       :type boolean:
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
@@ -10692,13 +11278,19 @@ class VSelect(HtmlElement):
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: See description |VSelect_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
@@ -10814,61 +11406,67 @@ class VSelect(HtmlElement):
 
 class VSelectionControl(HtmlElement):
     """
-    Vuetify's VSelectionControl component. See more info and examples |VSelectionControl_vuetify_link|.
+      Vuetify's VSelectionControl component. See more info and examples |VSelectionControl_vuetify_link|.
 
-    .. |VSelectionControl_vuetify_link| raw:: html
+      .. |VSelectionControl_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-selection-control" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-selection-control" target="_blank">here</a>
 
 
-    :param label: See description |VSelectionControl_vuetify_link|.
-    :type string:
-    :param base_color: Sets the color of the input when it is not focused.
-    :type string:
-    :param true_value: Sets value for truthy state.
-    :type any:
-    :param false_value: Sets value for falsy state.
-    :type any:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param color: See description |VSelectionControl_vuetify_link|.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param defaults_target: The target component to provide defaults values for.
-    :type string:
-    :param error: Puts the input in a manual error state.
-    :type boolean:
-    :param id: Sets the DOM id on the component.
-    :type string:
-    :param inline: Puts children inputs into a row.
-    :type boolean:
-    :param false_icon: The icon used when inactive.
-    :type any:
-    :param true_icon: The icon used when active.
-    :type any:
-    :param ripple: See description |VSelectionControl_vuetify_link|.
-    :type boolean | { class: string }:
-    :param multiple: Changes select to multiple. Accepts array for value.
-    :type boolean:
-    :param name: Sets the component's name attribute.
-    :type string:
-    :param readonly: Puts input in readonly state.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param type: Provides the default type for children selection controls.
-    :type string:
-    :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
-    :type (a: any, b: any) => boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param label: See description |VSelectionControl_vuetify_link|.
+      :type string:
+      :param base_color: Sets the color of the input when it is not focused.
+      :type string:
+      :param true_value: Sets value for truthy state.
+      :type any:
+      :param false_value: Sets value for falsy state.
+      :type any:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param color: See description |VSelectionControl_vuetify_link|.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param defaults_target: The target component to provide defaults values for.
+      :type string:
+      :param error: Puts the input in a manual error state.
+      :type boolean:
+      :param id: Sets the DOM id on the component.
+      :type string:
+      :param inline: Puts children inputs into a row.
+      :type boolean:
+      :param false_icon: The icon used when inactive.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param true_icon: The icon used when active.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VSelectionControl_vuetify_link|.
+      :type boolean | { class: string }:
+      :param multiple: Changes select to multiple. Accepts array for value.
+      :type boolean:
+      :param name: Sets the component's name attribute.
+      :type string:
+      :param readonly: Puts input in readonly state.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param type: Provides the default type for children selection controls.
+      :type string:
+      :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
+      :type (a: any, b: any) => boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -10904,51 +11502,57 @@ class VSelectionControl(HtmlElement):
 
 class VSelectionControlGroup(HtmlElement):
     """
-    Vuetify's VSelectionControlGroup component. See more info and examples |VSelectionControlGroup_vuetify_link|.
+      Vuetify's VSelectionControlGroup component. See more info and examples |VSelectionControlGroup_vuetify_link|.
 
-    .. |VSelectionControlGroup_vuetify_link| raw:: html
+      .. |VSelectionControlGroup_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-selection-control-group" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-selection-control-group" target="_blank">here</a>
 
 
-    :param color: See description |VSelectionControlGroup_vuetify_link|.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param defaults_target: The target component to provide defaults values for.
-    :type string:
-    :param error: Puts the input in a manual error state.
-    :type boolean:
-    :param id: Sets the DOM id on the component.
-    :type string:
-    :param inline: Puts children inputs into a row.
-    :type boolean:
-    :param false_icon: The icon used when inactive.
-    :type any:
-    :param true_icon: The icon used when active.
-    :type any:
-    :param ripple: See description |VSelectionControlGroup_vuetify_link|.
-    :type boolean | { class: string }:
-    :param multiple: Changes select to multiple. Accepts array for value.
-    :type boolean:
-    :param name: Sets the component's name attribute.
-    :type string:
-    :param readonly: Puts input in readonly state.
-    :type boolean:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param type: Provides the default type for children selection controls.
-    :type string:
-    :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
-    :type (a: any, b: any) => boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param color: See description |VSelectionControlGroup_vuetify_link|.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param defaults_target: The target component to provide defaults values for.
+      :type string:
+      :param error: Puts the input in a manual error state.
+      :type boolean:
+      :param id: Sets the DOM id on the component.
+      :type string:
+      :param inline: Puts children inputs into a row.
+      :type boolean:
+      :param false_icon: The icon used when inactive.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param true_icon: The icon used when active.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VSelectionControlGroup_vuetify_link|.
+      :type boolean | { class: string }:
+      :param multiple: Changes select to multiple. Accepts array for value.
+      :type boolean:
+      :param name: Sets the component's name attribute.
+      :type string:
+      :param readonly: Puts input in readonly state.
+      :type boolean:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param type: Provides the default type for children selection controls.
+      :type string:
+      :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
+      :type (a: any, b: any) => boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -11056,7 +11660,7 @@ class VSkeletonLoader(HtmlElement):
       :type string:
       :param loading: Applies a loading animation with a on-hover loading cursor. A value of **false** will only work when there is content in the `default` slot.
       :type boolean:
-      :param loading_text: See description |VSkeletonLoader_vuetify_link|.
+      :param loading_text: aria-label for the element in a loading state.
       :type string:
       :param type: A string delimited list of skeleton components to create such as `type="text@3"` or `type="card, list-item"`. Will recursively generate a corresponding skeleton from the provided string. Also supports short-hand for multiple elements such as **article@3** and **paragraph@2** which will generate 3 _article_ skeletons and 2 _paragraph_ skeletons. Please see below for a list of available pre-defined options.
       :type | 'avatar'
@@ -11166,47 +11770,53 @@ class VSkeletonLoader(HtmlElement):
 
 class VSlideGroup(HtmlElement):
     """
-    Vuetify's VSlideGroup component. See more info and examples |VSlideGroup_vuetify_link|.
+      Vuetify's VSlideGroup component. See more info and examples |VSlideGroup_vuetify_link|.
 
-    .. |VSlideGroup_vuetify_link| raw:: html
+      .. |VSlideGroup_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-slide-group" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-slide-group" target="_blank">here</a>
 
 
-    :param symbol: See description |VSlideGroup_vuetify_link|.
-    :type any:
-    :param center_active: Forces the selected component to be centered.
-    :type boolean:
-    :param direction: Switch between horizontal and vertical modes.
-    :type 'horizontal' | 'vertical':
-    :param next_icon: The appended slot when arrows are shown.
-    :type any:
-    :param prev_icon: The prepended slot when arrows are shown.
-    :type any:
-    :param show_arrows: See description |VSlideGroup_vuetify_link|.
-    :type string | boolean:
-    :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
-    :type boolean:
-    :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param multiple: Allows one to select multiple items.
-    :type boolean:
-    :param max: Sets a maximum number of selections that can be made.
-    :type number:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param disabled: Puts all children components into a disabled state.
-    :type boolean:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
+      :param symbol: See description |VSlideGroup_vuetify_link|.
+      :type any:
+      :param center_active: Forces the selected component to be centered.
+      :type boolean:
+      :param direction: Switch between horizontal and vertical modes.
+      :type 'horizontal' | 'vertical':
+      :param next_icon: The appended slot when arrows are shown.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: The prepended slot when arrows are shown.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param show_arrows: See description |VSlideGroup_vuetify_link|.
+      :type string | boolean:
+      :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
+      :type boolean:
+      :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param multiple: Allows one to select multiple items.
+      :type boolean:
+      :param max: Sets a maximum number of selections that can be made.
+      :type number:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param disabled: Puts all children components into a disabled state.
+      :type boolean:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -11474,11 +12084,17 @@ class VSlider(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VSlider_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VSlider_vuetify_link|.
@@ -11511,13 +12127,25 @@ class VSlider(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
@@ -12109,6 +12737,8 @@ class VSpeedDial(HtmlElement):
       :type (string & {}) | Element | 'parent' | ComponentPublicInstance:
       :param id: The unique identifier of the component.
       :type string:
+      :param submenu: Opens with right arrow and closes on left instead of up/down. Implies `location="end"`. Directions are reversed for RTL.
+      :type boolean:
       :param close_on_back: Closes the overlay content when the browser's back button is pressed or `$router.back()` is called, cancelling the original navigation. `persistent` overlays will cancel navigation and animate as if they were clicked outside instead of closing.
       :type boolean:
       :param contained: Limits the size of the component and scrim to its offset parent. Implies `absolute` and `attach`. (Note: The parent element must have position: relative.).
@@ -12179,10 +12809,10 @@ class VSpeedDial(HtmlElement):
       :param theme: Specify a theme for this component and all of its children.
       :type string:
       :param transition: See description |VSpeedDial_vuetify_link|.
-      :type | { component: Component }
-    | string
+      :type | string
     | boolean
-    | (TransitionProps & { component: Component }):
+    | (TransitionProps & { component: Component })
+    | { component: Component }:
       :param attach: Specifies which DOM element the overlay content should teleport to. Can be a direct element reference, querySelector string, or `true` to disable teleporting. Uses `body` by default. Generally not recommended except as a last resort: the default positioning algorithm should handle most scenarios better than is possible without teleporting, and you may have unexpected behavior if the menu ends up as child of its activator.
       :type string | boolean | Element:
 
@@ -12196,6 +12826,7 @@ class VSpeedDial(HtmlElement):
         self._attr_names += [
             "activator",
             "id",
+            "submenu",
             ("close_on_back", "closeOnBack"),
             "contained",
             ("content_class", "contentClass"),
@@ -12502,99 +13133,98 @@ class VStepperItem(HtmlElement):
 
 class VStepperVertical(HtmlElement):
     """
-    Vuetify's VStepperVertical component. See more info and examples |VStepperVertical_vuetify_link|.
+      Vuetify's VStepperVertical component. See more info and examples |VStepperVertical_vuetify_link|.
 
-    .. |VStepperVertical_vuetify_link| raw:: html
+      .. |VStepperVertical_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-stepper-vertical" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-stepper-vertical" target="_blank">here</a>
 
 
-    :param title: Specify a title text for the component.
-    :type string:
-    :param flat: Removes the expansion-panel's elevation and borders.
-    :type boolean:
-    :param prev_text: The text used for the Prev button.
-    :type string:
-    :param next_text: The text used for the Next button.
-    :type string:
-    :param alt_labels: Places the labels beneath the step.
-    :type boolean:
-    :param bg_color: See description |VStepperVertical_vuetify_link|.
-    :type string:
-    :param complete_icon: See description |VStepperVertical_vuetify_link|.
-    :type string:
-    :param edit_icon: See description |VStepperVertical_vuetify_link|.
-    :type string:
-    :param editable: Marks step as editable.
-    :type boolean:
-    :param error_icon: See description |VStepperVertical_vuetify_link|.
-    :type string:
-    :param hide_actions: Hide actions bar (prev and next buttons).
-    :type boolean:
-    :param items: An array of strings or objects used for automatically generating children components.
-    :type (string | Record<string, any>)[]:
-    :param item_title: Property on supplied `items` that contains its title.
-    :type string:
-    :param item_value: Property on supplied `items` that contains its value.
-    :type string:
-    :param value: Controls the opened/closed state of content.
-    :type any:
-    :param non_linear: Allow user to jump to any step.
-    :type boolean:
-    :param mobile: Forces the stepper into a mobile state, removing labels from stepper items.
-    :type boolean:
-    :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type any:
-    :param multiple: Allows one to select multiple items.
-    :type boolean:
-    :param max: Sets a maximum number of selections that can be made.
-    :type number:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param disabled: Disables the expansion-panel content.
-    :type boolean:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param text: Specify content text for the component.
-    :type string:
-    :param elevation: See description |VStepperVertical_vuetify_link|.
-    :type string | number:
-    :param rounded: See description |VStepperVertical_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes the border-radius.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param color: See description |VStepperVertical_vuetify_link|.
-    :type string:
-    :param expand_icon: Icon used when the expansion panel is in a expandable state.
-    :type any:
-    :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
-    :type any:
-    :param focusable: Makes the expansion-panel headers focusable.
-    :type boolean:
-    :param ripple: See description |VStepperVertical_vuetify_link|.
-    :type boolean | { class: string }:
-    :param readonly: Makes the expansion-panel content read only.
-    :type boolean:
-    :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'default' | 'accordion' | 'inset' | 'popout':
+      :param flat: Removes the expansion-panel's elevation and borders.
+      :type boolean:
+      :param prev_text: The text used for the Prev button.
+      :type string:
+      :param next_text: The text used for the Next button.
+      :type string:
+      :param alt_labels: Places the labels beneath the step.
+      :type boolean:
+      :param bg_color: See description |VStepperVertical_vuetify_link|.
+      :type string:
+      :param complete_icon: See description |VStepperVertical_vuetify_link|.
+      :type string:
+      :param edit_icon: See description |VStepperVertical_vuetify_link|.
+      :type string:
+      :param editable: Marks step as editable.
+      :type boolean:
+      :param error_icon: See description |VStepperVertical_vuetify_link|.
+      :type string:
+      :param hide_actions: Hide actions bar (prev and next buttons).
+      :type boolean:
+      :param items: An array of strings or objects used for automatically generating children components.
+      :type (string | Record<string, any>)[]:
+      :param item_title: Property on supplied `items` that contains its title.
+      :type string:
+      :param item_value: Property on supplied `items` that contains its value.
+      :type string:
+      :param non_linear: Allow user to jump to any step.
+      :type boolean:
+      :param mobile: Forces the stepper into a mobile state, removing labels from stepper items.
+      :type boolean:
+      :param mobile_breakpoint: Overrides the display configuration default screen size that the component should be considered in mobile.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type any:
+      :param multiple: Allows one to select multiple items.
+      :type boolean:
+      :param max: Sets a maximum number of selections that can be made.
+      :type number:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param disabled: Disables the expansion-panel content.
+      :type boolean:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param elevation: See description |VStepperVertical_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VStepperVertical_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes the border-radius.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param color: See description |VStepperVertical_vuetify_link|.
+      :type string:
+      :param expand_icon: Icon used when the expansion panel is in a expandable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param focusable: Makes the expansion-panel headers focusable.
+      :type boolean:
+      :param ripple: See description |VStepperVertical_vuetify_link|.
+      :type boolean | { class: string }:
+      :param readonly: Makes the entire expansion-panel read only.
+      :type boolean:
+      :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
+      :type boolean:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'default' | 'accordion' | 'inset' | 'popout':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VStepperVertical", children, **kwargs)
         self._attr_names += [
-            "title",
             "flat",
             ("prev_text", "prevText"),
             ("next_text", "nextText"),
@@ -12608,7 +13238,6 @@ class VStepperVertical(HtmlElement):
             "items",
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
-            "value",
             ("non_linear", "nonLinear"),
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
@@ -12618,7 +13247,6 @@ class VStepperVertical(HtmlElement):
             ("selected_class", "selectedClass"),
             "disabled",
             "mandatory",
-            "text",
             "elevation",
             "rounded",
             "tile",
@@ -12678,75 +13306,93 @@ class VStepperVerticalActions(HtmlElement):
 
 class VStepperVerticalItem(HtmlElement):
     """
-    Vuetify's VStepperVerticalItem component. See more info and examples |VStepperVerticalItem_vuetify_link|.
+      Vuetify's VStepperVerticalItem component. See more info and examples |VStepperVerticalItem_vuetify_link|.
 
-    .. |VStepperVerticalItem_vuetify_link| raw:: html
+      .. |VStepperVerticalItem_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-stepper-vertical-item" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-stepper-vertical-item" target="_blank">here</a>
 
 
-    :param icon: See description |VStepperVerticalItem_vuetify_link|.
-    :type string:
-    :param subtitle: Specify a subtitle text for the component.
-    :type string:
-    :param title: Specify a title text for the component.
-    :type string:
-    :param text: Specify content text for the component.
-    :type string:
-    :param hide_actions: Hide the expand icon in the content title.
-    :type boolean:
-    :param color: See description |VStepperVerticalItem_vuetify_link|.
-    :type string:
-    :param complete: Marks step as complete.
-    :type boolean:
-    :param complete_icon: Icon to display when step is marked as completed.
-    :type string:
-    :param editable: Marks step as editable.
-    :type boolean:
-    :param edit_icon: Icon to display when step is editable.
-    :type string:
-    :param error: Puts the stepper item in a manual error state.
-    :type boolean:
-    :param error_icon: Icon to display when step has an error.
-    :type string:
-    :param ripple: See description |VStepperVerticalItem_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: Controls the opened/closed state of content.
-    :type any:
-    :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
-    :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/components/VStepper/VStepperItem.tsx#L42-L42" target="_blank">ValidationRule</a>[]:
-    :param bg_color: See description |VStepperVerticalItem_vuetify_link|.
-    :type string:
-    :param elevation: See description |VStepperVerticalItem_vuetify_link|.
-    :type string | number:
-    :param disabled: Disables the expansion-panel content.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param rounded: See description |VStepperVerticalItem_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param expand_icon: Icon used when the expansion panel is in a expandable state.
-    :type any:
-    :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
-    :type any:
-    :param focusable: See description |VStepperVerticalItem_vuetify_link|.
-    :type boolean:
-    :param static: Remove title size expansion when selected.
-    :type boolean:
-    :param readonly: Makes the expansion-panel content read only.
-    :type boolean:
-    :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
-    :type boolean:
+      :param icon: See description |VStepperVerticalItem_vuetify_link|.
+      :type string:
+      :param subtitle: Specify a subtitle text for the component.
+      :type string:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param text: Specify content text for the component.
+      :type string:
+      :param hide_actions: Hide the expand icon in the content title.
+      :type boolean:
+      :param color: See description |VStepperVerticalItem_vuetify_link|.
+      :type string:
+      :param complete: Marks step as complete.
+      :type boolean:
+      :param complete_icon: Icon to display when step is marked as completed.
+      :type string:
+      :param editable: Marks step as editable.
+      :type boolean:
+      :param edit_icon: Icon to display when step is editable.
+      :type string:
+      :param error: Puts the stepper item in a manual error state.
+      :type boolean:
+      :param error_icon: Icon to display when step has an error.
+      :type string:
+      :param ripple: See description |VStepperVerticalItem_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: Controls the opened/closed state of content.
+      :type any:
+      :param rules: Accepts a mixed array of types `function`, `boolean` and `string`. Functions pass an input value as an argument and must return either `true` / `false` or a `string` containing an error message. The input field will enter an error state if a function returns (or any value in the array contains) `false` or is a `string`.
+      :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/components/VStepper/VStepperItem.tsx#L42-L42" target="_blank">ValidationRule</a>[]:
+      :param bg_color: See description |VStepperVerticalItem_vuetify_link|.
+      :type string:
+      :param elevation: See description |VStepperVerticalItem_vuetify_link|.
+      :type string | number:
+      :param disabled: Disables the expansion-panel content.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param rounded: See description |VStepperVerticalItem_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param expand_icon: Icon used when the expansion panel is in a expandable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param collapse_icon: Icon used when the expansion panel is in a collapsable state.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param focusable: See description |VStepperVerticalItem_vuetify_link|.
+      :type boolean:
+      :param static: Remove title size expansion when selected.
+      :type boolean:
+      :param readonly: Makes the expansion-panel content read only.
+      :type boolean:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param eager: Forces the component's content to render when it mounts. This is useful if you have content that will not be rendered in the DOM that you want crawled for SEO.
+      :type boolean:
 
-    Events
+      Events
 
-    :param click_next: Event emitted when clicking the next button
-    :param click_prev: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VStepperVerticalItem.json))
-    :param click_finish: Event emitted when clicking the finish button
+      :param click_next: Event emitted when clicking the next button
+      :param click_prev: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VStepperVerticalItem.json))
+      :param click_finish: Event emitted when clicking the finish button
     """
 
     def __init__(self, children=None, **kwargs):
@@ -12779,6 +13425,12 @@ class VStepperVerticalItem(HtmlElement):
             "focusable",
             "static",
             "readonly",
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "eager",
         ]
         self._event_names += [
@@ -12872,17 +13524,20 @@ class VStepperWindowItem(HtmlElement):
 
 class VSvgIcon(HtmlElement):
     """
-    Vuetify's VSvgIcon component. See more info and examples |VSvgIcon_vuetify_link|.
+      Vuetify's VSvgIcon component. See more info and examples |VSvgIcon_vuetify_link|.
 
-    .. |VSvgIcon_vuetify_link| raw:: html
+      .. |VSvgIcon_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-svg-icon" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-svg-icon" target="_blank">here</a>
 
 
-    :param icon: See description |VSvgIcon_vuetify_link|.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param icon: See description |VSvgIcon_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -12919,11 +13574,17 @@ class VSwitch(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VSwitch_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VSwitch_vuetify_link|.
@@ -12964,13 +13625,25 @@ class VSwitch(HtmlElement):
       :type | 'input'
     | 'blur'
     | 'submit'
+    | 'invalid-input'
     | 'input lazy'
     | 'blur lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'input eager'
+    | 'blur eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy input'
     | 'lazy blur'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager input'
+    | 'eager blur'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -12992,9 +13665,15 @@ class VSwitch(HtmlElement):
       :param inline: Puts children inputs into a row.
       :type boolean:
       :param false_icon: The icon used when inactive.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param true_icon: The icon used when active.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param ripple: See description |VSwitch_vuetify_link|.
       :type boolean | { class: string }:
       :param multiple: Changes expected model to an array.
@@ -13122,87 +13801,99 @@ class VSystemBar(HtmlElement):
 
 class VTab(HtmlElement):
     """
-    Vuetify's VTab component. See more info and examples |VTab_vuetify_link|.
+      Vuetify's VTab component. See more info and examples |VTab_vuetify_link|.
 
-    .. |VTab_vuetify_link| raw:: html
+      .. |VTab_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-tab" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-tab" target="_blank">here</a>
 
 
-    :param fixed: Forces component to take up all available space up to their maximum width (300px), and centers it.
-    :type boolean:
-    :param slider_color: See description |VTab_vuetify_link|.
-    :type string:
-    :param hide_slider: Hides the active tab slider component (no exit or enter animation).
-    :type boolean:
-    :param direction: Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
-    :type 'horizontal' | 'vertical':
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param prepend_icon: See description |VTab_vuetify_link|.
-    :type any:
-    :param append_icon: See description |VTab_vuetify_link|.
-    :type any:
-    :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
-    :type boolean:
-    :param slim: Reduces padding to 0 8px.
-    :type boolean:
-    :param stacked: Displays the tab as a flex-column.
-    :type boolean:
-    :param ripple: See description |VTab_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
-    :type any:
-    :param text: Specify content text for the component.
-    :type string:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VTab_vuetify_link|.
-    :type string | number:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
-    :type string | boolean:
-    :param rounded: See description |VTab_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VTab_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VTab_vuetify_link|.
-    :type boolean:
-    :param to: See description |VTab_vuetify_link|.
-    :type RouteLocationRaw:
-    :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VTab_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
-    :param icon: See description |VTab_vuetify_link|.
-    :type any:
+      :param fixed: Forces component to take up all available space up to their maximum width (300px), and centers it.
+      :type boolean:
+      :param slider_color: See description |VTab_vuetify_link|.
+      :type string:
+      :param hide_slider: Hides the active tab slider component (no exit or enter animation).
+      :type boolean:
+      :param direction: Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
+      :type 'horizontal' | 'vertical':
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param prepend_icon: See description |VTab_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VTab_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param readonly: Puts the button in a readonly state. Cannot be clicked or navigated to by keyboard.
+      :type boolean:
+      :param slim: Reduces padding to 0 8px.
+      :type boolean:
+      :param stacked: Displays the tab as a flex-column.
+      :type boolean:
+      :param ripple: See description |VTab_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: The value used when the component is selected in a group. If not provided, a unique ID will be used.
+      :type any:
+      :param text: Specify content text for the component.
+      :type string:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VTab_vuetify_link|.
+      :type string | number:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param loading: Displays linear progress bar. Can either be a String which specifies which color is applied to the progress bar (any material color or theme color - **primary**, **secondary**, **success**, **info**, **warning**, **error**) or a Boolean which uses the component **color** (set by color prop - if it's supported by the component) or the primary color.
+      :type string | boolean:
+      :param rounded: See description |VTab_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VTab_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VTab_vuetify_link|.
+      :type boolean:
+      :param to: See description |VTab_vuetify_link|.
+      :type RouteLocationRaw:
+      :param size: Sets the height and width of the component. Default unit is px. Can also use the following predefined sizes: **x-small**, **small**, **default**, **large**, and **x-large**.
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VTab_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'text' | 'elevated' | 'tonal' | 'outlined' | 'plain':
+      :param icon: See description |VTab_vuetify_link|.
+      :type | boolean
+    | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
 
     """
 
@@ -13213,6 +13904,7 @@ class VTab(HtmlElement):
             ("slider_color", "sliderColor"),
             ("hide_slider", "hideSlider"),
             "direction",
+            ("active_color", "activeColor"),
             ("base_color", "baseColor"),
             ("prepend_icon", "prependIcon"),
             ("append_icon", "appendIcon"),
@@ -13292,69 +13984,75 @@ class VTable(HtmlElement):
 
 class VTabs(HtmlElement):
     """
-    Vuetify's VTabs component. See more info and examples |VTabs_vuetify_link|.
+      Vuetify's VTabs component. See more info and examples |VTabs_vuetify_link|.
 
-    .. |VTabs_vuetify_link| raw:: html
+      .. |VTabs_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-tabs" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-tabs" target="_blank">here</a>
 
 
-    :param symbol: See description |VTabs_vuetify_link|.
-    :type any:
-    :param align_tabs: Aligns the tabs to the `start`, `center`, or `end` of container. Also accepts `title` to align with the `v-toolbar-title` component.
-    :type 'start' | 'title' | 'center' | 'end':
-    :param color: See description |VTabs_vuetify_link|.
-    :type string:
-    :param fixed_tabs: `v-tabs-item` min-width 160px, max-width 360px.
-    :type boolean:
-    :param items: The items to display in the component. This can be an array of strings or objects with a property `text`.
-    :type (string | number | Record<string, any>)[]:
-    :param stacked: Apply the stacked prop to all children v-tab components.
-    :type boolean:
-    :param bg_color: See description |VTabs_vuetify_link|.
-    :type string:
-    :param grow: Force `v-tab`'s to take up all available space.
-    :type boolean:
-    :param height: Sets the height of the tabs bar.
-    :type string | number:
-    :param hide_slider: Hide's the generated `v-tabs-slider`.
-    :type boolean:
-    :param slider_color: Changes the background color of an auto-generated `v-tabs-slider`.
-    :type string:
-    :param center_active: Forces the selected tab to be centered.
-    :type boolean:
-    :param direction: Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
-    :type 'horizontal' | 'vertical':
-    :param next_icon: Right pagination icon.
-    :type any:
-    :param prev_icon: Left pagination icon.
-    :type any:
-    :param show_arrows: Show pagination arrows if the tab items overflow their container. For mobile devices, arrows will only display when using this prop.
-    :type string | boolean:
-    :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
-    :type boolean:
-    :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
-    :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type any:
-    :param multiple: Allows one to select multiple items.
-    :type boolean:
-    :param max: Sets a maximum number of selections that can be made.
-    :type number:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param disabled: Puts all children components into a disabled state.
-    :type boolean:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
+      :param symbol: See description |VTabs_vuetify_link|.
+      :type any:
+      :param align_tabs: Aligns the tabs to the `start`, `center`, or `end` of container. Also accepts `title` to align with the `v-toolbar-title` component.
+      :type 'start' | 'title' | 'center' | 'end':
+      :param color: See description |VTabs_vuetify_link|.
+      :type string:
+      :param fixed_tabs: `v-tabs-item` min-width 160px, max-width 360px.
+      :type boolean:
+      :param items: The items to display in the component. This can be an array of strings or objects with a property `text`.
+      :type (string | number | Record<string, any>)[]:
+      :param stacked: Apply the stacked prop to all children v-tab components.
+      :type boolean:
+      :param bg_color: See description |VTabs_vuetify_link|.
+      :type string:
+      :param grow: Force `v-tab`'s to take up all available space.
+      :type boolean:
+      :param height: Sets the height of the tabs bar.
+      :type string | number:
+      :param hide_slider: Hide's the generated `v-tabs-slider`.
+      :type boolean:
+      :param slider_color: Changes the background color of an auto-generated `v-tabs-slider`.
+      :type string:
+      :param center_active: Forces the selected tab to be centered.
+      :type boolean:
+      :param direction: Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
+      :type 'horizontal' | 'vertical':
+      :param next_icon: Right pagination icon.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: Left pagination icon.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param show_arrows: Show pagination arrows if the tab items overflow their container. For mobile devices, arrows will only display when using this prop.
+      :type string | boolean:
+      :param mobile: Determines the display mode of the component. If true, the component will be displayed in mobile mode. If false, the component will be displayed in desktop mode. If null, will be based on the current mobile-breakpoint
+      :type boolean:
+      :param mobile_breakpoint: Sets the designated mobile breakpoint for the component.
+      :type number | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl':
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type any:
+      :param multiple: Allows one to select multiple items.
+      :type boolean:
+      :param max: Sets a maximum number of selections that can be made.
+      :type number:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param disabled: Puts all children components into a disabled state.
+      :type boolean:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -13508,11 +14206,17 @@ class VTextField(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VTextField_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the outnside the component's input, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VTextField_vuetify_link|.
@@ -13555,13 +14259,25 @@ class VTextField(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -13569,13 +14285,19 @@ class VTextField(HtmlElement):
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
       :type boolean | 'auto':
       :param append_inner_icon: See description |VTextField_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param bg_color: See description |VTextField_vuetify_link|.
       :type string:
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: Applied when using **clearable** and the input is dirty.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param color: See description |VTextField_vuetify_link|.
@@ -13587,7 +14309,10 @@ class VTextField(HtmlElement):
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: Prepends an icon inside the component's input, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param variant: Applies a distinct style to the component.
@@ -13732,11 +14457,17 @@ class VTextarea(HtmlElement):
       :param id: Sets the DOM id on the component.
       :type string:
       :param append_icon: See description |VTextarea_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param center_affix: Vertically align **appendInner**, **prependInner**, **clearIcon** and **label** in the center.
       :type boolean:
       :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param hide_spin_buttons: Hides spin buttons on the input when type is set to `number`.
       :type boolean:
       :param hint: See description |VTextarea_vuetify_link|.
@@ -13779,13 +14510,25 @@ class VTextarea(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -13793,13 +14536,19 @@ class VTextarea(HtmlElement):
       :param hide_details: Hides hint and validation errors. When set to `auto` messages will be rendered only if there's a message (hint, error message, counter value etc) to display.
       :type boolean | 'auto':
       :param append_inner_icon: See description |VTextarea_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param bg_color: See description |VTextarea_vuetify_link|.
       :type string:
       :param clearable: Allows for the component to be cleared.
       :type boolean:
       :param clear_icon: The icon used when the **clearable** prop is set to true.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param active: Controls the **active** state of the item. This is typically used to highlight the component.
       :type boolean:
       :param color: See description |VTextarea_vuetify_link|.
@@ -13811,7 +14560,10 @@ class VTextarea(HtmlElement):
       :param persistent_clear: Always show the clearable icon when the input is dirty (By default it only shows on hover).
       :type boolean:
       :param prepend_inner_icon: See description |VTextarea_vuetify_link|.
-      :type any:
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
       :param single_line: Label does not move on focus/dirty.
       :type boolean:
       :param variant: Applies a distinct style to the component.
@@ -14149,6 +14901,8 @@ class VTimePickerControls(HtmlElement):
 
     :param ampm: See description |VTimePickerControls_vuetify_link|.
     :type boolean:
+    :param ampm_in_title: See description |VTimePickerControls_vuetify_link|.
+    :type boolean:
     :param ampm_readonly: See description |VTimePickerControls_vuetify_link|.
     :type boolean:
     :param color: See description |VTimePickerControls_vuetify_link|.
@@ -14182,6 +14936,7 @@ class VTimePickerControls(HtmlElement):
         super().__init__("VTimePickerControls", children, **kwargs)
         self._attr_names += [
             "ampm",
+            ("ampm_in_title", "ampmInTitle"),
             ("ampm_readonly", "ampmReadonly"),
             "color",
             "disabled",
@@ -14269,51 +15024,54 @@ class VTimeline(HtmlElement):
 
 class VTimelineItem(HtmlElement):
     """
-    Vuetify's VTimelineItem component. See more info and examples |VTimelineItem_vuetify_link|.
+      Vuetify's VTimelineItem component. See more info and examples |VTimelineItem_vuetify_link|.
 
-    .. |VTimelineItem_vuetify_link| raw:: html
+      .. |VTimelineItem_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-timeline-item" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-timeline-item" target="_blank">here</a>
 
 
-    :param icon: See description |VTimelineItem_vuetify_link|.
-    :type any:
-    :param dot_color: Color of the item dot.
-    :type string:
-    :param fill_dot: Remove outer border of item dot, making the color fill the entire dot.
-    :type boolean:
-    :param hide_dot: Hide the timeline item dot.
-    :type boolean:
-    :param hide_opposite: Hide opposite content if it exists.
-    :type boolean:
-    :param icon_color: Color of the icon.
-    :type string:
-    :param line_inset: Specifies the distance between the line and the dot of the item.
-    :type string | number:
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VTimelineItem_vuetify_link|.
-    :type string | number:
-    :param rounded: See description |VTimelineItem_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param size: Size of the item dot
-    :type string | number:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'compact':
+      :param icon: See description |VTimelineItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param dot_color: Color of the item dot.
+      :type string:
+      :param fill_dot: Remove outer border of item dot, making the color fill the entire dot.
+      :type boolean:
+      :param hide_dot: Hide the timeline item dot.
+      :type boolean:
+      :param hide_opposite: Hide opposite content if it exists.
+      :type boolean:
+      :param icon_color: Color of the icon.
+      :type string:
+      :param line_inset: Specifies the distance between the line and the dot of the item.
+      :type string | number:
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VTimelineItem_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VTimelineItem_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param size: Size of the item dot
+      :type string | number:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'compact':
 
     """
 
@@ -14630,8 +15388,29 @@ class VTreeview(HtmlElement):
         :type string | string[]:
         :param loading_icon: Icon used when node is in a loading state.
         :type string:
-        :param selectable: Will render a checkbox next to each node allowing them to be selected.
+        :param open_on_click: When `true` will cause nodes to be opened by clicking anywhere on it, instead of only opening by clicking on expand icon. When using this prop with `activatable` you will be unable to mark nodes with children as active.
         :type boolean:
+        :param indeterminate_icon: Icon used when node is in an indeterminate state. Only visible when `selectable` is `true`.
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
+        :param false_icon: See description |VTreeview_vuetify_link|.
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
+        :param true_icon: See description |VTreeview_vuetify_link|.
+        :type | string
+      | (string | [string, number])[]
+      | (new () => any)
+      | FunctionalComponent:
+        :param return_object: When `true` will make `v-model`, `active.sync` and `open.sync` return the complete object instead of just the key.
+        :type boolean:
+        :param selectable: See description |VTreeview_vuetify_link|.
+        :type boolean:
+        :param selected_color: The color of the selection checkbox.
+        :type string:
         :param load_children: A function used when dynamically loading children. If this prop is set, then the supplied function will be run if expanding an item that has a `item-children` property that is an empty array. Supports returning a Promise.
         :type (item: unknown) => Promise<void>:
         :param items: An array of items used to build the treeview.
@@ -14659,7 +15438,7 @@ class VTreeview(HtmlElement):
         :type boolean:
         :param expand_icon: Icon used to indicate that a node can be expanded.
         :type string:
-        :param collapse_icon: See description |VTreeview_vuetify_link|.
+        :param collapse_icon: Icon to display when the list item is expanded.
         :type string:
         :param lines: See description |VTreeview_vuetify_link|.
         :type false | 'one' | 'two' | 'three':
@@ -14685,11 +15464,6 @@ class VTreeview(HtmlElement):
       | 'single-independent'
       | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/nested/activeStrategies.ts#L27-L31" target="_blank">ActiveStrategy</a>
       | ((mandatory: boolean) => <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/nested/activeStrategies.ts#L27-L31" target="_blank">ActiveStrategy</a>):
-        :param open_strategy: Affects how items with children behave when expanded.
-    - **multiple:** Any number of groups can be open at once.
-    - **single:** Only one group at each level can be open, opening a group will cause others to close.
-    - **list:** Multiple, but all other groups will close when an item is selected.
-        :type 'single' | 'multiple' | 'list' | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/composables/nested/openStrategies.ts#L20-L23" target="_blank">OpenStrategy</a>:
         :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
         :type string | number | boolean:
         :param density: Adjusts the vertical height used by the component.
@@ -14708,8 +15482,6 @@ class VTreeview(HtmlElement):
         :type string | number:
         :param elevation: See description |VTreeview_vuetify_link|.
         :type string | number:
-        :param item_type: Designates the key on the supplied items that is used for determining the nodes type.
-        :type string:
         :param item_title: Property on supplied `items` that contains its title.
         :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/helpers.ts#L73-L77" target="_blank">SelectItemKey</a>:
         :param item_value: Property on supplied `items` that contains its value.
@@ -14718,8 +15490,6 @@ class VTreeview(HtmlElement):
         :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/helpers.ts#L73-L77" target="_blank">SelectItemKey</a>:
         :param item_props: Props object that will be applied to each item component. `true` will treat the original object as raw props and pass it directly to the component.
         :type <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/util/helpers.ts#L73-L77" target="_blank">SelectItemKey</a>:
-        :param return_object: When `true` will make `v-model`, `active.sync` and `open.sync` return the complete object instead of just the key.
-        :type boolean:
         :param value_comparator: Apply a custom comparison algorithm to compare **model-value** and values contains in the **items** prop.
         :type (a: any, b: any) => boolean:
         :param rounded: Provides an alternative active style for `v-treeview` node. Only visible when `activatable` is `true` and should not be used in conjunction with the `shaped` prop.
@@ -14734,6 +15504,8 @@ class VTreeview(HtmlElement):
         :type string:
         :param variant: Applies a distinct style to the component.
         :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
+        :param model_value: Allows one to control which nodes are selected. The array contains the values of currently selected items. It is equivalent to the `v-model:selected`
+        :type unknown[]:
 
         Events
 
@@ -14742,6 +15514,7 @@ class VTreeview(HtmlElement):
         :param update_opened: Emits the array of open items when this value changes.
         :param update_activated: Emits the array of active items when this value changes.
         :param update_selected: Emits the array of selected items when this value changes.
+        :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -14755,7 +15528,13 @@ class VTreeview(HtmlElement):
             ("custom_key_filter", "customKeyFilter"),
             ("filter_keys", "filterKeys"),
             ("loading_icon", "loadingIcon"),
+            ("open_on_click", "openOnClick"),
+            ("indeterminate_icon", "indeterminateIcon"),
+            ("false_icon", "falseIcon"),
+            ("true_icon", "trueIcon"),
+            ("return_object", "returnObject"),
             "selectable",
+            ("selected_color", "selectedColor"),
             ("load_children", "loadChildren"),
             "items",
             ("select_strategy", "selectStrategy"),
@@ -14774,7 +15553,6 @@ class VTreeview(HtmlElement):
             "selected",
             "mandatory",
             ("active_strategy", "activeStrategy"),
-            ("open_strategy", "openStrategy"),
             "border",
             "density",
             "height",
@@ -14784,12 +15562,10 @@ class VTreeview(HtmlElement):
             ("min_width", "minWidth"),
             "width",
             "elevation",
-            ("item_type", "itemType"),
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
             ("item_children", "itemChildren"),
             ("item_props", "itemProps"),
-            ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
             "rounded",
             "tile",
@@ -14797,6 +15573,7 @@ class VTreeview(HtmlElement):
             "theme",
             "color",
             "variant",
+            ("model_value", "modelValue"),
         ]
         self._event_names += [
             ("click_open", "click:open"),
@@ -14804,40 +15581,53 @@ class VTreeview(HtmlElement):
             ("update_opened", "update:opened"),
             ("update_activated", "update:activated"),
             ("update_selected", "update:selected"),
+            ("update_modelValue", "update:modelValue"),
         ]
 
 
 class VTreeviewGroup(HtmlElement):
     """
-    Vuetify's VTreeviewGroup component. See more info and examples |VTreeviewGroup_vuetify_link|.
+      Vuetify's VTreeviewGroup component. See more info and examples |VTreeviewGroup_vuetify_link|.
 
-    .. |VTreeviewGroup_vuetify_link| raw:: html
+      .. |VTreeviewGroup_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-treeview-group" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-treeview-group" target="_blank">here</a>
 
 
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param color: See description |VTreeviewGroup_vuetify_link|.
-    :type string:
-    :param collapse_icon: Icon to display when the list item is expanded.
-    :type any:
-    :param expand_icon: Icon to display when the list item is collapsed.
-    :type any:
-    :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
-    :type any:
-    :param append_icon: See description |VTreeviewGroup_vuetify_link|.
-    :type any:
-    :param fluid: See description |VTreeviewGroup_vuetify_link|.
-    :type boolean:
-    :param title: Specify a title text for the component.
-    :type string:
-    :param value: Expands / Collapse the list-group.
-    :type any:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param color: See description |VTreeviewGroup_vuetify_link|.
+      :type string:
+      :param collapse_icon: Icon to display when the list item is expanded.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param expand_icon: Icon to display when the list item is collapsed.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prepend_icon: Prepends an icon to the component, uses the same syntax as `v-icon`.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param append_icon: See description |VTreeviewGroup_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param fluid: See description |VTreeviewGroup_vuetify_link|.
+      :type boolean:
+      :param title: Specify a title text for the component.
+      :type string:
+      :param value: Expands / Collapse the list-group.
+      :type any:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
 
     """
 
@@ -14861,93 +15651,103 @@ class VTreeviewGroup(HtmlElement):
 
 class VTreeviewItem(HtmlElement):
     """
-    Vuetify's VTreeviewItem component. See more info and examples |VTreeviewItem_vuetify_link|.
+      Vuetify's VTreeviewItem component. See more info and examples |VTreeviewItem_vuetify_link|.
 
-    .. |VTreeviewItem_vuetify_link| raw:: html
+      .. |VTreeviewItem_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-treeview-item" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-treeview-item" target="_blank">here</a>
 
 
-    :param title: See description |VTreeviewItem_vuetify_link|.
-    :type string | number:
-    :param subtitle: Specify a subtitle text for the component.
-    :type string | number:
-    :param loading: See description |VTreeviewItem_vuetify_link|.
-    :type boolean:
-    :param toggle_icon: See description |VTreeviewItem_vuetify_link|.
-    :type any:
-    :param active: Controls the **active** state of the item. This is typically used to highlight the component.
-    :type boolean:
-    :param active_class: See description |VTreeviewItem_vuetify_link|.
-    :type string:
-    :param active_color: The applied color when the component is in an active state.
-    :type string:
-    :param append_avatar: See description |VTreeviewItem_vuetify_link|.
-    :type string:
-    :param append_icon: See description |VTreeviewItem_vuetify_link|.
-    :type any:
-    :param base_color: Sets the color of component when not focused.
-    :type string:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param link: Designates that the component is a link. This is automatic when using the href or to prop.
-    :type boolean:
-    :param nav: See description |VTreeviewItem_vuetify_link|.
-    :type boolean:
-    :param prepend_avatar: See description |VTreeviewItem_vuetify_link|.
-    :type string:
-    :param prepend_icon: See description |VTreeviewItem_vuetify_link|.
-    :type any:
-    :param ripple: See description |VTreeviewItem_vuetify_link|.
-    :type boolean | { class: string }:
-    :param value: The value used for selection.
-    :type any:
-    :param slim: See description |VTreeviewItem_vuetify_link|.
-    :type boolean:
-    :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
-    :type string | number | boolean:
-    :param density: Adjusts the vertical height used by the component.
-    :type 'default' | 'comfortable' | 'compact':
-    :param height: Sets the height for the component.
-    :type string | number:
-    :param max_height: Sets the maximum height for the component.
-    :type string | number:
-    :param max_width: Sets the maximum width for the component.
-    :type string | number:
-    :param min_height: Sets the minimum height for the component.
-    :type string | number:
-    :param min_width: Sets the minimum width for the component.
-    :type string | number:
-    :param width: Sets the width for the component.
-    :type string | number:
-    :param elevation: See description |VTreeviewItem_vuetify_link|.
-    :type string | number:
-    :param rounded: See description |VTreeviewItem_vuetify_link|.
-    :type string | number | boolean:
-    :param tile: Removes any applied **border-radius** from the component.
-    :type boolean:
-    :param href: Designates the component as anchor and applies the **href** attribute.
-    :type string:
-    :param replace: See description |VTreeviewItem_vuetify_link|.
-    :type boolean:
-    :param exact: See description |VTreeviewItem_vuetify_link|.
-    :type boolean:
-    :param to: See description |VTreeviewItem_vuetify_link|.
-    :type RouteLocationRaw:
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
-    :param color: See description |VTreeviewItem_vuetify_link|.
-    :type string:
-    :param variant: Applies a distinct style to the component.
-    :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
-    :param lines: See description |VTreeviewItem_vuetify_link|.
-    :type false | 'one' | 'two' | 'three':
+      :param title: See description |VTreeviewItem_vuetify_link|.
+      :type string | number:
+      :param subtitle: Specify a subtitle text for the component.
+      :type string | number:
+      :param loading: See description |VTreeviewItem_vuetify_link|.
+      :type boolean:
+      :param toggle_icon: See description |VTreeviewItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param active: Controls the **active** state of the item. This is typically used to highlight the component.
+      :type boolean:
+      :param active_class: See description |VTreeviewItem_vuetify_link|.
+      :type string:
+      :param active_color: The applied color when the component is in an active state.
+      :type string:
+      :param append_avatar: See description |VTreeviewItem_vuetify_link|.
+      :type string:
+      :param append_icon: See description |VTreeviewItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param base_color: Sets the color of component when not focused.
+      :type string:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param link: Designates that the component is a link. This is automatic when using the href or to prop.
+      :type boolean:
+      :param nav: Reduces the width v-list-item takes up as well as adding a border radius.
+      :type boolean:
+      :param prepend_avatar: See description |VTreeviewItem_vuetify_link|.
+      :type string:
+      :param prepend_icon: See description |VTreeviewItem_vuetify_link|.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param ripple: See description |VTreeviewItem_vuetify_link|.
+      :type boolean | { class: string }:
+      :param value: See description |VTreeviewItem_vuetify_link|.
+      :type any:
+      :param slim: Reduces horizontal spacing for badges, icons, tooltips, and avatars to create a more compact visual representation.
+      :type boolean:
+      :param border: Designates the **border-radius** applied to the component. This can be **xs**, **sm**, **md**, **lg**, **xl**.
+      :type string | number | boolean:
+      :param density: Adjusts the vertical height used by the component.
+      :type 'default' | 'comfortable' | 'compact':
+      :param height: Sets the height for the component.
+      :type string | number:
+      :param max_height: Sets the maximum height for the component.
+      :type string | number:
+      :param max_width: Sets the maximum width for the component.
+      :type string | number:
+      :param min_height: Sets the minimum height for the component.
+      :type string | number:
+      :param min_width: Sets the minimum width for the component.
+      :type string | number:
+      :param width: Sets the width for the component.
+      :type string | number:
+      :param elevation: See description |VTreeviewItem_vuetify_link|.
+      :type string | number:
+      :param rounded: See description |VTreeviewItem_vuetify_link|.
+      :type string | number | boolean:
+      :param tile: Removes any applied **border-radius** from the component.
+      :type boolean:
+      :param href: Designates the component as anchor and applies the **href** attribute.
+      :type string:
+      :param replace: See description |VTreeviewItem_vuetify_link|.
+      :type boolean:
+      :param exact: See description |VTreeviewItem_vuetify_link|.
+      :type boolean:
+      :param to: See description |VTreeviewItem_vuetify_link|.
+      :type RouteLocationRaw:
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
+      :param color: See description |VTreeviewItem_vuetify_link|.
+      :type string:
+      :param variant: Applies a distinct style to the component.
+      :type 'flat' | 'elevated' | 'tonal' | 'outlined' | 'text' | 'plain':
+      :param lines: The line declaration specifies the minimum height of the item and can also be controlled from v-list with the same prop.
+      :type false | 'one' | 'two' | 'three':
 
-    Events
+      Events
 
-    :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTreeviewItem.json))
+      :param toggleExpand: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTreeviewItem.json))
+      :param clickOnce: MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTreeviewItem.json))
     """
 
     def __init__(self, children=None, **kwargs):
@@ -14993,6 +15793,7 @@ class VTreeviewItem(HtmlElement):
             "lines",
         ]
         self._event_names += [
+            "toggleExpand",
             "click",
             "clickOnce",
         ]
@@ -15029,13 +15830,25 @@ class VValidation(HtmlElement):
       :type | 'blur'
     | 'input'
     | 'submit'
+    | 'invalid-input'
     | 'blur lazy'
     | 'input lazy'
     | 'submit lazy'
+    | 'invalid-input lazy'
+    | 'blur eager'
+    | 'input eager'
+    | 'submit eager'
+    | 'invalid-input eager'
     | 'lazy blur'
     | 'lazy input'
     | 'lazy submit'
-    | 'lazy':
+    | 'lazy invalid-input'
+    | 'eager blur'
+    | 'eager input'
+    | 'eager submit'
+    | 'eager invalid-input'
+    | 'lazy'
+    | 'eager':
       :param validation_value: The value used when applying validation rules.
       :type any:
       :param focused: Forces a focused state styling on the component.
@@ -15117,43 +15930,49 @@ class VVirtualScroll(HtmlElement):
 
 class VWindow(HtmlElement):
     """
-    Vuetify's VWindow component. See more info and examples |VWindow_vuetify_link|.
+      Vuetify's VWindow component. See more info and examples |VWindow_vuetify_link|.
 
-    .. |VWindow_vuetify_link| raw:: html
+      .. |VWindow_vuetify_link| raw:: html
 
-        <a href="https://vuetifyjs.com/api/v-window" target="_blank">here</a>
+          <a href="https://vuetifyjs.com/api/v-window" target="_blank">here</a>
 
 
-    :param continuous: If `true`, window will "wrap around" from the last item to the first, and from the first item to the last.
-    :type boolean:
-    :param next_icon: Icon used for the "next" button if `show-arrows` is `true`.
-    :type any:
-    :param prev_icon: Icon used for the "prev" button if `show-arrows` is `true`.
-    :type any:
-    :param reverse: Reverse the normal transition direction.
-    :type boolean:
-    :param show_arrows: Display the "next" and "prev" buttons.
-    :type string | boolean:
-    :param touch: Provide a custom **left** and **right** function when swiped left or right.
-    :type boolean | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/directives/touch/index.ts#L9-L17" target="_blank">TouchHandlers</a>:
-    :param direction: The transition direction when changing windows.
-    :type 'horizontal' | 'vertical':
-    :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
-    :type unknown:
-    :param disabled: Removes the ability to click or target the component.
-    :type boolean:
-    :param selected_class: Configure the active CSS class applied when an item is selected.
-    :type string:
-    :param mandatory: Forces at least one item to always be selected (if available).
-    :type boolean | 'force':
-    :param tag: Specify a custom tag used on the root element.
-    :type string:
-    :param theme: Specify a theme for this component and all of its children.
-    :type string:
+      :param continuous: If `true`, window will "wrap around" from the last item to the first, and from the first item to the last.
+      :type boolean:
+      :param next_icon: Icon used for the "next" button if `show-arrows` is `true`.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param prev_icon: Icon used for the "prev" button if `show-arrows` is `true`.
+      :type | string
+    | (string | [string, number])[]
+    | (new () => any)
+    | FunctionalComponent:
+      :param reverse: Reverse the normal transition direction.
+      :type boolean:
+      :param show_arrows: Display the "next" and "prev" buttons.
+      :type string | boolean:
+      :param touch: Provide a custom **left** and **right** function when swiped left or right.
+      :type boolean | <a href="https://github.com/vuetifyjs/vuetify/blob/master/packages/vuetify/src/directives/touch/index.ts#L9-L17" target="_blank">TouchHandlers</a>:
+      :param direction: The transition direction when changing windows.
+      :type 'horizontal' | 'vertical':
+      :param model_value: The v-model value of the component. If component supports the **multiple** prop, this defaults to an empty array.
+      :type unknown:
+      :param disabled: Removes the ability to click or target the component.
+      :type boolean:
+      :param selected_class: Configure the active CSS class applied when an item is selected.
+      :type string:
+      :param mandatory: Forces at least one item to always be selected (if available).
+      :type boolean | 'force':
+      :param tag: Specify a custom tag used on the root element.
+      :type string:
+      :param theme: Specify a theme for this component and all of its children.
+      :type string:
 
-    Events
+      Events
 
-    :param update_modelValue: Event that is emitted when the component's model changes.
+      :param update_modelValue: Event that is emitted when the component's model changes.
     """
 
     def __init__(self, children=None, **kwargs):
