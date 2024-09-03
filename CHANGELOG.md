@@ -2,6 +2,12 @@
 
 <!--next-version-placeholder-->
 
+## v2.7.1 (2024-09-03)
+
+### Fix
+
+* **lab:** Set vuetify to 3.7.1 ([`cc388ac`](https://github.com/Kitware/trame-vuetify/commit/cc388ac22d52909c18d3b7ed8ad0c8b141639b4c))
+
 ## v2.7.0 (2024-08-28)
 
 ### Feature
