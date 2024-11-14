@@ -99,7 +99,7 @@ with v3.VCard() as card:        # Use camel case for class name (<v-card>)
             min=1,
             # Tuple needed to force evaluation (:max="maxValue")
             max=("maxValue",), 
-            # Implicit boolean attribue, need explicit assignemnt in Python
+            # Implicit boolean attribute, need explicit assignment in Python
             hide_detail=True 
         )
     
