@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: "/trame-vuetify",
   title: "Trame Vuetify",
   description: "Examples on how to use Vuetify with trame ",
   themeConfig: {
