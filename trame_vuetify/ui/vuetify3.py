@@ -112,12 +112,12 @@ class SinglePageLayout(VAppLayout):
                             vuetify3.VIcon("mdi-autorenew", size="small")
 
                     with vuetify3.VTooltip(location="top"):
-                        with vuetify3.Template(v_slot_activator="{ props }"):
+                        with vuetify3.Template(v_slot_activator=("{ props }",)):
                             vuetify3.VIcon(
                                 "mdi-help-circle",
                                 size=14,
                                 classes="mr-4",
-                                v_bind="props",
+                                v_bind=("props",),
                             )
                         html.Pre(get_trame_versions())
 
