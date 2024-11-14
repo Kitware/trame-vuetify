@@ -2,6 +2,18 @@
 
 <!--next-version-placeholder-->
 
+## v2.7.2 (2024-11-14)
+
+### Fix
+
+* **layout:** Singlepagelayout vue warnings ([`bdcb663`](https://github.com/Kitware/trame-vuetify/commit/bdcb66308292bf7c4fb9af7590c5f4cf8f5715e0))
+
+### Documentation
+
+* Spelling ([`93fe89b`](https://github.com/Kitware/trame-vuetify/commit/93fe89bb2297a2084b39e338ffb85dda3ba30c39))
+* **website:** Add vitepress website ([`e789a54`](https://github.com/Kitware/trame-vuetify/commit/e789a54f28160751051b17256c905df2f5d7d250))
+* **example:** Add multi slider time controller ([`a5faf22`](https://github.com/Kitware/trame-vuetify/commit/a5faf228a0c3a4921941566a499f196be2a7c80a))
+
 ## v2.7.1 (2024-09-03)
 
 ### Fix
