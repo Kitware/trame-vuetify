@@ -1,6 +1,6 @@
 from trame.app import get_server
 from trame.ui.vuetify3 import VAppLayout
-from trame.widgets import vuetify3 as v3, html
+from trame.widgets import vuetify3 as v3
 
 
 class App:
