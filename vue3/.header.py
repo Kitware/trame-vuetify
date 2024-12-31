@@ -60,17 +60,23 @@ def dataframe_to_grid(dataframe, options={}):
     """
     Transform a dataframe for use with a VDataTable
 
-    :param dataframe: A pandas dataframe
-    :param options: Control which columns are sortable, filterable, grouped, aligned, etc. A dictionary where keys are the columns from the dataframe and values are Vuetify DataTableHeader objects. See more info |header_doc_link|.
+    Args:
+      dataframe:
+        A pandas dataframe
+      options:
+        Control which columns are sortable, filterable, grouped, aligned, etc.
+        A dictionary where keys are the columns from the dataframe and values
+        are Vuetify DataTableHeader objects. See more info |header_doc_link|.
 
-    .. |header_doc_link| raw:: html
+    Returns:
+      The headers and rows for the table component.
 
-        <a href="https://vuetifyjs.com/en/api/v-data-table/#props-headers" target="_blank">here</a>
+    Usage example:
 
-    >>> headers, rows = vuetify.dataframe_to_grid(dataframe)
-    >>> VDataTable(
-    ...     headers=("table_headers", headers),
-    ...     items=("table_rows", rows))
+       headers, rows = vuetify.dataframe_to_grid(dataframe)
+       VDataTable(headers=("table_headers", headers), items=("table_rows", rows))
+
+    `Vuetify documentation <https://vuetifyjs.com/en/api/v-data-table/#props-headers>`_
     """
     headers = {}
     for col_name in dataframe.columns:

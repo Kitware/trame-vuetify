@@ -82,49 +82,99 @@ def get_events(tag):
         ]"""
 
 
+def clean_type(js_type):
+    js_type = js_type.replace("\n", "")
+    if "<a href" in js_type:
+        return (js_type.split(">")[1][:-3], [])
+    if "|" in js_type:
+        items = js_type.split("|")
+        entries = []
+        for item in items:
+            item = item.strip()
+            if not item:
+                continue
+            if " => " in item:
+                entries.append("js_fn")
+            else:
+                entries.append(item)
+        js_type = ", ".join(entries)
+        if len(js_type) > 60:
+            return ("enum", entries)
+    return (js_type, [])
+
+
+def clean_description(description):
+    description = description.replace("\n", " ").replace("\\|", "|")
+    return split_description(link_description(description))
+
+
+def link_description(description):
+    # if "](" in description:
+    #     description = description.replace("[", "`")
+    #     description = description.replace("](", " <")
+    #     description = description.replace(")", ">`_")
+    return description
+
+
+def split_description(description):
+    if len(description) > 80:
+        tokens = description.split(" ")
+        description_lines = []
+        while len(tokens):
+            line = []
+            while len(" ".join(line)) < 60 and len(tokens):
+                line.append(tokens.pop(0))
+            description_lines.append(" ".join(line))
+            line = []
+        if len(line):
+            description_lines.append(" ".join(line))
+
+        description = "\n        ".join(description_lines)
+    return description
+
+
 def get_docs(tag):
     url = tag.get("doc-url", "https://vuetifyjs.com/en/introduction/why-vuetify/")
     url = url.replace("www.", "")  # www redirects to start page
 
     name = tag.get("name")
     attributes = tag.get("attributes", [])
-    params = ""
+    params = []
     for attribute in attributes:
         raw_name = attribute.get("name")
         attribute_name = to_attr_name(raw_name.replace("-", "_"))
-        attribute_type = attribute.get("value", {}).get("type", "string").strip()
-        description = attribute.get("description")
-        if "](" in description:
-            # Hide descriptions with markdown
-            description = f"See description |{name}_vuetify_link|."
-        params += f"""
-    :param {attribute_name}: {description}
-    :type {attribute_type}:"""
+        attribute_type, enum_list = clean_type(
+            attribute.get("value", {}).get("type", "string").strip()
+        )
+        description = clean_description(attribute.get("description"))
+        if enum_list:
+            enum_list = clean_description(", ".join(enum_list)).replace(
+                "\n        ", "\n          "
+            )
+            description = f"{description}\n\n        Enum values: [\n          {enum_list}\n        ]"
+        params.append(
+            f"\n      {attribute_name} ({attribute_type}):\n        {description}"
+        )
 
     events = tag.get("events")
-    event_params = ""
     for event in events:
         entry = event.get("name")
-        description = event.get("description")
+        description = clean_description(event.get("description"))
 
         # Ignore calendar events, AbstractElement events
         if "<" not in entry and entry not in ["mouseup", "mousedown", "click"]:
             entry = entry.replace(":", "_").replace("-", "_")
-            event_params += f"\n    :param {entry}: {description}"
+            params.append(f"\n      {entry} (event):\n        {description}")
 
-    if len(event_params):
-        event_params = "\n    Events\n" + event_params
+    if len(params):
+        params.insert(0, "\n\n    Args:")
+
+    params = "".join(params)
 
     return f"""
     \"\"\"
-    Vuetify's {name} component. See more info and examples |{name}_vuetify_link|.
-
-    .. |{name}_vuetify_link| raw:: html
-
-        <a href="{url}" target="_blank">here</a>
-
-    {params}
-    {event_params}
+    Vuetify's {name} component.
+    See more `info and examples <{url}>`_.{params}
     \"\"\"
     """
 

@@ -75,6 +75,7 @@ class SinglePageLayout(VAppLayout):
             self.content = vuetify.VMain()
             with vuetify.VFooter(app=True, classes="my-0 py-0") as footer:
                 self.footer = footer
+
                 vuetify.VProgressCircular(
                     indeterminate=("!!trame__busy",),
                     background_opacity=1,
@@ -83,9 +84,12 @@ class SinglePageLayout(VAppLayout):
                     size=16,
                     width=3,
                     classes="ml-n3 mr-1",
-                ),
+                )
+
                 footer.add_child(
-                    '<a href="https://kitware.github.io/trame/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">Powered by trame</a>'
+                    '<a href="https://kitware.github.io/trame/" '
+                    'class="grey--text lighten-1--text text-caption text-decoration-none" '
+                    'target="_blank">Powered by trame</a>'
                 )
                 vuetify.VSpacer()
                 reload = self.server.controller.on_server_reload
@@ -111,7 +115,9 @@ class SinglePageLayout(VAppLayout):
                     html.Pre(get_trame_versions())
 
                 footer.add_child(
-                    '<a href="https://www.kitware.com/" class="grey--text lighten-1--text text-caption text-decoration-none" target="_blank">© 2021 Kitware Inc.</a>'
+                    '<a href="https://www.kitware.com/" '
+                    'class="grey--text lighten-1--text text-caption text-decoration-none" '
+                    'target="_blank">© 2021 Kitware Inc.</a>'
                 )
 
     def on_server_reload(self):

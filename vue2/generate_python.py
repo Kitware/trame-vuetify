@@ -64,49 +64,72 @@ def get_events(tag):
         ]"""
 
 
+def clean_description(description):
+    description = description.replace("\n", " ").replace("\\|", "|")
+    return split_description(link_description(description))
+
+
+def link_description(description):
+    if "](" in description:
+        description = description.replace("[", "`")
+        description = description.replace("](", " <")
+        description = description.replace(")", ">`_")
+    return description
+
+
+def split_description(description):
+    if len(description) > 80:
+        tokens = description.split(" ")
+        description_lines = []
+        while len(tokens):
+            line = []
+            while len(" ".join(line)) < 60 and len(tokens):
+                line.append(tokens.pop(0))
+            description_lines.append(" ".join(line))
+            line = []
+        if len(line):
+            description_lines.append(" ".join(line))
+
+        description = "\n        ".join(description_lines)
+    return description
+
+
 def get_docs(tag):
     url = tag.get("doc-url", "https://vuetifyjs.com/en/introduction/why-vuetify/")
     url = url.replace("www.", "")  # www redirects to start page
 
     name = tag.get("name")
     attributes = tag.get("attributes", [])
-    params = ""
+    params = []
     for attribute in attributes:
         raw_name = attribute.get("name")
         attribute_name = raw_name.replace("-", "_")
         attribute_type = attribute.get("value", {}).get("type", "string")
-        description = attribute.get("description")
-        if "](" in description:
-            # Hide descriptions with markdown
-            description = f"See description |{name}_vuetify_link|."
-        params += f"""
-    :param {attribute_name}: {description}
-    :type {attribute_type}:"""
+        description = clean_description(attribute.get("description"))
+
+        params.append(
+            f"\n      {attribute_name} ({attribute_type}):\n        {description}"
+        )
 
     events = tag.get("events")
-    event_params = ""
     for event in events:
         entry = event.get("name")
-        description = event.get("description")
+        description = clean_description(event.get("description"))
 
         # Ignore calendar events, AbstractElement events
         if "<" not in entry and entry not in ["mouseup", "mousedown", "click"]:
-            entry = entry.replace(":", "_").replace("-", "_")
-            event_params += f"\n    :param {entry}: {description}"
+            entry = entry.replace(":", "_")
+            params.append(f"\n      {entry} (event):\n        {description}")
 
-    if len(event_params):
-        event_params = "\n    Events\n" + event_params
+    if len(params):
+        params.insert(0, "\n\n    Args:")
+
+    params = "".join(params)
 
     return f"""
     \"\"\"
-    Vuetify's {name} component. See more info and examples |{name}_vuetify_link|.
-
-    .. |{name}_vuetify_link| raw:: html
-
-        <a href="{url}" target="_blank">here</a>
-
-    {params}
-    {event_params}
+    Vuetify's {name} component.
+    See more `info and examples <{url}>`_.{params}
     \"\"\"
     """
 

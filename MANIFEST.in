@@ -3,3 +3,9 @@ graft trame_vuetify/module/vue3-serve
 graft trame_vuetify/module/vue3-lab-serve
 recursive-include trame_vuetify/module/vue2-serve *.min.js *.css
 include trame_vuetify/LICENSE
+prune vue2
+prune vue3
+prune vue3-lab
+prune tests
+prune examples
+prune docs
