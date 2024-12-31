@@ -1,4 +1,4 @@
-from trame_vuetify.widgets.vuetify import *
+from trame_vuetify.widgets.vuetify import *  # noqa F403
 
 
 def initialize(server):
