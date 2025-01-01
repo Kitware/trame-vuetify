@@ -1,4 +1,6 @@
-trame-vuetify: Material Design widgets for trame
+.. |pypi_download| image:: https://img.shields.io/pypi/dm/trame-vuetify
+
+trame-vuetify: Material Design widgets |pypi_download|
 ===========================================================================
 
 .. image:: https://github.com/Kitware/trame-vuetify/actions/workflows/test_and_release.yml/badge.svg
