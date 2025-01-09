@@ -104,3 +104,10 @@ Enjoying trame?
 -----------------------------------------------------------
 
 Share your experience `with a testimonial <https://github.com/Kitware/trame/issues/18>`_ or `with a brand approval <https://github.com/Kitware/trame/issues/19>`_.
+
+
+JavaScript dependency
+-----------------------------------------------------------
+
+This Python package bundle the following Vuetify libraries. For ``client_type="vue2"``, it exposes ``vuetify@2.7.1`` and for ``client_type="vue3"``, it exposes ``vuetify@3.7.6``.
+If you would like us to upgrade any of those dependencies, `please reach out <https://www.kitware.com/trame/>`_.
