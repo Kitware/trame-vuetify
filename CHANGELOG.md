@@ -1,6 +1,22 @@
 # CHANGELOG
 
 
+## v2.8.1 (2025-01-23)
+
+### Bug Fixes
+
+- Replace applymap with map for dataframe serialization
+  ([`ac30ba3`](https://github.com/Kitware/trame-vuetify/commit/ac30ba361f078e547778040dbfd2388a5cff88e2))
+
+### Documentation
+
+- Update README.rst
+  ([`56ab62b`](https://github.com/Kitware/trame-vuetify/commit/56ab62b29e9ad3dbd2ff082325bfd76a1d934b32))
+
+- **js**: List JS dependency
+  ([`39354d7`](https://github.com/Kitware/trame-vuetify/commit/39354d7b689c72520268901b487cc74462c4322e))
+
+
 ## v2.8.0 (2024-12-31)
 
 ### Bug Fixes
