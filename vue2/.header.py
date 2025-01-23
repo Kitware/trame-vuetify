@@ -71,6 +71,6 @@ def dataframe_to_grid(dataframe, options={}):
         if options.get(col_name):
             headers[col_name].update(options.get(col_name))
 
-    return list(headers.values()), dataframe.applymap(cast_to_serializable).to_dict(
+    return list(headers.values()), dataframe.map(cast_to_serializable).to_dict(
         orient="records"
     )
