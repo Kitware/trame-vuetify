@@ -29,15 +29,18 @@ class VAppLayout(AbstractLayout):
 
     :param _server: Server to bound the layout to
     :param template_name: Name of the template (default: main)
+    :param vuetify_config: Dict structure to configure vuetify
     """
 
-    def __init__(self, _server, template_name="main", **kwargs):
+    def __init__(self, _server, template_name="main", vuetify_config=None, **kwargs):
         super().__init__(
             _server,
             vuetify.VApp(id="app", trame_server=_server),
             template_name=template_name,
             **kwargs,
         )
+        if vuetify_config:
+            self.server.state.trame__vuetify2_config = vuetify_config
 
 
 class SinglePageLayout(VAppLayout):
