@@ -117,7 +117,7 @@ class SinglePageLayout(VAppLayout):
                 footer.add_child(
                     '<a href="https://www.kitware.com/" '
                     'class="grey--text lighten-1--text text-caption text-decoration-none" '
-                    'target="_blank">© 2021 Kitware Inc.</a>'
+                    'target="_blank">© 2025 Kitware Inc.</a>'
                 )
 
     def on_server_reload(self):
