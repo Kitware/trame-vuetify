@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.8.2 (2025-03-25)
+
+### Bug Fixes
+
+- **copyright**: Update copyright dates
+  ([`a53d702`](https://github.com/Kitware/trame-vuetify/commit/a53d702a7b058c678db84d0f0b59f1683e400702))
+
+
 ## v2.8.1 (2025-01-23)
 
 ### Bug Fixes
