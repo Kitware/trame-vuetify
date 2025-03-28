@@ -25,7 +25,7 @@ class StepperExample:
             with layout.content:
                 with vuetify3.VStepper(
                     v_model=("current_step", 0),
-                    items=("steps", [f"Step {i+1}" for i in range(NB_STEPS)]),
+                    items=("steps", [f"Step {i + 1}" for i in range(NB_STEPS)]),
                 ):
                     with vuetify3.Template(raw_attrs=["v-slot:item.1"]):
                         with vuetify3.VCard(title="Step one", flat=True):
