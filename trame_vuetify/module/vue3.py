@@ -3,7 +3,11 @@ from pathlib import Path
 serve_path = str(Path(__file__).with_name("vue3-serve").resolve())
 serve = {"__trame_vuetify3": serve_path}
 scripts = ["__trame_vuetify3/vuetify3.js"]
-styles = ["__trame_vuetify3/vuetify3.css", "__trame_vuetify3/css/mdi.css"]
+styles = [
+    "__trame_vuetify3/vuetify3.css",
+    "__trame_vuetify3/css/mdi.css",
+    "https://fonts.googleapis.com/css?family=Roboto:300,400,500",
+]
 vue_use = ["Vuetify.createVuetify(trame.state.get('trame__vuetify3_config')||{})"]
 
 
