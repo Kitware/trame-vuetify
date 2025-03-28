@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v2.9.0 (2025-03-28)
+
+### Features
+
+- **v3.7.19**: Update vuetify and add missing fonts
+  ([`cc62ae2`](https://github.com/Kitware/trame-vuetify/commit/cc62ae2b4d620d617bffed74baf5ba3bde424f6f))
+
+
 ## v2.8.2 (2025-03-25)
 
 ### Bug Fixes
