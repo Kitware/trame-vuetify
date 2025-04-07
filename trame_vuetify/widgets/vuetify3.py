@@ -273,6 +273,7 @@ __all__ = [
     "VForm",
     "VHover",
     "VIcon",
+    "VIconBtn",
     "VImg",
     "VInfiniteScroll",
     "VInput",
@@ -437,7 +438,7 @@ class VAlert(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -446,7 +447,7 @@ class VAlert(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes the component's border-radius.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -548,34 +549,53 @@ class VAppBar(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-app-bar>`_.
 
     Args:
-      flat (boolean):
-        Removes the component's **box-shadow**.
-      tag (string):
-        Specify a custom tag used on the root element.
-      name (string):
-        Assign a specific name for layout registration.
       title (string):
         Specify a title text for the component.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      image (string):
-        Specifies a [v-img](/components/images) as the component's background.
-      collapse (boolean):
-        Morphs the component into a collapsed state, reducing its maximum width.
+      flat (boolean):
+        Removes the component's **box-shadow**.
+      border (string, number, boolean):
+        Applies utility border classes to the component. To use it, you
+        need to omit the `border-` prefix, (for example use `border-sm`
+        as `border="sm"`).  Find a list of the built-in border classes
+        on the [borders page](/styles/borders).
       model_value (boolean):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      density ('default', 'prominent', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Designates a specific height for the toolbar. Overrides the heights
+        imposed by other props, e.g. **prominent**, **dense**, **extended**,
+        etc.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
       location ('top', 'bottom'):
         Aligns the component towards the top or bottom.
       absolute (boolean):
         Applies position: absolute to the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      density ('default', 'prominent', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
+      name (string):
+        Assign a specific name for layout registration.
+      image (string):
+        Specifies a [v-img](/components/images) as the component's background.
+      collapse (boolean):
+        Morphs the component into a collapsed state, reducing its maximum width.
       extended (boolean):
         Use this prop to increase the height of the toolbar _without_
         using the `extension` slot for adding content. May be used in
@@ -586,25 +606,6 @@ class VAppBar(HtmlElement):
         Designate an explicit height for the `extension` slot.
       floating (boolean):
         Applies **display: inline-flex** to the component.
-      height (string, number):
-        Designates a specific height for the toolbar. Overrides the heights
-        imposed by other props, e.g. **prominent**, **dense**, **extended**,
-        etc.
-      border (string, number, boolean):
-        Applies utility border classes to the component. To use it, you
-        need to omit the `border-` prefix, (for example use `border-sm`
-        as `border="sm"`).  Find a list of the built-in border classes
-        on the [borders page](/styles/borders).
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
       order (string, number):
         Adjust the order of the component in relation to its registration order.
       scroll_target (string):
@@ -628,26 +629,26 @@ class VAppBar(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VAppBar", children, **kwargs)
         self._attr_names += [
-            "flat",
-            "tag",
-            "name",
             "title",
-            "theme",
-            "image",
-            "collapse",
+            "flat",
+            "border",
             ("model_value", "modelValue"),
+            "density",
+            "height",
+            "elevation",
             "location",
             "absolute",
+            "rounded",
+            "tile",
+            "tag",
+            "theme",
             "color",
-            "density",
+            "name",
+            "image",
+            "collapse",
             "extended",
             ("extension_height", "extensionHeight"),
             "floating",
-            "height",
-            "border",
-            "elevation",
-            "rounded",
-            "tile",
             "order",
             ("scroll_target", "scrollTarget"),
             ("scroll_threshold", "scrollThreshold"),
@@ -668,67 +669,24 @@ class VAppBarNavIcon(HtmlElement):
         The [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
         used to hook into group functionality for components like [v-btn-toggle](/components/btn-toggle)
         and [v-bottom-navigation](/components/bottom-navigations/).
-      text (string, number, boolean):
-        Specify content text for the component.
       flat (boolean):
         Removes the button box shadow. This is different than using the 'flat' variant.
-      border (string, number, boolean):
-        Applies utility border classes to the component. To use it, you
-        need to omit the `border-` prefix, (for example use `border-sm`
-        as `border="sm"`).  Find a list of the built-in border classes
-        on the [borders page](/styles/borders).
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/)
-        component. The button will become _round_.
-
-        Enum values: [
-          boolean, string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      location (Anchor):
-        Specifies the component's location. Can combine by using a space
-        separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
-        Sets the position for the component.
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
       replace (boolean):
         Setting **replace** prop will call `router.replace()` instead
         of `router.push()` when clicked, so the navigation will not leave
         a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
         prop on the vue-router documentation.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
       active (boolean):
         Controls the **active** state of the item. This is typically
         used to highlight the component.
@@ -761,9 +719,30 @@ class VAppBarNavIcon(HtmlElement):
         Displays the button as a flex-column.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
+      text (string, number, boolean):
+        Specify content text for the component.
+      border (string, number, boolean):
+        Applies utility border classes to the component. To use it, you
+        need to omit the `border-` prefix, (for example use `border-sm`
+        as `border="sm"`).  Find a list of the built-in border classes
+        on the [borders page](/styles/borders).
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
       disabled (boolean):
         Removes the ability to click or target the component.
       selected_class (string):
@@ -775,6 +754,18 @@ class VAppBarNavIcon(HtmlElement):
         **warning**, **error**) or a Boolean which uses the component
         **color** (set by color prop - if it's supported by the component)
         or the primary color.
+      location (Anchor):
+        Specifies the component's location. Can combine by using a space
+        separated string.
+      position ('fixed', 'relative', 'static', 'absolute', 'sticky'):
+        Sets the position for the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
       exact (boolean):
@@ -789,37 +780,32 @@ class VAppBarNavIcon(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/)
+        component. The button will become _round_.
+
+        Enum values: [
+          boolean, string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VAppBarNavIcon", children, **kwargs)
         self._attr_names += [
             "symbol",
-            "text",
             "flat",
-            "border",
-            "icon",
-            "density",
-            "height",
-            ("max_height", "maxHeight"),
-            ("max_width", "maxWidth"),
-            ("min_height", "minHeight"),
-            ("min_width", "minWidth"),
-            "width",
-            "elevation",
-            "location",
-            "position",
-            "rounded",
-            "tile",
+            "replace",
             "tag",
             "theme",
-            "color",
-            "variant",
-            "replace",
+            "size",
+            "value",
             "active",
             ("active_color", "activeColor"),
             ("base_color", "baseColor"),
@@ -830,14 +816,29 @@ class VAppBarNavIcon(HtmlElement):
             "slim",
             "stacked",
             "ripple",
-            "value",
+            "text",
+            "border",
+            "density",
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
+            "elevation",
             "disabled",
             ("selected_class", "selectedClass"),
             "loading",
+            "location",
+            "position",
+            "rounded",
+            "tile",
             "href",
             "exact",
             "to",
-            "size",
+            "color",
+            "variant",
+            "icon",
         ]
         self._event_names += []
 
@@ -848,17 +849,17 @@ class VAppBarTitle(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-app-bar-title>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
       text (string):
         Specify content text for the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VAppBarTitle", children, **kwargs)
         self._attr_names += [
-            "tag",
             "text",
+            "tag",
         ]
         self._event_names += []
 
@@ -871,45 +872,48 @@ class VAutocomplete(HtmlElement):
     Args:
       flat (boolean):
         Removes box shadow when using a variant with elevation.
-      type (string):
-        Sets input type.
-      reverse (boolean):
-        Reverses the orientation.
-      name (string):
-        Sets the component's name attribute.
-      error (boolean):
-        Puts the input in a manual error state.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      menu (boolean):
-        Renders with the menu open by default.
       search (string):
         Text input used to filter items.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      items (any[]):
-        Can be an array of objects or strings. By default objects should
-        have **title** and **value** properties, and can optionally have
-        a **props** property containing any [VListItem props](/api/v-list-item/#props).
-        Keys to use for these can be changed with the **item-title**,
-        **item-value**, and **item-props** props.
-      id (string):
-        Sets the DOM id on the component.
+      type (string):
+        Sets input type.
       model_value (any):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      error (boolean):
+        Puts the input in a manual error state.
+      reverse (boolean):
+        Reverses the orientation.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
+      rounded (string, number, boolean):
+        Adds a border radius to the input.
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      theme (string):
+        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      rounded (string, number, boolean):
-        Adds a border radius to the input.
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
+      variant (enum):
+        Applies a distinct style to the component.
+
+        Enum values: [
+          'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
+          'solo-filled'
+        ]
+      name (string):
+        Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
       auto_select_first (boolean, 'exact'):
         When searching, will always highlight the first option and select
         it on blur. `exact` will only highlight and select exact matches.
@@ -979,12 +983,12 @@ class VAutocomplete(HtmlElement):
         Removes the ability to click or target the input.
       multiple (boolean):
         Changes select to multiple. Accepts array for value.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
+      items (any[]):
+        Can be an array of objects or strings. By default objects should
+        have **title** and **value** properties, and can optionally have
+        a **props** property containing any [VListItem props](/api/v-list-item/#props).
+        Keys to use for these can be changed with the **item-title**,
+        **item-value**, and **item-props** props.
       item_title (SelectItemKey<any>):
         Property on supplied `items` that contains its title.
       item_value (SelectItemKey<any>):
@@ -1001,13 +1005,8 @@ class VAutocomplete(HtmlElement):
       value_comparator ((a: any, b: any) => boolean):
         Apply a custom comparison algorithm to compare **model-value**
         and values contains in the **items** prop.
-      variant (enum):
-        Applies a distinct style to the component.
-
-        Enum values: [
-          'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
-          'solo-filled'
-        ]
+      menu (boolean):
+        Renders with the menu open by default.
       menu_icon (enum):
         Sets the the spin icon.
 
@@ -1018,6 +1017,8 @@ class VAutocomplete(HtmlElement):
         Pass props through to the `v-menu` component. Accepts an object
         with anything from [v-menu](/api/v-menu/#props) props, camelCase
         keys are recommended.
+      id (string):
+        Sets the DOM id on the component.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -1058,6 +1059,10 @@ class VAutocomplete(HtmlElement):
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       prepend_icon (enum):
         Prepends an icon to the outnside the component's input, uses
         the same syntax as `v-icon`.
@@ -1163,21 +1168,22 @@ class VAutocomplete(HtmlElement):
         super().__init__("VAutocomplete", children, **kwargs)
         self._attr_names += [
             "flat",
-            "type",
-            "reverse",
-            "name",
-            "error",
-            "label",
-            "menu",
             "search",
-            "theme",
-            "items",
-            "id",
+            "type",
             ("model_value", "modelValue"),
-            "color",
+            "error",
+            "reverse",
             "density",
+            ("max_width", "maxWidth"),
+            ("min_width", "minWidth"),
+            "width",
             "rounded",
             "tile",
+            "theme",
+            "color",
+            "variant",
+            "name",
+            "label",
             ("auto_select_first", "autoSelectFirst"),
             ("clear_on_select", "clearOnSelect"),
             ("filter_mode", "filterMode"),
@@ -1197,18 +1203,17 @@ class VAutocomplete(HtmlElement):
             ("bg_color", "bgColor"),
             "disabled",
             "multiple",
-            ("max_width", "maxWidth"),
-            ("min_width", "minWidth"),
-            "width",
+            "items",
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
             ("item_children", "itemChildren"),
             ("item_props", "itemProps"),
             ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
-            "variant",
+            "menu",
             ("menu_icon", "menuIcon"),
             ("menu_props", "menuProps"),
+            "id",
             "transition",
             ("no_data_text", "noDataText"),
             ("open_on_clear", "openOnClear"),
@@ -1223,6 +1228,8 @@ class VAutocomplete(HtmlElement):
             "role",
             ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
             ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
@@ -1265,6 +1272,14 @@ class VAvatar(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-avatar>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
       text (string):
         Specify content text for the component.
       border (string, number, boolean):
@@ -1272,18 +1287,12 @@ class VAvatar(HtmlElement):
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      end (boolean):
-        Applies margin at the start of the component.
-      start (boolean):
-        Applies margin at the end of the component.
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/) component.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
+      start (boolean):
+        Applies margin at the end of the component.
+      end (boolean):
+        Applies margin at the start of the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -1291,21 +1300,19 @@ class VAvatar(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       image (string):
         Apply a specific image using [v-img](/components/images/).
     """
@@ -1313,19 +1320,19 @@ class VAvatar(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VAvatar", children, **kwargs)
         self._attr_names += [
-            "text",
-            "border",
-            "end",
-            "start",
-            "icon",
-            "density",
-            "rounded",
-            "tile",
             "tag",
             "theme",
+            "size",
+            "text",
+            "border",
+            "density",
+            "start",
+            "end",
+            "rounded",
+            "tile",
             "color",
             "variant",
-            "size",
+            "icon",
             "image",
         ]
         self._event_names += []
@@ -1337,14 +1344,12 @@ class VBadge(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-badge>`_.
 
     Args:
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/) component.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      model_value (boolean):
-        Controls whether the component is visible or hidden.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      label (string):
+        The **aria-label** used for the badge.
+      theme (string):
+        Specify a theme for this component and all of its children.
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
@@ -1355,15 +1360,17 @@ class VBadge(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       bordered (boolean):
         Applies a **2px** by default and **1.5px** border around the
         badge when using the **dot** property.
@@ -1377,12 +1384,12 @@ class VBadge(HtmlElement):
       inline (boolean):
         Display as an inline block instead of absolute position. **location**,
         **floating**, and **offset** will have no effect.
-      label (string):
-        The **aria-label** used for the badge.
       max (string, number):
         Sets the maximum number allowed when using the **content** prop
         with a `number` like value. If the content number exceeds the
         maximum value, a `+` suffix is added.
+      model_value (boolean):
+        Controls whether the component is visible or hidden.
       offset_x (string, number):
         Offset the badge on the x-axis.
       offset_y (string, number):
@@ -1404,21 +1411,21 @@ class VBadge(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBadge", children, **kwargs)
         self._attr_names += [
-            "icon",
-            ("model_value", "modelValue"),
+            "tag",
+            "label",
+            "theme",
             "location",
             "rounded",
             "tile",
-            "tag",
-            "theme",
             "color",
+            "icon",
             "bordered",
             "content",
             "dot",
             "floating",
             "inline",
-            "label",
             "max",
+            ("model_value", "modelValue"),
             ("offset_x", "offsetX"),
             ("offset_y", "offsetY"),
             ("text_color", "textColor"),
@@ -1433,6 +1440,13 @@ class VBanner(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-banner>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      stacked (boolean):
+        Forces the banner actions onto a new line. This is not applicable
+        when the banner has `lines="one"`.
       text (string):
         Specify content text for the component.
       border (string, number, boolean):
@@ -1440,12 +1454,6 @@ class VBanner(HtmlElement):
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/) component.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
       height (string, number):
@@ -1466,7 +1474,7 @@ class VBanner(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'relative', 'static', 'absolute', 'sticky'):
         Sets the position for the component.
       sticky (boolean):
         Applies `position: sticky` to the component with `top: 0`. You
@@ -1479,18 +1487,17 @@ class VBanner(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      stacked (boolean):
-        Forces the banner actions onto a new line. This is not applicable
-        when the banner has `lines="one"`.
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       avatar (string):
         Designates a specific src image to pass to the thumbnail.
       bg_color (string):
@@ -1511,9 +1518,11 @@ class VBanner(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBanner", children, **kwargs)
         self._attr_names += [
+            "tag",
+            "theme",
+            "stacked",
             "text",
             "border",
-            "icon",
             "density",
             "height",
             ("max_height", "maxHeight"),
@@ -1527,10 +1536,8 @@ class VBanner(HtmlElement):
             "sticky",
             "rounded",
             "tile",
-            "tag",
-            "theme",
             "color",
-            "stacked",
+            "icon",
             "avatar",
             ("bg_color", "bgColor"),
             "mobile",
@@ -1588,14 +1595,24 @@ class VBottomNavigation(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-bottom-navigation>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      name (string):
+        Assign a specific name for layout registration.
+      mode (string):
+        Changes the orientation and active state styling of the component.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      base_color (string):
+        Sets the color of component when not focused.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
       height (string, number):
@@ -1603,6 +1620,10 @@ class VBottomNavigation(HtmlElement):
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Puts all children components into a disabled state.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       absolute (boolean):
         Applies **position: absolute** to the component.
       rounded (string, number, boolean):
@@ -1612,36 +1633,22 @@ class VBottomNavigation(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      name (string):
-        Assign a specific name for layout registration.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      base_color (string):
-        Sets the color of component when not focused.
-      disabled (boolean):
-        Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       max (number):
         Sets a maximum number of selections that can be made.
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      mode (string):
-        Changes the orientation and active state styling of the component.
       grow (boolean):
         Force all [v-btn](/components/buttons) children to take up all
         available horizontal space.
@@ -1660,25 +1667,25 @@ class VBottomNavigation(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBottomNavigation", children, **kwargs)
         self._attr_names += [
+            "tag",
+            "name",
+            "mode",
+            "theme",
+            "active",
+            ("base_color", "baseColor"),
             "border",
-            ("model_value", "modelValue"),
             "density",
             "height",
             "elevation",
+            "disabled",
+            ("selected_class", "selectedClass"),
             "absolute",
             "rounded",
             "tile",
-            "tag",
-            "theme",
             "color",
-            "name",
-            "active",
-            ("base_color", "baseColor"),
-            "disabled",
-            ("selected_class", "selectedClass"),
             "max",
+            ("model_value", "modelValue"),
             ("bg_color", "bgColor"),
-            "mode",
             "grow",
             "order",
             "multiple",
@@ -1696,9 +1703,8 @@ class VBottomSheet(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-bottom-sheet>`_.
 
     Args:
-      model_value (boolean):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      theme (string):
+        Specify a theme for this component and all of its children.
       height (string, number):
         Sets the height for the component.
       max_height (string, number):
@@ -1711,16 +1717,17 @@ class VBottomSheet(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
       location (Anchor):
         Specifies the anchor point for positioning the component, using
         directional cues to align it either horizontally, vertically,
         or both..
       absolute (boolean):
         Applies **position: absolute** to the content element.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      disabled (boolean):
-        Removes the ability to click or target the component.
+      model_value (boolean):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -1729,7 +1736,7 @@ class VBottomSheet(HtmlElement):
           string, boolean, (TransitionProps & { component: Component }),
           { component: Component }
         ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
       inset (boolean):
         Reduces the sheet content maximum width to 70%.
@@ -1776,7 +1783,7 @@ class VBottomSheet(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -1799,7 +1806,7 @@ class VBottomSheet(HtmlElement):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -1808,7 +1815,7 @@ class VBottomSheet(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
@@ -1821,17 +1828,17 @@ class VBottomSheet(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBottomSheet", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
+            "theme",
             "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "disabled",
             "location",
             "absolute",
-            "theme",
-            "disabled",
+            ("model_value", "modelValue"),
             "transition",
             "activator",
             "inset",
@@ -1873,20 +1880,12 @@ class VBreadcrumbs(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-breadcrumbs>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
-      items (enum):
-        An array of strings or objects used for automatically generating
-        children components.
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
 
         Enum values: [
-          (, string, (Partial<LinkProps> & { title: string; disabled: boolean }))[]
+          string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
       rounded (string, number, boolean):
@@ -1896,6 +1895,13 @@ class VBreadcrumbs(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       divider (string):
         Specifies the dividing character between items.
       active_color (string):
@@ -1910,29 +1916,30 @@ class VBreadcrumbs(HtmlElement):
         the [colors page](/styles/colors#material-colors).
       disabled (boolean):
         Removes the ability to click or target the component.
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/) component.
+      items (enum):
+        An array of strings or objects used for automatically generating
+        children components.
 
         Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
+          (, string, (Partial<LinkProps> & { title: string; disabled: boolean }))[]
         ]
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VBreadcrumbs", children, **kwargs)
         self._attr_names += [
-            "tag",
-            "items",
-            "color",
+            "icon",
             "density",
             "rounded",
             "tile",
+            "tag",
+            "color",
             "divider",
             ("active_color", "activeColor"),
             ("active_class", "activeClass"),
             ("bg_color", "bgColor"),
             "disabled",
-            "icon",
+            "items",
         ]
         self._event_names += []
 
@@ -1961,20 +1968,15 @@ class VBreadcrumbsItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-breadcrumbs-item>`_.
 
     Args:
-      title (string):
-        Specify a title text for the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       replace (boolean):
         Setting **replace** prop will call `router.replace()` instead
         of `router.push()` when clicked, so the navigation will not leave
         a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
         prop on the vue-router documentation.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      title (string):
+        Specify a title text for the component.
       active (boolean):
         Controls the **active** state of the item. This is typically
         used to highlight the component.
@@ -1996,6 +1998,11 @@ class VBreadcrumbsItem(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       active_class (string):
         The class applied to the component when it matches the current
         route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
@@ -2005,16 +2012,16 @@ class VBreadcrumbsItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBreadcrumbsItem", children, **kwargs)
         self._attr_names += [
-            "title",
-            "tag",
-            "color",
             "replace",
+            "tag",
+            "title",
             "active",
             ("active_color", "activeColor"),
             "disabled",
             "href",
             "exact",
             "to",
+            "color",
             ("active_class", "activeClass"),
         ]
         self._event_names += []
@@ -2030,44 +2037,49 @@ class VBtn(HtmlElement):
         The [Symbol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol)
         used to hook into group functionality for components like [v-btn-toggle](/components/btn-toggle)
         and [v-bottom-navigation](/components/bottom-navigations/).
+      text (string, number, boolean):
+        Specify content text for the component.
       flat (boolean):
         Removes the button box shadow. This is different than using the 'flat' variant.
-      tag (string):
-        Specify a custom tag used on the root element.
       replace (boolean):
         Setting **replace** prop will call `router.replace()` instead
         of `router.push()` when clicked, so the navigation will not leave
         a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
         prop on the vue-router documentation.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      location (Anchor):
-        Specifies the component's location. Can combine by using a space
-        separated string.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/)
+        component. The button will become _round_.
+
+        Enum values: [
+          boolean, string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      location (Anchor):
+        Specifies the component's location. Can combine by using a space
+        separated string.
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
+        Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -2075,8 +2087,17 @@ class VBtn(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      text (string, number, boolean):
-        Specify content text for the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
       exact (boolean):
         Exactly match the link. Without this, '/' will match every route.
         You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
@@ -2089,20 +2110,15 @@ class VBtn(HtmlElement):
         Removes the ability to click or target the component.
       slim (boolean):
         Reduces padding to 0 8px.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
       block (boolean):
         Expands the button to 100% of available space.
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -2130,13 +2146,6 @@ class VBtn(HtmlElement):
         **warning**, **error**) or a Boolean which uses the component
         **color** (set by color prop - if it's supported by the component)
         or the primary color.
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/)
-        component. The button will become _round_.
-
-        Enum values: [
-          boolean, string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       href (string):
         Designates the component as anchor and applies the **href** attribute.
       to (enum):
@@ -2153,8 +2162,6 @@ class VBtn(HtmlElement):
         Applies the [v-ripple](/directives/ripple) directive.
       selected_class (string):
         Configure the active CSS class applied when an item is selected.
-      position ('fixed', 'relative', 'absolute', 'static', 'sticky'):
-        Sets the position for the component.
       group_selected (event):
         Event that is emitted when an item is selected within a group.
     """
@@ -2163,45 +2170,45 @@ class VBtn(HtmlElement):
         super().__init__("VBtn", children, **kwargs)
         self._attr_names += [
             "symbol",
+            "text",
             "flat",
-            "tag",
             "replace",
-            "theme",
-            "size",
-            "value",
-            "location",
-            "color",
+            "border",
+            "icon",
             "density",
             "height",
-            "border",
-            "elevation",
-            "rounded",
-            "tile",
-            "text",
-            "exact",
-            ("base_color", "baseColor"),
-            ("active_color", "activeColor"),
-            "disabled",
-            "slim",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "elevation",
+            "location",
+            "position",
+            "rounded",
+            "tile",
+            "tag",
+            "theme",
+            "color",
             "variant",
+            "exact",
+            ("base_color", "baseColor"),
+            ("active_color", "activeColor"),
+            "disabled",
+            "slim",
+            "value",
             "block",
+            "size",
             ("append_icon", "appendIcon"),
             ("prepend_icon", "prependIcon"),
             "readonly",
             "active",
             "loading",
-            "icon",
             "href",
             "to",
             "stacked",
             "ripple",
             ("selected_class", "selectedClass"),
-            "position",
         ]
         self._event_names += [
             ("group_selected", "group:selected"),
@@ -2214,6 +2221,12 @@ class VBtnGroup(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-btn-group>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      base_color (string):
+        Sets the color of component when not focused.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
@@ -2231,19 +2244,13 @@ class VBtnGroup(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
-      base_color (string):
-        Sets the color of component when not focused.
       divided (boolean):
         Add dividers between children [v-btn](/components/buttons) components.
     """
@@ -2251,16 +2258,16 @@ class VBtnGroup(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBtnGroup", children, **kwargs)
         self._attr_names += [
+            "tag",
+            "theme",
+            ("base_color", "baseColor"),
             "border",
             "density",
             "elevation",
             "rounded",
             "tile",
-            "tag",
-            "theme",
             "color",
             "variant",
-            ("base_color", "baseColor"),
             "divided",
         ]
         self._event_names += []
@@ -2272,42 +2279,42 @@ class VBtnToggle(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-btn-toggle>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      base_color (string):
+        Sets the color of component when not focused.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Puts all children components into a disabled state.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       rounded (string, number, boolean):
         Round edge buttons.
       tile (boolean):
         Removes the component's border-radius.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
-      base_color (string):
-        Sets the color of component when not focused.
-      disabled (boolean):
-        Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       max (number):
         Sets a maximum number of selections that can be made.
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       multiple (boolean):
         Allows one to select multiple items.
       mandatory (boolean, 'force'):
@@ -2321,20 +2328,20 @@ class VBtnToggle(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VBtnToggle", children, **kwargs)
         self._attr_names += [
-            "border",
-            ("model_value", "modelValue"),
-            "density",
-            "elevation",
-            "rounded",
-            "tile",
             "tag",
             "theme",
-            "color",
-            "variant",
             ("base_color", "baseColor"),
+            "border",
+            "density",
+            "elevation",
             "disabled",
             ("selected_class", "selectedClass"),
+            "rounded",
+            "tile",
+            "color",
+            "variant",
             "max",
+            ("model_value", "modelValue"),
             "multiple",
             "mandatory",
             "divided",
@@ -2352,11 +2359,11 @@ class VCalendar(HtmlElement):
     Args:
       title (string):
         Specify a title text for the component.
+      text (string):
+        Specify content text for the component.
       model_value (unknown[]):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
-      text (string):
-        Specify content text for the component.
       disabled (boolean):
         Removes the ability to click or target the component.
       hide_header (boolean):
@@ -2369,7 +2376,7 @@ class VCalendar(HtmlElement):
         Shows or hides days from adjacent months.
       year (string, number):
         Specifies the year for the calendar view.
-      weekdays (number[]):
+      weekdays ((0, 1, 2, 4, 5, 6, 3)[]):
         Specifies which days of the week to display.
       weeks_in_month ('static', 'dynamic'):
         A dynamic number of weeks in a month will grow and shrink depending
@@ -2424,8 +2431,8 @@ class VCalendar(HtmlElement):
         super().__init__("VCalendar", children, **kwargs)
         self._attr_names += [
             "title",
-            ("model_value", "modelValue"),
             "text",
+            ("model_value", "modelValue"),
             "disabled",
             ("hide_header", "hideHeader"),
             ("hide_week_number", "hideWeekNumber"),
@@ -2628,16 +2635,16 @@ class VCalendarMonthDay(HtmlElement):
     Args:
       title (string, number):
         Specify a title text for the component.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
       day (unknown):
         Represents the specific day in the month view of the calendar.
       events (any[]):
@@ -2648,9 +2655,9 @@ class VCalendarMonthDay(HtmlElement):
         super().__init__("VCalendarMonthDay", children, **kwargs)
         self._attr_names += [
             "title",
-            "color",
-            "disabled",
             "active",
+            "disabled",
+            "color",
             "day",
             "events",
         ]
@@ -2669,6 +2676,14 @@ class VCard(HtmlElement):
         Specify content text for the component.
       flat (boolean):
         Removes the card's elevation.
+      replace (boolean):
+        Setting **replace** prop will call `router.replace()` instead
+        of `router.push()` when clicked, so the navigation will not leave
+        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
+        prop on the vue-router documentation.
+      link (boolean):
+        Designates that the component is a link. This is automatic when
+        using the href or to prop.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
@@ -2694,7 +2709,7 @@ class VCard(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -2703,7 +2718,7 @@ class VCard(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -2714,20 +2729,16 @@ class VCard(HtmlElement):
         page](/styles/colors#material-colors).
       variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
-      replace (boolean):
-        Setting **replace** prop will call `router.replace()` instead
-        of `router.push()` when clicked, so the navigation will not leave
-        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
-        prop on the vue-router documentation.
-      link (boolean):
-        Designates that the component is a link. This is automatic when
-        using the href or to prop.
-      prepend_icon (enum):
-        Prepends a [v-icon](/components/icons/) component to the header.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      image (string):
+        Apply a specific background image to the component.
+      exact (boolean):
+        Exactly match the link. Without this, '/' will match every route.
+        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
+        on the vue-router documentation.
+      subtitle (string, number, boolean):
+        Specify a subtitle text for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -2735,10 +2746,12 @@ class VCard(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Removes the ability to click or target the component.
+      prepend_icon (enum):
+        Prepends a [v-icon](/components/icons/) component to the header.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -2748,10 +2761,6 @@ class VCard(HtmlElement):
         or the primary color.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
-      exact (boolean):
-        Exactly match the link. Without this, '/' will match every route.
-        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
-        on the vue-router documentation.
       to (enum):
         Denotes the target route of the link. You can find more information
         about the [**to** prop](https://router.vuejs.org/api/#to) on
@@ -2760,10 +2769,8 @@ class VCard(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      image (string):
-        Apply a specific background image to the component.
-      subtitle (string, number, boolean):
-        Specify a subtitle text for the component.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
       append_avatar (string):
         Appends a [v-avatar](/components/avatars/) component after default
         content in the **append** slot.
@@ -2781,6 +2788,8 @@ class VCard(HtmlElement):
             "title",
             "text",
             "flat",
+            "replace",
+            "link",
             "border",
             "density",
             "height",
@@ -2798,18 +2807,16 @@ class VCard(HtmlElement):
             "theme",
             "color",
             "variant",
-            "replace",
-            "link",
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "ripple",
+            "image",
+            "exact",
+            "subtitle",
             "disabled",
+            ("append_icon", "appendIcon"),
+            ("prepend_icon", "prependIcon"),
             "loading",
             "href",
-            "exact",
             "to",
-            "image",
-            "subtitle",
+            "ripple",
             ("append_avatar", "appendAvatar"),
             "hover",
             ("prepend_avatar", "prependAvatar"),
@@ -2837,17 +2844,6 @@ class VCardItem(HtmlElement):
     Args:
       title (string, number, boolean):
         Specify a title text for the component.
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      subtitle (string, number, boolean):
-        Specify a subtitle text for the component.
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       prepend_icon (enum):
         Creates a [v-icon](/api/v-icon/) component in the **prepend**
         slot before default content.
@@ -2855,6 +2851,17 @@ class VCardItem(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      subtitle (string, number, boolean):
+        Specify a subtitle text for the component.
       append_avatar (string):
         Appends a [v-avatar](/components/avatars/) component after default
         content in the **append** slot.
@@ -2867,10 +2874,10 @@ class VCardItem(HtmlElement):
         super().__init__("VCardItem", children, **kwargs)
         self._attr_names += [
             "title",
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
             "density",
             "subtitle",
-            ("append_icon", "appendIcon"),
-            ("prepend_icon", "prependIcon"),
             ("append_avatar", "appendAvatar"),
             ("prepend_avatar", "prependAvatar"),
         ]
@@ -2883,7 +2890,7 @@ class VCardSubtitle(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-card-subtitle>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       opacity (string, number):
         Sets the component's opacity value
@@ -2904,7 +2911,7 @@ class VCardText(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-card-text>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       opacity (string, number):
         Sets the component's opacity value
@@ -2943,28 +2950,28 @@ class VCarousel(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-carousel>`_.
 
     Args:
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       reverse (boolean):
         Reverse the normal transition direction.
-      height (string, number):
-        Sets the height for the component.
-      tag (string):
-        Specify a custom tag used on the root element.
+      progress (string, boolean):
+        Displays a carousel progress bar. Requires the **cycle** prop and **interval**.
       theme (string):
         Specify a theme for this component and all of its children.
+      height (string, number):
+        Sets the height for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       color (string):
         Applies a color to the navigation dots - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      progress (string, boolean):
-        Displays a carousel progress bar. Requires the **cycle** prop and **interval**.
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       mandatory (boolean, 'force'):
         Forces at least one item to always be selected (if available).
       next_icon (enum):
@@ -3010,15 +3017,15 @@ class VCarousel(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VCarousel", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
-            "reverse",
-            "height",
             "tag",
+            "reverse",
+            "progress",
             "theme",
-            "color",
+            "height",
             "disabled",
             ("selected_class", "selectedClass"),
-            "progress",
+            "color",
+            ("model_value", "modelValue"),
             "mandatory",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
@@ -3044,32 +3051,8 @@ class VCarouselItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-carousel-item>`_.
 
     Args:
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      absolute (boolean):
-        Applies position: absolute to the component.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       height (string, number):
         Sets the height for the component.
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      disabled (boolean):
-        Prevents the item from becoming active when using the "next"
-        and "prev" buttons or the `toggle` method.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -3080,6 +3063,33 @@ class VCarouselItem(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      position (string):
+        Applies [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position)
+        styles to the image and placeholder elements.
+      absolute (boolean):
+        Applies position: absolute to the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
+      disabled (boolean):
+        Prevents the item from becoming active when using the "next"
+        and "prev" buttons or the `toggle` method.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
       content_class (any):
         Apply a custom class to the internal content element.
       transition (string, boolean):
@@ -3091,9 +3101,6 @@ class VCarouselItem(HtmlElement):
         constructor.
       selected_class (string):
         Configure the active CSS class applied when an item is selected.
-      position (string):
-        Applies [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position)
-        styles to the image and placeholder elements.
       alt (string):
         Alternate text for screen readers. Leave empty for decorative images.
       cover (boolean):
@@ -3141,24 +3148,24 @@ class VCarouselItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VCarouselItem", children, **kwargs)
         self._attr_names += [
-            "value",
-            "absolute",
-            "color",
             "height",
-            "rounded",
-            "tile",
-            "eager",
-            "disabled",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "position",
+            "absolute",
+            "rounded",
+            "tile",
+            "color",
+            "eager",
+            "disabled",
+            "value",
             ("content_class", "contentClass"),
             "transition",
             "options",
             ("selected_class", "selectedClass"),
-            "position",
             "alt",
             "cover",
             "draggable",
@@ -3184,45 +3191,45 @@ class VCheckbox(HtmlElement):
     Args:
       type (string):
         Provides the default type for children selection controls.
-      name (string):
-        Sets the component's name attribute.
-      error (boolean):
-        Puts the input in a manual error state.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      id (string):
-        Sets the DOM id on the component.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
+      error (boolean):
+        Puts the input in a manual error state.
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      multiple (boolean):
-        Changes expected model to an array.
       max_width (string, number):
         Sets the maximum width for the component.
       min_width (string, number):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      name (string):
+        Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      multiple (boolean):
+        Changes expected model to an array.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
       value_comparator ((a: any, b: any) => boolean):
         Apply a custom comparison algorithm to compare **model-value**
         and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -3233,6 +3240,10 @@ class VCheckbox(HtmlElement):
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       prepend_icon (enum):
         Prepends an icon to the component, uses the same syntax as `v-icon`.
 
@@ -3324,24 +3335,26 @@ class VCheckbox(HtmlElement):
         super().__init__("VCheckbox", children, **kwargs)
         self._attr_names += [
             "type",
-            "name",
-            "error",
-            "label",
-            "theme",
-            "id",
-            "value",
             ("model_value", "modelValue"),
-            "color",
+            "error",
             "density",
-            ("base_color", "baseColor"),
-            "disabled",
-            "multiple",
             ("max_width", "maxWidth"),
             ("min_width", "minWidth"),
             "width",
+            "theme",
+            "color",
+            "name",
+            "label",
+            ("base_color", "baseColor"),
+            "disabled",
+            "multiple",
+            "value",
             ("value_comparator", "valueComparator"),
+            "id",
             ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
             ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
@@ -3381,38 +3394,40 @@ class VCheckboxBtn(HtmlElement):
     Args:
       type (string):
         Provides the default type for children selection controls.
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      error (boolean):
-        Puts the input in a manual error state.
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
+      error (boolean):
+        Puts the input in a manual error state.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      id (string):
+        Sets the DOM id on the component.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
       base_color (string):
         Sets the color of the input when it is not focused.
       readonly (boolean):
         Puts input in readonly state.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
       disabled (boolean):
         Removes the ability to click or target the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       inline (boolean):
         Puts children inputs into a row.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       multiple (boolean):
         Changes select to multiple. Accepts array for value.
       indeterminate (boolean):
@@ -3430,8 +3445,6 @@ class VCheckboxBtn(HtmlElement):
         Sets value for falsy state.
       defaults_target (string):
         The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
       false_icon (enum):
         The icon used when inactive.
 
@@ -3457,26 +3470,26 @@ class VCheckboxBtn(HtmlElement):
         super().__init__("VCheckboxBtn", children, **kwargs)
         self._attr_names += [
             "type",
-            ("model_value", "modelValue"),
-            "error",
-            "density",
-            "theme",
-            "color",
             "name",
+            "error",
+            "label",
+            "theme",
+            "id",
+            "value",
             ("base_color", "baseColor"),
             "readonly",
             "ripple",
-            "value",
+            "density",
             "disabled",
+            "color",
             "inline",
-            "label",
+            ("model_value", "modelValue"),
             "multiple",
             "indeterminate",
             ("indeterminate_icon", "indeterminateIcon"),
             ("true_value", "trueValue"),
             ("false_value", "falseValue"),
             ("defaults_target", "defaultsTarget"),
-            "id",
             ("false_icon", "falseIcon"),
             ("true_icon", "trueIcon"),
             ("value_comparator", "valueComparator"),
@@ -3495,18 +3508,18 @@ class VChip(HtmlElement):
     Args:
       filter (boolean):
         Displays a selection icon when selected.
-      tag (string):
-        Specify a custom tag used on the root element.
-      label (boolean):
-        Applies a medium size border radius.
-      link (boolean):
-        Designates that the component is a link. This is automatic when
-        using the href or to prop.
       replace (boolean):
         Setting **replace** prop will call `router.replace()` instead
         of `router.push()` when clicked, so the navigation will not leave
         a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
         prop on the vue-router documentation.
+      link (boolean):
+        Designates that the component is a link. This is automatic when
+        using the href or to prop.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      label (boolean):
+        Applies a medium size border radius.
       theme (string):
         Specify a theme for this component and all of its children.
       size (string, number):
@@ -3515,52 +3528,8 @@ class VChip(HtmlElement):
         **large**, and **x-large**.
       value (any):
         The value used when a child of a [v-chip-group](/components/chip-groups).
-      model_value (boolean):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      border (string, number, boolean):
-        Applies utility border classes to the component. To use it, you
-        need to omit the `border-` prefix, (for example use `border-sm`
-        as `border="sm"`).  Find a list of the built-in border classes
-        on the [borders page](/styles/borders).
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      text (string, number, boolean):
-        Specify content text for the component.
-      exact (boolean):
-        Exactly match the link. Without this, '/' will match every route.
-        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
-        on the vue-router documentation.
-      active_class (string):
-        The class applied to the component when it matches the current
-        route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
-        on the [vue-router](https://router.vuejs.org/) documentation.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      base_color (string):
+        Sets the color of component when not focused.
       prepend_icon (enum):
         Creates a [v-icon](/api/v-icon/) component in the **prepend**
         slot before default content.
@@ -3568,8 +3537,44 @@ class VChip(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      text (string, number, boolean):
+        Specify content text for the component.
+      border (string, number, boolean):
+        Applies utility border classes to the component. To use it, you
+        need to omit the `border-` prefix, (for example use `border-sm`
+        as `border="sm"`).  Find a list of the built-in border classes
+        on the [borders page](/styles/borders).
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
+      exact (boolean):
+        Exactly match the link. Without this, '/' will match every route.
+        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
+        on the vue-router documentation.
       to (enum):
         Denotes the target route of the link. You can find more information
         about the [**to** prop](https://router.vuejs.org/api/#to) on
@@ -3578,18 +3583,26 @@ class VChip(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      model_value (boolean):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      active_class (string):
+        The class applied to the component when it matches the current
+        route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
+        on the [vue-router](https://router.vuejs.org/) documentation.
       append_avatar (string):
         Appends a [v-avatar](/components/avatars/) component after default
         content in the **append** slot.
       prepend_avatar (string):
         Prepends a [v-avatar](/components/avatars/) component in the
         **prepend** slot before default content.
-      draggable (boolean):
-        Makes the chip draggable.
       closable (boolean):
         Adds remove button and then a chip can be closed.
       close_icon (enum):
@@ -3601,6 +3614,8 @@ class VChip(HtmlElement):
       close_label (string):
         Text used for *aria-label* on the close button in **close** chips.
         Can also be customized globally in [Internationalization](/customization/internationalization).
+      draggable (boolean):
+        Makes the chip draggable.
       filter_icon (enum):
         Change the default icon used for **filter** chips.
 
@@ -3611,55 +3626,56 @@ class VChip(HtmlElement):
         Remove `v-avatar` padding.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      group_selected (event):
-        Event that is emitted when an item is selected within a group.
       click_close (event):
         Emitted when close icon is clicked.
+      group_selected (event):
+        Event that is emitted when an item is selected within a group.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VChip", children, **kwargs)
         self._attr_names += [
             "filter",
+            "replace",
+            "link",
             "tag",
             "label",
-            "link",
-            "replace",
             "theme",
             "size",
             "value",
-            ("model_value", "modelValue"),
-            "color",
-            "density",
+            ("base_color", "baseColor"),
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "ripple",
+            "text",
             "border",
+            "density",
             "elevation",
+            "disabled",
+            ("selected_class", "selectedClass"),
             "rounded",
             "tile",
-            "text",
-            "exact",
-            ("active_class", "activeClass"),
-            "disabled",
-            "variant",
-            ("append_icon", "appendIcon"),
-            ("prepend_icon", "prependIcon"),
             "href",
+            "exact",
             "to",
-            "ripple",
-            ("selected_class", "selectedClass"),
+            "color",
+            "variant",
+            ("model_value", "modelValue"),
+            ("active_class", "activeClass"),
             ("append_avatar", "appendAvatar"),
             ("prepend_avatar", "prependAvatar"),
-            "draggable",
             "closable",
             ("close_icon", "closeIcon"),
             ("close_label", "closeLabel"),
+            "draggable",
             ("filter_icon", "filterIcon"),
             "pill",
         ]
         self._event_names += [
             "click",
             ("update_modelValue", "update:modelValue"),
-            ("group_selected", "group:selected"),
             ("click_close", "click:close"),
+            ("group_selected", "group:selected"),
         ]
 
 
@@ -3678,7 +3694,7 @@ class VChipGroup(HtmlElement):
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -3689,23 +3705,24 @@ class VChipGroup(HtmlElement):
         page](/styles/colors#material-colors).
       variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
+      base_color (string):
+        Sets the color of component when not focused. Recommended with
+        `color` or `filter` to properly highlight selected items.
       disabled (boolean):
         Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Sets the designated mobile breakpoint for the component.
       multiple (boolean):
         Allows one to select multiple items.
       mandatory (boolean, 'force'):
         Forces at least one item to always be selected (if available).
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      direction ('horizontal', 'vertical'):
+        Switch between horizontal and vertical modes.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      max (number):
+        Sets a maximum number of selections that can be made.
       next_icon (enum):
         Specify the icon to use for the next icon.
 
@@ -3718,17 +3735,19 @@ class VChipGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      show_arrows (string, boolean):
-        Force the display of the pagination arrows.
-      direction ('horizontal', 'vertical'):
-        Switch between horizontal and vertical modes.
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
       column (boolean):
         Remove horizontal pagination and wrap items as needed.
       center_active (boolean):
         Forces the selected chip to be centered.
+      show_arrows (string, boolean):
+        Force the display of the pagination arrows.
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Sets the designated mobile breakpoint for the component.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -3743,20 +3762,21 @@ class VChipGroup(HtmlElement):
             "theme",
             "color",
             "variant",
+            ("base_color", "baseColor"),
             "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
             "multiple",
             "mandatory",
+            ("value_comparator", "valueComparator"),
+            "direction",
+            ("selected_class", "selectedClass"),
+            "max",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
-            ("show_arrows", "showArrows"),
-            "direction",
-            ("value_comparator", "valueComparator"),
             "column",
             ("center_active", "centerActive"),
+            ("show_arrows", "showArrows"),
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -3775,7 +3795,7 @@ class VClassIcon(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
     """
 
@@ -3812,16 +3832,8 @@ class VCol(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-col>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
-      order (string, number):
-        Sets the default [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order)
-        for the column.
-      offset (string, number):
-        Sets the default offset for the column.
-      cols (string, number, boolean):
-        Sets the default number of columns the component extends. Available
-        options are: **1 -> 12** and **auto**.
       sm (string, number, boolean):
         Changes the number of columns on small and greater breakpoints.
       md (string, number, boolean):
@@ -3832,6 +3844,14 @@ class VCol(HtmlElement):
         Changes the number of columns on extra large and greater breakpoints.
       xxl (string, number, boolean):
         Changes the number of columns on extra extra large and greater breakpoints.
+      order (string, number):
+        Sets the default [order](https://developer.mozilla.org/en-US/docs/Web/CSS/order)
+        for the column.
+      offset (string, number):
+        Sets the default offset for the column.
+      cols (string, number, boolean):
+        Sets the default number of columns the component extends. Available
+        options are: **1 -> 12** and **auto**.
       offset_sm (string, number):
         Changes the offset of the component on small and greater breakpoints.
       offset_md (string, number):
@@ -3863,14 +3883,14 @@ class VCol(HtmlElement):
         super().__init__("VCol", children, **kwargs)
         self._attr_names += [
             "tag",
-            "order",
-            "offset",
-            "cols",
             "sm",
             "md",
             "lg",
             "xl",
             "xxl",
+            "order",
+            "offset",
+            "cols",
             ("offset_sm", "offsetSm"),
             ("offset_md", "offsetMd"),
             ("offset_lg", "offsetLg"),
@@ -3892,6 +3912,8 @@ class VColorPicker(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-color-picker>`_.
 
     Args:
+      title (string):
+        Specify a title text for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
@@ -3900,12 +3922,25 @@ class VColorPicker(HtmlElement):
       model_value (string, Record<string, unknown>):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
       width (string, number):
         Sets the width of the color picker.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      location (Anchor):
+        Specifies the component's location. Can combine by using a space
+        separated string.
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -3914,7 +3949,7 @@ class VColorPicker(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -3923,10 +3958,18 @@ class VColorPicker(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
       disabled (boolean):
         Removes the ability to click or target the component.
       mode ('rgb', 'rgba', 'hsl', 'hsla', 'hex', 'hexa'):
         The current selected input type. Syncable with `v-model:mode`.
+      hide_header (boolean):
+        Hide the picker header.
       canvas_height (string, number):
         Height of canvas.
       dot_size (string, number):
@@ -3943,6 +3986,10 @@ class VColorPicker(HtmlElement):
         Displays color swatches.
       swatches_max_height (string, number):
         Sets the maximum height of the swatches section.
+      divided (boolean):
+        Adds a divider between the header and controls.
+      landscape (boolean):
+        Puts the picker into landscape mode.
       swatches (enum):
         Sets the available color swatches to select from. 2D array of
         rows and columns, accepts any color format the picker does.
@@ -3964,18 +4011,27 @@ class VColorPicker(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VColorPicker", children, **kwargs)
         self._attr_names += [
+            "title",
             "border",
             ("model_value", "modelValue"),
+            "height",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
             "width",
             "elevation",
+            "location",
             "position",
             "rounded",
             "tile",
             "tag",
             "theme",
             "color",
+            ("bg_color", "bgColor"),
             "disabled",
             "mode",
+            ("hide_header", "hideHeader"),
             ("canvas_height", "canvasHeight"),
             ("dot_size", "dotSize"),
             ("hide_canvas", "hideCanvas"),
@@ -3984,6 +4040,8 @@ class VColorPicker(HtmlElement):
             "modes",
             ("show_swatches", "showSwatches"),
             ("swatches_max_height", "swatchesMaxHeight"),
+            "divided",
+            "landscape",
             "swatches",
         ]
         self._event_names += [
@@ -4013,6 +4071,9 @@ class VCombobox(HtmlElement):
         component.
       menu (boolean):
         Renders with the menu open by default.
+      delimiters (string[]):
+        Accepts an array of strings that will trigger a new tag when
+        typing. Does not replace the normal Tab and Enter keys.
       theme (string):
         Specify a theme for this component and all of its children.
       items (any[]):
@@ -4023,20 +4084,91 @@ class VCombobox(HtmlElement):
         **item-value**, and **item-props** props.
       id (string):
         Sets the DOM id on the component.
-      model_value (any):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      prepend_icon (enum):
+        Prepends an icon to the outnside the component's input, uses
+        the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      readonly (boolean):
+        Puts input in readonly state.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
+      disabled (boolean):
+        Removes the ability to click or target the input.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
+      rounded (string, number, boolean):
+        Adds a border radius to the input.
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      rounded (string, number, boolean):
-        Adds a border radius to the input.
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
+      variant (enum):
+        Applies a distinct style to the component.
+
+        Enum values: [
+          'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
+          'solo-filled'
+        ]
+      model_value (any):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component })
+        ]
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      multiple (boolean):
+        Changes select to multiple. Accepts array for value.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
+      prefix (string):
+        Displays prefix text.
+      role (string):
+        The role attribute applied to the input.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
       auto_select_first (boolean, 'exact'):
         When searching, will always highlight the first option and select
         it on blur. `exact` will only highlight and select exact matches.
@@ -4078,10 +4210,6 @@ class VCombobox(HtmlElement):
         Text set to the inputs `aria-label` and `title` when input menu is closed.
       open_text (string):
         Text set to the inputs **aria-label** and **title** when input menu is open.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
       hide_no_data (boolean):
         Hides the menu when there are no options to show.  Useful for
         preventing the menu from opening before results are fetched asynchronously.
@@ -4093,24 +4221,6 @@ class VCombobox(HtmlElement):
         Pass props through to the `v-list` component. Accepts an object
         with anything from [v-list](/api/v-list/#props) props, camelCase
         keys are recommended.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      multiple (boolean):
-        Changes select to multiple. Accepts array for value.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
       item_title (SelectItemKey<any>):
         Property on supplied `items` that contains its title.
       item_value (SelectItemKey<any>):
@@ -4124,16 +4234,6 @@ class VCombobox(HtmlElement):
       return_object (boolean):
         Changes the selection behavior to return the object directly
         rather than the value specified with **item-value**.
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
-      variant (enum):
-        Applies a distinct style to the component.
-
-        Enum values: [
-          'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
-          'solo-filled'
-        ]
       menu_icon (enum):
         Sets the the spin icon.
 
@@ -4144,13 +4244,6 @@ class VCombobox(HtmlElement):
         Pass props through to the `v-menu` component. Accepts an object
         with anything from [v-menu](/api/v-menu/#props) props, camelCase
         keys are recommended.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
       no_data_text (string):
         Text shown when no items are provided to the component.
       open_on_clear (boolean):
@@ -4162,8 +4255,6 @@ class VCombobox(HtmlElement):
       counter (string, number, boolean):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      prefix (string):
-        Displays prefix text.
       placeholder (string):
         Sets the input’s placeholder text.
       persistent_placeholder (boolean):
@@ -4172,25 +4263,13 @@ class VCombobox(HtmlElement):
         Forces counter to always be visible.
       suffix (string):
         Displays suffix text.
-      role (string):
-        The role attribute applied to the input.
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
-      prepend_icon (enum):
-        Prepends an icon to the outnside the component's input, uses
-        the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -4200,16 +4279,12 @@ class VCombobox(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
-      readonly (boolean):
-        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -4240,9 +4315,6 @@ class VCombobox(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
       persistent_clear (boolean):
         Always show the clearable icon when the input is dirty (By default
         it only shows on hover).
@@ -4254,20 +4326,10 @@ class VCombobox(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       counter_value (number, js_fn):
         Function returns the counter display text.
       model_modifiers (unknown):
         **FOR INTERNAL USE ONLY**
-      delimiters (string[]):
-        Accepts an array of strings that will trigger a new tag when
-        typing. Does not replace the normal Tab and Enter keys.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
       click_prepend (event):
@@ -4298,14 +4360,34 @@ class VCombobox(HtmlElement):
             "error",
             "label",
             "menu",
+            "delimiters",
             "theme",
             "items",
             "id",
-            ("model_value", "modelValue"),
-            "color",
+            "active",
+            ("base_color", "baseColor"),
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "readonly",
             "density",
+            ("max_width", "maxWidth"),
+            ("min_width", "minWidth"),
+            "width",
+            "disabled",
+            "loading",
             "rounded",
             "tile",
+            "color",
+            "variant",
+            ("model_value", "modelValue"),
+            "transition",
+            ("bg_color", "bgColor"),
+            "multiple",
+            "eager",
+            "prefix",
+            "role",
+            "direction",
+            ("value_comparator", "valueComparator"),
             ("auto_select_first", "autoSelectFirst"),
             ("clear_on_select", "clearOnSelect"),
             ("filter_mode", "filterMode"),
@@ -4317,63 +4399,45 @@ class VCombobox(HtmlElement):
             ("closable_chips", "closableChips"),
             ("close_text", "closeText"),
             ("open_text", "openText"),
-            "eager",
             ("hide_no_data", "hideNoData"),
             ("hide_selected", "hideSelected"),
             ("list_props", "listProps"),
-            ("base_color", "baseColor"),
-            ("bg_color", "bgColor"),
-            "disabled",
-            "multiple",
-            ("max_width", "maxWidth"),
-            ("min_width", "minWidth"),
-            "width",
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
             ("item_children", "itemChildren"),
             ("item_props", "itemProps"),
             ("return_object", "returnObject"),
-            ("value_comparator", "valueComparator"),
-            "variant",
             ("menu_icon", "menuIcon"),
             ("menu_props", "menuProps"),
-            "transition",
             ("no_data_text", "noDataText"),
             ("open_on_clear", "openOnClear"),
             ("item_color", "itemColor"),
             "autofocus",
             "counter",
-            "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
-            "role",
-            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
-            ("prepend_icon", "prependIcon"),
+            "glow",
+            ("icon_color", "iconColor"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
-            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
-            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             "focused",
             ("hide_details", "hideDetails"),
             "clearable",
             ("clear_icon", "clearIcon"),
-            "active",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
-            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
-            "delimiters",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -4400,7 +4464,7 @@ class VComponentIcon(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
     """
 
@@ -4420,17 +4484,22 @@ class VConfirmEdit(HtmlElement):
 
     Args:
       model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+        Represents the commited v-model value
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
+      disabled (boolean, ('cancel', 'save')[]):
+        Control the disabled state of action buttons. If not provided,
+        internal logic will be used to determine the disabled state.
       cancel_text (string):
         Text for the cancel button
       ok_text (string):
         Text for the ok button
+      hide_actions (boolean):
+        Prevent showing the default actions buttons. Does not affect
+        `<component :is="actions" />`
       update_modelValue (event):
         Event that is emitted when the component's model changes.
       cancel (event):
@@ -4444,8 +4513,10 @@ class VConfirmEdit(HtmlElement):
         self._attr_names += [
             ("model_value", "modelValue"),
             "color",
+            "disabled",
             ("cancel_text", "cancelText"),
             ("ok_text", "okText"),
+            ("hide_actions", "hideActions"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -4472,7 +4543,7 @@ class VContainer(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       fluid (boolean):
         Removes viewport maximum-width size breakpoints.
@@ -4499,14 +4570,10 @@ class VCounter(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-counter>`_.
 
     Args:
-      active (boolean):
-        Determines whether the counter is visible or not.
-      value (string, number):
-        Sets the current counter value.
       disabled (boolean):
         Removes the ability to click or target the component.
-      max (string, number):
-        Sets the maximum allowed value.
+      value (string, number):
+        Sets the current counter value.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -4515,16 +4582,20 @@ class VCounter(HtmlElement):
           string, boolean, (TransitionProps & { component: Component }),
           { component: Component }
         ]
+      active (boolean):
+        Determines whether the counter is visible or not.
+      max (string, number):
+        Sets the maximum allowed value.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VCounter", children, **kwargs)
         self._attr_names += [
-            "active",
-            "value",
             "disabled",
-            "max",
+            "value",
             "transition",
+            "active",
+            "max",
         ]
         self._event_names += []
 
@@ -4535,16 +4606,13 @@ class VDataIterator(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-iterator>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
       search (string):
         Text input used to filter items.
-      items (unknown[]):
-        An array of strings or objects used for automatically generating
-        children components.
       model_value (any[]):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       filter_mode ('every', 'some', 'union', 'intersection'):
         Controls how the results of `customFilter` and `customKeyFilter`
         are combined. All modes only apply `customFilter` to columns
@@ -4571,6 +4639,9 @@ class VDataIterator(HtmlElement):
         'page' ('Select all' button will select only items on the current
         page), 'all' ('Select all' button will select all items in the
         list).
+      items (unknown[]):
+        An array of strings or objects used for automatically generating
+        children components.
       item_value (SelectItemKey):
         Property on supplied `items` that contains its value.
       return_object (boolean):
@@ -4643,16 +4714,16 @@ class VDataIterator(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDataIterator", children, **kwargs)
         self._attr_names += [
-            "tag",
             "search",
-            "items",
             ("model_value", "modelValue"),
+            "tag",
             ("filter_mode", "filterMode"),
             ("no_filter", "noFilter"),
             ("custom_filter", "customFilter"),
             ("custom_key_filter", "customKeyFilter"),
             ("filter_keys", "filterKeys"),
             ("select_strategy", "selectStrategy"),
+            "items",
             ("item_value", "itemValue"),
             ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
@@ -4689,6 +4760,8 @@ class VDataTable(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-table>`_.
 
     Args:
+      search (string):
+        Text input used to filter items.
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
@@ -4700,7 +4773,7 @@ class VDataTable(HtmlElement):
         Sets the width for the component.
       sticky (boolean):
         Deprecated, use `fixed-header` instead.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -4709,162 +4782,6 @@ class VDataTable(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      search (string):
-        Text input used to filter items.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
-      next_icon (enum):
-        Next icon.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      prev_icon (enum):
-        Previous icon.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      hover (boolean):
-        Adds a hover effects to a table rows.
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
-      header_props (unknown):
-        Pass props to the default header. See [`v-data-table-headers`
-        API](/api/v-data-table-headers) for more information.
-      cell_props (enum):
-        An object of additional props to be passed to each `<td>` in
-        the table body. Also accepts a function that will be called for
-        each cell. If the same prop is defined both here and in `cellProps`
-        in a headers object, the value from the headers object will be
-        used.
-
-        Enum values: [
-          Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
-                 'value', 'item', 'column', 'index', js_fn
-        ]
-      headers (enum):
-        An array of objects that each describe a header column. See the
-        example below for a definition of all properties.
-
-        Enum values: [
-          {  readonly key?:, (string & {}), 'data-table-group', 'data-table-select',
-          'data-table-expand', undefined  readonly value?: SelectItemKey<any>
-           readonly title?: string, undefined  readonly fixed?: boolean,
-          undefined  readonly align?: 'end', 'start', 'center', undefined
-           readonly width?: string, number, undefined  readonly minWidth?:
-          string, number, undefined  readonly maxWidth?: string, number,
-          undefined  readonly nowrap?: boolean, undefined  readonly headerProps?:
-          { readonly [x: string]: any }, undefined  readonly cellProps?:,
-          { readonly [x: string]: any }, ((        data: Pick<
-           ItemKeySlot<any>,          'value', 'item', 'index', js_fn,
-          undefined  readonly sortable?: boolean, undefined  readonly sort?:
-          DataTableCompareFunction<any>, undefined  readonly sortRaw?:
-          DataTableCompareFunction<any>, undefined  readonly filter?: FilterFunction,
-          undefined  readonly children?: readonly any[], undefined}[]
-        ]
-      page (string, number):
-        The current displayed page number (1-indexed).
-      items_per_page (string, number):
-        Changes how many items per page should be visible. Can be used
-        with `.sync` modifier. Setting this prop to `-1` will display
-        all items on the page.
-      loading_text (string):
-        Text shown when the data is loading.
-      hide_no_data (boolean):
-        Hides the menu when there are no options to show.  Useful for
-        preventing the menu from opening before results are fetched asynchronously.
-         Also has the effect of opening the menu when the `items` array
-        changes if not already open.
-      items (any[]):
-        An array of strings or objects used for automatically generating
-        children components.
-      no_data_text (string):
-        Text shown when no items are provided to the component.
-      row_props (enum):
-        An object of additional props to be passed to each `<tr>` in
-        the table body. Also accepts a function that will be called for
-        each row.
-
-        Enum values: [
-          Record<string, any>, ((      data: Pick<ItemKeySlot<any>, 'item', 'index', js_fn
-        ]
-      hide_default_body (boolean):
-        Hides the default body.
-      hide_default_footer (boolean):
-        Hides the default footer. This has no effect on `v-data-table-virtual`.
-      hide_default_header (boolean):
-        Hides the default header.
-      expand_on_click (boolean):
-        Expands item when the row is clicked.
-      show_expand (boolean):
-        Shows the expand toggle in default rows.
-      expanded (string[]):
-        Whether the item is expanded or not.
-      group_by (SortItem):
-        Changes which item property should be used for grouping items.
-        Currently only supports a single grouping in the format: `group`
-        or `['group']`. When using an array, only the first element is
-        considered. Can be used with `.sync` modifier.
-      item_value (SelectItemKey<any>):
-        Property on supplied `items` that contains its value.
-      item_selectable (SelectItemKey<any>):
-        Property on supplied `items` that indicates whether the item is selectable.
-      return_object (boolean):
-        Changes the selection behavior to return the object directly
-        rather than the value specified with **item-value**.
-      show_select (boolean):
-        Shows the select checkboxes in both the header and rows (if using default rows).
-      select_strategy ('page', 'single', 'all'):
-        Defines the strategy of selecting items in the list. Possible
-        values are: 'single' (only one item can be selected at a time),
-        'page' ('Select all' button will select only items on the current
-        page), 'all' ('Select all' button will select all items in the
-        list).
-      sort_by (SortItem):
-        Changes which item property (or properties) should be used for
-        sort order. Can be used with `.sync` modifier.
-      multi_sort (boolean):
-        If `true` then one can sort on multiple properties.
-      must_sort (boolean):
-        If `true` then one can not disable sorting, it will always switch
-        between ascending and descending.
-      custom_key_sort (unknown):
-        Function used on specific keys within the item object. `customSort`
-        is skipped for columns with `customKeySort` specified.
-      disable_sort (boolean):
-        Disables sorting completely.
-      fixed_header (boolean):
-        Fixed header to top of table.
-      sort_asc_icon (enum):
-        Icon used for ascending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      sort_desc_icon (enum):
-        Icon used for descending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      fixed_footer (boolean):
-        Use the fixed-footer prop together with the height prop to fix
-        the footer to the bottom of the table.
       filter_mode ('every', 'some', 'union', 'intersection'):
         Controls how the results of `customFilter` and `customKeyFilter`
         are combined. All modes only apply `customFilter` to columns
@@ -4885,6 +4802,154 @@ class VDataTable(HtmlElement):
         is skipped for columns with `customKeyFilter` specified.
       filter_keys (string, string[]):
         Array of specific keys to filter on the item.
+      hide_no_data (boolean):
+        Hides the menu when there are no options to show.  Useful for
+        preventing the menu from opening before results are fetched asynchronously.
+         Also has the effect of opening the menu when the `items` array
+        changes if not already open.
+      select_strategy ('single', 'page', 'all'):
+        Defines the strategy of selecting items in the list. Possible
+        values are: 'single' (only one item can be selected at a time),
+        'page' ('Select all' button will select only items on the current
+        page), 'all' ('Select all' button will select all items in the
+        list).
+      items (any[]):
+        An array of strings or objects used for automatically generating
+        children components.
+      item_value (SelectItemKey<any>):
+        Property on supplied `items` that contains its value.
+      return_object (boolean):
+        Changes the selection behavior to return the object directly
+        rather than the value specified with **item-value**.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      no_data_text (string):
+        Text shown when no items are provided to the component.
+      loading (string, boolean):
+        Displays `loading` slot if set to `true`
+      next_icon (enum):
+        Next icon.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      prev_icon (enum):
+        Previous icon.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      hover (boolean):
+        Adds a hover effects to a table rows.
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
+      item_selectable (SelectItemKey<any>):
+        Property on supplied `items` that indicates whether the item is selectable.
+      show_select (boolean):
+        Shows the select checkboxes in both the header and rows (if using default rows).
+      page (string, number):
+        The current displayed page number (1-indexed).
+      sort_by (SortItem):
+        Changes which item property (or properties) should be used for
+        sort order. Can be used with `.sync` modifier.
+      multi_sort (boolean):
+        If `true` then one can sort on multiple properties.
+      must_sort (boolean):
+        If `true` then one can not disable sorting, it will always switch
+        between ascending and descending.
+      custom_key_sort (unknown):
+        Function used on specific keys within the item object. `customSort`
+        is skipped for columns with `customKeySort` specified.
+      items_per_page (string, number):
+        Changes how many items per page should be visible. Can be used
+        with `.sync` modifier. Setting this prop to `-1` will display
+        all items on the page.
+      expand_on_click (boolean):
+        Expands item when the row is clicked.
+      show_expand (boolean):
+        Shows the expand toggle in default rows.
+      expanded (string[]):
+        Whether the item is expanded or not.
+      group_by (SortItem):
+        Changes which item property should be used for grouping items.
+        Currently only supports a single grouping in the format: `group`
+        or `['group']`. When using an array, only the first element is
+        considered. Can be used with `.sync` modifier.
+      header_props (unknown):
+        Pass props to the default header. See [`v-data-table-headers`
+        API](/api/v-data-table-headers) for more information.
+      cell_props (enum):
+        An object of additional props to be passed to each `<td>` in
+        the table body. Also accepts a function that will be called for
+        each cell. If the same prop is defined both here and in `cellProps`
+        in a headers object, the value from the headers object will be
+        used.
+
+        Enum values: [
+          Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
+                 'item', 'value', 'index', 'column', js_fn
+        ]
+      disable_sort (boolean):
+        Disables sorting completely.
+      headers (enum):
+        An array of objects that each describe a header column. See the
+        example below for a definition of all properties.
+
+        Enum values: [
+          {  readonly key?:, (string & {}), 'data-table-group', 'data-table-select',
+          'data-table-expand', undefined  readonly value?: SelectItemKey<any>
+           readonly title?: string, undefined  readonly fixed?: boolean,
+          undefined  readonly align?: 'end', 'start', 'center', undefined
+           readonly width?: string, number, undefined  readonly minWidth?:
+          string, number, undefined  readonly maxWidth?: string, number,
+          undefined  readonly nowrap?: boolean, undefined  readonly headerProps?:
+          { readonly [x: string]: any }, undefined  readonly cellProps?:,
+          { readonly [x: string]: any }, HeaderCellPropsFunction, undefined
+           readonly sortable?: boolean, undefined  readonly sort?: DataTableCompareFunction<any>,
+          undefined  readonly sortRaw?: DataTableCompareFunction<any>,
+          undefined  readonly filter?: FilterFunction, undefined  readonly
+          children?: readonly any[], undefined}[]
+        ]
+      loading_text (string):
+        Text shown when the data is loading.
+      row_props (enum):
+        An object of additional props to be passed to each `<tr>` in
+        the table body. Also accepts a function that will be called for
+        each row.
+
+        Enum values: [
+          Record<string, any>, ((      data: Pick<ItemKeySlot<any>, 'item', 'index', js_fn
+        ]
+      hide_default_body (boolean):
+        Hides the default body.
+      hide_default_footer (boolean):
+        Hides the default footer. This has no effect on `v-data-table-virtual`.
+      hide_default_header (boolean):
+        Hides the default header.
+      fixed_header (boolean):
+        Fixed header to top of table.
+      sort_asc_icon (enum):
+        Icon used for ascending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      sort_desc_icon (enum):
+        Icon used for descending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      fixed_footer (boolean):
+        Use the fixed-footer prop together with the height prop to fix
+        the footer to the bottom of the table.
       first_icon (enum):
         First icon.
 
@@ -4917,6 +4982,8 @@ class VDataTable(HtmlElement):
         Emits when the component's model changes.
       update_expanded (event):
         Emits when the **expanded** property of the **options** prop is updated.
+      update_groupBy (event):
+        Emits when the **group-by** property of the **options** property is updated.
       update_page (event):
         Emits when the **page** property of the **options** prop is updated.
       update_itemsPerPage (event):
@@ -4925,8 +4992,6 @@ class VDataTable(HtmlElement):
         Emits when the **sortBy** property of the **options** prop is updated.
       update_options (event):
         Emits when one of the **options** properties is updated.
-      update_groupBy (event):
-        Emits when the **group-by** property of the **options** property is updated.
       update_currentItems (event):
         Emits with the items currently being displayed.
     """
@@ -4935,6 +5000,7 @@ class VDataTable(HtmlElement):
         super().__init__("VDataTable", children, **kwargs)
         self.ttsSensitive()
         self._attr_names += [
+            "search",
             ("model_value", "modelValue"),
             "density",
             "height",
@@ -4943,50 +5009,49 @@ class VDataTable(HtmlElement):
             "tag",
             "theme",
             "color",
-            "search",
-            "loading",
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
-            ("next_icon", "nextIcon"),
-            ("prev_icon", "prevIcon"),
-            "hover",
-            ("value_comparator", "valueComparator"),
-            ("header_props", "headerProps"),
-            ("cell_props", "cellProps"),
-            "headers",
-            "page",
-            ("items_per_page", "itemsPerPage"),
-            ("loading_text", "loadingText"),
-            ("hide_no_data", "hideNoData"),
-            "items",
-            ("no_data_text", "noDataText"),
-            ("row_props", "rowProps"),
-            ("hide_default_body", "hideDefaultBody"),
-            ("hide_default_footer", "hideDefaultFooter"),
-            ("hide_default_header", "hideDefaultHeader"),
-            ("expand_on_click", "expandOnClick"),
-            ("show_expand", "showExpand"),
-            "expanded",
-            ("group_by", "groupBy"),
-            ("item_value", "itemValue"),
-            ("item_selectable", "itemSelectable"),
-            ("return_object", "returnObject"),
-            ("show_select", "showSelect"),
-            ("select_strategy", "selectStrategy"),
-            ("sort_by", "sortBy"),
-            ("multi_sort", "multiSort"),
-            ("must_sort", "mustSort"),
-            ("custom_key_sort", "customKeySort"),
-            ("disable_sort", "disableSort"),
-            ("fixed_header", "fixedHeader"),
-            ("sort_asc_icon", "sortAscIcon"),
-            ("sort_desc_icon", "sortDescIcon"),
-            ("fixed_footer", "fixedFooter"),
             ("filter_mode", "filterMode"),
             ("no_filter", "noFilter"),
             ("custom_filter", "customFilter"),
             ("custom_key_filter", "customKeyFilter"),
             ("filter_keys", "filterKeys"),
+            ("hide_no_data", "hideNoData"),
+            ("select_strategy", "selectStrategy"),
+            "items",
+            ("item_value", "itemValue"),
+            ("return_object", "returnObject"),
+            ("value_comparator", "valueComparator"),
+            ("no_data_text", "noDataText"),
+            "loading",
+            ("next_icon", "nextIcon"),
+            ("prev_icon", "prevIcon"),
+            "hover",
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
+            ("item_selectable", "itemSelectable"),
+            ("show_select", "showSelect"),
+            "page",
+            ("sort_by", "sortBy"),
+            ("multi_sort", "multiSort"),
+            ("must_sort", "mustSort"),
+            ("custom_key_sort", "customKeySort"),
+            ("items_per_page", "itemsPerPage"),
+            ("expand_on_click", "expandOnClick"),
+            ("show_expand", "showExpand"),
+            "expanded",
+            ("group_by", "groupBy"),
+            ("header_props", "headerProps"),
+            ("cell_props", "cellProps"),
+            ("disable_sort", "disableSort"),
+            "headers",
+            ("loading_text", "loadingText"),
+            ("row_props", "rowProps"),
+            ("hide_default_body", "hideDefaultBody"),
+            ("hide_default_footer", "hideDefaultFooter"),
+            ("hide_default_header", "hideDefaultHeader"),
+            ("fixed_header", "fixedHeader"),
+            ("sort_asc_icon", "sortAscIcon"),
+            ("sort_desc_icon", "sortDescIcon"),
+            ("fixed_footer", "fixedFooter"),
             ("first_icon", "firstIcon"),
             ("last_icon", "lastIcon"),
             ("items_per_page_text", "itemsPerPageText"),
@@ -5001,11 +5066,11 @@ class VDataTable(HtmlElement):
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
             ("update_expanded", "update:expanded"),
+            ("update_groupBy", "update:groupBy"),
             ("update_page", "update:page"),
             ("update_itemsPerPage", "update:itemsPerPage"),
             ("update_sortBy", "update:sortBy"),
             ("update_options", "update:options"),
-            ("update_groupBy", "update:groupBy"),
             ("update_currentItems", "update:currentItems"),
         ]
 
@@ -5083,11 +5148,6 @@ class VDataTableHeaders(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-table-headers>`_.
 
     Args:
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -5097,14 +5157,25 @@ class VDataTableHeaders(HtmlElement):
         or the primary color.
       sticky (boolean):
         Deprecated, use `fixed-header` instead.
-      multi_sort (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDataTableHeaders.json))
-      header_props (unknown):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDataTableHeaders.json))
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
       disable_sort (boolean):
         Toggles rendering of sort button.
       fixed_header (boolean):
         Sticks the header to the top of the table.
+      multi_sort (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDataTableHeaders.json))
       sort_asc_icon (enum):
         Icon used for ascending sort button.
 
@@ -5117,30 +5188,24 @@ class VDataTableHeaders(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'sm', 'md', 'lg', 'xl', 'xxl', 'xs'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
+      header_props (unknown):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDataTableHeaders.json))
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VDataTableHeaders", children, **kwargs)
         self._attr_names += [
-            "color",
             "loading",
             "sticky",
-            ("multi_sort", "multiSort"),
-            ("header_props", "headerProps"),
-            ("disable_sort", "disableSort"),
-            ("fixed_header", "fixedHeader"),
-            ("sort_asc_icon", "sortAscIcon"),
-            ("sort_desc_icon", "sortDescIcon"),
+            "color",
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
+            ("disable_sort", "disableSort"),
+            ("fixed_header", "fixedHeader"),
+            ("multi_sort", "multiSort"),
+            ("sort_asc_icon", "sortAscIcon"),
+            ("sort_desc_icon", "sortDescIcon"),
+            ("header_props", "headerProps"),
         ]
         self._event_names += []
 
@@ -5151,10 +5216,16 @@ class VDataTableRow(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-table-row>`_.
 
     Args:
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
       item (unknown):
         Data (key, index and column values) of the displayed item.
-      index (number):
-        Row index.
       cell_props (enum):
         Props to be applied to the cell.
 
@@ -5162,14 +5233,8 @@ class VDataTableRow(HtmlElement):
           Record<string, any>, ((      data: Pick<        ItemKeySlot<unknown>,
                  'value', 'item', 'index', 'internalItem', js_fn
         ]
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'sm', 'md', 'lg', 'xl', 'xxl', 'xs'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
+      index (number):
+        Row index.
       contextmenu (event):
         The event emitted when the user clicks the context menu button.
       dblclick (event):
@@ -5179,11 +5244,11 @@ class VDataTableRow(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDataTableRow", children, **kwargs)
         self._attr_names += [
-            "item",
-            "index",
-            ("cell_props", "cellProps"),
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
+            "item",
+            ("cell_props", "cellProps"),
+            "index",
         ]
         self._event_names += [
             "click",
@@ -5201,6 +5266,16 @@ class VDataTableRows(HtmlElement):
       items (DataTableItem):
         An array of strings or objects used for automatically generating
         children components.
+      loading (string, boolean):
+        Displays `loading` slot if set to `true`
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
       hide_no_data (boolean):
         Hides the menu when there are no options to show.  Useful for
         preventing the menu from opening before results are fetched asynchronously.
@@ -5208,8 +5283,6 @@ class VDataTableRows(HtmlElement):
         changes if not already open.
       no_data_text (string):
         Text shown when no items are provided to the component.
-      loading (string, boolean):
-        Displays `loading` slot if set to `true`
       cell_props (enum):
         An object of additional props to be passed to each `<td>` in
         the table body. Also accepts a function that will be called for
@@ -5221,14 +5294,6 @@ class VDataTableRows(HtmlElement):
           Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
                  'value', 'item', 'index', 'internalItem', js_fn
         ]
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'sm', 'md', 'lg', 'xl', 'xxl', 'xs'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
       loading_text (string):
         Text shown when the data is loading.
       row_props (enum):
@@ -5245,12 +5310,12 @@ class VDataTableRows(HtmlElement):
         super().__init__("VDataTableRows", children, **kwargs)
         self._attr_names += [
             "items",
-            ("hide_no_data", "hideNoData"),
-            ("no_data_text", "noDataText"),
             "loading",
-            ("cell_props", "cellProps"),
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
+            ("hide_no_data", "hideNoData"),
+            ("no_data_text", "noDataText"),
+            ("cell_props", "cellProps"),
             ("loading_text", "loadingText"),
             ("row_props", "rowProps"),
         ]
@@ -5263,28 +5328,21 @@ class VDataTableServer(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-table-server>`_.
 
     Args:
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      search (string):
+        Text input used to filter items.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      items (any[]):
+        An array of strings or objects used for automatically generating
+        children components.
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
       height (string, number):
         Use the height prop to set the height of the table.
       width (string, number):
         Sets the width for the component.
-      sticky (boolean):
-        Deprecated, use `fixed-header` instead.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      search (string):
-        Text input used to filter items.
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -5292,6 +5350,16 @@ class VDataTableServer(HtmlElement):
         **warning**, **error**) or a Boolean which uses the component
         **color** (set by color prop - if it's supported by the component)
         or the primary color.
+      sticky (boolean):
+        Deprecated, use `fixed-header` instead.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       mobile (boolean):
         Determines the display mode of the component. If true, the component
         will be displayed in mobile mode. If false, the component will
@@ -5317,138 +5385,24 @@ class VDataTableServer(HtmlElement):
       value_comparator ((a: any, b: any) => boolean):
         Apply a custom comparison algorithm to compare **model-value**
         and values contains in the **items** prop.
-      header_props (unknown):
-        Pass props to the default header. See [`v-data-table-server`
-        API](/api/v-data-table-server) for more information.
-      cell_props (enum):
-        An object of additional props to be passed to each `<td>` in
-        the table body. Also accepts a function that will be called for
-        each cell. If the same prop is defined both here and in `cellProps`
-        in a headers object, the value from the headers object will be
-        used.
-
-        Enum values: [
-          Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
-                 'value', 'item', 'column', 'index', js_fn
-        ]
-      headers (enum):
-        An array of objects that each describe a header column.
-
-        Enum values: [
-          {  readonly key?:, (string & {}), 'data-table-group', 'data-table-select',
-          'data-table-expand', undefined  readonly value?: SelectItemKey<Record<string,
-          any>>  readonly title?: string, undefined  readonly fixed?: boolean,
-          undefined  readonly align?: 'end', 'start', 'center', undefined
-           readonly width?: string, number, undefined  readonly minWidth?:
-          string, number, undefined  readonly maxWidth?: string, number,
-          undefined  readonly nowrap?: boolean, undefined  readonly headerProps?:
-          { readonly [x: string]: any }, undefined  readonly cellProps?:,
-          { readonly [x: string]: any }, ((        data: Pick<
-           ItemKeySlot<any>,          'value', 'item', 'index', js_fn,
-          undefined  readonly sortable?: boolean, undefined  readonly sort?:
-          DataTableCompareFunction<any>, undefined  readonly sortRaw?:
-          DataTableCompareFunction<any>, undefined  readonly filter?: FilterFunction,
-          undefined  readonly children?:, readonly {        readonly key?:,
-          (string & {}), 'data-table-group', 'data-table-select', 'data-table-expand',
-          undefined        readonly value?: SelectItemKey<Record<string,
-          any>>        readonly title?: string, undefined        readonly
-          fixed?: boolean, undefined        readonly align?: 'end', 'start',
-          'center', undefined        readonly width?: string, number, undefined
-                 readonly minWidth?: string, number, undefined        readonly
-          maxWidth?: string, number, undefined        readonly nowrap?:
-          boolean, undefined        readonly headerProps?: { readonly [x:
-          string]: any }, undefined        readonly cellProps?:, { readonly
-          [x: string]: any }, ((              data: Pick<
-            ItemKeySlot<any>,                'value', 'item', 'index',
-          js_fn, undefined        readonly sortable?: boolean, undefined
-                 readonly sort?: DataTableCompareFunction<any>, undefined
-                 readonly sortRaw?: DataTableCompareFunction<any>, undefined
-                 readonly filter?: FilterFunction, undefined        readonly
-          children?: readonly any[], undefined      }[], undefined}[]
-        ]
-      page (string, number):
-        The current displayed page number (1-indexed).
-      items_per_page (string, number):
-        The number of items to display on each page.
-      loading_text (string):
-        Text shown when the data is loading.
       hide_no_data (boolean):
         Hides the menu when there are no options to show.  Useful for
         preventing the menu from opening before results are fetched asynchronously.
          Also has the effect of opening the menu when the `items` array
         changes if not already open.
-      items (any[]):
-        An array of strings or objects used for automatically generating
-        children components.
-      no_data_text (string):
-        Text shown when no items are provided to the component.
-      row_props (enum):
-        An object of additional props to be passed to each `<tr>` in
-        the table body. Also accepts a function that will be called for
-        each row.
-
-        Enum values: [
-          Record<string, any>, ((      data: Pick<ItemKeySlot<any>, 'item', 'index', js_fn
-        ]
-      hide_default_body (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
-      hide_default_footer (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
-      hide_default_header (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
-      expand_on_click (boolean):
-        Expands item when the row is clicked.
-      show_expand (boolean):
-        Shows the expand icon.
-      expanded (string[]):
-        Whether the item is expanded or not.
-      group_by (SortItem):
-        Defines the grouping of the table items.
-      item_value (SelectItemKey<any>):
-        Property on supplied `items` that contains its value.
-      item_selectable (SelectItemKey<any>):
-        Property on supplied `items` that indicates whether the item is selectable.
-      return_object (boolean):
-        Changes the selection behavior to return the object directly
-        rather than the value specified with **item-value**.
-      show_select (boolean):
-        Shows the column with checkboxes for selecting items in the list.
-      select_strategy ('page', 'single', 'all'):
+      select_strategy ('single', 'page', 'all'):
         Defines the strategy of selecting items in the list. Possible
         values are: 'single' (only one item can be selected at a time),
         'page' ('Select all' button will select only items on the current
         page), 'all' ('Select all' button will select all items in the
         list).
-      sort_by (SortItem):
-        Array of column keys and sort orders that determines the sort
-        order of the table.
-      multi_sort (boolean):
-        Allows sorting by multiple columns.
-      must_sort (boolean):
-        Forces sorting on the column(s).
-      custom_key_sort (unknown):
-        Function used on specific keys within the item object. `customSort`
-        is skipped for columns with `customKeySort` specified.
-      disable_sort (boolean):
-        Toggles rendering of sort button.
-      fixed_header (boolean):
-        Use the fixed-header prop together with the height prop to fix
-        the header to the top of the table.
-      sort_asc_icon (enum):
-        Icon used for ascending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      sort_desc_icon (enum):
-        Icon used for descending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      fixed_footer (boolean):
-        Use the fixed-footer prop together with the height prop to fix
-        the footer to the bottom of the table.
+      item_value (SelectItemKey<any>):
+        Property on supplied `items` that contains its value.
+      return_object (boolean):
+        Changes the selection behavior to return the object directly
+        rather than the value specified with **item-value**.
+      no_data_text (string):
+        Text shown when no items are provided to the component.
       first_icon (enum):
         First icon.
 
@@ -5477,8 +5431,117 @@ class VDataTableServer(HtmlElement):
         Array of options to show in the items-per-page dropdown.
       show_current_page (boolean):
         Show current page number between prev/next icons.
+      headers (enum):
+        An array of objects that each describe a header column.
+
+        Enum values: [
+          {  readonly key?:, (string & {}), 'data-table-expand', 'data-table-select',
+          'data-table-group', undefined  readonly value?: SelectItemKey<Record<string,
+          any>>  readonly title?: string, undefined  readonly fixed?: boolean,
+          undefined  readonly align?: 'start', 'end', 'center', undefined
+           readonly width?: string, number, undefined  readonly minWidth?:
+          string, number, undefined  readonly maxWidth?: string, number,
+          undefined  readonly nowrap?: boolean, undefined  readonly headerProps?:
+          { readonly [x: string]: any }, undefined  readonly cellProps?:,
+          HeaderCellPropsFunction, { readonly [x: string]: any }, undefined
+           readonly sortable?: boolean, undefined  readonly sort?: DataTableCompareFunction<any>,
+          undefined  readonly sortRaw?: DataTableCompareFunction<any>,
+          undefined  readonly filter?: FilterFunction, undefined  readonly
+          children?:, readonly {        readonly key?:, (string & {}),
+          'data-table-expand', 'data-table-select', 'data-table-group',
+          undefined        readonly value?: SelectItemKey<Record<string,
+          any>>        readonly title?: string, undefined        readonly
+          fixed?: boolean, undefined        readonly align?: 'start', 'end',
+          'center', undefined        readonly width?: string, number, undefined
+                 readonly minWidth?: string, number, undefined        readonly
+          maxWidth?: string, number, undefined        readonly nowrap?:
+          boolean, undefined        readonly headerProps?: { readonly [x:
+          string]: any }, undefined        readonly cellProps?:, HeaderCellPropsFunction,
+          { readonly [x: string]: any }, undefined        readonly sortable?:
+          boolean, undefined        readonly sort?: DataTableCompareFunction<any>,
+          undefined        readonly sortRaw?: DataTableCompareFunction<any>,
+          undefined        readonly filter?: FilterFunction, undefined
+                 readonly children?: readonly any[], undefined      }[],
+          undefined}[]
+        ]
+      disable_sort (boolean):
+        Toggles rendering of sort button.
+      fixed_header (boolean):
+        Use the fixed-header prop together with the height prop to fix
+        the header to the top of the table.
+      multi_sort (boolean):
+        Allows sorting by multiple columns.
+      sort_asc_icon (enum):
+        Icon used for ascending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      sort_desc_icon (enum):
+        Icon used for descending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      header_props (unknown):
+        Pass props to the default header. See [`v-data-table-server`
+        API](/api/v-data-table-server) for more information.
+      cell_props (enum):
+        An object of additional props to be passed to each `<td>` in
+        the table body. Also accepts a function that will be called for
+        each cell. If the same prop is defined both here and in `cellProps`
+        in a headers object, the value from the headers object will be
+        used.
+
+        Enum values: [
+          Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
+                 'value', 'item', 'index', 'internalItem', js_fn
+        ]
+      sort_by (SortItem):
+        Array of column keys and sort orders that determines the sort
+        order of the table.
+      page (string, number):
+        The current displayed page number (1-indexed).
+      expanded (string[]):
+        Whether the item is expanded or not.
+      expand_on_click (boolean):
+        Expands item when the row is clicked.
+      loading_text (string):
+        Text shown when the data is loading.
+      row_props (enum):
+        An object of additional props to be passed to each `<tr>` in
+        the table body. Also accepts a function that will be called for
+        each row.
+
+        Enum values: [
+          Record<string, any>, ((      data: Pick<ItemKeySlot<any>, 'item', 'index', js_fn
+        ]
+      group_by (SortItem):
+        Defines the grouping of the table items.
       items_length (string, number):
         Number of all items.
+      items_per_page (string, number):
+        The number of items to display on each page.
+      hide_default_body (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
+      hide_default_footer (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
+      hide_default_header (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
+      show_expand (boolean):
+        Shows the expand icon.
+      item_selectable (SelectItemKey<any>):
+        Property on supplied `items` that indicates whether the item is selectable.
+      show_select (boolean):
+        Shows the column with checkboxes for selecting items in the list.
+      must_sort (boolean):
+        Forces sorting on the column(s).
+      custom_key_sort (unknown):
+        Function used on specific keys within the item object. `customSort`
+        is skipped for columns with `customKeySort` specified.
+      fixed_footer (boolean):
+        Use the fixed-footer prop together with the height prop to fix
+        the footer to the bottom of the table.
       update_modelValue (event):
         Emits when the component's model changes.
       update_expanded (event):
@@ -5498,53 +5561,28 @@ class VDataTableServer(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDataTableServer", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
+            "search",
+            "tag",
+            "theme",
+            "items",
             "density",
             "height",
             "width",
-            "sticky",
-            "tag",
-            "theme",
-            "color",
-            "search",
             "loading",
+            "sticky",
+            "color",
+            ("model_value", "modelValue"),
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
             "hover",
             ("value_comparator", "valueComparator"),
-            ("header_props", "headerProps"),
-            ("cell_props", "cellProps"),
-            "headers",
-            "page",
-            ("items_per_page", "itemsPerPage"),
-            ("loading_text", "loadingText"),
             ("hide_no_data", "hideNoData"),
-            "items",
-            ("no_data_text", "noDataText"),
-            ("row_props", "rowProps"),
-            ("hide_default_body", "hideDefaultBody"),
-            ("hide_default_footer", "hideDefaultFooter"),
-            ("hide_default_header", "hideDefaultHeader"),
-            ("expand_on_click", "expandOnClick"),
-            ("show_expand", "showExpand"),
-            "expanded",
-            ("group_by", "groupBy"),
-            ("item_value", "itemValue"),
-            ("item_selectable", "itemSelectable"),
-            ("return_object", "returnObject"),
-            ("show_select", "showSelect"),
             ("select_strategy", "selectStrategy"),
-            ("sort_by", "sortBy"),
-            ("multi_sort", "multiSort"),
-            ("must_sort", "mustSort"),
-            ("custom_key_sort", "customKeySort"),
-            ("disable_sort", "disableSort"),
-            ("fixed_header", "fixedHeader"),
-            ("sort_asc_icon", "sortAscIcon"),
-            ("sort_desc_icon", "sortDescIcon"),
-            ("fixed_footer", "fixedFooter"),
+            ("item_value", "itemValue"),
+            ("return_object", "returnObject"),
+            ("no_data_text", "noDataText"),
             ("first_icon", "firstIcon"),
             ("last_icon", "lastIcon"),
             ("items_per_page_text", "itemsPerPageText"),
@@ -5555,7 +5593,32 @@ class VDataTableServer(HtmlElement):
             ("last_page_label", "lastPageLabel"),
             ("items_per_page_options", "itemsPerPageOptions"),
             ("show_current_page", "showCurrentPage"),
+            "headers",
+            ("disable_sort", "disableSort"),
+            ("fixed_header", "fixedHeader"),
+            ("multi_sort", "multiSort"),
+            ("sort_asc_icon", "sortAscIcon"),
+            ("sort_desc_icon", "sortDescIcon"),
+            ("header_props", "headerProps"),
+            ("cell_props", "cellProps"),
+            ("sort_by", "sortBy"),
+            "page",
+            "expanded",
+            ("expand_on_click", "expandOnClick"),
+            ("loading_text", "loadingText"),
+            ("row_props", "rowProps"),
+            ("group_by", "groupBy"),
             ("items_length", "itemsLength"),
+            ("items_per_page", "itemsPerPage"),
+            ("hide_default_body", "hideDefaultBody"),
+            ("hide_default_footer", "hideDefaultFooter"),
+            ("hide_default_header", "hideDefaultHeader"),
+            ("show_expand", "showExpand"),
+            ("item_selectable", "itemSelectable"),
+            ("show_select", "showSelect"),
+            ("must_sort", "mustSort"),
+            ("custom_key_sort", "customKeySort"),
+            ("fixed_footer", "fixedFooter"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -5574,27 +5637,28 @@ class VDataTableVirtual(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-data-table-virtual>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
       search (string):
         Text input used to filter items.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      items (any[]):
-        An array of strings or objects used for automatically generating
-        children components.
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Use the height prop to set the height of the table.
+      width (string, number):
+        Sets the width for the component.
+      sticky (boolean):
+        Deprecated, use `fixed-header` instead.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Use the height prop to set the height of the table.
       filter_mode ('every', 'some', 'union', 'intersection'):
         Controls how the results of `customFilter` and `customKeyFilter`
         are combined. All modes only apply `customFilter` to columns
@@ -5632,8 +5696,9 @@ class VDataTableVirtual(HtmlElement):
         'page' ('Select all' button will select only items on the current
         page), 'all' ('Select all' button will select all items in the
         list).
-      width (string, number):
-        Sets the width for the component.
+      items (any[]):
+        An array of strings or objects used for automatically generating
+        children components.
       item_value (SelectItemKey<any>):
         Property on supplied `items` that contains its value.
       return_object (boolean):
@@ -5646,8 +5711,16 @@ class VDataTableVirtual(HtmlElement):
         Text shown when no items are provided to the component.
       loading (string, boolean):
         Displays `loading` slot if set to `true`
-      sticky (boolean):
-        Deprecated, use `fixed-header` instead.
+      hover (boolean):
+        Will add a hover effect to a table's row when the mouse is over it.
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
       item_selectable (SelectItemKey<any>):
         Property on supplied `items` that indicates whether the item is selectable.
       show_select (boolean):
@@ -5681,7 +5754,7 @@ class VDataTableVirtual(HtmlElement):
 
         Enum values: [
           Record<string, any>, ((      data: Pick<        ItemKeySlot<any>,
-                 'value', 'item', 'index', 'internalItem', js_fn
+                 'item', 'value', 'index', 'column', js_fn
         ]
       disable_sort (boolean):
         Toggles rendering of sort button.
@@ -5689,59 +5762,35 @@ class VDataTableVirtual(HtmlElement):
         An array of objects that each describe a header column.
 
         Enum values: [
-          {  readonly key?:, (string & {}), 'data-table-expand', 'data-table-select',
-          'data-table-group', undefined  readonly value?: SelectItemKey<Record<string,
+          {  readonly key?:, (string & {}), 'data-table-group', 'data-table-select',
+          'data-table-expand', undefined  readonly value?: SelectItemKey<Record<string,
           any>>  readonly title?: string, undefined  readonly fixed?: boolean,
-          undefined  readonly align?: 'start', 'end', 'center', undefined
+          undefined  readonly align?: 'end', 'start', 'center', undefined
            readonly width?: string, number, undefined  readonly minWidth?:
           string, number, undefined  readonly maxWidth?: string, number,
           undefined  readonly nowrap?: boolean, undefined  readonly headerProps?:
           { readonly [x: string]: any }, undefined  readonly cellProps?:,
-          ((        data: Pick<          ItemKeySlot<any>,          'value',
-          'item', 'index', js_fn, { readonly [x: string]: any }, undefined
+          { readonly [x: string]: any }, HeaderCellPropsFunction, undefined
            readonly sortable?: boolean, undefined  readonly sort?: DataTableCompareFunction<any>,
           undefined  readonly sortRaw?: DataTableCompareFunction<any>,
           undefined  readonly filter?: FilterFunction, undefined  readonly
           children?:, readonly {        readonly key?:, (string & {}),
-          'data-table-expand', 'data-table-select', 'data-table-group',
+          'data-table-group', 'data-table-select', 'data-table-expand',
           undefined        readonly value?: SelectItemKey<Record<string,
           any>>        readonly title?: string, undefined        readonly
-          fixed?: boolean, undefined        readonly align?: 'start', 'end',
+          fixed?: boolean, undefined        readonly align?: 'end', 'start',
           'center', undefined        readonly width?: string, number, undefined
                  readonly minWidth?: string, number, undefined        readonly
           maxWidth?: string, number, undefined        readonly nowrap?:
           boolean, undefined        readonly headerProps?: { readonly [x:
-          string]: any }, undefined        readonly cellProps?:, ((
-                    data: Pick<                ItemKeySlot<any>,
-                   'value', 'item', 'index', js_fn, { readonly [x: string]:
-          any }, undefined        readonly sortable?: boolean, undefined
-                 readonly sort?: DataTableCompareFunction<any>, undefined
-                 readonly sortRaw?: DataTableCompareFunction<any>, undefined
-                 readonly filter?: FilterFunction, undefined        readonly
-          children?: readonly any[], undefined      }[], undefined}[]
+          string]: any }, undefined        readonly cellProps?:, { readonly
+          [x: string]: any }, HeaderCellPropsFunction, undefined
+           readonly sortable?: boolean, undefined        readonly sort?:
+          DataTableCompareFunction<any>, undefined        readonly sortRaw?:
+          DataTableCompareFunction<any>, undefined        readonly filter?:
+          FilterFunction, undefined        readonly children?: readonly
+          any[], undefined      }[], undefined}[]
         ]
-      fixed_header (boolean):
-        Sticks the header to the top of the table.
-      sort_asc_icon (enum):
-        Icon used for ascending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      sort_desc_icon (enum):
-        Icon used for descending sort button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'sm', 'md', 'lg', 'xl', 'xxl', 'xs'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
       loading_text (string):
         Text shown when the data is loading.
       row_props (enum):
@@ -5758,13 +5807,27 @@ class VDataTableVirtual(HtmlElement):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
       hide_default_header (boolean):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/DataTable.json))
+      fixed_header (boolean):
+        Sticks the header to the top of the table.
+      sort_asc_icon (enum):
+        Icon used for ascending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      sort_desc_icon (enum):
+        Icon used for descending sort button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       fixed_footer (boolean):
         Use the fixed-footer prop together with the height prop to fix
         the footer to the bottom of the table.
-      hover (boolean):
-        Will add a hover effect to a table's row when the mouse is over it.
       item_height (string, number):
         Height in pixels of each item to display.
+      item_key (SelectItemKey):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/virtual.json))
       update_modelValue (event):
         Emits when the component's model changes.
       update_expanded (event):
@@ -5780,14 +5843,15 @@ class VDataTableVirtual(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDataTableVirtual", children, **kwargs)
         self._attr_names += [
-            "tag",
             "search",
-            "theme",
-            "items",
             ("model_value", "modelValue"),
-            "color",
             "density",
             "height",
+            "width",
+            "sticky",
+            "tag",
+            "theme",
+            "color",
             ("filter_mode", "filterMode"),
             ("no_filter", "noFilter"),
             ("custom_filter", "customFilter"),
@@ -5795,13 +5859,15 @@ class VDataTableVirtual(HtmlElement):
             ("filter_keys", "filterKeys"),
             ("hide_no_data", "hideNoData"),
             ("select_strategy", "selectStrategy"),
-            "width",
+            "items",
             ("item_value", "itemValue"),
             ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
             ("no_data_text", "noDataText"),
             "loading",
-            "sticky",
+            "hover",
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
             ("item_selectable", "itemSelectable"),
             ("show_select", "showSelect"),
             ("sort_by", "sortBy"),
@@ -5816,19 +5882,17 @@ class VDataTableVirtual(HtmlElement):
             ("cell_props", "cellProps"),
             ("disable_sort", "disableSort"),
             "headers",
-            ("fixed_header", "fixedHeader"),
-            ("sort_asc_icon", "sortAscIcon"),
-            ("sort_desc_icon", "sortDescIcon"),
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
             ("loading_text", "loadingText"),
             ("row_props", "rowProps"),
             ("hide_default_body", "hideDefaultBody"),
             ("hide_default_footer", "hideDefaultFooter"),
             ("hide_default_header", "hideDefaultHeader"),
+            ("fixed_header", "fixedHeader"),
+            ("sort_asc_icon", "sortAscIcon"),
+            ("sort_desc_icon", "sortDescIcon"),
             ("fixed_footer", "fixedFooter"),
-            "hover",
             ("item_height", "itemHeight"),
+            ("item_key", "itemKey"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -5859,8 +5923,7 @@ class VDateInput(HtmlElement):
       type (string):
         Sets input type.
       model_value (any):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+        Represents the commited v-model value
       error (boolean):
         Puts the input in a manual error state.
       reverse (boolean):
@@ -5884,13 +5947,13 @@ class VDateInput(HtmlElement):
         24. You can find more information on the [elevation page](/styles/elevation).
       location (Anchor):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDateInput.json))
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Adds a border radius to the input.
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -5908,100 +5971,33 @@ class VDateInput(HtmlElement):
         ]
       name (string):
         Sets the component's name attribute.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the outnside the component's input, uses
-        the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      readonly (boolean):
-        Makes the picker readonly (doesn't allow to select new date).
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
+      header (string):
+        Text shown when no **display-date** is set.
       label (string):
         Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
         component.
-      max (unknown):
-        Maximum allowed date/month (ISO 8601 format).
-      transition (string):
-        The transition used when changing months into the future
+      base_color (string):
+        Sets the color of the input when it is not focused.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
-      header (string):
-        Text shown when no **display-date** is set.
+      disabled (boolean):
+        Removes the ability to click or target the input.
       multiple (number, boolean, (string & {}), 'range'):
         Allow the selection of multiple dates. The **range** value selects
         all dates between two selections.
-      next_icon (enum):
-        Icon used for the next button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      prev_icon (enum):
-        Icon used for the previous button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      view_mode ('month', 'months', 'year'):
-        Sets the view mode of the date picker.
-      month (string, number):
-        Sets the month.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
       id (string):
         Sets the DOM id on the component.
-      cancel_text (string):
-        Text for the cancel button
-      ok_text (string):
-        Text for the ok button
+      transition (string):
+        The transition used when changing months into the future
+      autofocus (boolean):
+        Enables autofocus.
       counter (string, number, boolean):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      display_format (string, Function):
-        The format of the date that is displayed in the input. Can use
-        any format [here](/features/dates/#format-options) or a custom
-        function.
-      hide_actions (boolean):
-        Hide the Cancel and OK buttons, and automatically update the
-        value when a date is selected.
-      focused (boolean):
-        Forces a focused state styling on the component.
-      autofocus (boolean):
-        Enables autofocus.
       prefix (string):
         Displays prefix text.
       placeholder (string):
@@ -6014,9 +6010,27 @@ class VDateInput(HtmlElement):
         Displays suffix text.
       role (string):
         The role attribute applied to the input.
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the outnside the component's input, uses
+        the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -6026,12 +6040,16 @@ class VDateInput(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Makes the picker readonly (doesn't allow to select new date).
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -6050,6 +6068,8 @@ class VDateInput(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
@@ -6068,6 +6088,9 @@ class VDateInput(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -6081,27 +6104,26 @@ class VDateInput(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       counter_value (number, js_fn):
         Function returns the counter display text.
       model_modifiers (unknown):
         **FOR INTERNAL USE ONLY**
-      mode_icon (enum):
-        Icon used for the mode button.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      year (number):
-        Sets the year.
-      hide_weekdays (boolean):
-        Hides the weekdays.
-      show_week (boolean):
-        Toggles visibility of the week numbers in the body of the calendar.
-      reverse_transition (string):
-        The transition used when changing months into the past
+      hide_header (boolean):
+        Hide the picker header.
+      month (string, number):
+        Sets the month.
       show_adjacent_months (boolean):
         Toggles visibility of days from previous and next months.
-      weekdays (number[]):
+      year (number):
+        Sets the year.
+      weekdays ((0, 1, 2, 4, 5, 6, 3)[]):
         Array of weekdays.
       weeks_in_month ('static', 'dynamic'):
         A dynamic number of weeks in a month will grow and shrink depending
@@ -6111,30 +6133,82 @@ class VDateInput(HtmlElement):
         Sets the first day of the week, starting with 0 for Sunday.
       allowed_dates (unknown[], js_fn):
         Restricts which dates can be selected.
+      max (unknown):
+        Maximum allowed date/month (ISO 8601 format).
       min (unknown):
         Minimum allowed date/month (ISO 8601 format).
+      next_icon (enum):
+        Icon used for the next button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      prev_icon (enum):
+        Icon used for the previous button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      view_mode ('month', 'year', 'months'):
+        Sets the view mode of the date picker.
+      reverse_transition (string):
+        The transition used when changing months into the past
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
+      divided (boolean):
+        Adds a divider between the header and controls.
       landscape (boolean):
         Puts the picker into landscape mode.
-      hide_header (boolean):
-        Hide the picker header.
+      cancel_text (string):
+        Text for the cancel button
+      ok_text (string):
+        Text for the ok button
+      hide_actions (boolean):
+        Hide the Cancel and OK buttons, and automatically update the
+        value when a date is selected.
+      display_format (string, Function):
+        The format of the date that is displayed in the input. Can use
+        any format [here](/features/dates/#format-options) or a custom
+        function.
+      header_color (string):
+        Allows you to set a different color for the header when used
+        in conjunction with the `color` prop.
+      control_height (string, number):
+        Sets the height of the controls.
+      mode_icon (enum):
+        Icon used for the mode button.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      hide_weekdays (boolean):
+        Hides the weekdays.
+      show_week (boolean):
+        Toggles visibility of the week numbers in the body of the calendar.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      cancel (event):
-        The event emitted when the user clicks the Cancel button
-      save (event):
-        The event emitted when the user clicks the Save button
-      update_focused (event):
-        Emitted when the input is focused or blurred
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when append icon is clicked.
+      update_focused (event):
+        Emitted when the input is focused or blurred
       click_clear (event):
         Emitted when clearable icon clicked.
       click_appendInner (event):
         Emitted when appended inner icon is clicked.
       click_prependInner (event):
         Emitted when prepended inner icon is clicked.
+      cancel (event):
+        The event emitted when the user clicks the Cancel button
+      save (event):
+        The event emitted when the user clicks the Save button
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6165,84 +6239,89 @@ class VDateInput(HtmlElement):
             "color",
             "variant",
             "name",
-            "active",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "disabled",
-            "loading",
-            "label",
-            "max",
-            "transition",
-            ("bg_color", "bgColor"),
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
             "header",
+            "label",
+            ("base_color", "baseColor"),
+            ("bg_color", "bgColor"),
+            "disabled",
             "multiple",
-            ("next_icon", "nextIcon"),
-            ("prev_icon", "prevIcon"),
-            ("view_mode", "viewMode"),
-            "month",
-            "direction",
             "id",
-            ("cancel_text", "cancelText"),
-            ("ok_text", "okText"),
-            "counter",
-            ("display_format", "displayFormat"),
-            ("hide_actions", "hideActions"),
-            "focused",
+            "transition",
             "autofocus",
+            "counter",
             "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
             "role",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
+            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
+            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
-            ("mode_icon", "modeIcon"),
-            "year",
-            ("hide_weekdays", "hideWeekdays"),
-            ("show_week", "showWeek"),
-            ("reverse_transition", "reverseTransition"),
+            ("hide_header", "hideHeader"),
+            "month",
             ("show_adjacent_months", "showAdjacentMonths"),
+            "year",
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
             ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
+            "max",
             "min",
+            ("next_icon", "nextIcon"),
+            ("prev_icon", "prevIcon"),
+            ("view_mode", "viewMode"),
+            ("reverse_transition", "reverseTransition"),
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
+            "divided",
             "landscape",
-            ("hide_header", "hideHeader"),
+            ("cancel_text", "cancelText"),
+            ("ok_text", "okText"),
+            ("hide_actions", "hideActions"),
+            ("display_format", "displayFormat"),
+            ("header_color", "headerColor"),
+            ("control_height", "controlHeight"),
+            ("mode_icon", "modeIcon"),
+            ("hide_weekdays", "hideWeekdays"),
+            ("show_week", "showWeek"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            "cancel",
-            "save",
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             ("click_clear", "click:clear"),
             ("click_appendInner", "click:appendInner"),
             ("click_prependInner", "click:prependInner"),
+            "cancel",
+            "save",
         ]
 
 
@@ -6252,7 +6331,7 @@ class VDatePicker(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-date-picker>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       header (string):
         Text shown when no **display-date** is set.
@@ -6260,47 +6339,18 @@ class VDatePicker(HtmlElement):
         Specify a title text for the component.
       theme (string):
         Specify a theme for this component and all of its children.
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      location (Anchor):
-        Specifies the component's location. Can combine by using a space
-        separated string.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      height (string, number):
-        Sets the height for the component.
+      active (string, string[]):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      text (string):
+        Specify content text for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      text (string):
-        Specify content text for the component.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      multiple (number, boolean, (string & {}), 'range'):
-        Allow the selection of multiple dates. The **range** value selects
-        all dates between two selections.
+      height (string, number):
+        Sets the height for the component.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -6311,35 +6361,46 @@ class VDatePicker(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Width of the picker.
-      transition (string):
-        The transition used when changing months into the future
-      active (string, string[]):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      position ('fixed', 'relative', 'absolute', 'static', 'sticky'):
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      location (Anchor):
+        Specifies the component's location. Can combine by using a space
+        separated string.
+      position ('fixed', 'relative', 'static', 'absolute', 'sticky'):
         Sets the position for the component.
-      hide_header (boolean):
-        Hides the header.
-      month (string, number):
-        Sets the month.
-      show_adjacent_months (boolean):
-        Toggles visibility of days from previous and next months.
-      year (number):
-        Sets the year.
-      weekdays (number[]):
-        Array of weekdays.
-      weeks_in_month ('static', 'dynamic'):
-        A dynamic number of weeks in a month will grow and shrink depending
-        on how many days are in the month. A static number always shows
-        7 weeks.
-      first_day_of_week (string, number):
-        Sets the first day of the week, starting with 0 for Sunday.
-      allowed_dates (unknown[], js_fn):
-        Restricts which dates can be selected.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       max (unknown):
         Maximum allowed date/month (ISO 8601 format).
-      min (unknown):
-        Minimum allowed date/month (ISO 8601 format).
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      transition (string):
+        The transition used when changing months into the future
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      multiple (number, boolean, (string & {}), 'range'):
+        Allow the selection of multiple dates. The **range** value selects
+        all dates between two selections.
+      divided (boolean):
+        Adds a divider between the header and controls.
       next_icon (enum):
         Sets the icon for next month/year button.
 
@@ -6352,11 +6413,16 @@ class VDatePicker(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      view_mode ('month', 'year', 'months'):
+      view_mode ('month', 'months', 'year'):
         Determines which picker in the date or month picker is being
         displayed. Allowed values: `'month'`, `'months'`, `'year'`.
-      reverse_transition (string):
-        The transition used when changing months into the past
+      month (string, number):
+        Sets the month.
+      header_color (string):
+        Allows you to set a different color for the header when used
+        in conjunction with the `color` prop.
+      control_height (string, number):
+        Sets the height of the controls.
       mode_icon (enum):
         Icon displayed next to the current month and year, toggles year
         selection when clicked.
@@ -6364,12 +6430,32 @@ class VDatePicker(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      year (number):
+        Sets the year.
       hide_weekdays (boolean):
         Hides the weekdays.
       show_week (boolean):
         Toggles visibility of the week numbers in the body of the calendar.
+      reverse_transition (string):
+        The transition used when changing months into the past
+      show_adjacent_months (boolean):
+        Toggles visibility of days from previous and next months.
+      weekdays ((0, 1, 2, 3, 4, 5, 6)[]):
+        Array of weekdays.
+      weeks_in_month ('static', 'dynamic'):
+        A dynamic number of weeks in a month will grow and shrink depending
+        on how many days are in the month. A static number always shows
+        7 weeks.
+      first_day_of_week (string, number):
+        Sets the first day of the week, starting with 0 for Sunday.
+      allowed_dates (unknown[], js_fn):
+        Restricts which dates can be selected.
+      min (unknown):
+        Minimum allowed date/month (ISO 8601 format).
       landscape (boolean):
         Changes the picker to landscape mode.
+      hide_header (boolean):
+        Hides the header.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
       update_month (event):
@@ -6387,44 +6473,47 @@ class VDatePicker(HtmlElement):
             "header",
             "title",
             "theme",
-            ("model_value", "modelValue"),
-            "location",
-            "color",
-            "height",
-            "border",
-            "elevation",
-            "rounded",
-            "tile",
+            "active",
             "text",
-            ("bg_color", "bgColor"),
-            "disabled",
-            "multiple",
+            "border",
+            "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "transition",
-            "active",
+            "elevation",
+            "disabled",
+            "location",
             "position",
-            ("hide_header", "hideHeader"),
+            "rounded",
+            "tile",
+            "color",
+            "max",
+            ("model_value", "modelValue"),
+            "transition",
+            ("bg_color", "bgColor"),
+            "multiple",
+            "divided",
+            ("next_icon", "nextIcon"),
+            ("prev_icon", "prevIcon"),
+            ("view_mode", "viewMode"),
             "month",
-            ("show_adjacent_months", "showAdjacentMonths"),
+            ("header_color", "headerColor"),
+            ("control_height", "controlHeight"),
+            ("mode_icon", "modeIcon"),
             "year",
+            ("hide_weekdays", "hideWeekdays"),
+            ("show_week", "showWeek"),
+            ("reverse_transition", "reverseTransition"),
+            ("show_adjacent_months", "showAdjacentMonths"),
             "weekdays",
             ("weeks_in_month", "weeksInMonth"),
             ("first_day_of_week", "firstDayOfWeek"),
             ("allowed_dates", "allowedDates"),
-            "max",
             "min",
-            ("next_icon", "nextIcon"),
-            ("prev_icon", "prevIcon"),
-            ("view_mode", "viewMode"),
-            ("reverse_transition", "reverseTransition"),
-            ("mode_icon", "modeIcon"),
-            ("hide_weekdays", "hideWeekdays"),
-            ("show_week", "showWeek"),
             "landscape",
+            ("hide_header", "hideHeader"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -6440,13 +6529,13 @@ class VDatePickerControls(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-date-picker-controls>`_.
 
     Args:
+      active (string, string[]):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       text (string):
         Specify content text for the component.
       disabled (string, boolean, string[]):
         Removes the ability to click or target the component.
-      active (string, string[]):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
       next_icon (enum):
         Icon used for the next button.
 
@@ -6459,22 +6548,24 @@ class VDatePickerControls(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      view_mode ('month', 'year', 'months'):
+      view_mode ('month', 'months', 'year'):
         Sets the view mode of the date picker.
+      control_height (string, number):
+        Sets the height of the controls.
       mode_icon (enum):
         Icon used for the mode button.
 
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      click_next (event):
+        Event fired when clicking the next button.
+      click_prev (event):
+        Event fired when clicking the previous button.
       click_year (event):
         Event fired when clicking the date text.
       click_month (event):
         Event fired when clicking on the month.
-      click_prev (event):
-        Event fired when clicking the previous button.
-      click_next (event):
-        Event fired when clicking the next button.
       click_text (event):
         Event fired when clicking the year.
     """
@@ -6482,19 +6573,20 @@ class VDatePickerControls(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDatePickerControls", children, **kwargs)
         self._attr_names += [
+            "active",
             "text",
             "disabled",
-            "active",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
             ("view_mode", "viewMode"),
+            ("control_height", "controlHeight"),
             ("mode_icon", "modeIcon"),
         ]
         self._event_names += [
+            ("click_next", "click:next"),
+            ("click_prev", "click:prev"),
             ("click_year", "click:year"),
             ("click_month", "click:month"),
-            ("click_prev", "click:prev"),
-            ("click_next", "click:next"),
             ("click_text", "click:text"),
         ]
 
@@ -6507,13 +6599,6 @@ class VDatePickerHeader(HtmlElement):
     Args:
       header (string):
         Sets the header content.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      transition (string):
-        Sets the transition when the header changes.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -6521,6 +6606,13 @@ class VDatePickerHeader(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      transition (string):
+        Sets the transition when the header changes.
       click_append (event):
         Emitted when appended icon is clicked.
     """
@@ -6529,9 +6621,9 @@ class VDatePickerHeader(HtmlElement):
         super().__init__("VDatePickerHeader", children, **kwargs)
         self._attr_names += [
             "header",
+            ("append_icon", "appendIcon"),
             "color",
             "transition",
-            ("append_icon", "appendIcon"),
         ]
         self._event_names += [
             "click",
@@ -6565,7 +6657,7 @@ class VDatePickerMonth(HtmlElement):
         Show adjacent months.
       year (string, number):
         Sets the year.
-      weekdays (number[]):
+      weekdays ((0, 1, 2, 4, 5, 6, 3)[]):
         Sets the weekdays of the month.
       weeks_in_month ('static', 'dynamic'):
         A dynamic number of weeks in a month will grow and shrink depending
@@ -6627,19 +6719,19 @@ class VDatePickerMonths(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-date-picker-months>`_.
 
     Args:
-      model_value (number):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      height (string, number):
+        Sets the height for the component.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      height (string, number):
-        Sets the height for the component.
-      year (number):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerMonths.json))
       max (unknown):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerMonths.json))
+      model_value (number):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      year (number):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerMonths.json))
       min (unknown):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VDatePickerMonths.json))
@@ -6650,11 +6742,11 @@ class VDatePickerMonths(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VDatePickerMonths", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
-            "color",
             "height",
-            "year",
+            "color",
             "max",
+            ("model_value", "modelValue"),
+            "year",
             "min",
         ]
         self._event_names += [
@@ -6761,28 +6853,14 @@ class VDialog(HtmlElement):
         Applies **position: absolute** to the content element.
       theme (string):
         Specify a theme for this component and all of its children.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component }),
-          { component: Component }
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
-      fullscreen (boolean):
-        Changes layout for fullscreen display.
-      retain_focus (boolean):
-        Tab focus will return to the first child of the dialog by default.
-        Disable this when using external tools that require focus such
-        as TinyMCE or vue-clipboard.
-      scrollable (boolean):
-        When set to true, expects a `v-card` and a `v-card-text` component
-        with a designated height. For more information, check out the
-        [scrollable example](/components/dialogs#scrollable).
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
         pressed or `$router.back()` is called, cancelling the original
@@ -6816,7 +6894,7 @@ class VDialog(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -6835,11 +6913,7 @@ class VDialog(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -6848,12 +6922,30 @@ class VDialog(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component }),
+          { component: Component }
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
         or `true` to disable teleporting. Uses `body` by default.
+      fullscreen (boolean):
+        Changes layout for fullscreen display.
+      retain_focus (boolean):
+        Tab focus will return to the first child of the dialog by default.
+        Disable this when using external tools that require focus such
+        as TinyMCE or vue-clipboard.
+      scrollable (boolean):
+        When set to true, expects a `v-card` and a `v-card-text` component
+        with a designated height. For more information, check out the
+        [scrollable example](/components/dialogs#scrollable).
       update_modelValue (event):
         Event that is emitted when the component's model changes.
       afterEnter (event):
@@ -6875,12 +6967,9 @@ class VDialog(HtmlElement):
             "location",
             "absolute",
             "theme",
+            "eager",
             "disabled",
-            "transition",
             "activator",
-            "fullscreen",
-            ("retain_focus", "retainFocus"),
-            "scrollable",
             ("close_on_back", "closeOnBack"),
             "contained",
             ("content_class", "contentClass"),
@@ -6898,12 +6987,15 @@ class VDialog(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
             ("scroll_strategy", "scrollStrategy"),
+            "transition",
             "attach",
+            "fullscreen",
+            ("retain_focus", "retainFocus"),
+            "scrollable",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -6924,12 +7016,12 @@ class VDialogBottomTransition(HtmlElement):
         modes](https://vuejs.org/api/built-in-components.html#transition).
       disabled (boolean):
         Removes the ability to click or target the component.
-      origin (string):
-        Sets the transition origin on the element. You can find more
-        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       group (boolean):
         Creates a `transition-group` component. You can find more information
         in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
+      origin (string):
+        Sets the transition origin on the element. You can find more
+        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -6941,8 +7033,8 @@ class VDialogBottomTransition(HtmlElement):
         self._attr_names += [
             "mode",
             "disabled",
-            "origin",
             "group",
+            "origin",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -6961,12 +7053,12 @@ class VDialogTopTransition(HtmlElement):
         modes](https://vuejs.org/api/built-in-components.html#transition).
       disabled (boolean):
         Removes the ability to click or target the component.
-      origin (string):
-        Sets the transition origin on the element. You can find more
-        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       group (boolean):
         Creates a `transition-group` component. You can find more information
         in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
+      origin (string):
+        Sets the transition origin on the element. You can find more
+        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -6978,8 +7070,8 @@ class VDialogTopTransition(HtmlElement):
         self._attr_names += [
             "mode",
             "disabled",
-            "origin",
             "group",
+            "origin",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -7019,13 +7111,13 @@ class VDivider(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
+      inset (boolean):
+        Adds indentation (72px) for **normal** dividers, reduces max
+        height for **vertical**.
       opacity (string, number):
         Sets the component's opacity value
       vertical (boolean):
         Displays dividers vertically.
-      inset (boolean):
-        Adds indentation (72px) for **normal** dividers, reduces max
-        height for **vertical**.
       thickness (string, number):
         Sets the dividers thickness. Default unit is px.
     """
@@ -7036,9 +7128,9 @@ class VDivider(HtmlElement):
             "length",
             "theme",
             "color",
+            "inset",
             "opacity",
             "vertical",
-            "inset",
             "thickness",
         ]
         self._event_names += []
@@ -7058,23 +7150,10 @@ class VEmptyState(HtmlElement):
         The size used to control the dimensions of the media element
         inside the component. Can be specified as a number or a string
         (e.g., '50%', '100px').
-      image (string):
-        Apply a specific image using [v-img](/components/images/).
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      height (string, number):
-        Sets the height for the component.
       text (string):
         Specify content text for the component.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
+      height (string, number):
+        Sets the height for the component.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -7085,16 +7164,29 @@ class VEmptyState(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      href (string):
+        The URL the action button links to.
+      to (string):
+        The URL the action button links to.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       icon (enum):
         Apply a specific icon using the [v-icon](/components/icons/) component.
 
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      href (string):
-        The URL the action button links to.
-      to (string):
-        The URL the action button links to.
+      image (string):
+        Apply a specific image using [v-img](/components/images/).
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
       headline (string):
         A large headline often used for 404 pages.
       action_text (string):
@@ -7113,19 +7205,19 @@ class VEmptyState(HtmlElement):
             "title",
             "theme",
             "size",
-            "image",
-            "color",
-            "height",
             "text",
-            ("bg_color", "bgColor"),
+            "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "icon",
             "href",
             "to",
+            "color",
+            "icon",
+            "image",
+            ("bg_color", "bgColor"),
             "headline",
             ("action_text", "actionText"),
             "justify",
@@ -7142,12 +7234,12 @@ class VExpandTransition(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-expand-transition>`_.
 
     Args:
+      disabled (boolean):
+        Removes the ability to click or target the component.
       mode ('default', 'in-out', 'out-in'):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      disabled (boolean):
-        Removes the ability to click or target the component.
       group (boolean):
         Creates a `transition-group` component. You can find more information
         in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
@@ -7156,8 +7248,8 @@ class VExpandTransition(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VExpandTransition", children, **kwargs)
         self._attr_names += [
-            "mode",
             "disabled",
+            "mode",
             "group",
         ]
         self._event_names += []
@@ -7196,22 +7288,39 @@ class VExpansionPanel(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-expansion-panel>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       title (string):
         Specify a title text for the component.
       value (any):
         Controls the opened/closed state of content.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
+      readonly (boolean):
+        Makes the expansion panel content read only.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      text (string):
+        Specify content text for the component.
       height (string, number):
         Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Disables the expansion-panel content.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      static (boolean):
+        Remove title size expansion when selected.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -7219,20 +7328,21 @@ class VExpansionPanel(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      text (string):
-        Specify content text for the component.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Disables the expansion-panel content.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       expand_icon (enum):
         Icon used when the expansion panel is in a expandable state.
 
@@ -7245,24 +7355,6 @@ class VExpansionPanel(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
-      static (boolean):
-        Remove title size expansion when selected.
-      readonly (boolean):
-        Makes the expansion panel content read only.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       hide_actions (boolean):
         Hide the expand icon in the content title.
       focusable (boolean):
@@ -7277,26 +7369,26 @@ class VExpansionPanel(HtmlElement):
             "tag",
             "title",
             "value",
-            "color",
-            "height",
-            "elevation",
-            "rounded",
-            "tile",
+            "readonly",
+            "ripple",
             "text",
-            "eager",
-            ("bg_color", "bgColor"),
-            "disabled",
-            ("expand_icon", "expandIcon"),
-            ("collapse_icon", "collapseIcon"),
+            "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "static",
-            "readonly",
-            "ripple",
+            "elevation",
+            "disabled",
             ("selected_class", "selectedClass"),
+            "static",
+            "rounded",
+            "tile",
+            "color",
+            ("bg_color", "bgColor"),
+            "eager",
+            ("expand_icon", "expandIcon"),
+            ("collapse_icon", "collapseIcon"),
             ("hide_actions", "hideActions"),
             "focusable",
         ]
@@ -7350,12 +7442,6 @@ class VExpansionPanelTitle(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      readonly (boolean):
-        Makes the expansion panel content read only.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      hide_actions (boolean):
-        Hide the expand icon in the content title.
       expand_icon (enum):
         Icon used when the expansion panel is in a expandable state.
 
@@ -7368,6 +7454,12 @@ class VExpansionPanelTitle(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      readonly (boolean):
+        Makes the expansion panel content read only.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      hide_actions (boolean):
+        Hide the expand icon in the content title.
       focusable (boolean):
         Makes the expansion panel headers focusable.
     """
@@ -7383,11 +7475,11 @@ class VExpansionPanelTitle(HtmlElement):
             "width",
             "static",
             "color",
+            ("expand_icon", "expandIcon"),
+            ("collapse_icon", "collapseIcon"),
             "readonly",
             "ripple",
             ("hide_actions", "hideActions"),
-            ("expand_icon", "expandIcon"),
-            ("collapse_icon", "collapseIcon"),
             "focusable",
         ]
         self._event_names += []
@@ -7401,21 +7493,23 @@ class VExpansionPanels(HtmlElement):
     Args:
       flat (boolean):
         Removes the expansion-panel's elevation and borders.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
-      model_value (any):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
+      readonly (boolean):
+        Makes the entire expansion panel read only.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Puts all children components into a disabled state.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      static (boolean):
+        Remove title size expansion when selected.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -7423,18 +7517,32 @@ class VExpansionPanels(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes the border-radius.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('default', 'inset', 'accordion', 'popout'):
+        Applies a distinct style to the component.
+      max (number):
+        Sets a maximum number of selections that can be made.
+      model_value (any):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Puts all children components into a disabled state.
+      multiple (boolean):
+        Allows one to select multiple items.
+      mandatory (boolean, 'force'):
+        Forces at least one item to always be selected (if available).
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       expand_icon (enum):
         Icon used when the expansion panel is in a expandable state.
 
@@ -7447,22 +7555,6 @@ class VExpansionPanels(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      multiple (boolean):
-        Allows one to select multiple items.
-      mandatory (boolean, 'force'):
-        Forces at least one item to always be selected (if available).
-      variant ('default', 'inset', 'accordion', 'popout'):
-        Applies a distinct style to the component.
-      static (boolean):
-        Remove title size expansion when selected.
-      readonly (boolean):
-        Makes the entire expansion panel read only.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
       hide_actions (boolean):
         Hide the expand icon in the content title.
       focusable (boolean):
@@ -7477,24 +7569,24 @@ class VExpansionPanels(HtmlElement):
             "flat",
             "tag",
             "theme",
-            ("model_value", "modelValue"),
-            "color",
-            "elevation",
-            "rounded",
-            "tile",
-            "eager",
-            ("bg_color", "bgColor"),
-            "disabled",
-            ("expand_icon", "expandIcon"),
-            ("collapse_icon", "collapseIcon"),
-            "multiple",
-            "mandatory",
-            "variant",
-            "static",
             "readonly",
             "ripple",
+            "elevation",
+            "disabled",
             ("selected_class", "selectedClass"),
+            "static",
+            "rounded",
+            "tile",
+            "color",
+            "variant",
             "max",
+            ("model_value", "modelValue"),
+            ("bg_color", "bgColor"),
+            "multiple",
+            "mandatory",
+            "eager",
+            ("expand_icon", "expandIcon"),
+            ("collapse_icon", "collapseIcon"),
             ("hide_actions", "hideActions"),
             "focusable",
         ]
@@ -7517,6 +7609,11 @@ class VFab(HtmlElement):
         Specify content text for the component.
       flat (boolean):
         Removes the button box shadow. This is different than using the 'flat' variant.
+      replace (boolean):
+        Setting **replace** prop will call `router.replace()` instead
+        of `router.push()` when clicked, so the navigation will not leave
+        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
+        prop on the vue-router documentation.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
@@ -7551,7 +7648,7 @@ class VFab(HtmlElement):
         24. You can find more information on the [elevation page](/styles/elevation).
       location (Anchor):
         The location of the fab relative to the layout. Only works when using **app**.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       absolute (boolean):
         Applies **position: absolute** to the component.
@@ -7562,7 +7659,7 @@ class VFab(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -7575,25 +7672,41 @@ class VFab(HtmlElement):
         Applies a distinct style to the component.
       name (string):
         Assign a specific name for layout registration.
-      replace (boolean):
-        Setting **replace** prop will call `router.replace()` instead
-        of `router.push()` when clicked, so the navigation will not leave
-        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
-        prop on the vue-router documentation.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      active_color (string):
-        The applied color when the component is in an active state.
+      extended (boolean):
+        An alternate style for the FAB that expects text.
+      order (string, number):
+        Adjust the order of the component in relation to its registration order.
+      exact (boolean):
+        Exactly match the link. Without this, '/' will match every route.
+        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
+        on the vue-router documentation.
       base_color (string):
         Sets the color of component when not focused.
-      prepend_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component in the **prepend**
-        slot before default content.
+      active_color (string):
+        The applied color when the component is in an active state.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      slim (boolean):
+        Reduces padding to 0 8px.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      offset (boolean):
+        Translates the Fab up or down, depending on if location is set
+        to **top** or **bottom**.
+      block (boolean):
+        Expands the button to 100% of available space.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
 
         Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
+          string, boolean, (TransitionProps & { component: Component })
         ]
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -7601,24 +7714,19 @@ class VFab(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      block (boolean):
-        Expands the button to 100% of available space.
+      prepend_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component in the **prepend**
+        slot before default content.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       readonly (boolean):
         Puts the button in a readonly state. Cannot be clicked or navigated
         to by keyboard.
-      slim (boolean):
-        Reduces padding to 0 8px.
-      stacked (boolean):
-        Displays the button as a flex-column.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -7628,10 +7736,6 @@ class VFab(HtmlElement):
         or the primary color.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
-      exact (boolean):
-        Exactly match the link. Without this, '/' will match every route.
-        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
-        on the vue-router documentation.
       to (enum):
         Denotes the target route of the link. You can find more information
         about the [**to** prop](https://router.vuejs.org/api/#to) on
@@ -7640,29 +7744,17 @@ class VFab(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
-      order (string, number):
-        Adjust the order of the component in relation to its registration order.
-      offset (boolean):
-        Translates the Fab up or down, depending on if location is set
-        to **top** or **bottom**.
+      stacked (boolean):
+        Displays the button as a flex-column.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       app (boolean):
         If true, attaches to the closest layout and positions according
         to the value of **location**.
       appear (boolean):
         Used to control the animation of the FAB.
-      extended (boolean):
-        An alternate style for the FAB that expects text.
       layout (boolean):
         If true, will effect layout dimensions based on size and position.
       update_modelValue (event):
@@ -7675,6 +7767,7 @@ class VFab(HtmlElement):
             "symbol",
             "text",
             "flat",
+            "replace",
             "border",
             "icon",
             ("model_value", "modelValue"),
@@ -7696,31 +7789,30 @@ class VFab(HtmlElement):
             "color",
             "variant",
             "name",
-            "replace",
-            "active",
-            ("active_color", "activeColor"),
+            "extended",
+            "order",
+            "exact",
             ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "block",
-            "readonly",
-            "slim",
-            "stacked",
-            "ripple",
-            "value",
+            ("active_color", "activeColor"),
             "disabled",
-            ("selected_class", "selectedClass"),
+            "slim",
+            "value",
+            "offset",
+            "block",
+            "transition",
+            "size",
+            ("append_icon", "appendIcon"),
+            ("prepend_icon", "prependIcon"),
+            "readonly",
+            "active",
             "loading",
             "href",
-            "exact",
             "to",
-            "size",
-            "transition",
-            "order",
-            "offset",
+            "stacked",
+            "ripple",
+            ("selected_class", "selectedClass"),
             "app",
             "appear",
-            "extended",
             "layout",
         ]
         self._event_names += [
@@ -7734,12 +7826,12 @@ class VFabTransition(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-fab-transition>`_.
 
     Args:
+      disabled (boolean):
+        Removes the ability to click or target the component.
       mode (string):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      disabled (boolean):
-        Removes the ability to click or target the component.
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
@@ -7755,8 +7847,8 @@ class VFabTransition(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VFabTransition", children, **kwargs)
         self._attr_names += [
-            "mode",
             "disabled",
+            "mode",
             "origin",
             "group",
             ("hide_on_leave", "hideOnLeave"),
@@ -7777,12 +7869,12 @@ class VFadeTransition(HtmlElement):
         modes](https://vuejs.org/api/built-in-components.html#transition).
       disabled (boolean):
         Removes the ability to click or target the component.
-      origin (string):
-        Sets the transition origin on the element. You can find more
-        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       group (boolean):
         Creates a `transition-group` component. You can find more information
         in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
+      origin (string):
+        Sets the transition origin on the element. You can find more
+        information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -7794,8 +7886,8 @@ class VFadeTransition(HtmlElement):
         self._attr_names += [
             "mode",
             "disabled",
-            "origin",
             "group",
+            "origin",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -7821,14 +7913,20 @@ class VField(HtmlElement):
         Specify a theme for this component and all of its children.
       id (string):
         Sets the DOM id on the component.
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the input.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -7836,16 +7934,11 @@ class VField(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the input.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       variant (enum):
         Applies a distinct style to the component.
 
@@ -7853,9 +7946,22 @@ class VField(HtmlElement):
           'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
           'solo-filled'
         ]
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       focused (boolean):
         Forces a focused state styling on the component.
       append_inner_icon (enum):
@@ -7872,9 +7978,6 @@ class VField(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -7888,13 +7991,6 @@ class VField(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
       update_focused (event):
@@ -7916,25 +8012,27 @@ class VField(HtmlElement):
             "label",
             "theme",
             "id",
-            ("model_value", "modelValue"),
-            "color",
+            "active",
+            ("base_color", "baseColor"),
+            "disabled",
+            "loading",
             "rounded",
             "tile",
-            ("base_color", "baseColor"),
-            ("bg_color", "bgColor"),
-            "disabled",
+            "color",
             "variant",
+            ("model_value", "modelValue"),
+            ("bg_color", "bgColor"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
             "focused",
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
-            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
-            "loading",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -8009,17 +8107,27 @@ class VFileInput(HtmlElement):
         ]
       name (string):
         Sets the component's name attribute.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      chips (boolean):
+        Changes display of selections to chips.
       base_color (string):
         Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      disabled (boolean):
+        Removes the ability to click or target the input.
+      multiple (boolean):
+        Adds the **multiple** attribute to the input, allowing multiple file selections.
+      id (string):
+        Sets the DOM id on the component.
+      counter (boolean):
+        Displays the number of selected files.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -8027,39 +8135,19 @@ class VFileInput(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      readonly (boolean):
-        Puts input in readonly state.
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      multiple (boolean):
-        Adds the **multiple** attribute to the input, allowing multiple file selections.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      id (string):
-        Sets the DOM id on the component.
-      counter (boolean):
-        Displays the number of selected files.
-      focused (boolean):
-        Forces a focused state styling on the component.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -8069,12 +8157,16 @@ class VFileInput(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -8093,6 +8185,8 @@ class VFileInput(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
@@ -8111,6 +8205,9 @@ class VFileInput(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -8124,8 +8221,13 @@ class VFileInput(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
-      chips (boolean):
-        Changes display of selections to chips.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       counter_size_string (string):
         The text displayed when using the **counter** and **show-size**
         props. Can also be customized globally on the [internationalization
@@ -8141,12 +8243,12 @@ class VFileInput(HtmlElement):
         will display (**KiB, MiB, GiB**).
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Emitted when the input is focused or blurred
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when append icon is clicked.
+      update_focused (event):
+        Emitted when the input is focused or blurred
       click_clear (event):
         Emitted when clearable icon clicked.
       click_appendInner (event):
@@ -8176,39 +8278,41 @@ class VFileInput(HtmlElement):
             "color",
             "variant",
             "name",
-            "active",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "disabled",
-            "loading",
             "label",
+            "chips",
+            ("base_color", "baseColor"),
             ("bg_color", "bgColor"),
+            "disabled",
             "multiple",
-            "direction",
             "id",
             "counter",
-            "focused",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
+            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
-            "chips",
+            "loading",
             ("counter_size_string", "counterSizeString"),
             ("counter_string", "counterString"),
             ("hide_input", "hideInput"),
@@ -8216,9 +8320,9 @@ class VFileInput(HtmlElement):
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             ("click_clear", "click:clear"),
             ("click_appendInner", "click:appendInner"),
             ("click_prependInner", "click:prependInner"),
@@ -8235,7 +8339,7 @@ class VFileUpload(HtmlElement):
     Args:
       length (string, number):
         Sets the dividers length. Default unit is px.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       name (string):
         Sets the component's name attribute.
@@ -8243,42 +8347,15 @@ class VFileUpload(HtmlElement):
         Specify a title text for the component.
       theme (string):
         Specify a theme for this component and all of its children.
-      model_value (File, File[]):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      location (Anchor):
-        Specifies the component's location. Can combine by using a space
-        separated string.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      subtitle (string):
-        Specify a subtitle text for the component.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      multiple (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VFileUpload.json))
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -8289,6 +8366,39 @@ class VFileUpload(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      location (Anchor):
+        Specifies the component's location. Can combine by using a space
+        separated string.
+      position ('fixed', 'relative', 'static', 'absolute', 'sticky'):
+        Sets the position for the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      model_value (File, File[]):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      multiple (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VFileUpload.json))
       opacity (string, number):
         Sets the component's opacity value
       scrim (string, boolean):
@@ -8299,16 +8409,10 @@ class VFileUpload(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
+      subtitle (string):
+        Specify a subtitle text for the component.
       clearable (boolean):
         Allows for the component to be cleared.
-      icon (enum):
-        Apply a specific icon using the [v-icon](/components/icons/) component.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      position ('fixed', 'relative', 'absolute', 'static', 'sticky'):
-        Sets the position for the component.
       thickness (string, number):
         Sets the dividers thickness. Default unit is px.
       browse_text (string):
@@ -8331,30 +8435,30 @@ class VFileUpload(HtmlElement):
             "name",
             "title",
             "theme",
-            ("model_value", "modelValue"),
-            "location",
-            "color",
+            "border",
             "density",
             "height",
-            "border",
-            "elevation",
-            "rounded",
-            "tile",
-            "subtitle",
-            "disabled",
-            "multiple",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "elevation",
+            "disabled",
+            "location",
+            "position",
+            "rounded",
+            "tile",
+            "color",
+            "icon",
+            ("model_value", "modelValue"),
+            "multiple",
             "opacity",
             "scrim",
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
+            "subtitle",
             "clearable",
-            "icon",
-            "position",
             "thickness",
             ("browse_text", "browseText"),
             ("divider_text", "dividerText"),
@@ -8372,74 +8476,62 @@ class VFileUploadItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-file-upload-item>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
+      replace (boolean):
+        Setting **replace** prop will call `router.replace()` instead
+        of `router.push()` when clicked, so the navigation will not leave
+        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
+        prop on the vue-router documentation.
       link (boolean):
         Designates that the component is a link. This is automatic when
         using the href or to prop.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       nav (boolean):
         Reduces the width v-list-item takes up as well as adding a border radius.
       title (string, number, boolean):
         Generates a `v-list-item-title` component with the supplied value.
         Note that this overrides the native [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title)
         attribute, that must be set with `v-bind:title.attr` instead.
-      replace (boolean):
-        Setting **replace** prop will call `router.replace()` instead
-        of `router.push()` when clicked, so the navigation will not leave
-        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
-        prop on the vue-router documentation.
       theme (string):
         Specify a theme for this component and all of its children.
       value (any):
         The value used for selection. Obtained from [`v-list`](/api/v-list)'s
         `v-model:selected` when the item is selected.
-      color (string):
-        Applies specified color to the control when in an **active**
-        state or **input-value** is **true** - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors),
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
+      active_color (string):
+        The applied color when the component is in an active state.
+      base_color (string):
+        Sets the color of component when not focused.
+      prepend_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component in the **prepend**
+        slot before default content.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      slim (boolean):
+        Reduces horizontal spacing for badges, icons, tooltips, and avatars
+        to create a more compact visual representation.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      exact (boolean):
-        Exactly match the link. Without this, '/' will match every route.
-        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
-        on the vue-router documentation.
-      subtitle (string, number, boolean):
-        Specify a subtitle text for the component.
-      base_color (string):
-        Sets the color of component when not focused.
-      active_color (string):
-        The applied color when the component is in an active state.
-      active_class (string):
-        The class applied to the component when it matches the current
-        route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
-        on the [vue-router](https://router.vuejs.org/) documentation.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      lines (false, 'one', 'two', 'three'):
-        The line declaration specifies the minimum height of the item
-        and can also be controlled from v-list with the same prop.
-      slim (boolean):
-        Reduces horizontal spacing for badges, icons, tooltips, and avatars
-        to create a more compact visual representation.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -8450,29 +8542,24 @@ class VFileUploadItem(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      prepend_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component in the **prepend**
-        slot before default content.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      clearable (boolean):
-        Allows for the component to be cleared.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
+      exact (boolean):
+        Exactly match the link. Without this, '/' will match every route.
+        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
+        on the vue-router documentation.
       to (enum):
         Denotes the target route of the link. You can find more information
         about the [**to** prop](https://router.vuejs.org/api/#to) on
@@ -8481,14 +8568,31 @@ class VFileUploadItem(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
+      color (string):
+        Applies specified color to the control when in an **active**
+        state or **input-value** is **true** - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors),
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      lines (false, 'one', 'two', 'three'):
+        The line declaration specifies the minimum height of the item
+        and can also be controlled from v-list with the same prop.
+      active_class (string):
+        The class applied to the component when it matches the current
+        route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
+        on the [vue-router](https://router.vuejs.org/) documentation.
+      subtitle (string, number, boolean):
+        Specify a subtitle text for the component.
       append_avatar (string):
         Appends a [v-avatar](/components/avatars/) component after default
         content in the **append** slot.
       prepend_avatar (string):
         Prepends a [v-avatar](/components/avatars/) component in the
         **prepend** slot before default content.
+      clearable (boolean):
+        Allows for the component to be cleared.
       show_size (boolean):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VFileUploadItem.json))
       file (File):
@@ -8502,43 +8606,43 @@ class VFileUploadItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VFileUploadItem", children, **kwargs)
         self._attr_names += [
-            "tag",
+            "replace",
             "link",
+            "tag",
             "nav",
             "title",
-            "replace",
             "theme",
             "value",
-            "color",
+            "active",
+            ("active_color", "activeColor"),
+            ("base_color", "baseColor"),
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "slim",
+            "ripple",
+            "border",
             "density",
             "height",
-            "border",
-            "elevation",
-            "rounded",
-            "tile",
-            "exact",
-            "subtitle",
-            ("base_color", "baseColor"),
-            ("active_color", "activeColor"),
-            ("active_class", "activeClass"),
-            "disabled",
-            "lines",
-            "slim",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "variant",
-            ("append_icon", "appendIcon"),
-            ("prepend_icon", "prependIcon"),
-            "clearable",
-            "active",
+            "elevation",
+            "disabled",
+            "rounded",
+            "tile",
             "href",
+            "exact",
             "to",
-            "ripple",
+            "color",
+            "variant",
+            "lines",
+            ("active_class", "activeClass"),
+            "subtitle",
             ("append_avatar", "appendAvatar"),
             ("prepend_avatar", "prependAvatar"),
+            "clearable",
             ("show_size", "showSize"),
             "file",
             ("file_icon", "fileIcon"),
@@ -8555,29 +8659,24 @@ class VFooter(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-footer>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       name (string):
         Assign a specific name for layout registration.
       theme (string):
         Specify a theme for this component and all of its children.
-      absolute (boolean):
-        Applies **position: absolute** to the component.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      height (string, number):
-        Sets the height for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      height (string, number):
+        Sets the height for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      absolute (boolean):
+        Applies **position: absolute** to the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -8585,6 +8684,11 @@ class VFooter(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       order (string, number):
         Adjust the order of the component in relation to its registration order.
       app (boolean):
@@ -8599,13 +8703,13 @@ class VFooter(HtmlElement):
             "tag",
             "name",
             "theme",
-            "absolute",
-            "color",
-            "height",
             "border",
+            "height",
             "elevation",
+            "absolute",
             "rounded",
             "tile",
+            "color",
             "order",
             "app",
         ]
@@ -8618,15 +8722,15 @@ class VForm(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-form>`_.
 
     Args:
+      readonly (boolean):
+        Puts all children inputs into a readonly state.
+      disabled (boolean):
+        Puts all children inputs into a disabled state.
       model_value (boolean):
         The value representing the validity of the form. If the value
         is `null` then no validation has taken place yet, or the form
         has been reset. Otherwise the value will be a `boolean` that
         indicates if validation has passed or not.
-      readonly (boolean):
-        Puts all children inputs into a readonly state.
-      disabled (boolean):
-        Puts all children inputs into a disabled state.
       validate_on (enum):
         Changes the events in which validation occurs.
 
@@ -8639,24 +8743,24 @@ class VForm(HtmlElement):
         ]
       fast_fail (boolean):
         Stop validation as soon as any rules fail.
-      update_modelValue (event):
-        Event emitted when the form's validity changes.
       submit (event):
         Emitted when form is submitted.
+      update_modelValue (event):
+        Event emitted when the form's validity changes.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VForm", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
             "readonly",
             "disabled",
+            ("model_value", "modelValue"),
             ("validate_on", "validateOn"),
             ("fast_fail", "fastFail"),
         ]
         self._event_names += [
-            ("update_modelValue", "update:modelValue"),
             "submit",
+            ("update_modelValue", "update:modelValue"),
         ]
 
 
@@ -8700,14 +8804,20 @@ class VIcon(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-icon>`_.
 
     Args:
-      tag (string):
+      end (boolean):
+        Applies margin at the start of the component.
+      start (boolean):
+        Applies margin at the end of the component.
+      icon (enum):
+        Apply a specific icon using the [v-icon](/components/icons/) component.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
@@ -8715,31 +8825,159 @@ class VIcon(HtmlElement):
         page](/styles/colors#material-colors).
       disabled (boolean):
         Removes the ability to click or target the component.
-      start (boolean):
-        Applies margin at the end of the component.
-      end (boolean):
-        Applies margin at the start of the component.
+      opacity (string, number):
+        Sets the component's opacity value
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
+    """
+
+    def __init__(self, children=None, **kwargs):
+        super().__init__("VIcon", children, **kwargs)
+        self._attr_names += [
+            "end",
+            "start",
+            "icon",
+            "tag",
+            "theme",
+            "color",
+            "disabled",
+            "opacity",
+            "size",
+        ]
+        self._event_names += []
+
+
+class VIconBtn(HtmlElement):
+    """
+    Vuetify's VIconBtn component.
+    See more `info and examples <https://vuetifyjs.com/api/v-icon-btn>`_.
+
+    Args:
+      text (string, number, boolean):
+        Specify content text for the component.
+      border (string, number, boolean):
+        Applies utility border classes to the component. To use it, you
+        need to omit the `border-` prefix, (for example use `border-sm`
+        as `border="sm"`).  Find a list of the built-in border classes
+        on the [borders page](/styles/borders).
       icon (enum):
         Apply a specific icon using the [v-icon](/components/icons/) component.
 
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      height (string, number):
+        Sets the height for the component.
+      width (string, number):
+        Sets the width for the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      active_color (string):
+        The applied color when the component is in an active state.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      opacity (string, number):
+        Sets the component's opacity value
+      size (string, number):
+        Sets the height and width of the component.
+      icon_color (string):
+        Explicit color applied to the icon.
+      readonly (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VIconBtn.json))
+      active (boolean):
+        When undefined (default), the component utilizes its default
+        variant, otherwise it will use the activeVariant if active is
+        true, or the baseVariant if active is false.
+      loading (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VIconBtn.json))
+      sizes (enum):
+        An array of tuples that define the button sizes for each named size.
+
+        Enum values: [
+          ['default', 'small', 'x-small', 'large', 'x-large', number][]
+        ]
+      base_variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        When active is a boolean, this variant is used when active is false.
+      hide_overlay (boolean):
+        Hides overlay from being displayed when active or focused.
+      icon_size (string, number):
+        The specific size of the icon, can use named sizes.
+      icon_sizes (enum):
+        An array of tuples that define the icon sizes for each named size.
+
+        Enum values: [
+          ['default', 'small', 'x-small', 'large', 'x-large', number][]
+        ]
+      rotate (string, number):
+        The rotation of the icon in degrees.
+      active_icon (enum):
+        When active is a boolean, this icon is used when active is true.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      active_variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        When active is a boolean, this variant is used when active is true.
+      update_active (event):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VIconBtn.json))
     """
 
     def __init__(self, children=None, **kwargs):
-        super().__init__("VIcon", children, **kwargs)
+        super().__init__("VIconBtn", children, **kwargs)
         self._attr_names += [
+            "text",
+            "border",
+            "icon",
+            "height",
+            "width",
+            "elevation",
+            "rounded",
+            "tile",
             "tag",
             "theme",
-            "size",
             "color",
+            "variant",
+            ("active_color", "activeColor"),
             "disabled",
-            "start",
-            "end",
-            "icon",
+            "opacity",
+            "size",
+            ("icon_color", "iconColor"),
+            "readonly",
+            "active",
+            "loading",
+            "sizes",
+            ("base_variant", "baseVariant"),
+            ("hide_overlay", "hideOverlay"),
+            ("icon_size", "iconSize"),
+            ("icon_sizes", "iconSizes"),
+            "rotate",
+            ("active_icon", "activeIcon"),
+            ("active_variant", "activeVariant"),
         ]
-        self._event_names += []
+        self._event_names += [
+            ("update_active", "update:active"),
+        ]
 
 
 class VImg(HtmlElement):
@@ -8748,26 +8986,8 @@ class VImg(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-img>`_.
 
     Args:
-      absolute (boolean):
-        Applies position: absolute to the component.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
       height (string, number):
         Sets the height for the component.
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
       max_height (string, number):
         Sets the maximum height for the component.
       max_width (string, number):
@@ -8778,8 +8998,25 @@ class VImg(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
-      content_class (any):
-        Apply a custom class to the internal content element.
+      position (string):
+        Applies [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position)
+        styles to the image and placeholder elements.
+      absolute (boolean):
+        Applies position: absolute to the component.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      inline (boolean):
+        Display as an inline element instead of a block, also disables flex-grow.
       transition (enum):
         The transition to use when switching from `lazy-src` to `src`.
         Can be one of the [built in](/styles/transitions/) or custom
@@ -8788,18 +9025,21 @@ class VImg(HtmlElement):
         Enum values: [
           string, boolean, (TransitionProps & { component: Component })
         ]
+      content_class (any):
+        Apply a custom class to the internal content element.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
+      draggable (boolean, 'true', 'false'):
+        Controls the `draggable` behavior of the image. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable).
       options (IntersectionObserverInit):
         Options that are passed to the [Intersection observer](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API)
         constructor.
-      position (string):
-        Applies [object-position](https://developer.mozilla.org/en-US/docs/Web/CSS/object-position)
-        styles to the image and placeholder elements.
       alt (string):
         Alternate text for screen readers. Leave empty for decorative images.
       cover (boolean):
         Resizes the background image to cover the entire container.
-      draggable (boolean, 'true', 'false'):
-        Controls the `draggable` behavior of the image. See [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/draggable).
       gradient (string):
         The gradient to apply to the image. Only supports [linear-gradient](https://developer.mozilla.org/en-US/docs/Web/CSS/gradient/linear-gradient)
         syntax, anything else should be done with classes.
@@ -8822,8 +9062,6 @@ class VImg(HtmlElement):
       aspect_ratio (string, number):
         Calculated as `width/height`, so for a 1920x1080px image this
         will be `1.7778`. Will be calculated automatically if omitted.
-      inline (boolean):
-        Display as an inline element instead of a block, also disables flex-grow.
       crossorigin ('', 'anonymous', 'use-credentials'):
         Specify that images should be fetched with CORS enabled [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#crossorigin)
       referrerpolicy (enum):
@@ -8845,31 +9083,31 @@ class VImg(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VImg", children, **kwargs)
         self._attr_names += [
-            "absolute",
-            "color",
             "height",
-            "rounded",
-            "tile",
-            "eager",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            ("content_class", "contentClass"),
-            "transition",
-            "options",
             "position",
+            "absolute",
+            "rounded",
+            "tile",
+            "color",
+            "inline",
+            "transition",
+            ("content_class", "contentClass"),
+            "eager",
+            "draggable",
+            "options",
             "alt",
             "cover",
-            "draggable",
             "gradient",
             ("lazy_src", "lazySrc"),
             "sizes",
             "src",
             "srcset",
             ("aspect_ratio", "aspectRatio"),
-            "inline",
             "crossorigin",
             "referrerpolicy",
         ]
@@ -8898,7 +9136,7 @@ class VInfiniteScroll(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       color (string):
         Applies specified color to the control - supports utility colors
@@ -8965,19 +9203,14 @@ class VInput(HtmlElement):
         Specify a theme for this component and all of its children.
       id (string):
         Sets the DOM id on the component.
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -8985,15 +9218,35 @@ class VInput(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      readonly (boolean):
+        Puts input in readonly state.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -9003,16 +9256,12 @@ class VInput(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
-      readonly (boolean):
-        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -9055,23 +9304,27 @@ class VInput(HtmlElement):
             "label",
             "theme",
             "id",
-            ("model_value", "modelValue"),
+            ("base_color", "baseColor"),
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "readonly",
             "density",
-            "disabled",
             ("max_width", "maxWidth"),
             ("min_width", "minWidth"),
             "width",
-            ("append_icon", "appendIcon"),
+            "disabled",
+            "color",
+            ("model_value", "modelValue"),
+            "direction",
             ("center_affix", "centerAffix"),
-            ("prepend_icon", "prependIcon"),
+            "glow",
+            ("icon_color", "iconColor"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
-            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
-            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
@@ -9092,11 +9345,11 @@ class VItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-item>`_.
 
     Args:
+      disabled (boolean):
+        Removes the ability to click or target the component.
       value (any):
         The value used when the component is selected in a group. If
         not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       selected_class (string):
         Configure the active CSS class applied when an item is selected.
       group_selected (event):
@@ -9106,8 +9359,8 @@ class VItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VItem", children, **kwargs)
         self._attr_names += [
-            "value",
             "disabled",
+            "value",
             ("selected_class", "selectedClass"),
         ]
         self._event_names += [
@@ -9124,21 +9377,21 @@ class VItemGroup(HtmlElement):
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
       disabled (boolean):
         Puts all children components into a disabled state.
+      multiple (boolean):
+        Allows one to select multiple items.
+      mandatory (boolean, 'force'):
+        Forces at least one item to always be selected (if available).
       selected_class (string):
         Configure the selected CSS class. This class will be available
         in `v-item` default scoped slot.
       max (number):
         Sets a maximum number of selections that can be made.
-      multiple (boolean):
-        Allows one to select multiple items.
-      mandatory (boolean, 'force'):
-        Forces at least one item to always be selected (if available).
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -9150,10 +9403,10 @@ class VItemGroup(HtmlElement):
             "tag",
             "theme",
             "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
             "multiple",
             "mandatory",
+            ("selected_class", "selectedClass"),
+            "max",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -9255,10 +9508,10 @@ class VLayoutItem(HtmlElement):
         Applies **position: absolute** to the component.
       name (string):
         Assign a specific name for layout registration.
-      size (string, number):
-        Sets the height and width of the component.
       order (string, number):
         Adjust the order of the component in relation to its registration order.
+      size (string, number):
+        Sets the height and width of the component.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -9268,8 +9521,8 @@ class VLayoutItem(HtmlElement):
             "position",
             "absolute",
             "name",
-            "size",
             "order",
+            "size",
         ]
         self._event_names += []
 
@@ -9280,11 +9533,8 @@ class VLazy(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-lazy>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
-      model_value (boolean):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
       height (string, number):
         Sets the height for the component.
       max_height (string, number):
@@ -9297,6 +9547,9 @@ class VLazy(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      model_value (boolean):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -9315,13 +9568,13 @@ class VLazy(HtmlElement):
         super().__init__("VLazy", children, **kwargs)
         self._attr_names += [
             "tag",
-            ("model_value", "modelValue"),
             "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            ("model_value", "modelValue"),
             "transition",
             "options",
         ]
@@ -9342,7 +9595,7 @@ class VLigatureIcon(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
     """
 
@@ -9361,35 +9614,25 @@ class VList(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
-      nav (boolean):
-        An alternative styling that reduces `v-list-item` width and rounds
-        the corners. Typically used with **[v-navigation-drawer](/components/navigation-drawers)**.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      items (any[]):
-        Can be an array of objects or strings. By default objects should
-        have a **title** property, and can optionally have a **props**
-        property containing any [VListItem props](/api/v-list-item/#props),
-        a **value** property to allow selection, and a **children** property
-        containing more item objects. Keys to use for these can be changed
-        with the **item-title**, **item-value**, **item-props**, and
-        **item-children** props.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
@@ -9400,6 +9643,19 @@ class VList(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      activated (any):
+        Array of ids of activated nodes.
       base_color (string):
         Sets the color of component when not focused.
       active_color (string):
@@ -9433,6 +9689,9 @@ class VList(HtmlElement):
       slim (boolean):
         Reduces horizontal spacing for badges, icons, tooltips, and avatars
         within slim list items to create a more compact visual representation.
+      nav (boolean):
+        An alternative styling that reduces `v-list-item` width and rounds
+        the corners. Typically used with **[v-navigation-drawer](/components/navigation-drawers)**.
       activatable (boolean):
         Designates whether the list items are activatable.
       selectable (boolean):
@@ -9440,8 +9699,6 @@ class VList(HtmlElement):
       opened (unknown):
         An array containing the values of currently opened groups. Can
         be two-way bound with `v-model:opened`.
-      activated (any):
-        Array of ids of activated nodes.
       selected (unknown):
         An array containing the values of currently selected items. Can
         be two-way bound with `v-model:selected`.
@@ -9460,26 +9717,26 @@ class VList(HtmlElement):
         - **classic:** Selecting a parent node will cause all children
         to be selected, parent nodes will be displayed as selected if
         all their descendants are selected. Only leaf nodes will be added
-        to the model.
+        to the model. - **trunk**: Same as classic but if all of a node's
+        children are selected then only that node will be added to the
+        model.
       open_strategy (OpenStrategy):
         Affects how items with children behave when expanded. - **multiple:**
         Any number of groups can be open at once. - **single:** Only
         one group at each level can be open, opening a group will cause
         others to close. - **list:** Multiple, but all other groups will
         close when an item is selected.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
       item_type (string):
         Designates the key on the supplied items that is used for determining
         the nodes type.
+      items (any[]):
+        Can be an array of objects or strings. By default objects should
+        have a **title** property, and can optionally have a **props**
+        property containing any [VListItem props](/api/v-list-item/#props),
+        a **value** property to allow selection, and a **children** property
+        containing more item objects. Keys to use for these can be changed
+        with the **item-title**, **item-value**, **item-props**, and
+        **item-children** props.
       item_title (SelectItemKey<any>):
         Property on supplied `items` that contains its title.
       item_value (SelectItemKey<any>):
@@ -9496,8 +9753,6 @@ class VList(HtmlElement):
       value_comparator ((a: any, b: any) => boolean):
         Apply a custom comparison algorithm to compare **model-value**
         and values contains in the **items** prop.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
       click_open (event):
         Emitted when the list item is opened.
       click_select (event):
@@ -9515,17 +9770,22 @@ class VList(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VList", children, **kwargs)
         self._attr_names += [
-            "tag",
-            "nav",
-            "theme",
-            "items",
-            "color",
+            "border",
             "density",
             "height",
-            "border",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "elevation",
             "rounded",
             "tile",
+            "tag",
+            "theme",
+            "color",
+            "variant",
+            "activated",
             ("base_color", "baseColor"),
             ("active_color", "activeColor"),
             ("active_class", "activeClass"),
@@ -9535,28 +9795,23 @@ class VList(HtmlElement):
             ("collapse_icon", "collapseIcon"),
             "lines",
             "slim",
+            "nav",
             "activatable",
             "selectable",
             "opened",
-            "activated",
             "selected",
             "mandatory",
             ("active_strategy", "activeStrategy"),
             ("select_strategy", "selectStrategy"),
             ("open_strategy", "openStrategy"),
-            ("max_height", "maxHeight"),
-            ("max_width", "maxWidth"),
-            ("min_height", "minHeight"),
-            ("min_width", "minWidth"),
-            "width",
             ("item_type", "itemType"),
+            "items",
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
             ("item_children", "itemChildren"),
             ("item_props", "itemProps"),
             ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
-            "variant",
         ]
         self._event_names += [
             ("click_open", "click:open"),
@@ -9574,15 +9829,12 @@ class VListGroup(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-group>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       title (string):
         Specify a title text for the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
+      value (any):
+        Expands / Collapse the list-group.
       active_color (string):
         The applied color when the component is in an active state.
       base_color (string):
@@ -9600,10 +9852,11 @@ class VListGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      value (any):
-        Expands / Collapse the list-group.
-      fluid (boolean):
-        Removes the left padding assigned for action icons from group items.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       expand_icon (enum):
         Icon to display when the list item is collapsed.
 
@@ -9616,6 +9869,8 @@ class VListGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      fluid (boolean):
+        Removes the left padding assigned for action icons from group items.
       subgroup (boolean):
         Designate the component as nested list group.
     """
@@ -9623,17 +9878,17 @@ class VListGroup(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VListGroup", children, **kwargs)
         self._attr_names += [
-            "title",
             "tag",
-            "color",
+            "title",
+            "value",
             ("active_color", "activeColor"),
             ("base_color", "baseColor"),
             ("prepend_icon", "prependIcon"),
             ("append_icon", "appendIcon"),
-            "value",
-            "fluid",
+            "color",
             ("expand_icon", "expandIcon"),
             ("collapse_icon", "collapseIcon"),
+            "fluid",
             "subgroup",
         ]
         self._event_names += []
@@ -9663,13 +9918,6 @@ class VListItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-item>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
-      link (boolean):
-        Designates that the component is a link. This is automatic when
-        using the href or to prop.
-      nav (boolean):
-        Reduces the width v-list-item takes up as well as adding a border radius.
       title (string, number, boolean):
         Generates a `v-list-item-title` component with the supplied value.
         Note that this overrides the native [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title)
@@ -9679,26 +9927,28 @@ class VListItem(HtmlElement):
         of `router.push()` when clicked, so the navigation will not leave
         a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
         prop on the vue-router documentation.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      value (any):
-        The value used for selection. Obtained from [`v-list`](/api/v-list)'s
-        `v-model:selected` when the item is selected.
-      color (string):
-        Applies specified color to the control when in an **active**
-        state or **input-value** is **true** - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors),
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
+      link (boolean):
+        Designates that the component is a link. This is automatic when
+        using the href or to prop.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
@@ -9709,6 +9959,18 @@ class VListItem(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control when in an **active**
+        state or **input-value** is **true** - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors),
+      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
       exact (boolean):
         Exactly match the link. Without this, '/' will match every route.
         You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
@@ -9731,18 +9993,11 @@ class VListItem(HtmlElement):
       slim (boolean):
         Reduces horizontal spacing for badges, icons, tooltips, and avatars
         to create a more compact visual representation.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
+      nav (boolean):
+        Reduces the width v-list-item takes up as well as adding a border radius.
+      value (any):
+        The value used for selection. Obtained from [`v-list`](/api/v-list)'s
+        `v-model:selected` when the item is selected.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -9783,20 +10038,24 @@ class VListItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VListItem", children, **kwargs)
         self._attr_names += [
-            "tag",
-            "link",
-            "nav",
             "title",
             "replace",
-            "theme",
-            "value",
-            "color",
+            "link",
+            "border",
             "density",
             "height",
-            "border",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "elevation",
             "rounded",
             "tile",
+            "tag",
+            "theme",
+            "color",
+            "variant",
             "exact",
             "subtitle",
             ("base_color", "baseColor"),
@@ -9805,12 +10064,8 @@ class VListItem(HtmlElement):
             "disabled",
             "lines",
             "slim",
-            ("max_height", "maxHeight"),
-            ("max_width", "maxWidth"),
-            ("min_height", "minHeight"),
-            ("min_width", "minWidth"),
-            "width",
-            "variant",
+            "nav",
+            "value",
             ("append_icon", "appendIcon"),
             ("prepend_icon", "prependIcon"),
             "active",
@@ -9831,20 +10086,20 @@ class VListItemAction(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-item-action>`_.
 
     Args:
-      end (boolean):
-        Applies margin at the start of the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       start (boolean):
         Applies margin at the end of the component.
-      tag (string):
-        Specify a custom tag used on the root element.
+      end (boolean):
+        Applies margin at the start of the component.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VListItemAction", children, **kwargs)
         self._attr_names += [
-            "end",
-            "start",
             "tag",
+            "start",
+            "end",
         ]
         self._event_names += []
 
@@ -9855,20 +10110,20 @@ class VListItemMedia(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-item-media>`_.
 
     Args:
-      end (boolean):
-        Applies margin at the start of the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       start (boolean):
         Applies margin at the end of the component.
-      tag (string):
-        Specify a custom tag used on the root element.
+      end (boolean):
+        Applies margin at the start of the component.
     """
 
     def __init__(self, children=None, **kwargs):
         super().__init__("VListItemMedia", children, **kwargs)
         self._attr_names += [
-            "end",
-            "start",
             "tag",
+            "start",
+            "end",
         ]
         self._event_names += []
 
@@ -9879,7 +10134,7 @@ class VListItemSubtitle(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-item-subtitle>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       opacity (string, number):
         Sets the component's opacity value
@@ -9918,12 +10173,12 @@ class VListSubheader(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-list-subheader>`_.
 
     Args:
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       title (string):
         Specify a title text for the component.
       sticky (boolean):
         Sticks the header to the top of the table.
-      tag (string):
-        Specify a custom tag used on the root element.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
@@ -9937,9 +10192,9 @@ class VListSubheader(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VListSubheader", children, **kwargs)
         self._attr_names += [
+            "tag",
             "title",
             "sticky",
-            "tag",
             "color",
             "inset",
         ]
@@ -9979,8 +10234,6 @@ class VMain(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-main>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
       height (string, number):
         Sets the height for the component.
       max_height (string, number):
@@ -9993,6 +10246,8 @@ class VMain(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       scrollable (boolean):
         Specify a custom scrollable function.
     """
@@ -10000,13 +10255,13 @@ class VMain(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VMain", children, **kwargs)
         self._attr_names += [
-            "tag",
             "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "tag",
             "scrollable",
         ]
         self._event_names += []
@@ -10018,9 +10273,10 @@ class VMenu(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-menu>`_.
 
     Args:
-      model_value (boolean):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      id (string):
+        The unique identifier of the component.
       height (string, number):
         Sets the height for the component.
       max_height (string, number):
@@ -10033,14 +10289,15 @@ class VMenu(HtmlElement):
         Sets the minimum width for the component. Use `auto` to use the activator width.
       width (string, number):
         Sets the width for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
       location (Anchor):
         Specifies the anchor point for positioning the component, using
         directional cues to align it either horizontally, vertically,
         or both..
-      theme (string):
-        Specify a theme for this component and all of its children.
-      disabled (boolean):
-        Removes the ability to click or target the component.
+      model_value (boolean):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -10049,7 +10306,7 @@ class VMenu(HtmlElement):
           string, boolean, (TransitionProps & { component: Component }),
           { component: Component }
         ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
@@ -10084,7 +10341,7 @@ class VMenu(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -10107,7 +10364,7 @@ class VMenu(HtmlElement):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -10116,7 +10373,7 @@ class VMenu(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
@@ -10126,8 +10383,6 @@ class VMenu(HtmlElement):
         algorithm should handle most scenarios better than is possible
         without teleporting, and you may have unexpected behavior if
         the menu ends up as child of its activator.
-      id (string):
-        The unique identifier of the component.
       submenu (boolean):
         Opens with right arrow and closes on left instead of up/down.
         Implies `location="end"`. Directions are reversed for RTL.
@@ -10138,16 +10393,17 @@ class VMenu(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VMenu", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
+            "theme",
+            "id",
             "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "location",
-            "theme",
             "disabled",
+            "location",
+            ("model_value", "modelValue"),
             "transition",
             "activator",
             ("close_on_back", "closeOnBack"),
@@ -10173,7 +10429,6 @@ class VMenu(HtmlElement):
             "offset",
             ("scroll_strategy", "scrollStrategy"),
             "attach",
-            "id",
             "submenu",
         ]
         self._event_names += [
@@ -10224,36 +10479,26 @@ class VNavigationDrawer(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-navigation-drawer>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
-      name (string):
-        Assign a specific name for layout registration.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      image (string):
-        Apply a specific background image to the component.
-      model_value (boolean):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      location ('top', 'left', 'right', 'bottom', 'start', 'end'):
-        Controls the edge of the screen the drawer is attached to.
-      absolute (boolean):
-        Applies **position: absolute** to the component.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      floating (boolean):
-        A floating drawer has no visible container (no border-right).
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      model_value (boolean):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
+      location ('top', 'end', 'bottom', 'start', 'left', 'right'):
+        Controls the edge of the screen the drawer is attached to.
+      absolute (boolean):
+        Applies **position: absolute** to the component.
+      sticky (boolean):
+        When true, the drawer will remain visible when scrolling past
+        the top of the page.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -10261,10 +10506,23 @@ class VNavigationDrawer(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
+      name (string):
+        Assign a specific name for layout registration.
+      image (string):
+        Apply a specific background image to the component.
+      floating (boolean):
+        A floating drawer has no visible container (no border-right).
       order (string, number):
         Adjust the order of the component in relation to its registration order.
-      width (string, number):
-        Sets the width for the component.
       persistent (boolean):
         Clicking outside or pressing **esc** key will not dismiss the dialog.
       scrim (string, boolean):
@@ -10277,15 +10535,12 @@ class VNavigationDrawer(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
-      sticky (boolean):
-        When true, the drawer will remain visible when scrolling past
-        the top of the page.
       mobile (boolean):
         Determines the display mode of the component. If true, the component
         will be displayed in mobile mode. If false, the component will
         be displayed in desktop mode. If null, will be based on the current
         mobile-breakpoint
-      mobile_breakpoint (number, 'sm', 'md', 'lg', 'xl', 'xxl', 'xs'):
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
         Sets the designated mobile breakpoint for the component. This
         will apply alternate styles for mobile devices such as the `temporary`
         prop, or activate the `bottom` prop when the breakpoint value
@@ -10317,26 +10572,26 @@ class VNavigationDrawer(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VNavigationDrawer", children, **kwargs)
         self._attr_names += [
-            "tag",
-            "name",
-            "theme",
-            "image",
+            "border",
             ("model_value", "modelValue"),
+            "width",
+            "elevation",
             "location",
             "absolute",
-            "color",
-            "floating",
-            "border",
-            "elevation",
+            "sticky",
             "rounded",
             "tile",
+            "tag",
+            "theme",
+            "color",
+            "name",
+            "image",
+            "floating",
             "order",
-            "width",
             "persistent",
             "scrim",
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "sticky",
             "mobile",
             ("mobile_breakpoint", "mobileBreakpoint"),
             ("disable_resize_watcher", "disableResizeWatcher"),
@@ -10389,36 +10644,53 @@ class VNumberInput(HtmlElement):
         Specify a theme for this component and all of its children.
       id (string):
         Sets the DOM id on the component.
-      model_value (number):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
-      color (string):
-        Applies specified color to the control - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      rounded (string, number, boolean):
-        Adds a border radius to the input.
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       base_color (string):
         Sets the color of the input when it is not focused.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      disabled (boolean):
-        Removes the ability to click or target the input.
+      prepend_icon (enum):
+        Prepends an icon to the outnside the component's input, uses
+        the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      readonly (boolean):
+        Puts input in readonly state.
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
       max_width (string, number):
         Sets the maximum width for the component.
       min_width (string, number):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      disabled (boolean):
+        Removes the ability to click or target the input.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
+      rounded (string, number, boolean):
+        Adds a border radius to the input.
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
+      color (string):
+        Applies specified color to the control - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors).
       variant (enum):
         Applies a distinct style to the component.
 
@@ -10426,13 +10698,30 @@ class VNumberInput(HtmlElement):
           'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
           'solo-filled'
         ]
+      max (number):
+        Specifies the maximum allowable value for the input.
+      model_value (number):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      inset (boolean):
+        Applies an indentation to the dividers used in the stepper buttons.
+      prefix (string):
+        Displays prefix text.
+      role (string):
+        The role attribute applied to the input.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       autofocus (boolean):
         Enables autofocus.
       counter (string, number, boolean):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      prefix (string):
-        Displays prefix text.
       placeholder (string):
         Sets the input’s placeholder text.
       persistent_placeholder (boolean):
@@ -10441,25 +10730,13 @@ class VNumberInput(HtmlElement):
         Forces counter to always be visible.
       suffix (string):
         Displays suffix text.
-      role (string):
-        The role attribute applied to the input.
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
-      prepend_icon (enum):
-        Prepends an icon to the outnside the component's input, uses
-        the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -10469,16 +10746,12 @@ class VNumberInput(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
-      readonly (boolean):
-        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -10515,9 +10788,6 @@ class VNumberInput(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -10531,24 +10801,13 @@ class VNumberInput(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       counter_value (number, js_fn):
         Function returns the counter display text.
       model_modifiers (unknown):
         **FOR INTERNAL USE ONLY**
-      max (number):
-        Specifies the maximum allowable value for the input.
       min (number):
         Specifies the minimum allowable value for the input.
-      inset (boolean):
-        Applies an indentation to the dividers used in the stepper buttons.
-      control_variant ('default', 'split', 'hidden', 'stacked'):
+      control_variant ('split', 'default', 'hidden', 'stacked'):
         The color of the control. It defaults to the value of `variant` prop.
       hide_input (boolean):
         Hide the input field.
@@ -10585,37 +10844,43 @@ class VNumberInput(HtmlElement):
             "label",
             "theme",
             "id",
-            ("model_value", "modelValue"),
-            "color",
-            "density",
-            "rounded",
-            "tile",
+            "active",
             ("base_color", "baseColor"),
-            ("bg_color", "bgColor"),
-            "disabled",
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "readonly",
+            "density",
             ("max_width", "maxWidth"),
             ("min_width", "minWidth"),
             "width",
+            "disabled",
+            "loading",
+            "rounded",
+            "tile",
+            "color",
             "variant",
+            "max",
+            ("model_value", "modelValue"),
+            ("bg_color", "bgColor"),
+            "inset",
+            "prefix",
+            "role",
+            "direction",
             "autofocus",
             "counter",
-            "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
-            "role",
-            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
-            ("prepend_icon", "prependIcon"),
+            "glow",
+            ("icon_color", "iconColor"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
-            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
-            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             "focused",
@@ -10623,17 +10888,13 @@ class VNumberInput(HtmlElement):
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
-            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
-            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
-            "max",
             "min",
-            "inset",
             ("control_variant", "controlVariant"),
             ("hide_input", "hideInput"),
             "step",
@@ -10696,10 +10957,27 @@ class VOtpInput(HtmlElement):
           'outlined', 'plain', 'underlined', 'filled', 'solo', 'solo-inverted',
           'solo-filled'
         ]
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      divider (string):
+        Specifies the dividing character between items.
       base_color (string):
         Sets the color of the input when it is not focused.
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
       disabled (boolean):
         Removes the ability to click or target the input.
+      autofocus (boolean):
+        Automatically focuses the first input on page load
+      placeholder (string):
+        Sets the input’s placeholder text.
+      focused (boolean):
+        Forces a focused state styling on the component.
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -10707,23 +10985,6 @@ class VOtpInput(HtmlElement):
         **warning**, **error**) or a Boolean which uses the component
         **color** (set by color prop - if it's supported by the component)
         or the primary color.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      divider (string):
-        Specifies the dividing character between items.
-      focused (boolean):
-        Forces a focused state styling on the component.
-      autofocus (boolean):
-        Automatically focuses the first input on page load
-      placeholder (string):
-        Sets the input’s placeholder text.
       focus_all (boolean):
         Puts all inputs into a focus state when any are focused
       update_modelValue (event):
@@ -10751,15 +11012,15 @@ class VOtpInput(HtmlElement):
             "theme",
             "color",
             "variant",
-            ("base_color", "baseColor"),
-            "disabled",
-            "loading",
             "label",
-            ("bg_color", "bgColor"),
             "divider",
-            "focused",
+            ("base_color", "baseColor"),
+            ("bg_color", "bgColor"),
+            "disabled",
             "autofocus",
             "placeholder",
+            "focused",
+            "loading",
             ("focus_all", "focusAll"),
         ]
         self._event_names += [
@@ -10798,16 +11059,13 @@ class VOverlay(HtmlElement):
         Applies **position: absolute** to the content element.
       theme (string):
         Specify a theme for this component and all of its children.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
@@ -10842,7 +11100,7 @@ class VOverlay(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -10861,11 +11119,7 @@ class VOverlay(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -10874,22 +11128,29 @@ class VOverlay(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component })
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
         or `true` to disable teleporting. Uses `body` by default.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
+      click_outside (event):
+        Event that fires when clicking outside an active overlay.
       keydown (event):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VOverlay.json))
       afterEnter (event):
         Event that fires after the overlay has finished transitioning in.
       afterLeave (event):
         Event that fires after the overlay has finished transitioning out.
-      click_outside (event):
-        Event that fires when clicking outside an active overlay.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -10905,8 +11166,8 @@ class VOverlay(HtmlElement):
             "location",
             "absolute",
             "theme",
+            "eager",
             "disabled",
-            "transition",
             "activator",
             ("close_on_back", "closeOnBack"),
             "contained",
@@ -10925,19 +11186,19 @@ class VOverlay(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
             ("scroll_strategy", "scrollStrategy"),
+            "transition",
             "attach",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
+            ("click_outside", "click:outside"),
             "keydown",
             "afterEnter",
             "afterLeave",
-            ("click_outside", "click:outside"),
         ]
 
 
@@ -10971,7 +11232,7 @@ class VPagination(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -11137,7 +11398,7 @@ class VPicker(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -11146,7 +11407,7 @@ class VPicker(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -11161,10 +11422,12 @@ class VPicker(HtmlElement):
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      landscape (boolean):
-        Puts the picker into landscape mode.
       hide_header (boolean):
         Hide the picker header.
+      divided (boolean):
+        Adds a divider between the header and controls.
+      landscape (boolean):
+        Puts the picker into landscape mode.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -11187,8 +11450,9 @@ class VPicker(HtmlElement):
             "theme",
             "color",
             ("bg_color", "bgColor"),
-            "landscape",
             ("hide_header", "hideHeader"),
+            "divided",
+            "landscape",
         ]
         self._event_names += []
 
@@ -11221,7 +11485,7 @@ class VProgressCircular(HtmlElement):
         The percentage value for current progress.
       width (string, number):
         Sets the stroke of the circle in pixels.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -11230,14 +11494,14 @@ class VProgressCircular(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      size (string, number):
-        Sets the diameter of the circle in pixels.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
+      size (string, number):
+        Sets the diameter of the circle in pixels.
       indeterminate (boolean, 'disable-shrink'):
         Constantly animates, use when loading progress is unknown. If
         set to the string `'disable-shrink'` it will use a simpler animation
@@ -11254,8 +11518,8 @@ class VProgressCircular(HtmlElement):
             "tag",
             "theme",
             "color",
-            "size",
             ("bg_color", "bgColor"),
+            "size",
             "indeterminate",
             "rotate",
         ]
@@ -11287,7 +11551,7 @@ class VProgressLinear(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -11296,10 +11560,6 @@ class VProgressLinear(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      active (boolean):
-        Reduce the height to 0, hiding component.
-      max (string, number):
-        Sets the maximum value the progress can reach.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
@@ -11308,6 +11568,10 @@ class VProgressLinear(HtmlElement):
         the [colors page](/styles/colors#material-colors).
       opacity (string, number):
         Set the opacity of the progress bar.
+      active (boolean):
+        Reduce the height to 0, hiding component.
+      max (string, number):
+        Sets the maximum value the progress can reach.
       indeterminate (boolean):
         Constantly animates, use when loading progress is unknown.
       bg_opacity (string, number):
@@ -11345,10 +11609,10 @@ class VProgressLinear(HtmlElement):
             "tag",
             "theme",
             "color",
-            "active",
-            "max",
             ("bg_color", "bgColor"),
             "opacity",
+            "active",
+            "max",
             "indeterminate",
             ("bg_opacity", "bgOpacity"),
             ("buffer_value", "bufferValue"),
@@ -11413,32 +11677,35 @@ class VRadio(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
       base_color (string):
         Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      multiple (boolean):
+        Changes select to multiple. Accepts array for value.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       readonly (boolean):
         Puts input in readonly state.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       inline (boolean):
         Puts children inputs into a row.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      multiple (boolean):
-        Changes select to multiple. Accepts array for value.
       true_value (any):
         Sets value for truthy state.
       false_value (any):
         Sets value for falsy state.
       defaults_target (string):
         The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
       false_icon (enum):
         The icon used when inactive.
 
@@ -11451,9 +11718,6 @@ class VRadio(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -11466,21 +11730,21 @@ class VRadio(HtmlElement):
             "theme",
             "color",
             "name",
+            "label",
             ("base_color", "baseColor"),
+            "disabled",
+            "multiple",
+            "value",
+            ("value_comparator", "valueComparator"),
+            "id",
             "readonly",
             "ripple",
-            "value",
-            "disabled",
             "inline",
-            "label",
-            "multiple",
             ("true_value", "trueValue"),
             ("false_value", "falseValue"),
             ("defaults_target", "defaultsTarget"),
-            "id",
             ("false_icon", "falseIcon"),
             ("true_icon", "trueIcon"),
-            ("value_comparator", "valueComparator"),
         ]
         self._event_names += []
 
@@ -11517,12 +11781,18 @@ class VRadioGroup(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -11530,43 +11800,19 @@ class VRadioGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      readonly (boolean):
-        Puts input in readonly state.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      inline (boolean):
-        Displays radio buttons in row.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      defaults_target (string):
-        The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
-      false_icon (enum):
-        The icon used when inactive.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      true_icon (enum):
-        The icon used when active.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
-      focused (boolean):
-        Forces a focused state styling on the component.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -11576,12 +11822,16 @@ class VRadioGroup(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -11600,18 +11850,38 @@ class VRadioGroup(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
         counter value etc) to display.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      inline (boolean):
+        Displays radio buttons in row.
+      defaults_target (string):
+        The target component to provide defaults values for.
+      false_icon (enum):
+        The icon used when inactive.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      true_icon (enum):
+        The icon used when active.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Event that is emitted when the component's focus state changes.
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when appended icon is clicked.
+      update_focused (event):
+        Event that is emitted when the component's focus state changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -11628,37 +11898,40 @@ class VRadioGroup(HtmlElement):
             "theme",
             "color",
             "name",
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "ripple",
-            "disabled",
-            "inline",
             "label",
-            "direction",
-            ("defaults_target", "defaultsTarget"),
-            "id",
-            ("false_icon", "falseIcon"),
-            ("true_icon", "trueIcon"),
+            ("base_color", "baseColor"),
+            "disabled",
             ("value_comparator", "valueComparator"),
-            "focused",
+            "id",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
+            "ripple",
+            "inline",
+            ("defaults_target", "defaultsTarget"),
+            ("false_icon", "falseIcon"),
+            ("true_icon", "trueIcon"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
         ]
 
 
@@ -11702,12 +11975,15 @@ class VRangeSlider(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      id (string):
+        Sets the DOM id on the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -11715,26 +11991,19 @@ class VRangeSlider(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      readonly (boolean):
-        Puts input in readonly state.
-      ripple (boolean):
-        Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      max (string, number):
-        Sets the maximum allowed value.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      id (string):
-        Sets the DOM id on the component.
-      focused (boolean):
-        Forces a focused state styling on the component.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -11744,12 +12013,16 @@ class VRangeSlider(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -11768,10 +12041,16 @@ class VRangeSlider(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
         counter value etc) to display.
+      ripple (boolean):
+        Applies the [v-ripple](/directives/ripple) directive.
+      max (string, number):
+        Sets the maximum allowed value.
       min (string, number):
         Sets the minimum allowed value.
       step (string, number):
@@ -11801,12 +12080,12 @@ class VRangeSlider(HtmlElement):
         Disallows dragging the ending thumb past the starting thumb and vice versa.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Event that is emitted when the component's focus state changes.
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when appended icon is clicked.
+      update_focused (event):
+        Event that is emitted when the component's focus state changes.
       end (event):
         Slider value emitted at the end of slider movement.
       start (event):
@@ -11829,27 +12108,30 @@ class VRangeSlider(HtmlElement):
             "theme",
             "color",
             "name",
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "ripple",
-            "disabled",
             "label",
-            "max",
-            "direction",
+            ("base_color", "baseColor"),
+            "disabled",
             "id",
-            "focused",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
+            "ripple",
+            "max",
             "min",
             "step",
             ("thumb_color", "thumbColor"),
@@ -11865,9 +12147,9 @@ class VRangeSlider(HtmlElement):
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             "end",
             "start",
         ]
@@ -11886,7 +12168,7 @@ class VRating(HtmlElement):
         **multiple** prop, this defaults to an empty array.
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -11899,20 +12181,20 @@ class VRating(HtmlElement):
         Sets the component's name attribute.
       active_color (string):
         The applied color when the component is in an active state.
-      readonly (boolean):
-        Removes all hover effects and pointer events.
-      ripple (boolean):
-        Applies the [v-ripple](/directives/ripple) directive.
       disabled (boolean):
         Removes the ability to click or target the component.
       size (string, number):
         Sets the height and width of the component. Default unit is px.
         Can also use the following predefined sizes: **x-small**, **small**,
         **default**, **large**, and **x-large**.
-      hover (boolean):
-        Provides visual feedback when hovering over icons.
+      readonly (boolean):
+        Removes all hover effects and pointer events.
       clearable (boolean):
         Allows for the component to be cleared by clicking on the current value.
+      ripple (boolean):
+        Applies the [v-ripple](/directives/ripple) directive.
+      hover (boolean):
+        Provides visual feedback when hovering over icons.
       item_aria_label (string):
         The **aria-label** used for each item.
       empty_icon (enum):
@@ -11948,12 +12230,12 @@ class VRating(HtmlElement):
             "color",
             "name",
             ("active_color", "activeColor"),
-            "readonly",
-            "ripple",
             "disabled",
             "size",
-            "hover",
+            "readonly",
             "clearable",
+            "ripple",
+            "hover",
             ("item_aria_label", "itemAriaLabel"),
             ("empty_icon", "emptyIcon"),
             ("full_icon", "fullIcon"),
@@ -11984,14 +12266,14 @@ class VResponsive(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
-      inline (boolean):
-        Display as an inline element instead of a block, also disables flex-grow.
       content_class (any):
         Apply a custom class to the internal content element.
       aspect_ratio (string, number):
         Sets a base aspect ratio, calculated as width/height. This will
         only set a **minimum** height, the component can still grow if
         it has a lot of content.
+      inline (boolean):
+        Display as an inline element instead of a block, also disables flex-grow.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -12003,9 +12285,9 @@ class VResponsive(HtmlElement):
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
-            "inline",
             ("content_class", "contentClass"),
             ("aspect_ratio", "aspectRatio"),
+            "inline",
         ]
         self._event_names += []
 
@@ -12016,7 +12298,7 @@ class VRow(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-row>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       align ('end', 'start', 'center', 'baseline', 'stretch'):
         Applies the [align-items](https://developer.mozilla.org/en-US/docs/Web/CSS/align-items)
@@ -12164,12 +12446,12 @@ class VScaleTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -12181,8 +12463,8 @@ class VScaleTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -12201,12 +12483,12 @@ class VScrollXReverseTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -12218,8 +12500,8 @@ class VScrollXReverseTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -12238,12 +12520,12 @@ class VScrollXTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -12255,8 +12537,8 @@ class VScrollXTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -12275,12 +12557,12 @@ class VScrollYReverseTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -12292,8 +12574,8 @@ class VScrollYReverseTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -12312,12 +12594,12 @@ class VScrollYTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -12329,8 +12611,8 @@ class VScrollYTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -12382,39 +12664,83 @@ class VSelect(HtmlElement):
         ]
       name (string):
         Sets the component's name attribute.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the outnside the component's input, uses
-        the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      readonly (boolean):
-        Puts input in readonly state.
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       label (string):
         Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
         component.
+      chips (boolean):
+        Changes display of selections to chips.
+      closable_chips (boolean):
+        Enables the [closable](/api/v-chip/#props-closable) prop on all
+        [v-chip](/components/chips/) components.
+      close_text (string):
+        Text set to the inputs `aria-label` and `title` when input menu is closed.
+      open_text (string):
+        Text set to the inputs **aria-label** and **title** when input menu is open.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
+      hide_no_data (boolean):
+        Hides the menu when there are no options to show.  Useful for
+        preventing the menu from opening before results are fetched asynchronously.
+         Also has the effect of opening the menu when the `items` array
+        changes if not already open.
+      hide_selected (boolean):
+        Do not display in the select menu items that are already selected.
+      list_props (unknown):
+        Pass props through to the `v-list` component. Accepts an object
+        with anything from [v-list](/api/v-list/#props) props, camelCase
+        keys are recommended.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      disabled (boolean):
+        Removes the ability to click or target the input.
+      multiple (boolean):
+        Changes select to multiple. Accepts array for value.
+      items (any[]):
+        Can be an array of objects or strings. By default objects should
+        have **title** and **value** properties, and can optionally have
+        a **props** property containing any [VListItem props](/api/v-list-item/#props).
+        Keys to use for these can be changed with the **item-title**,
+        **item-value**, and **item-props** props.
+      item_title (SelectItemKey<any>):
+        Property on supplied `items` that contains its title.
+      item_value (SelectItemKey<any>):
+        Set property of **items**'s value - **must be primitive**. Dot
+        notation is supported. **Note:** This is currently not supported
+        with `v-combobox` [GitHub Issue](https://github.com/vuetifyjs/vuetify/issues/5479).
+      item_children (SelectItemKey):
+        This property currently has **no effect**.
+      item_props (SelectItemKey<any>):
+        Props object that will be applied to each item component. `true`
+        will treat the original object as raw props and pass it directly
+        to the component.
+      return_object (boolean):
+        Changes the selection behavior to return the object directly
+        rather than the value specified with **item-value**.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      menu (boolean):
+        Renders with the menu open by default.
+      menu_icon (enum):
+        Sets the the spin icon.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      menu_props (unknown):
+        Pass props through to the `v-menu` component. Accepts an object
+        with anything from [v-menu](/api/v-menu/#props) props, camelCase
+        keys are recommended.
+      id (string):
+        Sets the DOM id on the component.
       transition (enum):
         Sets the component transition. Can be one of the [built in](/styles/transitions/)
         or custom transition.
@@ -12423,54 +12749,18 @@ class VSelect(HtmlElement):
           string, boolean, (TransitionProps & { component: Component }),
           { component: Component }
         ]
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      menu (boolean):
-        Renders with the menu open by default.
-      multiple (boolean):
-        Changes select to multiple. Accepts array for value.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      id (string):
-        Sets the DOM id on the component.
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
-      hide_no_data (boolean):
-        Hides the menu when there are no options to show.  Useful for
-        preventing the menu from opening before results are fetched asynchronously.
-         Also has the effect of opening the menu when the `items` array
-        changes if not already open.
-      items (any[]):
-        Can be an array of objects or strings. By default objects should
-        have **title** and **value** properties, and can optionally have
-        a **props** property containing any [VListItem props](/api/v-list-item/#props).
-        Keys to use for these can be changed with the **item-title**,
-        **item-value**, and **item-props** props.
       no_data_text (string):
         Text shown when no items are provided to the component.
-      item_value (SelectItemKey<any>):
-        Set property of **items**'s value - **must be primitive**. Dot
-        notation is supported. **Note:** This is currently not supported
-        with `v-combobox` [GitHub Issue](https://github.com/vuetifyjs/vuetify/issues/5479).
-      return_object (boolean):
-        Changes the selection behavior to return the object directly
-        rather than the value specified with **item-value**.
+      open_on_clear (boolean):
+        When using the **clearable** prop, once cleared, the select menu
+        will either open or stay open, depending on the current state.
+      item_color (string):
+        Sets color of selected items.
+      autofocus (boolean):
+        Enables autofocus.
       counter (string, number, boolean):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      focused (boolean):
-        Forces a focused state styling on the component.
-      autofocus (boolean):
-        Enables autofocus.
       prefix (string):
         Displays prefix text.
       placeholder (string):
@@ -12483,9 +12773,27 @@ class VSelect(HtmlElement):
         Displays suffix text.
       role (string):
         The role attribute applied to the input.
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the outnside the component's input, uses
+        the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -12495,12 +12803,16 @@ class VSelect(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -12517,6 +12829,8 @@ class VSelect(HtmlElement):
           'lazy blur', 'lazy input', 'lazy submit', 'lazy invalid-input',
           'eager blur', 'eager input', 'eager submit', 'eager invalid-input'
         ]
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
@@ -12529,6 +12843,9 @@ class VSelect(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       persistent_clear (boolean):
         Always show the clearable icon when the input is dirty (By default
         it only shows on hover).
@@ -12540,56 +12857,25 @@ class VSelect(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       counter_value (number, js_fn):
         Function returns the counter display text.
       model_modifiers (unknown):
         **FOR INTERNAL USE ONLY**
-      chips (boolean):
-        Changes display of selections to chips.
-      closable_chips (boolean):
-        Enables the [closable](/api/v-chip/#props-closable) prop on all
-        [v-chip](/components/chips/) components.
-      close_text (string):
-        Text set to the inputs `aria-label` and `title` when input menu is closed.
-      open_text (string):
-        Text set to the inputs **aria-label** and **title** when input menu is open.
-      hide_selected (boolean):
-        Do not display in the select menu items that are already selected.
-      list_props (unknown):
-        Pass props through to the `v-list` component. Accepts an object
-        with anything from [v-list](/api/v-list/#props) props, camelCase
-        keys are recommended.
-      item_title (SelectItemKey<any>):
-        Property on supplied `items` that contains its title.
-      item_children (SelectItemKey):
-        This property currently has **no effect**.
-      item_props (SelectItemKey<any>):
-        Props object that will be applied to each item component. `true`
-        will treat the original object as raw props and pass it directly
-        to the component.
-      menu_icon (enum):
-        Sets the the spin icon.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      menu_props (unknown):
-        Pass props through to the `v-menu` component. Accepts an object
-        with anything from [v-menu](/api/v-menu/#props) props, camelCase
-        keys are recommended.
-      open_on_clear (boolean):
-        When using the **clearable** prop, once cleared, the select menu
-        will either open or stay open, depending on the current state.
-      item_color (string):
-        Sets color of selected items.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Emitted when the input is focused or blurred
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when append icon is clicked.
+      update_focused (event):
+        Emitted when the input is focused or blurred
       click_clear (event):
         Emitted when clearable icon clicked.
       click_appendInner (event):
@@ -12619,72 +12905,74 @@ class VSelect(HtmlElement):
             "color",
             "variant",
             "name",
-            "active",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "disabled",
-            "loading",
             "label",
-            "transition",
-            ("bg_color", "bgColor"),
-            "menu",
-            "multiple",
+            "chips",
+            ("closable_chips", "closableChips"),
+            ("close_text", "closeText"),
+            ("open_text", "openText"),
             "eager",
-            "direction",
-            "id",
-            ("value_comparator", "valueComparator"),
             ("hide_no_data", "hideNoData"),
+            ("hide_selected", "hideSelected"),
+            ("list_props", "listProps"),
+            ("base_color", "baseColor"),
+            ("bg_color", "bgColor"),
+            "disabled",
+            "multiple",
             "items",
-            ("no_data_text", "noDataText"),
+            ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
+            ("item_children", "itemChildren"),
+            ("item_props", "itemProps"),
             ("return_object", "returnObject"),
-            "counter",
-            "focused",
+            ("value_comparator", "valueComparator"),
+            "menu",
+            ("menu_icon", "menuIcon"),
+            ("menu_props", "menuProps"),
+            "id",
+            "transition",
+            ("no_data_text", "noDataText"),
+            ("open_on_clear", "openOnClear"),
+            ("item_color", "itemColor"),
             "autofocus",
+            "counter",
             "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
             "role",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
+            "focused",
             ("hide_details", "hideDetails"),
             "clearable",
             ("clear_icon", "clearIcon"),
+            "active",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
+            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
-            "chips",
-            ("closable_chips", "closableChips"),
-            ("close_text", "closeText"),
-            ("open_text", "openText"),
-            ("hide_selected", "hideSelected"),
-            ("list_props", "listProps"),
-            ("item_title", "itemTitle"),
-            ("item_children", "itemChildren"),
-            ("item_props", "itemProps"),
-            ("menu_icon", "menuIcon"),
-            ("menu_props", "menuProps"),
-            ("open_on_clear", "openOnClear"),
-            ("item_color", "itemColor"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             ("click_clear", "click:clear"),
             ("click_appendInner", "click:appendInner"),
             ("click_prependInner", "click:prependInner"),
@@ -12716,32 +13004,35 @@ class VSelectionControl(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
       base_color (string):
         Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      multiple (boolean):
+        Changes select to multiple. Accepts array for value.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       readonly (boolean):
         Puts input in readonly state.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       inline (boolean):
         Puts children inputs into a row.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      multiple (boolean):
-        Changes select to multiple. Accepts array for value.
       true_value (any):
         Sets value for truthy state.
       false_value (any):
         Sets value for falsy state.
       defaults_target (string):
         The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
       false_icon (enum):
         The icon used when inactive.
 
@@ -12754,9 +13045,6 @@ class VSelectionControl(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -12771,21 +13059,21 @@ class VSelectionControl(HtmlElement):
             "theme",
             "color",
             "name",
+            "label",
             ("base_color", "baseColor"),
+            "disabled",
+            "multiple",
+            "value",
+            ("value_comparator", "valueComparator"),
+            "id",
             "readonly",
             "ripple",
-            "value",
-            "disabled",
             "inline",
-            "label",
-            "multiple",
             ("true_value", "trueValue"),
             ("false_value", "falseValue"),
             ("defaults_target", "defaultsTarget"),
-            "id",
             ("false_icon", "falseIcon"),
             ("true_icon", "trueIcon"),
-            ("value_comparator", "valueComparator"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -12816,20 +13104,23 @@ class VSelectionControlGroup(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      multiple (boolean):
+        Changes select to multiple. Accepts array for value.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       readonly (boolean):
         Puts input in readonly state.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       inline (boolean):
         Puts children inputs into a row.
-      multiple (boolean):
-        Changes select to multiple. Accepts array for value.
       defaults_target (string):
         The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
       false_icon (enum):
         The icon used when inactive.
 
@@ -12842,9 +13133,6 @@ class VSelectionControlGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -12859,16 +13147,16 @@ class VSelectionControlGroup(HtmlElement):
             "theme",
             "color",
             "name",
+            "disabled",
+            "multiple",
+            ("value_comparator", "valueComparator"),
+            "id",
             "readonly",
             "ripple",
-            "disabled",
             "inline",
-            "multiple",
             ("defaults_target", "defaultsTarget"),
-            "id",
             ("false_icon", "falseIcon"),
             ("true_icon", "trueIcon"),
-            ("value_comparator", "valueComparator"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -12904,7 +13192,7 @@ class VSheet(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -12913,7 +13201,7 @@ class VSheet(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -12962,15 +13250,15 @@ class VSkeletonLoader(HtmlElement):
         pre-defined options.
 
         Enum values: [
-          'text', (string & {}), 'button', 'image', 'actions', 'avatar',
-          'article', 'table', 'divider', 'subtitle', 'chip', 'heading',
+          'text', (string & {}), 'image', 'chip', 'subtitle', 'divider',
+          'button', 'actions', 'article', 'table', 'avatar', 'heading',
           'sentences', 'paragraph', 'ossein', 'card', 'card-avatar', 'date-picker',
           'date-picker-options', 'date-picker-days', 'list-item', 'list-item-avatar',
           'list-item-two-line', 'list-item-avatar-two-line', 'list-item-three-line',
           'list-item-avatar-three-line', 'table-heading', 'table-thead',
           'table-tbody', 'table-row-divider', 'table-row', 'table-tfoot',
-          (, 'text', (string & {}), 'button', 'image', 'actions', 'avatar',
-          'article', 'table', 'divider', 'subtitle', 'chip', 'heading',
+          (, 'text', (string & {}), 'image', 'chip', 'subtitle', 'divider',
+          'button', 'actions', 'article', 'table', 'avatar', 'heading',
           'sentences', 'paragraph', 'ossein', 'card', 'card-avatar', 'date-picker',
           'date-picker-options', 'date-picker-days', 'list-item', 'list-item-avatar',
           'list-item-two-line', 'list-item-avatar-two-line', 'list-item-three-line',
@@ -13043,25 +13331,20 @@ class VSlideGroup(HtmlElement):
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       disabled (boolean):
         Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Sets the designated mobile breakpoint for the component.
       multiple (boolean):
         Allows one to select multiple items.
       mandatory (boolean, 'force'):
         Forces at least one item to always be selected (if available).
+      direction ('horizontal', 'vertical'):
+        Switch between horizontal and vertical modes.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      max (number):
+        Sets a maximum number of selections that can be made.
       next_icon (enum):
         The appended slot when arrows are shown.
 
@@ -13074,6 +13357,8 @@ class VSlideGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      center_active (boolean):
+        Forces the selected component to be centered.
       show_arrows (string, boolean):
         Change when the overflow arrow indicators are shown. By **default**,
         arrows *always* display on Desktop when the container is overflowing.
@@ -13085,10 +13370,13 @@ class VSlideGroup(HtmlElement):
         displays arrows on Desktop *and* Mobile. Find more information
         on how to customize breakpoint thresholds on the [breakpoints
         page](/customizing/breakpoints).
-      direction ('horizontal', 'vertical'):
-        Switch between horizontal and vertical modes.
-      center_active (boolean):
-        Forces the selected component to be centered.
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Sets the designated mobile breakpoint for the component.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -13100,17 +13388,17 @@ class VSlideGroup(HtmlElement):
             ("model_value", "modelValue"),
             "tag",
             "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
             "multiple",
             "mandatory",
+            "direction",
+            ("selected_class", "selectedClass"),
+            "max",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
-            ("show_arrows", "showArrows"),
-            "direction",
             ("center_active", "centerActive"),
+            ("show_arrows", "showArrows"),
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -13123,11 +13411,11 @@ class VSlideGroupItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-slide-group-item>`_.
 
     Args:
+      disabled (boolean):
+        Removes the ability to click or target the component.
       value (any):
         The value used when the component is selected in a group. If
         not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       selected_class (string):
         Configure the active CSS class applied when an item is selected.
       group_selected (event):
@@ -13137,8 +13425,8 @@ class VSlideGroupItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VSlideGroupItem", children, **kwargs)
         self._attr_names += [
-            "value",
             "disabled",
+            "value",
             ("selected_class", "selectedClass"),
         ]
         self._event_names += [
@@ -13158,12 +13446,12 @@ class VSlideXReverseTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -13175,8 +13463,8 @@ class VSlideXReverseTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -13195,12 +13483,12 @@ class VSlideXTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -13212,8 +13500,8 @@ class VSlideXTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -13232,12 +13520,12 @@ class VSlideYReverseTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -13249,8 +13537,8 @@ class VSlideYReverseTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -13269,12 +13557,12 @@ class VSlideYTransition(HtmlElement):
         Sets the transition mode (does not apply to transition-group).
         You can find more information on the Vue documentation [for transition
         modes](https://vuejs.org/api/built-in-components.html#transition).
-      group (boolean):
-        Creates a `transition-group` component. You can find more information
-        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       origin (string):
         Sets the transition origin on the element. You can find more
         information on the MDN documentation [for transition origin](https://developer.mozilla.org/en-US/docs/Web/CSS/transform-origin).
+      group (boolean):
+        Creates a `transition-group` component. You can find more information
+        in the [vue docs](https://vuejs.org/api/built-in-components.html#transitiongroup).
       hide_on_leave (boolean):
         Hides the leaving element (no exit animation).
       leave_absolute (boolean):
@@ -13286,8 +13574,8 @@ class VSlideYTransition(HtmlElement):
         self._attr_names += [
             "disabled",
             "mode",
-            "group",
             "origin",
+            "group",
             ("hide_on_leave", "hideOnLeave"),
             ("leave_absolute", "leaveAbsolute"),
         ]
@@ -13334,12 +13622,15 @@ class VSlider(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      id (string):
+        Sets the DOM id on the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -13347,26 +13638,19 @@ class VSlider(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      readonly (boolean):
-        Puts input in readonly state.
-      ripple (boolean):
-        Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      max (string, number):
-        Sets the maximum allowed value.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      id (string):
-        Sets the DOM id on the component.
-      focused (boolean):
-        Forces a focused state styling on the component.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -13376,12 +13660,16 @@ class VSlider(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -13400,10 +13688,16 @@ class VSlider(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
         counter value etc) to display.
+      ripple (boolean):
+        Applies the [v-ripple](/directives/ripple) directive.
+      max (string, number):
+        Sets the maximum allowed value.
       min (string, number):
         Sets the minimum allowed value.
       step (string, number):
@@ -13431,12 +13725,12 @@ class VSlider(HtmlElement):
         Sets the track's size (height).
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Event that is emitted when the component's focus state changes.
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when appended icon is clicked.
+      update_focused (event):
+        Event that is emitted when the component's focus state changes.
       end (event):
         Slider value emitted at the end of slider movement.
       start (event):
@@ -13459,27 +13753,30 @@ class VSlider(HtmlElement):
             "theme",
             "color",
             "name",
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "ripple",
-            "disabled",
             "label",
-            "max",
-            "direction",
+            ("base_color", "baseColor"),
+            "disabled",
             "id",
-            "focused",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
+            "ripple",
+            "max",
             "min",
             "step",
             ("thumb_color", "thumbColor"),
@@ -13494,9 +13791,9 @@ class VSlider(HtmlElement):
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             "end",
             "start",
         ]
@@ -13529,7 +13826,7 @@ class VSnackbar(HtmlElement):
         Specifies the anchor point for positioning the component, using
         directional cues to align it either horizontally, vertically,
         or both..
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       absolute (boolean):
         Applies **position: absolute** to the content element.
@@ -13549,16 +13846,13 @@ class VSnackbar(HtmlElement):
         page](/styles/colors#material-colors).
       variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
@@ -13586,7 +13880,7 @@ class VSnackbar(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -13605,11 +13899,7 @@ class VSnackbar(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -13618,6 +13908,13 @@ class VSnackbar(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component })
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
@@ -13657,8 +13954,8 @@ class VSnackbar(HtmlElement):
             "theme",
             "color",
             "variant",
+            "eager",
             "disabled",
-            "transition",
             "activator",
             ("close_on_back", "closeOnBack"),
             "contained",
@@ -13674,10 +13971,10 @@ class VSnackbar(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
+            "transition",
             "attach",
             "vertical",
             ("multi_line", "multiLine"),
@@ -13718,7 +14015,7 @@ class VSnackbarQueue(HtmlElement):
         Specifies the anchor point for positioning the component, using
         directional cues to align it either horizontally, vertically,
         or both..
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       absolute (boolean):
         Applies **position: absolute** to the content element.
@@ -13738,16 +14035,15 @@ class VSnackbarQueue(HtmlElement):
         page](/styles/colors#material-colors).
       variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
+      close_text (string):
+        The text used in the close button when using the **closable** prop.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
@@ -13775,7 +14071,7 @@ class VSnackbarQueue(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -13794,11 +14090,7 @@ class VSnackbarQueue(HtmlElement):
       open_delay (string, number):
         Milliseconds to wait before opening component. Only applies to
         hover and focus events.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -13807,14 +14099,19 @@ class VSnackbarQueue(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component })
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
         or `true` to disable teleporting. Uses `body` by default.
       vertical (boolean):
         Stacks snackbar content on top of the actions (button).
-      close_text (string):
-        The text used in the close button when using the **closable** prop.
       multi_line (boolean):
         Gives the snackbar a larger minimum height.
       timer (string, boolean):
@@ -13849,8 +14146,9 @@ class VSnackbarQueue(HtmlElement):
             "theme",
             "color",
             "variant",
+            ("close_text", "closeText"),
+            "eager",
             "disabled",
-            "transition",
             "activator",
             ("close_on_back", "closeOnBack"),
             "contained",
@@ -13866,13 +14164,12 @@ class VSnackbarQueue(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
+            "transition",
             "attach",
             "vertical",
-            ("close_text", "closeText"),
             ("multi_line", "multiLine"),
             "timer",
             "timeout",
@@ -13923,14 +14220,16 @@ class VSparkline(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      max (string, number):
-        The maximum value of the sparkline.
-      id (string):
-        The id of the component.
       item_value (string):
         The value of the item.
+      id (string):
+        The id of the component.
+      max (string, number):
+        The maximum value of the sparkline.
       min (string, number):
         The minimum value of the sparkline.
+      gradient (string[]):
+        An array of colors to use as a linear-gradient.
       labels ((string, number, { value: number })[]):
         An array of string labels that correspond to the same index as
         its data counterpart.
@@ -13942,8 +14241,6 @@ class VSparkline(HtmlElement):
         Amount of time (in ms) to run the trace animation.
       auto_draw_easing (string):
         The easing function to use for the trace animation.
-      gradient (string[]):
-        An array of colors to use as a linear-gradient.
       gradient_direction ('top', 'bottom', 'left', 'right'):
         The direction the gradient should run.
       label_size (string, number):
@@ -13968,16 +14265,16 @@ class VSparkline(HtmlElement):
             "height",
             "width",
             "color",
-            "max",
-            "id",
             ("item_value", "itemValue"),
+            "id",
+            "max",
             "min",
+            "gradient",
             "labels",
             ("auto_line_width", "autoLineWidth"),
             ("auto_draw", "autoDraw"),
             ("auto_draw_duration", "autoDrawDuration"),
             ("auto_draw_easing", "autoDrawEasing"),
-            "gradient",
             ("gradient_direction", "gradientDirection"),
             ("label_size", "labelSize"),
             ("line_width", "lineWidth"),
@@ -14015,18 +14312,19 @@ class VSpeedDial(HtmlElement):
         or both..
       theme (string):
         Specify a theme for this component and all of its children.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component }),
-          { component: Component }
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
+      id (string):
+        The unique identifier of the component.
+      submenu (boolean):
+        Opens with right arrow and closes on left instead of up/down.
+        Implies `location="end"`. Directions are reversed for RTL.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
         pressed or `$router.back()` is called, cancelling the original
@@ -14060,7 +14358,7 @@ class VSpeedDial(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -14074,16 +14372,12 @@ class VSpeedDial(HtmlElement):
       close_on_content_click (boolean):
         Closes component when you click on its content.
       close_delay (string, number):
-        Milliseconds to wait before closing component. Only applies to
-        hover and focus events.
+        Milliseconds to wait before closing component. Only works with
+        the **open-on-hover** prop.
       open_delay (string, number):
-        Milliseconds to wait before opening component. Only applies to
-        hover and focus events.
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+        Milliseconds to wait before opening component. Only works with
+        the **open-on-hover** prop.
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -14092,17 +14386,20 @@ class VSpeedDial(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component }),
+          { component: Component }
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
         or `true` to disable teleporting. Uses `body` by default.
-      id (string):
-        The unique identifier of the component.
-      submenu (boolean):
-        Opens with right arrow and closes on left instead of up/down.
-        Implies `location="end"`. Directions are reversed for RTL.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -14119,9 +14416,11 @@ class VSpeedDial(HtmlElement):
             "width",
             "location",
             "theme",
+            "eager",
             "disabled",
-            "transition",
             "activator",
+            "id",
+            "submenu",
             ("close_on_back", "closeOnBack"),
             "contained",
             ("content_class", "contentClass"),
@@ -14139,14 +14438,12 @@ class VSpeedDial(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
             ("scroll_strategy", "scrollStrategy"),
+            "transition",
             "attach",
-            "id",
-            "submenu",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -14187,7 +14484,7 @@ class VStepper(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -14196,7 +14493,7 @@ class VStepper(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -14205,23 +14502,14 @@ class VStepper(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      disabled (boolean):
-        Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      mobile (boolean):
-        Forces the stepper into a mobile state, removing labels from stepper items.
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
+      disabled (boolean):
+        Puts all children components into a disabled state.
       multiple (boolean):
         Allows one to select multiple items.
       mandatory (boolean, 'force'):
@@ -14229,12 +14517,21 @@ class VStepper(HtmlElement):
       items ((string, Record<string, any>)[]):
         An array of strings or objects used for automatically generating
         children components.
-      item_value (string):
-        Property on supplied `items` that contains its value.
-      hide_actions (boolean):
-        Hide actions bar (prev and next buttons).
       item_title (string):
         Property on supplied `items` that contains its title.
+      item_value (string):
+        Property on supplied `items` that contains its value.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      max (number):
+        Sets a maximum number of selections that can be made.
+      mobile (boolean):
+        Forces the stepper into a mobile state, removing labels from stepper items.
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
+      hide_actions (boolean):
+        Hide actions bar (prev and next buttons).
       alt_labels (boolean):
         Places the labels beneath the step.
       complete_icon (enum):
@@ -14287,18 +14584,18 @@ class VStepper(HtmlElement):
             "tag",
             "theme",
             "color",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
             ("bg_color", "bgColor"),
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
+            "disabled",
             "multiple",
             "mandatory",
             "items",
-            ("item_value", "itemValue"),
-            ("hide_actions", "hideActions"),
             ("item_title", "itemTitle"),
+            ("item_value", "itemValue"),
+            ("selected_class", "selectedClass"),
+            "max",
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
+            ("hide_actions", "hideActions"),
             ("alt_labels", "altLabels"),
             ("complete_icon", "completeIcon"),
             ("edit_icon", "editIcon"),
@@ -14330,10 +14627,10 @@ class VStepperActions(HtmlElement):
         The text used for the Prev button.
       next_text (string):
         The text used for the Next button.
-      click_next (event):
-        Event emitted when clicking the next button.
       click_prev (event):
         Event emitted when clicking the prev button.
+      click_next (event):
+        Event emitted when clicking the next button.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -14345,8 +14642,8 @@ class VStepperActions(HtmlElement):
             ("next_text", "nextText"),
         ]
         self._event_names += [
-            ("click_next", "click:next"),
             ("click_prev", "click:prev"),
+            ("click_next", "click:next"),
         ]
 
 
@@ -14389,23 +14686,23 @@ class VStepperItem(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
+      subtitle (string):
+        Specify a subtitle text for the component.
+      disabled (boolean):
+        Removes the ability to click or target the component.
       value (any):
         The value used when the component is selected in a group. If
         not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      subtitle (string):
-        Specify a subtitle text for the component.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
         either `true` / `false` or a `string` containing an error message.
         The input field will enter an error state if a function returns
         (or any value in the array contains) `false` or is a `string`.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       complete_icon (enum):
         Icon to display when step is marked as completed.
 
@@ -14439,12 +14736,12 @@ class VStepperItem(HtmlElement):
             "icon",
             "error",
             "color",
-            "ripple",
-            "value",
-            "disabled",
-            ("selected_class", "selectedClass"),
             "subtitle",
+            "disabled",
+            "value",
             "rules",
+            "ripple",
+            ("selected_class", "selectedClass"),
             ("complete_icon", "completeIcon"),
             ("edit_icon", "editIcon"),
             "editable",
@@ -14477,7 +14774,7 @@ class VStepperVertical(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes the border-radius.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -14486,47 +14783,20 @@ class VStepperVertical(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      variant ('default', 'inset', 'accordion', 'popout'):
+      variant ('default', 'accordion', 'inset', 'popout'):
         Applies a distinct style to the component.
-      readonly (boolean):
-        Makes the entire expansion panel read only.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      disabled (boolean):
-        Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Overrides the display configuration default screen size that
-        the component should be considered in mobile.
-      multiple (boolean):
-        Allows one to select multiple items.
-      mandatory (boolean, 'force'):
-        Forces at least one item to always be selected (if available).
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      items ((string, Record<string, any>)[]):
-        An array of strings or objects used for automatically generating
-        children components.
-      item_value (string):
-        Property on supplied `items` that contains its value.
-      hide_actions (boolean):
-        Hide the expand icon in the content title.
+      disabled (boolean):
+        Puts all children components into a disabled state.
       expand_icon (enum):
         Icon used when the expansion panel is in a expandable state.
 
@@ -14539,10 +14809,34 @@ class VStepperVertical(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      focusable (boolean):
-        Makes the expansion-panel headers focusable.
+      multiple (boolean):
+        Allows one to select multiple items.
+      mandatory (boolean, 'force'):
+        Forces at least one item to always be selected (if available).
+      items ((string, Record<string, any>)[]):
+        An array of strings or objects used for automatically generating
+        children components.
       item_title (string):
         Property on supplied `items` that contains its title.
+      item_value (string):
+        Property on supplied `items` that contains its value.
+      readonly (boolean):
+        Makes the entire expansion panel read only.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      max (number):
+        Sets a maximum number of selections that can be made.
+      mobile (boolean):
+        Forces the stepper into a mobile state, removing labels from stepper items.
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Overrides the display configuration default screen size that
+        the component should be considered in mobile.
+      hide_actions (boolean):
+        Hide the expand icon in the content title.
+      focusable (boolean):
+        Makes the expansion-panel headers focusable.
       alt_labels (boolean):
         Places the labels beneath the step.
       complete_icon (enum):
@@ -14587,24 +14881,24 @@ class VStepperVertical(HtmlElement):
             "theme",
             "color",
             "variant",
-            "readonly",
-            "ripple",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
-            ("bg_color", "bgColor"),
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
-            "multiple",
-            "mandatory",
             "eager",
-            "items",
-            ("item_value", "itemValue"),
-            ("hide_actions", "hideActions"),
+            ("bg_color", "bgColor"),
+            "disabled",
             ("expand_icon", "expandIcon"),
             ("collapse_icon", "collapseIcon"),
-            "focusable",
+            "multiple",
+            "mandatory",
+            "items",
             ("item_title", "itemTitle"),
+            ("item_value", "itemValue"),
+            "readonly",
+            "ripple",
+            ("selected_class", "selectedClass"),
+            "max",
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
+            ("hide_actions", "hideActions"),
+            "focusable",
             ("alt_labels", "altLabels"),
             ("complete_icon", "completeIcon"),
             ("edit_icon", "editIcon"),
@@ -14636,10 +14930,10 @@ class VStepperVerticalActions(HtmlElement):
         The text used for the Prev button.
       next_text (string):
         The text used for the Next button.
-      click_next (event):
-        Event emitted when clicking the next button.
       click_prev (event):
         Event emitted when clicking the prev button.
+      click_next (event):
+        Event emitted when clicking the next button.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -14651,8 +14945,8 @@ class VStepperVerticalActions(HtmlElement):
             ("next_text", "nextText"),
         ]
         self._event_names += [
-            ("click_next", "click:next"),
             ("click_prev", "click:prev"),
+            ("click_next", "click:next"),
         ]
 
 
@@ -14698,43 +14992,27 @@ class VStepperVerticalItem(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      readonly (boolean):
-        Makes the expansion panel content read only.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        Controls the opened/closed state of content.
-      disabled (boolean):
-        Disables the expansion-panel content.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      bg_color (string):
-        Applies specified color to the control's background. Used on
-        components that also support the **color** prop. - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
       eager (boolean):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
       subtitle (string):
         Specify a subtitle text for the component.
-      hide_actions (boolean):
-        Hide the expand icon in the content title.
-      rules (ValidationRule):
-        Accepts a mixed array of types `function`, `boolean` and `string`.
-        Functions pass an input value as an argument and must return
-        either `true` / `false` or a `string` containing an error message.
-        The input field will enter an error state if a function returns
-        (or any value in the array contains) `false` or is a `string`.
+      bg_color (string):
+        Applies specified color to the control's background. Used on
+        components that also support the **color** prop. - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      disabled (boolean):
+        Disables the expansion-panel content.
       expand_icon (enum):
         Icon used when the expansion panel is in a expandable state.
 
@@ -14747,6 +15025,22 @@ class VStepperVerticalItem(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      value (any):
+        Controls the opened/closed state of content.
+      readonly (boolean):
+        Makes the expansion panel content read only.
+      rules (ValidationRule):
+        Accepts a mixed array of types `function`, `boolean` and `string`.
+        Functions pass an input value as an argument and must return
+        either `true` / `false` or a `string` containing an error message.
+        The input field will enter an error state if a function returns
+        (or any value in the array contains) `false` or is a `string`.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      hide_actions (boolean):
+        Hide the expand icon in the content title.
       focusable (boolean):
         Makes the expansion panel content focusable.
       complete_icon (enum):
@@ -14771,10 +15065,10 @@ class VStepperVerticalItem(HtmlElement):
         ]
       complete (boolean):
         Marks step as complete.
-      click_next (event):
-        Event emitted when clicking the next button
       click_prev (event):
         Event emitted when clicking the previous button
+      click_next (event):
+        Event emitted when clicking the next button
       click_finish (event):
         Event emitted when clicking the finish button
     """
@@ -14798,18 +15092,18 @@ class VStepperVerticalItem(HtmlElement):
             "tile",
             "tag",
             "color",
-            "readonly",
-            "ripple",
-            "value",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            ("bg_color", "bgColor"),
             "eager",
             "subtitle",
-            ("hide_actions", "hideActions"),
-            "rules",
+            ("bg_color", "bgColor"),
+            "disabled",
             ("expand_icon", "expandIcon"),
             ("collapse_icon", "collapseIcon"),
+            "value",
+            "readonly",
+            "rules",
+            "ripple",
+            ("selected_class", "selectedClass"),
+            ("hide_actions", "hideActions"),
             "focusable",
             ("complete_icon", "completeIcon"),
             ("edit_icon", "editIcon"),
@@ -14818,8 +15112,8 @@ class VStepperVerticalItem(HtmlElement):
             "complete",
         ]
         self._event_names += [
-            ("click_next", "click:next"),
             ("click_prev", "click:prev"),
+            ("click_next", "click:next"),
             ("click_finish", "click:finish"),
         ]
 
@@ -14835,16 +15129,16 @@ class VStepperWindow(HtmlElement):
         **multiple** prop, this defaults to an empty array.
       reverse (boolean):
         Reverse the normal transition direction.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
       disabled (boolean):
         Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       direction ('horizontal', 'vertical'):
         The transition direction when changing windows.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -14857,8 +15151,8 @@ class VStepperWindow(HtmlElement):
             "tag",
             "theme",
             "disabled",
-            ("selected_class", "selectedClass"),
             "direction",
+            ("selected_class", "selectedClass"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -14871,22 +15165,22 @@ class VStepperWindowItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-stepper-window-item>`_.
 
     Args:
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Prevents the item from becoming active when using the "next"
-        and "prev" buttons or the `toggle` method.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      transition (string, boolean):
-        The transition used when the component progressing through items.
-        Can be one of the [built in](/styles/transitions/) or custom
-        transition.
       eager (boolean):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
+      disabled (boolean):
+        Prevents the item from becoming active when using the "next"
+        and "prev" buttons or the `toggle` method.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      transition (string, boolean):
+        The transition used when the component progressing through items.
+        Can be one of the [built in](/styles/transitions/) or custom
+        transition.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       reverse_transition (string, boolean):
         Sets the reverse transition.
     """
@@ -14894,11 +15188,11 @@ class VStepperWindowItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VStepperWindowItem", children, **kwargs)
         self._attr_names += [
-            "value",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "transition",
             "eager",
+            "disabled",
+            "value",
+            "transition",
+            ("selected_class", "selectedClass"),
             ("reverse_transition", "reverseTransition"),
         ]
         self._event_names += []
@@ -14916,7 +15210,7 @@ class VSvgIcon(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
     """
 
@@ -14962,14 +15256,23 @@ class VSwitch(HtmlElement):
         page](/styles/colors#material-colors).
       name (string):
         Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
       base_color (string):
         Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      multiple (boolean):
+        Changes expected model to an array.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      value_comparator ((a: any, b: any) => boolean):
+        Apply a custom comparison algorithm to compare **model-value**
+        and values contains in the **items** prop.
+      id (string):
+        Sets the DOM id on the component.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -14977,62 +15280,19 @@ class VSwitch(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
-      readonly (boolean):
-        Puts input in readonly state.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      loading (string, boolean):
-        Displays circular progress bar. Can either be a String which
-        specifies which color is applied to the progress bar (any material
-        color or theme color - primary, secondary, success, info, warning,
-        error) or a Boolean which uses the component color (set by color
-        prop - if it's supported by the component) or the primary color.
-      inline (boolean):
-        Puts children inputs into a row.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
-      multiple (boolean):
-        Changes expected model to an array.
-      inset (boolean):
-        Enlarge the `v-switch` track to encompass the thumb.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
-      indeterminate (boolean):
-        Sets an indeterminate state for the switch.
-      true_value (any):
-        Sets value for truthy state.
-      false_value (any):
-        Sets value for falsy state.
-      defaults_target (string):
-        The target component to provide defaults values for.
-      id (string):
-        Sets the DOM id on the component.
-      false_icon (enum):
-        The icon used when inactive.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      true_icon (enum):
-        The icon used when active.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      value_comparator ((a: any, b: any) => boolean):
-        Apply a custom comparison algorithm to compare **model-value**
-        and values contains in the **items** prop.
-      focused (boolean):
-        Forces a focused state styling on the component.
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the input is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -15042,12 +15302,16 @@ class VSwitch(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -15066,20 +15330,54 @@ class VSwitch(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
         counter value etc) to display.
+      loading (string, boolean):
+        Displays circular progress bar. Can either be a String which
+        specifies which color is applied to the progress bar (any material
+        color or theme color - primary, secondary, success, info, warning,
+        error) or a Boolean which uses the component color (set by color
+        prop - if it's supported by the component) or the primary color.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      inline (boolean):
+        Puts children inputs into a row.
+      indeterminate (boolean):
+        Sets an indeterminate state for the switch.
+      true_value (any):
+        Sets value for truthy state.
+      false_value (any):
+        Sets value for falsy state.
+      defaults_target (string):
+        The target component to provide defaults values for.
+      false_icon (enum):
+        The icon used when inactive.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      true_icon (enum):
+        The icon used when active.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      inset (boolean):
+        Enlarge the `v-switch` track to encompass the thumb.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_indeterminate (event):
-        Event that is emitted when the component's indeterminate state changes.
-      update_focused (event):
-        Event that is emitted when the component's focus state changes.
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when appended icon is clicked.
+      update_focused (event):
+        Event that is emitted when the component's focus state changes.
+      update_indeterminate (event):
+        Event that is emitted when the component's indeterminate state changes.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -15096,46 +15394,48 @@ class VSwitch(HtmlElement):
             "theme",
             "color",
             "name",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "ripple",
-            "value",
-            "disabled",
-            "loading",
-            "inline",
             "label",
+            ("base_color", "baseColor"),
+            "disabled",
             "multiple",
-            "inset",
-            "direction",
-            "indeterminate",
-            ("true_value", "trueValue"),
-            ("false_value", "falseValue"),
-            ("defaults_target", "defaultsTarget"),
-            "id",
-            ("false_icon", "falseIcon"),
-            ("true_icon", "trueIcon"),
+            "value",
             ("value_comparator", "valueComparator"),
-            "focused",
+            "id",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
+            "loading",
+            "ripple",
+            "inline",
+            "indeterminate",
+            ("true_value", "trueValue"),
+            ("false_value", "falseValue"),
+            ("defaults_target", "defaultsTarget"),
+            ("false_icon", "falseIcon"),
+            ("true_icon", "trueIcon"),
+            "inset",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_indeterminate", "update:indeterminate"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
+            ("update_indeterminate", "update:indeterminate"),
         ]
 
 
@@ -15159,7 +15459,7 @@ class VSystemBar(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -15202,6 +15502,14 @@ class VTab(HtmlElement):
     Args:
       text (string, number, boolean):
         Specify content text for the component.
+      replace (boolean):
+        Setting **replace** prop will call `router.replace()` instead
+        of `router.push()` when clicked, so the navigation will not leave
+        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
+        prop on the vue-router documentation.
+      fixed (boolean):
+        Forces component to take up all available space up to their maximum
+        width (300px), and centers it.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
@@ -15231,9 +15539,6 @@ class VTab(HtmlElement):
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
-      fixed (boolean):
-        Forces component to take up all available space up to their maximum
-        width (300px), and centers it.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
         can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
@@ -15241,7 +15546,7 @@ class VTab(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -15252,22 +15557,25 @@ class VTab(HtmlElement):
         page](/styles/colors#material-colors).
       variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
         Applies a distinct style to the component.
-      replace (boolean):
-        Setting **replace** prop will call `router.replace()` instead
-        of `router.push()` when clicked, so the navigation will not leave
-        a history record. You can find more information about the [replace](https://router.vuejs.org/api/#replace)
-        prop on the vue-router documentation.
-      active_color (string):
-        The applied color when the component is in an active state.
+      exact (boolean):
+        Exactly match the link. Without this, '/' will match every route.
+        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
+        on the vue-router documentation.
       base_color (string):
         Sets the color of component when not focused.
-      prepend_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component in the **prepend**
-        slot before default content.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
+      active_color (string):
+        The applied color when the component is in an active state.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      slim (boolean):
+        Reduces padding to 0 8px.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      size (string, number):
+        Sets the height and width of the component. Default unit is px.
+        Can also use the following predefined sizes: **x-small**, **small**,
+        **default**, **large**, and **x-large**.
       append_icon (enum):
         Creates a [v-icon](/api/v-icon/) component after default content
         in the **append** slot.
@@ -15275,22 +15583,18 @@ class VTab(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      prepend_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component in the **prepend**
+        slot before default content.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
       readonly (boolean):
         Puts the button in a readonly state. Cannot be clicked or navigated
         to by keyboard.
-      slim (boolean):
-        Reduces padding to 0 8px.
-      stacked (boolean):
-        Displays the tab as a flex-column.
-      ripple (boolean, { class: string }):
-        Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       loading (string, boolean):
         Displays linear progress bar. Can either be a String which specifies
         which color is applied to the progress bar (any material color
@@ -15300,10 +15604,6 @@ class VTab(HtmlElement):
         or the primary color.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
-      exact (boolean):
-        Exactly match the link. Without this, '/' will match every route.
-        You can find more information about the [**exact** prop](https://router.vuejs.org/api/#exact)
-        on the vue-router documentation.
       to (enum):
         Denotes the target route of the link. You can find more information
         about the [**to** prop](https://router.vuejs.org/api/#to) on
@@ -15312,12 +15612,12 @@ class VTab(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
-      size (string, number):
-        Sets the height and width of the component. Default unit is px.
-        Can also use the following predefined sizes: **x-small**, **small**,
-        **default**, **large**, and **x-large**.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
+      stacked (boolean):
+        Displays the tab as a flex-column.
+      ripple (boolean, { class: string }):
+        Applies the [v-ripple](/directives/ripple) directive.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       slider_color (string):
         Applies specified color to the slider when active on that component
         - supports utility colors (for example `success` or `purple`)
@@ -15331,6 +15631,8 @@ class VTab(HtmlElement):
         super().__init__("VTab", children, **kwargs)
         self._attr_names += [
             "text",
+            "replace",
+            "fixed",
             "border",
             "icon",
             "density",
@@ -15341,31 +15643,29 @@ class VTab(HtmlElement):
             ("min_width", "minWidth"),
             "width",
             "elevation",
-            "fixed",
             "rounded",
             "tile",
             "tag",
             "theme",
             "color",
             "variant",
-            "replace",
-            ("active_color", "activeColor"),
+            "exact",
             ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "slim",
-            "stacked",
-            "ripple",
-            "value",
+            ("active_color", "activeColor"),
             "disabled",
-            ("selected_class", "selectedClass"),
+            "slim",
+            "value",
+            "size",
+            ("append_icon", "appendIcon"),
+            ("prepend_icon", "prependIcon"),
+            "direction",
+            "readonly",
             "loading",
             "href",
-            "exact",
             "to",
-            "size",
-            "direction",
+            "stacked",
+            "ripple",
+            ("selected_class", "selectedClass"),
             ("slider_color", "sliderColor"),
             ("hide_slider", "hideSlider"),
         ]
@@ -15382,7 +15682,7 @@ class VTable(HtmlElement):
         Adjusts the vertical height used by the component.
       height (string, number):
         Use the height prop to set the height of the table.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -15427,40 +15727,36 @@ class VTabs(HtmlElement):
         Adjusts the vertical height used by the component.
       height (string, number):
         Sets the height of the tabs bar.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       color (string):
         Applies specified color to the selected tab - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      stacked (boolean):
-        Apply the stacked prop to all children v-tab components.
-      disabled (boolean):
-        Puts all children components into a disabled state.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      max (number):
-        Sets a maximum number of selections that can be made.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      mobile (boolean):
-        Determines the display mode of the component. If true, the component
-        will be displayed in mobile mode. If false, the component will
-        be displayed in desktop mode. If null, will be based on the current
-        mobile-breakpoint
-      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
-        Sets the designated mobile breakpoint for the component.
-      grow (boolean):
-        Force `v-tab`'s to take up all available space.
+      disabled (boolean):
+        Puts all children components into a disabled state.
       multiple (boolean):
         Allows one to select multiple items.
       mandatory (boolean, 'force'):
         Forces at least one item to always be selected (if available).
+      items (unknown[]):
+        The items to display in the component. This can be an array of
+        strings or objects with a property `text`.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
+      stacked (boolean):
+        Apply the stacked prop to all children v-tab components.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
+      max (number):
+        Sets a maximum number of selections that can be made.
       next_icon (enum):
         Right pagination icon.
 
@@ -15473,17 +15769,19 @@ class VTabs(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      center_active (boolean):
+        Forces the selected tab to be centered.
       show_arrows (string, boolean):
         Show pagination arrows if the tab items overflow their container.
         For mobile devices, arrows will only display when using this
         prop.
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the tabs. Can be either `horizontal` or `vertical`.
-      center_active (boolean):
-        Forces the selected tab to be centered.
-      items (unknown[]):
-        The items to display in the component. This can be an array of
-        strings or objects with a property `text`.
+      mobile (boolean):
+        Determines the display mode of the component. If true, the component
+        will be displayed in mobile mode. If false, the component will
+        be displayed in desktop mode. If null, will be based on the current
+        mobile-breakpoint
+      mobile_breakpoint (number, 'xs', 'sm', 'md', 'lg', 'xl', 'xxl'):
+        Sets the designated mobile breakpoint for the component.
       slider_color (string):
         Changes the background color of an auto-generated `v-tabs-slider`.
       hide_slider (boolean):
@@ -15493,6 +15791,8 @@ class VTabs(HtmlElement):
         Also accepts `title` to align with the `v-toolbar-title` component.
       fixed_tabs (boolean):
         `v-tabs-item` min-width 160px, max-width 360px.
+      grow (boolean):
+        Force `v-tab`'s to take up all available space.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -15506,26 +15806,26 @@ class VTabs(HtmlElement):
             "height",
             "tag",
             "color",
-            "stacked",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "max",
             ("bg_color", "bgColor"),
-            "mobile",
-            ("mobile_breakpoint", "mobileBreakpoint"),
-            "grow",
+            "disabled",
             "multiple",
             "mandatory",
+            "items",
+            "direction",
+            "stacked",
+            ("selected_class", "selectedClass"),
+            "max",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
-            ("show_arrows", "showArrows"),
-            "direction",
             ("center_active", "centerActive"),
-            "items",
+            ("show_arrows", "showArrows"),
+            "mobile",
+            ("mobile_breakpoint", "mobileBreakpoint"),
             ("slider_color", "sliderColor"),
             ("hide_slider", "hideSlider"),
             ("align_tabs", "alignTabs"),
             ("fixed_tabs", "fixedTabs"),
+            "grow",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -15543,16 +15843,16 @@ class VTabsWindow(HtmlElement):
         **multiple** prop, this defaults to an empty array.
       reverse (boolean):
         Reverse the normal transition direction.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
       disabled (boolean):
         Removes the ability to click or target the component.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
       direction ('horizontal', 'vertical'):
         The transition direction when changing windows.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -15565,8 +15865,8 @@ class VTabsWindow(HtmlElement):
             "tag",
             "theme",
             "disabled",
-            ("selected_class", "selectedClass"),
             "direction",
+            ("selected_class", "selectedClass"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -15579,22 +15879,22 @@ class VTabsWindowItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-tabs-window-item>`_.
 
     Args:
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Prevents the item from becoming active when using the "next"
-        and "prev" buttons or the `toggle` method.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      transition (string, boolean):
-        The transition used when the component progressing through items.
-        Can be one of the [built in](/styles/transitions/) or custom
-        transition.
       eager (boolean):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
+      disabled (boolean):
+        Prevents the item from becoming active when using the "next"
+        and "prev" buttons or the `toggle` method.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      transition (string, boolean):
+        The transition used when the component progressing through items.
+        Can be one of the [built in](/styles/transitions/) or custom
+        transition.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       reverse_transition (string, boolean):
         Sets the reverse transition.
     """
@@ -15602,11 +15902,11 @@ class VTabsWindowItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VTabsWindowItem", children, **kwargs)
         self._attr_names += [
-            "value",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "transition",
             "eager",
+            "disabled",
+            "value",
+            "transition",
+            ("selected_class", "selectedClass"),
             ("reverse_transition", "reverseTransition"),
         ]
         self._event_names += []
@@ -15658,56 +15958,26 @@ class VTextField(HtmlElement):
         ]
       name (string):
         Sets the component's name attribute.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the outnside the component's input, uses
-        the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      readonly (boolean):
-        Puts input in readonly state.
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       label (string):
         Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
         component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
+      disabled (boolean):
+        Removes the ability to click or target the input.
       id (string):
         Sets the DOM id on the component.
+      autofocus (boolean):
+        Enables autofocus.
       counter (string, number, boolean):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      focused (boolean):
-        Forces a focused state styling on the component.
-      autofocus (boolean):
-        Enables autofocus.
       prefix (string):
         Displays prefix text.
       placeholder (string):
@@ -15720,9 +15990,27 @@ class VTextField(HtmlElement):
         Displays suffix text.
       role (string):
         The role attribute applied to the input.
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the outnside the component's input, uses
+        the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -15732,12 +16020,16 @@ class VTextField(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -15756,6 +16048,8 @@ class VTextField(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
@@ -15774,6 +16068,9 @@ class VTextField(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -15787,18 +16084,25 @@ class VTextField(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       counter_value (number, js_fn):
         Function returns the counter display text.
       model_modifiers (unknown):
         **FOR INTERNAL USE ONLY**
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Emitted when the input is focused or blurred
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when append icon is clicked.
+      update_focused (event):
+        Emitted when the input is focused or blurred
       click_clear (event):
         Emitted when clearable icon clicked.
       click_appendInner (event):
@@ -15829,52 +16133,54 @@ class VTextField(HtmlElement):
             "color",
             "variant",
             "name",
-            "active",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "disabled",
-            "loading",
             "label",
+            ("base_color", "baseColor"),
             ("bg_color", "bgColor"),
-            "direction",
+            "disabled",
             "id",
-            "counter",
-            "focused",
             "autofocus",
+            "counter",
             "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
             "role",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
+            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
+            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             ("click_clear", "click:clear"),
             ("click_appendInner", "click:appendInner"),
             ("click_prependInner", "click:prependInner"),
@@ -15929,55 +16235,26 @@ class VTextarea(HtmlElement):
         ]
       name (string):
         Sets the component's name attribute.
-      active (boolean):
-        Controls the **active** state of the item. This is typically
-        used to highlight the component.
-      base_color (string):
-        Sets the color of the input when it is not focused.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      readonly (boolean):
-        Puts input in readonly state.
-      disabled (boolean):
-        Removes the ability to click or target the input.
-      loading (string, boolean):
-        Displays linear progress bar. Can either be a String which specifies
-        which color is applied to the progress bar (any material color
-        or theme color - **primary**, **secondary**, **success**, **info**,
-        **warning**, **error**) or a Boolean which uses the component
-        **color** (set by color prop - if it's supported by the component)
-        or the primary color.
       label (string):
         Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
         component.
+      base_color (string):
+        Sets the color of the input when it is not focused.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      direction ('horizontal', 'vertical'):
-        Changes the direction of the input.
+      disabled (boolean):
+        Removes the ability to click or target the input.
       id (string):
         Sets the DOM id on the component.
+      autofocus (boolean):
+        The element should be focused as soon as the page loads.
       counter (string, number, true):
         Creates counter for input length; if no number is specified,
         it defaults to 25. Does not apply any validation.
-      focused (boolean):
-        Forces a focused state styling on the component.
-      autofocus (boolean):
-        The element should be focused as soon as the page loads.
       prefix (string):
         Displays prefix text.
       placeholder (string):
@@ -15988,9 +16265,26 @@ class VTextarea(HtmlElement):
         Forces counter to always be visible.
       suffix (string):
         Displays suffix text.
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       center_affix (boolean):
         Vertically align **appendInner**, **prependInner**, **clearIcon**
         and **label** in the center.
+      glow (boolean):
+        Makes prepend/append icons full opacity when the field is focused.
+      icon_color (string, boolean):
+        Sets the color of the prepend/append icons.
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
       hide_spin_buttons (boolean):
         Hides spin buttons on the input when type is set to `number`.
       hint (string):
@@ -16000,12 +16294,16 @@ class VTextarea(HtmlElement):
         Forces [hint](#props-hint) to always be visible.
       messages (string, string[]):
         Displays a list of messages or a single message if using a string.
+      direction ('horizontal', 'vertical'):
+        Changes the direction of the input.
       error_messages (string, string[]):
         Puts the input in an error state and passes through custom error
         messages. Will be combined with any validations that occur from
         the **rules** prop. This field will not trigger validation.
       max_errors (string, number):
         Control the maximum number of shown errors from validation.
+      readonly (boolean):
+        Puts input in readonly state.
       rules (ValidationRule):
         Accepts a mixed array of types `function`, `boolean` and `string`.
         Functions pass an input value as an argument and must return
@@ -16024,6 +16322,8 @@ class VTextarea(HtmlElement):
         ]
       validation_value (any):
         The value used when applying validation rules.
+      focused (boolean):
+        Forces a focused state styling on the component.
       hide_details (boolean, 'auto'):
         Hides hint and validation errors. When set to `auto` messages
         will be rendered only if there's a message (hint, error message,
@@ -16042,6 +16342,9 @@ class VTextarea(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      active (boolean):
+        Controls the **active** state of the item. This is typically
+        used to highlight the component.
       dirty (boolean):
         Manually apply the dirty state styling.
       persistent_clear (boolean):
@@ -16055,6 +16358,13 @@ class VTextarea(HtmlElement):
         ]
       single_line (boolean):
         Label does not move on focus/dirty.
+      loading (string, boolean):
+        Displays linear progress bar. Can either be a String which specifies
+        which color is applied to the progress bar (any material color
+        or theme color - **primary**, **secondary**, **success**, **info**,
+        **warning**, **error**) or a Boolean which uses the component
+        **color** (set by color prop - if it's supported by the component)
+        or the primary color.
       counter_value ((value: any) => number):
         Display the input length but do not provide any validation.
       model_modifiers (unknown):
@@ -16069,12 +16379,12 @@ class VTextarea(HtmlElement):
         Specifies the maximum number of rows for **auto-grow**.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
-      update_focused (event):
-        Emitted when the input is focused or blurred
       click_prepend (event):
         Emitted when prepended icon is clicked.
       click_append (event):
         Emitted when append icon is clicked.
+      update_focused (event):
+        Emitted when the input is focused or blurred
       click_clear (event):
         Emitted when clearable icon clicked.
       click_appendInner (event):
@@ -16104,43 +16414,45 @@ class VTextarea(HtmlElement):
             "color",
             "variant",
             "name",
-            "active",
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "readonly",
-            "disabled",
-            "loading",
             "label",
+            ("base_color", "baseColor"),
             ("bg_color", "bgColor"),
-            "direction",
+            "disabled",
             "id",
-            "counter",
-            "focused",
             "autofocus",
+            "counter",
             "prefix",
             "placeholder",
             ("persistent_placeholder", "persistentPlaceholder"),
             ("persistent_counter", "persistentCounter"),
             "suffix",
+            ("append_icon", "appendIcon"),
             ("center_affix", "centerAffix"),
+            "glow",
+            ("icon_color", "iconColor"),
+            ("prepend_icon", "prependIcon"),
             ("hide_spin_buttons", "hideSpinButtons"),
             "hint",
             ("persistent_hint", "persistentHint"),
             "messages",
+            "direction",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
+            "readonly",
             "rules",
             ("validate_on", "validateOn"),
             ("validation_value", "validationValue"),
+            "focused",
             ("hide_details", "hideDetails"),
             ("append_inner_icon", "appendInnerIcon"),
             "clearable",
             ("clear_icon", "clearIcon"),
+            "active",
             "dirty",
             ("persistent_clear", "persistentClear"),
             ("prepend_inner_icon", "prependInnerIcon"),
             ("single_line", "singleLine"),
+            "loading",
             ("counter_value", "counterValue"),
             ("model_modifiers", "modelModifiers"),
             ("auto_grow", "autoGrow"),
@@ -16150,9 +16462,9 @@ class VTextarea(HtmlElement):
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
-            ("update_focused", "update:focused"),
             ("click_prepend", "click:prepend"),
             ("click_append", "click:append"),
+            ("update_focused", "update:focused"),
             ("click_clear", "click:clear"),
             ("click_appendInner", "click:appendInner"),
             ("click_prependInner", "click:prependInner"),
@@ -16167,7 +16479,7 @@ class VThemeProvider(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-theme-provider>`_.
 
     Args:
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -16219,7 +16531,7 @@ class VTimePicker(HtmlElement):
       location (Anchor):
         Specifies the component's location. Can combine by using a space
         separated string.
-      position ('static', 'relative', 'fixed', 'absolute', 'sticky'):
+      position ('fixed', 'static', 'relative', 'absolute', 'sticky'):
         Sets the position for the component.
       rounded (string, number, boolean):
         Designates the **border-radius** applied to the component. This
@@ -16228,7 +16540,7 @@ class VTimePicker(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -16237,26 +16549,28 @@ class VTimePicker(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      readonly (boolean):
-        Puts picker in readonly state.
-      disabled (boolean):
-        Removes the ability to click or target the component.
-      max (string):
-        Maximum allowed time.
       bg_color (string):
         Applies specified color to the control's background. Used on
         components that also support the **color** prop. - supports utility
         colors (for example `success` or `purple`) or css color (`#033`
         or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
         the [colors page](/styles/colors#material-colors).
-      scrollable (boolean):
-        Allows changing hour/minute with mouse scroll.
-      view_mode ('hour', 'minute', 'second'):
-        The current view mode of thep picker.`
-      min (string):
-        Minimum allowed time.
+      disabled (boolean):
+        Removes the ability to click or target the component.
+      readonly (boolean):
+        Puts picker in readonly state.
       hide_header (boolean):
         Hide the picker header.
+      max (string):
+        Maximum allowed time.
+      min (string):
+        Minimum allowed time.
+      view_mode ('hour', 'minute', 'second'):
+        The current view mode of thep picker.`
+      divided (boolean):
+        Adds a divider between the header and controls.
+      scrollable (boolean):
+        Allows changing hour/minute with mouse scroll.
       ampm_in_title (boolean):
         Place AM/PM switch in title, not near the clock.
       format ('ampm', '24hr'):
@@ -16304,14 +16618,15 @@ class VTimePicker(HtmlElement):
             "tag",
             "theme",
             "color",
-            "readonly",
-            "disabled",
-            "max",
             ("bg_color", "bgColor"),
-            "scrollable",
-            ("view_mode", "viewMode"),
-            "min",
+            "disabled",
+            "readonly",
             ("hide_header", "hideHeader"),
+            "max",
+            "min",
+            ("view_mode", "viewMode"),
+            "divided",
+            "scrollable",
             ("ampm_in_title", "ampmInTitle"),
             "format",
             ("use_seconds", "useSeconds"),
@@ -16343,18 +16658,18 @@ class VTimePickerClock(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
+      disabled (boolean):
+        Removes the ability to click or target the component.
       readonly (boolean):
         When true, the picker is in a read-only state, and users cannot
         modify the selected time.
-      disabled (boolean):
-        Removes the ability to click or target the component.
       max (number):
         Defines the maximum time value that can be selected.
+      min (number):
+        Defines the minimum time value that can be selected.
       scrollable (boolean):
         Allows the time selection to be scrollable, enhancing user experience
         for devices with scroll inputs.
-      min (number):
-        Defines the minimum time value that can be selected.
       step (number):
         Defines the increments between selectable times, such as a step
         of 1 for every minute or a larger step for every 5 or 15 minutes.
@@ -16373,10 +16688,10 @@ class VTimePickerClock(HtmlElement):
         on the clock at the same time.
       allowed_values ((value: number) => boolean):
         Restricts which hours can be selected.
-      change (event):
-        The event that is triggered when the selected time is changed.
       input (event):
         The updated bound model.
+      change (event):
+        The event that is triggered when the selected time is changed.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -16384,11 +16699,11 @@ class VTimePickerClock(HtmlElement):
         self._attr_names += [
             ("model_value", "modelValue"),
             "color",
-            "readonly",
             "disabled",
+            "readonly",
             "max",
-            "scrollable",
             "min",
+            "scrollable",
             "step",
             "rotate",
             "format",
@@ -16398,8 +16713,8 @@ class VTimePickerClock(HtmlElement):
             ("allowed_values", "allowedValues"),
         ]
         self._event_names += [
-            "change",
             "input",
+            "change",
         ]
 
 
@@ -16414,12 +16729,12 @@ class VTimePickerControls(HtmlElement):
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      readonly (boolean):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTimePickerControls.json))
-      value (number):
-        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTimePickerControls.json))
       disabled (boolean):
         Removes the ability to click or target the component.
+      value (number):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTimePickerControls.json))
+      readonly (boolean):
+        MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTimePickerControls.json))
       view_mode ('hour', 'minute', 'second'):
         MISSING DESCRIPTION ([edit in github](https://github.com/vuetifyjs/vuetify/tree//packages/api-generator/src/locale/en/VTimePickerControls.json))
       ampm_in_title (boolean):
@@ -16448,9 +16763,9 @@ class VTimePickerControls(HtmlElement):
         super().__init__("VTimePickerControls", children, **kwargs)
         self._attr_names += [
             "color",
-            "readonly",
-            "value",
             "disabled",
+            "value",
+            "readonly",
             ("view_mode", "viewMode"),
             ("ampm_in_title", "ampmInTitle"),
             "ampm",
@@ -16475,7 +16790,7 @@ class VTimeline(HtmlElement):
     Args:
       density ('default', 'comfortable', 'compact'):
         Adjusts the vertical height used by the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -16483,13 +16798,15 @@ class VTimeline(HtmlElement):
         Sets the height and width of the component. Default unit is px.
         Can also use the following predefined sizes: **x-small**, **small**,
         **default**, **large**, and **x-large**.
+      icon_color (string):
+        Color of the icon.
       direction ('horizontal', 'vertical'):
         Display timeline in a **vertical** or **horizontal** direction.
       align ('start', 'center'):
         Places the timeline dot at the top or center of the timeline item.
       side ('end', 'start'):
         Display all timeline items on one side of the timeline, either
-        **before** or **after**.
+        **start** or **end**.
       justify (string):
         Places timeline line at the center or automatically on the left or right side.
       line_thickness (string, number):
@@ -16502,8 +16819,6 @@ class VTimeline(HtmlElement):
         Remove outer border of item dot, making the color fill the entire dot.
       hide_opposite (boolean):
         Hide opposite content if it exists.
-      icon_color (string):
-        Color of the icon.
       line_inset (string, number):
         Specifies the distance between the line and the dot of timeline items.
       truncate_line ('end', 'start', 'both'):
@@ -16518,6 +16833,7 @@ class VTimeline(HtmlElement):
             "tag",
             "theme",
             "size",
+            ("icon_color", "iconColor"),
             "direction",
             "align",
             "side",
@@ -16527,7 +16843,6 @@ class VTimeline(HtmlElement):
             ("dot_color", "dotColor"),
             ("fill_dot", "fillDot"),
             ("hide_opposite", "hideOpposite"),
-            ("icon_color", "iconColor"),
             ("line_inset", "lineInset"),
             ("truncate_line", "truncateLine"),
         ]
@@ -16571,10 +16886,16 @@ class VTimelineItem(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       size (string, number):
         Size of the item dot
+      icon_color (string):
+        Color of the icon.
+      side ('end', 'start'):
+        Show the item either **before** or **after** the timeline. This
+        will override the implicit ordering of items, but will in turn
+        be overridden by the `v-timeline` **single-side** prop.
       dot_color (string):
         Color of the item dot.
       fill_dot (boolean):
@@ -16583,8 +16904,6 @@ class VTimelineItem(HtmlElement):
         Hide the timeline item dot.
       hide_opposite (boolean):
         Hide opposite content if it exists.
-      icon_color (string):
-        Color of the icon.
       line_inset (string, number):
         Specifies the distance between the line and the dot of the item.
     """
@@ -16605,11 +16924,12 @@ class VTimelineItem(HtmlElement):
             "tile",
             "tag",
             "size",
+            ("icon_color", "iconColor"),
+            "side",
             ("dot_color", "dotColor"),
             ("fill_dot", "fillDot"),
             ("hide_dot", "hideDot"),
             ("hide_opposite", "hideOpposite"),
-            ("icon_color", "iconColor"),
             ("line_inset", "lineInset"),
         ]
         self._event_names += []
@@ -16648,7 +16968,7 @@ class VToolbar(HtmlElement):
         border radius classes on the [Border Radius page](/styles/border-radius).
       tile (boolean):
         Removes any applied **border-radius** from the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
@@ -16659,18 +16979,18 @@ class VToolbar(HtmlElement):
         page](/styles/colors#material-colors).
       image (string):
         Specifies a [v-img](/components/images) as the component's background.
-      floating (boolean):
-        Applies **display: inline-flex** to the component.
+      collapse (boolean):
+        Puts the toolbar into a collapsed state reducing its maximum width.
       extended (boolean):
         Use this prop to increase the height of the toolbar _without_
         using the `extension` slot for adding content. May be used in
         conjunction with the **extension-height** prop, and any of the
         other props that affect the height of the toolbar, e.g. **prominent**,
         **dense**, etc., **WITH THE EXCEPTION** of **height**.
-      collapse (boolean):
-        Puts the toolbar into a collapsed state reducing its maximum width.
       extension_height (string, number):
         Specify an explicit height for the `extension` slot.
+      floating (boolean):
+        Applies **display: inline-flex** to the component.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -16689,10 +17009,10 @@ class VToolbar(HtmlElement):
             "theme",
             "color",
             "image",
-            "floating",
-            "extended",
             "collapse",
+            "extended",
             ("extension_height", "extensionHeight"),
+            "floating",
         ]
         self._event_names += []
 
@@ -16729,7 +17049,7 @@ class VToolbarTitle(HtmlElement):
     Args:
       text (string):
         Specify content text for the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
     """
 
@@ -16771,17 +17091,17 @@ class VTooltip(HtmlElement):
         or both..
       theme (string):
         Specify a theme for this component and all of its children.
+      eager (boolean):
+        Forces the component's content to render when it mounts. This
+        is useful if you have content that will not be rendered in the
+        DOM that you want crawled for SEO.
       disabled (boolean):
         Removes the ability to click or target the component.
-      transition (enum):
-        Sets the component transition. Can be one of the [built in](/styles/transitions/)
-        or custom transition.
-
-        Enum values: [
-          string, boolean, (TransitionProps & { component: Component })
-        ]
-      activator ((string & {}), Element, 'parent', ComponentPublicInstance):
+      activator (Element, (string & {}), 'parent', ComponentPublicInstance):
         Explicitly sets the overlay's activator.
+      id (string):
+        HTML id attribute of the tooltip overlay. If not set, a globally
+        unique id will be used.
       close_on_back (boolean):
         Closes the overlay content when the browser's back button is
         pressed or `$router.back()` is called, cancelling the original
@@ -16813,7 +17133,7 @@ class VTooltip(HtmlElement):
         to. This will be the activator element by default.
 
         Enum values: [
-          (string & {}), Element, 'parent', 'cursor', ComponentPublicInstance,
+          Element, (string & {}), 'parent', 'cursor', ComponentPublicInstance,
           [number, number]
         ]
       activator_props (unknown):
@@ -16831,11 +17151,7 @@ class VTooltip(HtmlElement):
       open_delay (string, number):
         Delay (in ms) after which tooltip opens (when `open-on-hover`
         prop is set to **true**).
-      eager (boolean):
-        Forces the component's content to render when it mounts. This
-        is useful if you have content that will not be rendered in the
-        DOM that you want crawled for SEO.
-      location_strategy (LocationStrategyFn):
+      location_strategy (LocationStrategyFunction):
         A function used to specifies how the component should position
         relative to its activator.
       origin (Anchor):
@@ -16844,15 +17160,22 @@ class VTooltip(HtmlElement):
       offset (string, number, number[]):
         A single value that offsets content away from the target based
         upon what side it is on.
-      scroll_strategy (ScrollStrategyFn):
+      scroll_strategy (ScrollStrategyFunction):
         Strategy used when the component is activate and user scrolls.
+      transition (enum):
+        Sets the component transition. Can be one of the [built in](/styles/transitions/)
+        or custom transition.
+
+        Enum values: [
+          string, boolean, (TransitionProps & { component: Component })
+        ]
       attach (string, boolean, Element):
         Specifies which DOM element the overlay content should teleport
         to. Can be a direct element reference, querySelector string,
         or `true` to disable teleporting. Uses `body` by default.
-      id (string):
-        HTML id attribute of the tooltip overlay. If not set, a globally
-        unique id will be used.
+      interactive (boolean):
+        When true, the tooltip will respond to pointer events, allowing
+        you to copy text from it.
       update_modelValue (event):
         Event that is emitted when the component's model changes.
     """
@@ -16870,9 +17193,10 @@ class VTooltip(HtmlElement):
             "width",
             "location",
             "theme",
+            "eager",
             "disabled",
-            "transition",
             "activator",
+            "id",
             ("close_on_back", "closeOnBack"),
             "contained",
             ("content_class", "contentClass"),
@@ -16889,13 +17213,13 @@ class VTooltip(HtmlElement):
             ("close_on_content_click", "closeOnContentClick"),
             ("close_delay", "closeDelay"),
             ("open_delay", "openDelay"),
-            "eager",
             ("location_strategy", "locationStrategy"),
             "origin",
             "offset",
             ("scroll_strategy", "scrollStrategy"),
+            "transition",
             "attach",
-            "id",
+            "interactive",
         ]
         self._event_names += [
             ("update_modelValue", "update:modelValue"),
@@ -16908,32 +17232,31 @@ class VTreeview(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-treeview>`_.
 
     Args:
-      tag (string):
-        Specify a custom tag used on the root element.
       search (string):
         The search model for filtering results.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      items (unknown[]):
-        An array of items used to build the treeview.
-      model_value (unknown[]):
-        Allows one to control which nodes are selected. The array contains
-        the values of currently selected items. It is equivalent to the
-        `v-model:selected`
-      color (string):
-        Applies specified color to the active node - supports utility
-        colors (for example `success` or `purple`) or css color (`#033`
-        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
-        the [colors page](/styles/colors#material-colors).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
       border (string, number, boolean):
         Applies utility border classes to the component. To use it, you
         need to omit the `border-` prefix, (for example use `border-sm`
         as `border="sm"`).  Find a list of the built-in border classes
         on the [borders page](/styles/borders).
+      model_value (unknown[]):
+        Allows one to control which nodes are selected. The array contains
+        the values of currently selected items. It is equivalent to the
+        `v-model:selected`
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
       elevation (string, number):
         Designates an elevation applied to the component between 0 and
         24. You can find more information on the [elevation page](/styles/elevation).
@@ -16943,6 +17266,19 @@ class VTreeview(HtmlElement):
         conjunction with the `shaped` prop.
       tile (boolean):
         Removes any applied **border-radius** from the component.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      color (string):
+        Applies specified color to the active node - supports utility
+        colors (for example `success` or `purple`) or css color (`#033`
+        or `rgba(255, 0, 0, 0.5)`). Find a list of built-in classes on
+        the [colors page](/styles/colors#material-colors).
+      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
+      activated (any):
+        Array of ids of activated nodes.
       filter_mode ('every', 'some', 'union', 'intersection'):
         Controls how the results of `customFilter` and `customKeyFilter`
         are combined. All modes only apply `customFilter` to columns
@@ -17011,8 +17347,6 @@ class VTreeview(HtmlElement):
       opened (any):
         An array containing the values of currently opened groups. Can
         be two-way bound with `v-model:opened`.
-      activated (any):
-        Array of ids of activated nodes.
       selected (any):
         An array containing the values of currently selected items. Can
         be two-way bound with `v-model:selected`.
@@ -17031,17 +17365,11 @@ class VTreeview(HtmlElement):
         - **classic:** Selecting a parent node will cause all children
         to be selected, parent nodes will be displayed as selected if
         all their descendants are selected. Only leaf nodes will be added
-        to the model.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
+        to the model. - **trunk**: Same as classic but if all of a node's
+        children are selected then only that node will be added to the
+        model.
+      items (unknown[]):
+        An array of items used to build the treeview.
       item_title (SelectItemKey):
         Property on supplied `items` that contains its title.
       item_value (SelectItemKey):
@@ -17058,8 +17386,6 @@ class VTreeview(HtmlElement):
       value_comparator ((a: any, b: any) => boolean):
         Apply a custom comparison algorithm to compare **model-value**
         and values contains in the **items** prop.
-      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
       open_on_click (boolean):
         When `true` will cause nodes to be opened by clicking anywhere
         on it, instead of only opening by clicking on expand icon. When
@@ -17114,18 +17440,24 @@ class VTreeview(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VTreeview", children, **kwargs)
         self._attr_names += [
-            "tag",
             "search",
-            "theme",
-            "items",
+            "border",
             ("model_value", "modelValue"),
-            "color",
             "density",
             "height",
-            "border",
+            ("max_height", "maxHeight"),
+            ("max_width", "maxWidth"),
+            ("min_height", "minHeight"),
+            ("min_width", "minWidth"),
+            "width",
             "elevation",
             "rounded",
             "tile",
+            "tag",
+            "theme",
+            "color",
+            "variant",
+            "activated",
             ("filter_mode", "filterMode"),
             ("no_filter", "noFilter"),
             ("custom_filter", "customFilter"),
@@ -17143,23 +17475,17 @@ class VTreeview(HtmlElement):
             "activatable",
             "selectable",
             "opened",
-            "activated",
             "selected",
             "mandatory",
             ("active_strategy", "activeStrategy"),
             ("select_strategy", "selectStrategy"),
-            ("max_height", "maxHeight"),
-            ("max_width", "maxWidth"),
-            ("min_height", "minHeight"),
-            ("min_width", "minWidth"),
-            "width",
+            "items",
             ("item_title", "itemTitle"),
             ("item_value", "itemValue"),
             ("item_children", "itemChildren"),
             ("item_props", "itemProps"),
             ("return_object", "returnObject"),
             ("value_comparator", "valueComparator"),
-            "variant",
             ("open_on_click", "openOnClick"),
             ("indeterminate_icon", "indeterminateIcon"),
             ("false_icon", "falseIcon"),
@@ -17188,34 +17514,17 @@ class VTreeviewGroup(HtmlElement):
     Args:
       title (string):
         Specify a title text for the component.
-      tag (string):
+      tag (string, js_fn, FunctionalComponent):
         Specify a custom tag used on the root element.
       color (string):
         Applies specified color to the control - supports utility colors
         (for example `success` or `purple`) or css color (`#033` or `rgba(255,
         0, 0, 0.5)`). Find a list of built-in classes on the [colors
         page](/styles/colors#material-colors).
-      active_color (string):
-        The applied color when the component is in an active state.
       base_color (string):
         Sets the color of component when not focused.
-      prepend_icon (enum):
-        Prepends an icon to the component, uses the same syntax as `v-icon`.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      append_icon (enum):
-        Creates a [v-icon](/api/v-icon/) component after default content
-        in the **append** slot.
-
-        Enum values: [
-          string, (string, [string, number])[], js_fn, FunctionalComponent
-        ]
-      value (any):
-        Expands / Collapse the list-group.
-      fluid (boolean):
-        Removes viewport maximum-width size breakpoints.
+      active_color (string):
+        The applied color when the component is in an active state.
       expand_icon (enum):
         Icon to display when the list item is collapsed.
 
@@ -17228,6 +17537,23 @@ class VTreeviewGroup(HtmlElement):
         Enum values: [
           string, (string, [string, number])[], js_fn, FunctionalComponent
         ]
+      value (any):
+        Expands / Collapse the list-group.
+      append_icon (enum):
+        Creates a [v-icon](/api/v-icon/) component after default content
+        in the **append** slot.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      prepend_icon (enum):
+        Prepends an icon to the component, uses the same syntax as `v-icon`.
+
+        Enum values: [
+          string, (string, [string, number])[], js_fn, FunctionalComponent
+        ]
+      fluid (boolean):
+        Removes viewport maximum-width size breakpoints.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -17236,14 +17562,14 @@ class VTreeviewGroup(HtmlElement):
             "title",
             "tag",
             "color",
-            ("active_color", "activeColor"),
             ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "value",
-            "fluid",
+            ("active_color", "activeColor"),
             ("expand_icon", "expandIcon"),
             ("collapse_icon", "collapseIcon"),
+            "value",
+            ("append_icon", "appendIcon"),
+            ("prepend_icon", "prependIcon"),
+            "fluid",
         ]
         self._event_names += []
 
@@ -17254,51 +17580,6 @@ class VTreeviewItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-treeview-item>`_.
 
     Args:
-      title (string, number, boolean):
-        Generates a `v-list-item-title` component with the supplied value.
-        Note that this overrides the native [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title)
-        attribute, that must be set with `v-bind:title.attr` instead.
-      border (string, number, boolean):
-        Applies utility border classes to the component. To use it, you
-        need to omit the `border-` prefix, (for example use `border-sm`
-        as `border="sm"`).  Find a list of the built-in border classes
-        on the [borders page](/styles/borders).
-      density ('default', 'comfortable', 'compact'):
-        Adjusts the vertical height used by the component.
-      height (string, number):
-        Sets the height for the component.
-      max_height (string, number):
-        Sets the maximum height for the component.
-      max_width (string, number):
-        Sets the maximum width for the component.
-      min_height (string, number):
-        Sets the minimum height for the component.
-      min_width (string, number):
-        Sets the minimum width for the component.
-      width (string, number):
-        Sets the width for the component.
-      elevation (string, number):
-        Designates an elevation applied to the component between 0 and
-        24. You can find more information on the [elevation page](/styles/elevation).
-      rounded (string, number, boolean):
-        Designates the **border-radius** applied to the component. This
-        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
-        **circle**, and **shaped**. Find more information on available
-        border radius classes on the [Border Radius page](/styles/border-radius).
-      tile (boolean):
-        Removes any applied **border-radius** from the component.
-      tag (string):
-        Specify a custom tag used on the root element.
-      theme (string):
-        Specify a theme for this component and all of its children.
-      color (string):
-        Applies specified color to the control when in an **active**
-        state or **input-value** is **true** - supports utility colors
-        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
-        0, 0, 0.5)`). Find a list of built-in classes on the [colors
-        page](/styles/colors#material-colors),
-      variant ('text', 'flat', 'elevated', 'tonal', 'outlined', 'plain'):
-        Applies a distinct style to the component.
       replace (boolean):
         Setting **replace** prop will call `router.replace()` instead
         of `router.push()` when clicked, so the navigation will not leave
@@ -17307,6 +17588,19 @@ class VTreeviewItem(HtmlElement):
       link (boolean):
         Designates that the component is a link. This is automatic when
         using the href or to prop.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
+      nav (boolean):
+        Reduces the width of v-list-item takes and adds a border radius.
+      title (string, number, boolean):
+        Generates a `v-list-item-title` component with the supplied value.
+        Note that this overrides the native [`title`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/title)
+        attribute, that must be set with `v-bind:title.attr` instead.
+      theme (string):
+        Specify a theme for this component and all of its children.
+      value (any):
+        The value used for selection. Obtained from [`v-list`](/api/v-list)'s
+        `v-model:selected` when the item is selected.
       active (boolean):
         Controls the **active** state of the item. This is typically
         used to highlight the component.
@@ -17333,13 +17627,39 @@ class VTreeviewItem(HtmlElement):
         making it more compact.
       ripple (boolean, { class: string }):
         Applies the [v-ripple](/directives/ripple) directive.
-      value (any):
-        The value used for selection. Obtained from [`v-list`](/api/v-list)'s
-        `v-model:selected` when the item is selected.
+      border (string, number, boolean):
+        Applies utility border classes to the component. To use it, you
+        need to omit the `border-` prefix, (for example use `border-sm`
+        as `border="sm"`).  Find a list of the built-in border classes
+        on the [borders page](/styles/borders).
+      density ('default', 'comfortable', 'compact'):
+        Adjusts the vertical height used by the component.
+      height (string, number):
+        Sets the height for the component.
+      max_height (string, number):
+        Sets the maximum height for the component.
+      max_width (string, number):
+        Sets the maximum width for the component.
+      min_height (string, number):
+        Sets the minimum height for the component.
+      min_width (string, number):
+        Sets the minimum width for the component.
+      width (string, number):
+        Sets the width for the component.
+      elevation (string, number):
+        Designates an elevation applied to the component between 0 and
+        24. You can find more information on the [elevation page](/styles/elevation).
       disabled (boolean):
         Removes the ability to click or target the component.
       loading (boolean):
         Places the v-treeview-item into a loading state.
+      rounded (string, number, boolean):
+        Designates the **border-radius** applied to the component. This
+        can be **0**, **xs**, **sm**, true, **lg**, **xl**, **pill**,
+        **circle**, and **shaped**. Find more information on available
+        border radius classes on the [Border Radius page](/styles/border-radius).
+      tile (boolean):
+        Removes any applied **border-radius** from the component.
       href (string):
         Designates the component as anchor and applies the **href** attribute.
       exact (boolean):
@@ -17354,11 +17674,17 @@ class VTreeviewItem(HtmlElement):
         Enum values: [
           string, RouteLocationAsRelativeGeneric, RouteLocationAsPathGeneric
         ]
+      color (string):
+        Applies specified color to the control when in an **active**
+        state or **input-value** is **true** - supports utility colors
+        (for example `success` or `purple`) or css color (`#033` or `rgba(255,
+        0, 0, 0.5)`). Find a list of built-in classes on the [colors
+        page](/styles/colors#material-colors),
+      variant ('flat', 'text', 'elevated', 'tonal', 'outlined', 'plain'):
+        Applies a distinct style to the component.
       lines (false, 'one', 'two', 'three'):
         The line declaration specifies the minimum height of the item
         and can also be controlled from v-list with the same prop.
-      nav (boolean):
-        Reduces the width of v-list-item takes and adds a border radius.
       active_class (string):
         The class applied to the component when it matches the current
         route. Find more information about the [active-class prop](https://router.vuejs.org/api/#active-class)
@@ -17385,7 +17711,20 @@ class VTreeviewItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VTreeviewItem", children, **kwargs)
         self._attr_names += [
+            "replace",
+            "link",
+            "tag",
+            "nav",
             "title",
+            "theme",
+            "value",
+            "active",
+            ("active_color", "activeColor"),
+            ("base_color", "baseColor"),
+            ("prepend_icon", "prependIcon"),
+            ("append_icon", "appendIcon"),
+            "slim",
+            "ripple",
             "border",
             "density",
             "height",
@@ -17395,29 +17734,16 @@ class VTreeviewItem(HtmlElement):
             ("min_width", "minWidth"),
             "width",
             "elevation",
-            "rounded",
-            "tile",
-            "tag",
-            "theme",
-            "color",
-            "variant",
-            "replace",
-            "link",
-            "active",
-            ("active_color", "activeColor"),
-            ("base_color", "baseColor"),
-            ("prepend_icon", "prependIcon"),
-            ("append_icon", "appendIcon"),
-            "slim",
-            "ripple",
-            "value",
             "disabled",
             "loading",
+            "rounded",
+            "tile",
             "href",
             "exact",
             "to",
+            "color",
+            "variant",
             "lines",
-            "nav",
             ("active_class", "activeClass"),
             "subtitle",
             ("append_avatar", "appendAvatar"),
@@ -17436,16 +17762,16 @@ class VValidation(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-validation>`_.
 
     Args:
-      name (string):
-        Sets the component's name attribute.
-      error (boolean):
-        Puts the input in a manual error state.
-      label (string):
-        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
-        component.
       model_value (unknown):
         The v-model value of the component. If component supports the
         **multiple** prop, this defaults to an empty array.
+      error (boolean):
+        Puts the input in a manual error state.
+      name (string):
+        Sets the component's name attribute.
+      label (string):
+        Sets the text of the [v-label](/api/v-label/) or [v-field-label](/api/v-field-label/)
+        component.
       disabled (boolean):
         Removes the ability to click or target the component.
       error_messages (string, string[]):
@@ -17485,10 +17811,10 @@ class VValidation(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VValidation", children, **kwargs)
         self._attr_names += [
-            "name",
-            "error",
-            "label",
             ("model_value", "modelValue"),
+            "error",
+            "name",
+            "label",
             "disabled",
             ("error_messages", "errorMessages"),
             ("max_errors", "maxErrors"),
@@ -17510,8 +17836,6 @@ class VVirtualScroll(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-virtual-scroll>`_.
 
     Args:
-      items (unknown[]):
-        The array of items to display.
       height (string, number):
         Height of the component as a css value/
       max_height (string, number):
@@ -17524,8 +17848,14 @@ class VVirtualScroll(HtmlElement):
         Sets the minimum width for the component.
       width (string, number):
         Sets the width for the component.
+      items (unknown[]):
+        The array of items to display.
       item_height (string, number):
         Height in pixels of each item to display.
+      item_key (SelectItemKey):
+        Should point to a property with a unique value for each item,
+        if not set then item index will be used as a key which may result
+        in unnecessary re-renders.
       renderless (boolean):
         Disables default component rendering functionality. The parent
         node must be [a positioned element](https://developer.mozilla.org/en-US/docs/Web/CSS/position#types_of_positioning),
@@ -17535,14 +17865,15 @@ class VVirtualScroll(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VVirtualScroll", children, **kwargs)
         self._attr_names += [
-            "items",
             "height",
             ("max_height", "maxHeight"),
             ("max_width", "maxWidth"),
             ("min_height", "minHeight"),
             ("min_width", "minWidth"),
             "width",
+            "items",
             ("item_height", "itemHeight"),
+            ("item_key", "itemKey"),
             "renderless",
         ]
         self._event_names += []
@@ -17554,19 +17885,19 @@ class VWindow(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-window>`_.
 
     Args:
-      model_value (unknown):
-        The v-model value of the component. If component supports the
-        **multiple** prop, this defaults to an empty array.
+      tag (string, js_fn, FunctionalComponent):
+        Specify a custom tag used on the root element.
       reverse (boolean):
         Reverse the normal transition direction.
-      tag (string):
-        Specify a custom tag used on the root element.
       theme (string):
         Specify a theme for this component and all of its children.
       disabled (boolean):
         Removes the ability to click or target the component.
       selected_class (string):
         Configure the active CSS class applied when an item is selected.
+      model_value (unknown):
+        The v-model value of the component. If component supports the
+        **multiple** prop, this defaults to an empty array.
       mandatory (boolean, 'force'):
         Forces at least one item to always be selected (if available).
       next_icon (enum):
@@ -17597,12 +17928,12 @@ class VWindow(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VWindow", children, **kwargs)
         self._attr_names += [
-            ("model_value", "modelValue"),
-            "reverse",
             "tag",
+            "reverse",
             "theme",
             "disabled",
             ("selected_class", "selectedClass"),
+            ("model_value", "modelValue"),
             "mandatory",
             ("next_icon", "nextIcon"),
             ("prev_icon", "prevIcon"),
@@ -17622,22 +17953,22 @@ class VWindowItem(HtmlElement):
     See more `info and examples <https://vuetifyjs.com/api/v-window-item>`_.
 
     Args:
-      value (any):
-        The value used when the component is selected in a group. If
-        not provided, a unique ID will be used.
-      disabled (boolean):
-        Prevents the item from becoming active when using the "next"
-        and "prev" buttons or the `toggle` method.
-      selected_class (string):
-        Configure the active CSS class applied when an item is selected.
-      transition (string, boolean):
-        The transition used when the component progressing through items.
-        Can be one of the [built in](/styles/transitions/) or custom
-        transition.
       eager (boolean):
         Forces the component's content to render when it mounts. This
         is useful if you have content that will not be rendered in the
         DOM that you want crawled for SEO.
+      disabled (boolean):
+        Prevents the item from becoming active when using the "next"
+        and "prev" buttons or the `toggle` method.
+      value (any):
+        The value used when the component is selected in a group. If
+        not provided, a unique ID will be used.
+      transition (string, boolean):
+        The transition used when the component progressing through items.
+        Can be one of the [built in](/styles/transitions/) or custom
+        transition.
+      selected_class (string):
+        Configure the active CSS class applied when an item is selected.
       reverse_transition (string, boolean):
         Sets the reverse transition.
       group_selected (event):
@@ -17647,11 +17978,11 @@ class VWindowItem(HtmlElement):
     def __init__(self, children=None, **kwargs):
         super().__init__("VWindowItem", children, **kwargs)
         self._attr_names += [
-            "value",
-            "disabled",
-            ("selected_class", "selectedClass"),
-            "transition",
             "eager",
+            "disabled",
+            "value",
+            "transition",
+            ("selected_class", "selectedClass"),
             ("reverse_transition", "reverseTransition"),
         ]
         self._event_names += [

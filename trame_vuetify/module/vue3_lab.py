@@ -1,11 +1,12 @@
 from pathlib import Path
+from trame_vuetify import __version__
 
 serve_path = str(Path(__file__).with_name("vue3-lab-serve").resolve())
-serve = {"__trame_vuetify_lab": serve_path}
-scripts = ["__trame_vuetify_lab/trame-vuetify-lab.umd.js"]
+serve = {f"__trame_vuetify_lab_{__version__}": serve_path}
+scripts = [f"__trame_vuetify_lab_{__version__}/trame-vuetify-lab.umd.js"]
 styles = [
-    "__trame_vuetify_lab/style.css",
-    "__trame_vuetify_lab/css/mdi.css",
+    f"__trame_vuetify_lab_{__version__}/style.css",
+    f"__trame_vuetify_lab_{__version__}/css/mdi.css",
     "https://fonts.googleapis.com/css?family=Roboto:300,400,500",
 ]
 vue_use = ["vuetifylab.createVuetify(trame.state.get('trame__vuetify3_config')||{})"]

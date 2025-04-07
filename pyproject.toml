@@ -51,6 +51,9 @@ trame_vuetify = [
 version_toml = [
     "pyproject.toml:project.version",
 ]
+version_variables = [
+    "trame_vuetify/__init__.py:__version__",
+]
 build_command = """
   python -m venv .venv
   source .venv/bin/activate
