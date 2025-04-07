@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.0.0 (2025-04-07)
+
+### Features
+
+- **v2.8**: Andromeda
+  ([`2514130`](https://github.com/Kitware/trame-vuetify/commit/2514130a5673c656b48fa0c4f2d5ffa28f180501))
+
+
 ## v2.9.0 (2025-03-28)
 
 ### Features
