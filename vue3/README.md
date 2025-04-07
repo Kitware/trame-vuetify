@@ -1,6 +1,6 @@
 # trame-vuetify
 
-This directory capture the steps to enable Vuetify 3.x into trame-vuewtify.
+This directory capture the steps to enable Vuetify 3.x into trame-vuetify.
 
 ## Environment variables
 
