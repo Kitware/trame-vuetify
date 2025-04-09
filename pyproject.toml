@@ -6,7 +6,7 @@ authors = [
     {name = "Kitware Inc."},
 ]
 dependencies = [
-    "trame-client>=3.4,<4",
+    "trame-client>=3.7,<4",
 ]
 requires-python = ">=3.9"
 readme = "README.rst"
