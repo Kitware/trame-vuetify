@@ -31,7 +31,7 @@ The `Trame Tutorial <https://kitware.github.io/trame/guide/tutorial>`_ is the pl
 
 The `API Reference <https://trame.readthedocs.io/en/latest/index.html>`_ documentation provides API-level documentation.
 
-The `Vuetify website <https://vuetifyjs.com/en/>`_ is very well made for exploring components and understanding components' parameters and controls, while a reference to our wrapper API is available `here <https://trame-vuetify.readthedocs.io/en/latest/trame.html.vuetify.html>`_.
+The `Vuetify website <https://vuetifyjs.com/en/>`_ is very well made for exploring components and understanding components' parameters and controls, while a reference to our wrapper API is available `here <https://trame.readthedocs.io/en/latest/trame.widgets.vuetify3.html>`_.
 
 The way trame translate Vue templates into plain Python code is by doing the following.
 
