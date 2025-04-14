@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v3.0.1 (2025-04-14)
+
+### Bug Fixes
+
+- **deps**: Bump minimal version of trame-client
+  ([`1f25385`](https://github.com/Kitware/trame-vuetify/commit/1f2538575a1f6a8886745b8de0a6b0dd3ca95ac3))
+
+### Continuous Integration
+
+- Fix pages deployment job
+  ([`5a0fc3b`](https://github.com/Kitware/trame-vuetify/commit/5a0fc3ba493fd5d3482b2b5aa6be4b760c6f3547))
+
+### Documentation
+
+- Update links in readme
+  ([`01a06e6`](https://github.com/Kitware/trame-vuetify/commit/01a06e60d6dd7bd56479c0ee91ce8576f40f8d87))
+
+
 ## v3.0.0 (2025-04-07)
 
 ### Features
