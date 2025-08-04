@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v3.0.2 (2025-08-04)
+
+### Bug Fixes
+
+- **roboto**: Use self served roboto fonts
+  ([`5ea6a53`](https://github.com/Kitware/trame-vuetify/commit/5ea6a5387d02a500876957ed519b163f11e62402))
+
+### Continuous Integration
+
+- Update website.yml
+  ([`84ff86b`](https://github.com/Kitware/trame-vuetify/commit/84ff86b07bdb6a03910659f5b1915461e446b82c))
+
+### Documentation
+
+- Update link in readme
+  ([`5f4d3a2`](https://github.com/Kitware/trame-vuetify/commit/5f4d3a2304c5ad5c51157be13ce837aeb4769952))
+
+
 ## v3.0.1 (2025-04-14)
 
 ### Bug Fixes
