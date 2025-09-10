@@ -1,6 +1,16 @@
 # CHANGELOG
 
 
+## v3.0.3 (2025-09-10)
+
+### Bug Fixes
+
+- **SinglePageWithDrawerLayout**: Stick when scrolling
+  ([`6398097`](https://github.com/Kitware/trame-vuetify/commit/639809788adca3a807d98737db02629c93fed641))
+
+Remove unnecessary layout preventing Drawer from sticking to the side of the screen as intended
+
+
 ## v3.0.2 (2025-08-04)
 
 ### Bug Fixes
