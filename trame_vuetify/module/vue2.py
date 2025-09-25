@@ -4,7 +4,7 @@ serve_path = str(Path(__file__).with_name("vue2-serve").resolve())
 serve = {"__trame_vuetify": serve_path}
 scripts = ["__trame_vuetify/trame-vuetify.umd.min.js"]
 styles = ["__trame_vuetify/trame-vuetify.css"]
-vue_use = ["trame_vuetify"]
+vue_use = [("trame_vuetify", "trame.state.get('trame__vuetify2_config')||{}")]
 
 
 def setup(server, **kargs):
