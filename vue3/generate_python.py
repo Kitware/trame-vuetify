@@ -293,6 +293,7 @@ class {class_name}(HtmlElement):{docs}
         vuetify_module.write(
             "##########################################################\n\n"
         )
+        vuetify_module.write("# ruff: noqa: E501\n\n")
         vuetify_module.write(module_header)
         vuetify_module.write("\n\n")
         vuetify_module.write("\n".join(generated_slot_names))
