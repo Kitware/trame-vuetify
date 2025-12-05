@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.0 (2025-12-05)
+
+### Features
+
+- Bump to vuetify3.11.2
+  ([`9ccc228`](https://github.com/Kitware/trame-vuetify/commit/9ccc228b4b2e244defb12decfa1032823c481537))
+
+
 ## v3.1.0 (2025-09-25)
 
 ### Features
