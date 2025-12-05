@@ -43,6 +43,88 @@ type_mapper = {
     "V": [],
 }
 
+directives = {
+    "v-click-outside": {
+        "arguments": [],
+        "modifiers": [],
+    },
+    "v-intersect": {
+        "arguments": [],
+        "modifiers": ["once", "quiet"],
+    },
+    "v-mutate": {
+        "arguments": [],
+        "modifiers": ["attr", "char", "child", "immediate", "once", "sub"],
+    },
+    "v-resize": {
+        "arguments": [],
+        "modifiers": [],
+    },
+    "v-ripple": {
+        "arguments": [],
+        "modifiers": ["center", "circle", "stop"],
+    },
+    "v-scroll": {
+        "arguments": [],
+        "modifiers": [],
+    },
+    "v-tooltip": {
+        "arguments": [
+            "top",
+            "bottom",
+            "start",
+            "end",
+            "left",
+            "right",
+            "center",
+            "center-center",
+            "top-start",
+            "top-end",
+            "top-left",
+            "top-right",
+            "top-center",
+            "bottom-start",
+            "bottom-end",
+            "bottom-left",
+            "bottom-right",
+            "bottom-center",
+            "start-top",
+            "start-bottom",
+            "start-center",
+            "end-top",
+            "end-bottom",
+            "end-center",
+            "left-top",
+            "left-bottom",
+            "left-center",
+            "right-top",
+            "right-bottom",
+            "right-center",
+        ],
+        "modifiers": [],
+    },
+    "v-touch": {
+        "arguments": [],
+        "modifiers": [],
+    },
+}
+
+for directive, description in directives.items():
+    py_directive = directive.replace("-", "_")
+    AbstractElement.register_directive(py_directive, directive)
+
+    for argument in description["arguments"]:
+        py_argument = argument.replace("-", "_")
+        AbstractElement.register_directive(
+            f"{py_directive}_{py_argument}", f"{directive}:{argument}"
+        )
+
+    for modifier in description["modifiers"]:
+        py_modifier = modifier.replace("-", "_")
+        AbstractElement.register_directive(
+            f"{py_directive}_{py_modifier}", f"{directive}.{modifier}"
+        )
+
 
 def cast_to_serializable(value):
     isoformat = getattr(value, "isoformat", None)
