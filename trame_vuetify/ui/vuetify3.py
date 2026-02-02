@@ -174,7 +174,7 @@ class SinglePageWithDrawerLayout(SinglePageLayout):
                 disable_route_watcher=True,
                 permanent=True,
                 location="left",
-                v_model=(f"{drawer_name}", {drawer_name: show_drawer}),
+                v_model=(f"{drawer_name}", show_drawer),
                 width=width,
             )
         self.icon.click = f"{drawer_name} = !{drawer_name}"
