@@ -1,13 +1,13 @@
 # trame-vuetify
 
-This directory capture the steps to enable Vuetify 3.x into trame-vuewtify.
+This directory capture the steps to enable Vuetify 3.x into trame-vuetify.
 
 ## Environment variables
 
 ```bash
 export SRC_URL=https://cdn.jsdelivr.net/npm
 export DST_PATH=../trame_vuetify/module/vue3-serve
-export VUETIFY=vuetify@3.11.2
+export VUETIFY=vuetify@4.0.5
 
 mkdir -p $DST_PATH/{fonts,css}
 ```
