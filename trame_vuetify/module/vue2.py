@@ -1,9 +1,10 @@
 from pathlib import Path
+from trame_vuetify import __version__
 
 serve_path = str(Path(__file__).with_name("vue2-serve").resolve())
-serve = {"__trame_vuetify": serve_path}
-scripts = ["__trame_vuetify/trame-vuetify.umd.min.js"]
-styles = ["__trame_vuetify/trame-vuetify.css"]
+serve = {f"__trame_vuetify2_{__version__}": serve_path}
+scripts = [f"__trame_vuetify2_{__version__}/trame-vuetify.umd.min.js"]
+styles = [f"__trame_vuetify2_{__version__}/trame-vuetify.css"]
 vue_use = ["trame_vuetify"]
 
 
