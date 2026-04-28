@@ -1,41 +1,41 @@
 {
-    "name": "trame-vuetify",
-    "version": "2.0.0",
-    "description": "Vuetify widgets and ui for trame",
-    "private": true,
-    "scripts": {
-        "serve": "vue-cli-service serve",
-        "build": "vue-cli-service build --target lib --name trame_vuetify --filename trame-vuetify src/use.js",
-        "lint": "vue-cli-service lint"
-    },
-    "dependencies": {
-        "@mdi/font": "7.4.47",
-        "core-js": "^3.31.1",
-        "lodash": "^4.17.21",
-        "typeface-roboto": "^1.1.13",
-        "vue": "^2.7.16",
-        "vuetify": "2.7.1"
-    },
-    "devDependencies": {
-        "@babel/core": "^7.22.9",
-        "@babel/eslint-parser": "^7.22.9",
-        "@vue/cli-plugin-babel": "~5.0.8",
-        "@vue/cli-plugin-eslint": "~5.0.8",
-        "@vue/cli-service": "~5.0.8",
-        "eslint": "^8.0.0",
-        "eslint-config-prettier": "^8.8.0",
-        "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-vue": "^9.15.1",
-        "prettier": "^3.0.0",
-        "vue-template-compiler": "^2.7.16",
-        "deepmerge": "^4.3.1",
-        "sass": "~1.63",
-        "sass-loader": "^13.3.2",
-        "vuetify-loader": "^1.9.2"
-    },
-    "keywords": [
-        "Kitware",
-        "trame"
-    ],
-    "license": "MIT"
+  "name": "trame-vuetify",
+  "version": "2.0.0",
+  "description": "Vuetify widgets and ui for trame",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build --target lib --name trame_vuetify --filename trame-vuetify src/use.js",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@mdi/font": "7.4.47",
+    "core-js": "^3.31.1",
+    "lodash": "^4.17.21",
+    "typeface-roboto": "^1.1.13",
+    "vue": "^2.7.16",
+    "vuetify": "2.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.9",
+    "@babel/eslint-parser": "^7.22.9",
+    "@vue/cli-plugin-babel": "~5.0.8",
+    "@vue/cli-plugin-eslint": "~5.0.8",
+    "@vue/cli-service": "~5.0.8",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-vue": "^9.15.1",
+    "prettier": "^3.0.0",
+    "vue-template-compiler": "^2.7.16",
+    "deepmerge": "^4.3.1",
+    "sass": "~1.63",
+    "sass-loader": "^13.3.2",
+    "vuetify-loader": "^1.9.2"
+  },
+  "keywords": [
+    "Kitware",
+    "trame"
+  ],
+  "license": "MIT"
 }

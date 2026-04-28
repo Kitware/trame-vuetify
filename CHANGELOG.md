@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.2 (2026-04-28)
+
+### Bug Fixes
+
+- **vuetify2**: Add version in URL for vue2
+  ([`62d3de6`](https://github.com/Kitware/trame-vuetify/commit/62d3de668aa2cdb4cb897d808839d49bdd4e6e58))
+
+
 ## v3.2.1 (2026-02-02)
 
 ### Bug Fixes
