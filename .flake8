@@ -6,9 +6,9 @@ ignore =
 
 exclude =
     # This is auto-generated. Just ignore any issues.
-    trame_vuetify/widgets/vuetify.py
-    trame_vuetify/widgets/vuetify3.py
+    src/trame_vuetify/widgets/vuetify.py
+    src/trame_vuetify/widgets/vuetify3.py
 
 per-file-ignores =
     # These directories will always contain "from ... import *"
-    trame/*:F401,F403
+    src/trame/*:F401,F403

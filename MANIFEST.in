@@ -1,9 +1,9 @@
-graft trame_vuetify/module/vue2-serve/fonts
-graft trame_vuetify/module/vue3-serve
-graft trame_vuetify/module/vue3-lab-serve
-graft trame_vuetify/module/roboto
-recursive-include trame_vuetify/module/vue2-serve *.min.js *.css
-include trame_vuetify/LICENSE
+graft src/trame_vuetify/module/vue2-serve/fonts
+graft src/trame_vuetify/module/vue3-serve
+graft src/trame_vuetify/module/vue3-lab-serve
+graft src/trame_vuetify/module/roboto
+recursive-include src/trame_vuetify/module/vue2-serve *.min.js *.css
+include src/trame_vuetify/LICENSE
 prune vue2
 prune vue3
 prune vue3-lab
