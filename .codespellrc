@@ -1,2 +1,2 @@
 [codespell]
-skip = **/package-lock.json,trame_vuetify/widgets/vuetify3.py
+skip = **/package-lock.json,src/trame_vuetify/widgets/vuetify3.py

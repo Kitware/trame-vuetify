@@ -30,21 +30,21 @@ dev = [
     "pytest",
 ]
 
-[build-system]
-requires = ['setuptools', 'wheel']
-build-backend = 'setuptools.build_meta'
+[tool.hatch.build]
+include = [
+  "src/trame_vuetify/**/*.py",
+  "module/**/*.js",
+  "module/**/*.css",
+  "module/**/*.woff",
+  "module/**/*.woff2",
+  "module/**/*.ttf",
+  "module/**/*.eot",
+]
 
-[tool.setuptools.packages.find]
-where = ["."]
-
-[tool.setuptools.package-data]
-trame_vuetify = [
-    "module/**/*.js",
-    "module/**/*.css",
-    "module/**/*.woff",
-    "module/**/*.woff2",
-    "module/**/*.ttf",
-    "module/**/*.eot",
+[tool.hatch.build.targets.wheel]
+packages = [
+    "src/trame",
+    "src/trame_vuetify",
 ]
 
 [tool.semantic_release]
@@ -52,7 +52,7 @@ version_toml = [
     "pyproject.toml:project.version",
 ]
 version_variables = [
-    "trame_vuetify/__init__.py:__version__",
+    "src/trame_vuetify/__init__.py:__version__",
 ]
 build_command = """
   python -m venv .venv
