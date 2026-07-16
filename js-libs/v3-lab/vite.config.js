@@ -15,7 +15,7 @@ export default {
         },
       },
     },
-    outDir: "../trame_vuetify/module/vue3-lab-serve/",
+    outDir: "../../trame_vuetify/module/v3-lab-serve/",
     assetsDir: ".",
   },
 };

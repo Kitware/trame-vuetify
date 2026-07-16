@@ -8,7 +8,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 DEST_FILE = BASE_DIR / Path("trame_vuetify/widgets/vuetify3.py")
-INPUT_JSON = BASE_DIR / Path("vue3/web-types.json")
+INPUT_JSON = BASE_DIR / Path("js-libs/v3/web-types.json")
 HEADER_FILE = Path(__file__).with_name(".header.py")
 
 # ----------------------------------------

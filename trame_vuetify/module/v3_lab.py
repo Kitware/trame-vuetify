@@ -1,7 +1,8 @@
 from pathlib import Path
+
 from trame_vuetify import __version__
 
-serve_path = str(Path(__file__).with_name("vue3-lab-serve").resolve())
+serve_path = str(Path(__file__).with_name("v3-lab-serve").resolve())
 roboto_path = str(Path(__file__).with_name("roboto").resolve())
 
 serve = {

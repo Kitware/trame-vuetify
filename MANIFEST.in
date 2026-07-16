@@ -1,12 +1,10 @@
-graft trame_vuetify/module/vue2-serve/fonts
-graft trame_vuetify/module/vue3-serve
-graft trame_vuetify/module/vue3-lab-serve
+graft trame_vuetify/module/v2-serve/fonts
+graft trame_vuetify/module/v3-serve
+graft trame_vuetify/module/v3-lab-serve
 graft trame_vuetify/module/roboto
-recursive-include trame_vuetify/module/vue2-serve *.min.js *.css
+recursive-include trame_vuetify/module/v2-serve *.min.js *.css
 include trame_vuetify/LICENSE
-prune vue2
-prune vue3
-prune vue3-lab
+prune js-libs
 prune tests
 prune examples
 prune docs
