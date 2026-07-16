@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "vuetify": "^3.11.2"
+    "vuetify": "^3.12.10"
   },
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.4",
