@@ -8,9 +8,9 @@ def setup(server, **kargs):
 
         server.enable_module(vue2)
     elif client_type == "vue3":
-        from . import vue3
+        from . import v3
 
-        server.enable_module(vue3)
+        server.enable_module(v3)
     else:
         raise TypeError(
             f"Trying to initialize trame_vuetify with unknown client_type={client_type}"

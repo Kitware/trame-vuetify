@@ -6,7 +6,7 @@ This directory capture the steps to enable Vuetify 3.x into trame-vuetify.
 
 ```bash
 export SRC_URL=https://cdn.jsdelivr.net/npm
-export DST_PATH=../trame_vuetify/module/vue3-serve
+export DST_PATH=../../trame_vuetify/module/v3-serve
 export VUETIFY=vuetify@3.12.10
 
 mkdir -p $DST_PATH/{fonts,css}

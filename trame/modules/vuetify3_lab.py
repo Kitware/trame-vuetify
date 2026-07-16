@@ -1,1 +1,1 @@
-from trame_vuetify.module.vue3_lab import *  # noqa F403
+from trame_vuetify.module.v3_lab import *  # noqa F403

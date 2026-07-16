@@ -72,30 +72,30 @@ jobs:
         with:
           node-version: 18
 
-      - name: Build Vue2 Components
+      - name: Build Vuetify 2 Components
         run: |
-          cd vue2
+          cd v2
           npm ci
           npm run build
 
-      - name: Build Vue3 Components
+      - name: Build Vuetify 3 Components
         run: |
-          mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
-          cd trame_vuetify/module/vue3-serve
+          mkdir -p trame_vuetify/module/v3-serve/{fonts,css}
+          cd trame_vuetify/module/v3-serve
           curl https://cdn.jsdelivr.net/npm/vuetify@3.12.10/dist/vuetify.min.css -Lo vuetify3.css
           curl https://cdn.jsdelivr.net/npm/vuetify@3.12.10/dist/vuetify.min.js -Lo vuetify3.js
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
 
-      - name: Build Vue3-lab Components
+      - name: Build Vuetify 3 Lab Components
         run: |
-          cd vue3-lab
+          cd v3-lab
           npm ci
           npm run build
           cd ../trame_vuetify/module
-          mkdir -p vue3-lab-serve/{fonts,css}
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo vue3-lab-serve/css/mdi.css
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo vue3-lab-serve/fonts/materialdesignicons-webfont.woff2
+          mkdir -p v3-lab-serve/{fonts,css}
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
   release:
     needs: [pre-commit, pytest, test-npm-build]
     runs-on: ubuntu-latest
@@ -118,30 +118,30 @@ jobs:
         with:
           node-version: 18
 
-      - name: Build Vue2 Components
+      - name: Build Vuetify 2 Components
         run: |
-          cd vue2
+          cd v2
           npm ci
           npm run build
 
-      - name: Build Vue3 Components
+      - name: Build Vuetify 3 Components
         run: |
-          mkdir -p trame_vuetify/module/vue3-serve/{fonts,css}
-          cd trame_vuetify/module/vue3-serve
+          mkdir -p trame_vuetify/module/v3-serve/{fonts,css}
+          cd trame_vuetify/module/v3-serve
           curl https://cdn.jsdelivr.net/npm/vuetify@3.12.10/dist/vuetify.min.css -Lo vuetify3.css
           curl https://cdn.jsdelivr.net/npm/vuetify@3.12.10/dist/vuetify.min.js -Lo vuetify3.js
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
 
-      - name: Build Vue3-lab Components
+      - name: Build Vuetify3-lab Components
         run: |
-          cd vue3-lab
+          cd v3-lab
           npm ci
           npm run build
           cd ../trame_vuetify/module
-          mkdir -p vue3-lab-serve/{fonts,css}
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo vue3-lab-serve/css/mdi.css
-          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo vue3-lab-serve/fonts/materialdesignicons-webfont.woff2
+          mkdir -p v3-lab-serve/{fonts,css}
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
 
       - name: Python Semantic Release
         id: release
