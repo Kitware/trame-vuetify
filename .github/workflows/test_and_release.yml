@@ -74,7 +74,7 @@ jobs:
 
       - name: Build Vuetify 2 Components
         run: |
-          cd v2
+          cd js-libs/v2
           npm ci
           npm run build
 
@@ -89,7 +89,7 @@ jobs:
 
       - name: Build Vuetify 3 Lab Components
         run: |
-          cd v3-lab
+          cd js-libs/v3-lab
           npm ci
           npm run build
           cd ../trame_vuetify/module
@@ -120,7 +120,7 @@ jobs:
 
       - name: Build Vuetify 2 Components
         run: |
-          cd v2
+          cd js-libs/v2
           npm ci
           npm run build
 
@@ -135,7 +135,7 @@ jobs:
 
       - name: Build Vuetify3-lab Components
         run: |
-          cd v3-lab
+          cd js-libs/v3-lab
           npm ci
           npm run build
           cd ../trame_vuetify/module
