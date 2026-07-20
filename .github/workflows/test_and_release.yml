@@ -92,7 +92,7 @@ jobs:
           cd js-libs/v3-lab
           npm ci
           npm run build
-          cd ../trame_vuetify/module
+          cd ../../trame_vuetify/module
           mkdir -p v3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
@@ -138,7 +138,7 @@ jobs:
           cd js-libs/v3-lab
           npm ci
           npm run build
-          cd ../trame_vuetify/module
+          cd ../../trame_vuetify/module
           mkdir -p v3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
