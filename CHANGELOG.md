@@ -1,6 +1,14 @@
 # CHANGELOG
 
 
+## v3.2.4 (2026-07-20)
+
+### Bug Fixes
+
+- Maintain deprecated import
+  ([`90dcae8`](https://github.com/Kitware/trame-vuetify/commit/90dcae85702fd53b8a9c69e5ddbeaecd87d8cde5))
+
+
 ## v3.2.3 (2026-07-20)
 
 ### Bug Fixes
