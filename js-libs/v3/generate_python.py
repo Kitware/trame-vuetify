@@ -136,7 +136,9 @@ def split_description(description):
 def get_docs(tag):
     url = tag.get("doc-url", "https://vuetifyjs.com/en/introduction/why-vuetify/")
     url = url.replace("www.", "")  # www redirects to start page
-    url = url.replace("vuetifyjs", "v3.vuetifyjs")  # the hosted file points to v4 docs
+    url = url.replace(
+        "/vuetifyjs", "/v3.vuetifyjs"
+    )  # the hosted file points to v4 docs
 
     name = tag.get("name")
     attributes = tag.get("attributes", [])
