@@ -1,6 +1,24 @@
 # CHANGELOG
 
 
+## v3.2.5 (2026-07-20)
+
+### Bug Fixes
+
+- **v2**: Update doc url
+  ([`af770eb`](https://github.com/Kitware/trame-vuetify/commit/af770ebb393c768e0f20c4d6e061aaacd8c48e18))
+
+### Continuous Integration
+
+- Add trame as dependency for tests
+  ([`c1dfec6`](https://github.com/Kitware/trame-vuetify/commit/c1dfec66f604a871b85479cbc090e78fbdcb572c))
+
+### Testing
+
+- Improve widget test
+  ([`dcf56f6`](https://github.com/Kitware/trame-vuetify/commit/dcf56f679fb208ba95d76310cca4ab723c450804))
+
+
 ## v3.2.4 (2026-07-20)
 
 ### Bug Fixes
