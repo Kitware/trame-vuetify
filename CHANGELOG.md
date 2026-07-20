@@ -1,6 +1,51 @@
 # CHANGELOG
 
 
+## v3.2.3 (2026-07-20)
+
+### Bug Fixes
+
+- **generate-python**: Be more specific on url portion to replace
+  ([`5782378`](https://github.com/Kitware/trame-vuetify/commit/578237863149895ea2edfe7d315edd4359326b09))
+
+- **generate-python**: Update doc url for v2 to point to v2 docs
+  ([`8c14e57`](https://github.com/Kitware/trame-vuetify/commit/8c14e57978966a37512909318b36163ee6261e3f))
+
+Since https://cdn.jsdelivr.net/npm/vuetify@2.6.0/dist/json/web-types.json has the same issue of
+  pointing to v4 docs
+
+### Chores
+
+- Restore deleted lockfiles and update them
+  ([`dd54331`](https://github.com/Kitware/trame-vuetify/commit/dd54331eb21d5ceca4c137f9fbd61507ec036fed))
+
+- Update pre-commit
+  ([`cf50731`](https://github.com/Kitware/trame-vuetify/commit/cf507317ef8efd73a16e8f7d1a95605006780872))
+
+Update pre-commit config to latest trame guidelines
+
+- **deps**: Update Vuetify to latest v3
+  ([`8ad5b60`](https://github.com/Kitware/trame-vuetify/commit/8ad5b605edf6c773e0769d693e5ec48d31317336))
+
+- **vue3**: Update generate_python script to use v3 docs
+  ([`bcabed4`](https://github.com/Kitware/trame-vuetify/commit/bcabed4c82ddef302435b2dbb098bf8397994a62))
+
+Since the file hosted on jsdeliver points to default v4 docs
+
+### Continuous Integration
+
+- Fix paths to navigate during build
+  ([`c74fcc6`](https://github.com/Kitware/trame-vuetify/commit/c74fcc6091682a3a272ded92a08f06661715338d))
+
+- Update path to vuetify libs
+  ([`aea4e24`](https://github.com/Kitware/trame-vuetify/commit/aea4e2421fd78b061fc590adb59cbbbc6e967027))
+
+### Refactoring
+
+- Migrate vue files to js-libs
+  ([`c73dc08`](https://github.com/Kitware/trame-vuetify/commit/c73dc08a1f3ee8d8888d0afb105999a6022ff7eb))
+
+
 ## v3.2.2 (2026-04-28)
 
 ### Bug Fixes
