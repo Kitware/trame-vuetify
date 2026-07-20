@@ -4,14 +4,14 @@
 ##########################################################
 
 from trame_client.widgets.core import AbstractElement, Template  # noqa
-from trame_vuetify.module import vue2
+from trame_vuetify.module import v2
 
 
 class HtmlElement(AbstractElement):
     def __init__(self, _elem_name, children=None, **kwargs):
         super().__init__(_elem_name, children, **kwargs)
         if self.server:
-            self.server.enable_module(vue2)
+            self.server.enable_module(v2)
 
 
 try:
@@ -303,7 +303,7 @@ __all__ = [
 class VApp(HtmlElement):
     """
     Vuetify's VApp component.
-    See more `info and examples <https://vuetifyjs.com/api/v-app>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-app>`_.
 
     Args:
       id (string):
@@ -321,7 +321,7 @@ class VApp(HtmlElement):
 class VAppBar(HtmlElement):
     """
     Vuetify's VAppBar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-app-bar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-app-bar>`_.
 
     Args:
       absolute (boolean):
@@ -481,7 +481,7 @@ class VAppBar(HtmlElement):
 class VAppBarNavIcon(HtmlElement):
     """
     Vuetify's VAppBarNavIcon component.
-    See more `info and examples <https://vuetifyjs.com/api/v-app-bar-nav-icon>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-app-bar-nav-icon>`_.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -493,7 +493,7 @@ class VAppBarNavIcon(HtmlElement):
 class VAppBarTitle(HtmlElement):
     """
     Vuetify's VAppBarTitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-app-bar-title>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-app-bar-title>`_.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -505,7 +505,7 @@ class VAppBarTitle(HtmlElement):
 class VAlert(HtmlElement):
     """
     Vuetify's VAlert component.
-    See more `info and examples <https://vuetifyjs.com/api/v-alert>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-alert>`_.
 
     Args:
       border (string):
@@ -624,7 +624,7 @@ class VAlert(HtmlElement):
 class VAutocomplete(HtmlElement):
     """
     Vuetify's VAutocomplete component.
-    See more `info and examples <https://vuetifyjs.com/api/v-autocomplete>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-autocomplete>`_.
 
     Args:
       append_icon (string):
@@ -943,7 +943,7 @@ class VAutocomplete(HtmlElement):
 class VAvatar(HtmlElement):
     """
     Vuetify's VAvatar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-avatar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-avatar>`_.
 
     Args:
       color (string):
@@ -1002,7 +1002,7 @@ class VAvatar(HtmlElement):
 class VBadge(HtmlElement):
     """
     Vuetify's VBadge component.
-    See more `info and examples <https://vuetifyjs.com/api/v-badge>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-badge>`_.
 
     Args:
       avatar (boolean):
@@ -1088,7 +1088,7 @@ class VBadge(HtmlElement):
 class VBanner(HtmlElement):
     """
     Vuetify's VBanner component.
-    See more `info and examples <https://vuetifyjs.com/api/v-banner>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-banner>`_.
 
     Args:
       app (boolean):
@@ -1179,7 +1179,7 @@ class VBanner(HtmlElement):
 class VBottomNavigation(HtmlElement):
     """
     Vuetify's VBottomNavigation component.
-    See more `info and examples <https://vuetifyjs.com/api/v-bottom-navigation>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-bottom-navigation>`_.
 
     Args:
       absolute (boolean):
@@ -1288,7 +1288,7 @@ class VBottomNavigation(HtmlElement):
 class VBottomSheet(HtmlElement):
     """
     Vuetify's VBottomSheet component.
-    See more `info and examples <https://vuetifyjs.com/api/v-bottom-sheet>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-bottom-sheet>`_.
 
     Args:
       activator (any):
@@ -1408,7 +1408,7 @@ class VBottomSheet(HtmlElement):
 class VBreadcrumbs(HtmlElement):
     """
     Vuetify's VBreadcrumbs component.
-    See more `info and examples <https://vuetifyjs.com/api/v-breadcrumbs>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-breadcrumbs>`_.
 
     Args:
       dark (boolean):
@@ -1440,7 +1440,7 @@ class VBreadcrumbs(HtmlElement):
 class VBreadcrumbsItem(HtmlElement):
     """
     Vuetify's VBreadcrumbsItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-breadcrumbs-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-breadcrumbs-item>`_.
 
     Args:
       active_class (string):
@@ -1520,7 +1520,7 @@ class VBreadcrumbsItem(HtmlElement):
 class VBreadcrumbsDivider(HtmlElement):
     """
     Vuetify's VBreadcrumbsDivider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-breadcrumbs-divider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-breadcrumbs-divider>`_.
 
     Args:
       tag (string):
@@ -1538,7 +1538,7 @@ class VBreadcrumbsDivider(HtmlElement):
 class VBtn(HtmlElement):
     """
     Vuetify's VBtn component.
-    See more `info and examples <https://vuetifyjs.com/api/v-btn>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-btn>`_.
 
     Args:
       absolute (boolean):
@@ -1735,7 +1735,7 @@ class VBtn(HtmlElement):
 class VBtnToggle(HtmlElement):
     """
     Vuetify's VBtnToggle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-btn-toggle>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-btn-toggle>`_.
 
     Args:
       active_class (string):
@@ -1812,7 +1812,7 @@ class VBtnToggle(HtmlElement):
 class VCalendar(HtmlElement):
     """
     Vuetify's VCalendar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-calendar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-calendar>`_.
 
     Args:
       categories (['array', 'string']):
@@ -2338,7 +2338,7 @@ class VCalendar(HtmlElement):
 class VCalendarDaily(HtmlElement):
     """
     Vuetify's VCalendarDaily component.
-    See more `info and examples <https://vuetifyjs.com/api/v-calendar-daily>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-calendar-daily>`_.
 
     Args:
       color (string):
@@ -2445,7 +2445,7 @@ class VCalendarDaily(HtmlElement):
 class VCalendarWeekly(HtmlElement):
     """
     Vuetify's VCalendarWeekly component.
-    See more `info and examples <https://vuetifyjs.com/api/v-calendar-weekly>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-calendar-weekly>`_.
 
     Args:
       color (string):
@@ -2529,7 +2529,7 @@ class VCalendarWeekly(HtmlElement):
 class VCalendarMonthly(HtmlElement):
     """
     Vuetify's VCalendarMonthly component.
-    See more `info and examples <https://vuetifyjs.com/api/v-calendar-monthly>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-calendar-monthly>`_.
 
     Args:
       color (string):
@@ -2613,7 +2613,7 @@ class VCalendarMonthly(HtmlElement):
 class VCard(HtmlElement):
     """
     Vuetify's VCard component.
-    See more `info and examples <https://vuetifyjs.com/api/v-card>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-card>`_.
 
     Args:
       active_class (string):
@@ -2771,7 +2771,7 @@ class VCard(HtmlElement):
 class VCardActions(HtmlElement):
     """
     Vuetify's VCardActions component.
-    See more `info and examples <https://vuetifyjs.com/api/v-card-actions>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-card-actions>`_.
 
     Args:
       tag (string):
@@ -2789,7 +2789,7 @@ class VCardActions(HtmlElement):
 class VCardSubtitle(HtmlElement):
     """
     Vuetify's VCardSubtitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-card-subtitle>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-card-subtitle>`_.
 
     Args:
       tag (string):
@@ -2807,7 +2807,7 @@ class VCardSubtitle(HtmlElement):
 class VCardText(HtmlElement):
     """
     Vuetify's VCardText component.
-    See more `info and examples <https://vuetifyjs.com/api/v-card-text>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-card-text>`_.
 
     Args:
       tag (string):
@@ -2825,7 +2825,7 @@ class VCardText(HtmlElement):
 class VCardTitle(HtmlElement):
     """
     Vuetify's VCardTitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-card-title>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-card-title>`_.
 
     Args:
       tag (string):
@@ -2843,7 +2843,7 @@ class VCardTitle(HtmlElement):
 class VCarousel(HtmlElement):
     """
     Vuetify's VCarousel component.
-    See more `info and examples <https://vuetifyjs.com/api/v-carousel>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-carousel>`_.
 
     Args:
       active_class (string):
@@ -2945,7 +2945,7 @@ class VCarousel(HtmlElement):
 class VCarouselItem(HtmlElement):
     """
     Vuetify's VCarouselItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-carousel-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-carousel-item>`_.
 
     Args:
       active_class (string):
@@ -3042,7 +3042,7 @@ class VCarouselItem(HtmlElement):
 class VCheckbox(HtmlElement):
     """
     Vuetify's VCheckbox component.
-    See more `info and examples <https://vuetifyjs.com/api/v-checkbox>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-checkbox>`_.
 
     Args:
       append_icon (string):
@@ -3191,7 +3191,7 @@ class VCheckbox(HtmlElement):
 class VSimpleCheckbox(HtmlElement):
     """
     Vuetify's VSimpleCheckbox component.
-    See more `info and examples <https://vuetifyjs.com/api/v-simple-checkbox>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-simple-checkbox>`_.
 
     Args:
       color (string):
@@ -3245,7 +3245,7 @@ class VSimpleCheckbox(HtmlElement):
 class VChip(HtmlElement):
     """
     Vuetify's VChip component.
-    See more `info and examples <https://vuetifyjs.com/api/v-chip>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-chip>`_.
 
     Args:
       active (boolean):
@@ -3402,7 +3402,7 @@ class VChip(HtmlElement):
 class VChipGroup(HtmlElement):
     """
     Vuetify's VChipGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-chip-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-chip-group>`_.
 
     Args:
       active_class (string):
@@ -3474,7 +3474,7 @@ class VChipGroup(HtmlElement):
 class VColorPicker(HtmlElement):
     """
     Vuetify's VColorPicker component.
-    See more `info and examples <https://vuetifyjs.com/api/v-color-picker>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-color-picker>`_.
 
     Args:
       canvas_height (['string', 'number']):
@@ -3558,7 +3558,7 @@ class VColorPicker(HtmlElement):
 class VContent(HtmlElement):
     """
     Vuetify's VContent component.
-    See more `info and examples <https://vuetifyjs.com/api/v-content>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-content>`_.
 
     Args:
       tag (string):
@@ -3576,7 +3576,7 @@ class VContent(HtmlElement):
 class VCombobox(HtmlElement):
     """
     Vuetify's VCombobox component.
-    See more `info and examples <https://vuetifyjs.com/api/v-combobox>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-combobox>`_.
 
     Args:
       append_icon (string):
@@ -3899,7 +3899,7 @@ class VCombobox(HtmlElement):
 class VDataIterator(HtmlElement):
     """
     Vuetify's VDataIterator component.
-    See more `info and examples <https://vuetifyjs.com/api/v-data-iterator>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-data-iterator>`_.
 
     Args:
       checkbox_color (string):
@@ -4087,7 +4087,7 @@ class VDataIterator(HtmlElement):
 class VDataFooter(HtmlElement):
     """
     Vuetify's VDataFooter component.
-    See more `info and examples <https://vuetifyjs.com/api/v-data-footer>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-data-footer>`_.
 
     Args:
       disable_items_per_page (boolean):
@@ -4148,7 +4148,7 @@ class VDataFooter(HtmlElement):
 class VDataTable(HtmlElement):
     """
     Vuetify's VDataTable component.
-    See more `info and examples <https://vuetifyjs.com/api/v-data-table>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-data-table>`_.
 
     Args:
       calculate_widths (boolean):
@@ -4438,7 +4438,7 @@ class VDataTable(HtmlElement):
 class VEditDialog(HtmlElement):
     """
     Vuetify's VEditDialog component.
-    See more `info and examples <https://vuetifyjs.com/api/v-edit-dialog>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-edit-dialog>`_.
 
     Args:
       cancel_text (any):
@@ -4498,7 +4498,7 @@ class VEditDialog(HtmlElement):
 class VDataTableHeader(HtmlElement):
     """
     Vuetify's VDataTableHeader component.
-    See more `info and examples <https://vuetifyjs.com/api/v-data-table-header>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-data-table-header>`_.
 
     Args:
       checkbox_color (string):
@@ -4547,7 +4547,7 @@ class VDataTableHeader(HtmlElement):
 class VSimpleTable(HtmlElement):
     """
     Vuetify's VSimpleTable component.
-    See more `info and examples <https://vuetifyjs.com/api/v-simple-table>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-simple-table>`_.
 
     Args:
       dark (boolean):
@@ -4579,7 +4579,7 @@ class VSimpleTable(HtmlElement):
 class VDatePicker(HtmlElement):
     """
     Vuetify's VDatePicker component.
-    See more `info and examples <https://vuetifyjs.com/api/v-date-picker>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-date-picker>`_.
 
     Args:
       active_picker (string):
@@ -4865,7 +4865,7 @@ class VDatePicker(HtmlElement):
 class VDialog(HtmlElement):
     """
     Vuetify's VDialog component.
-    See more `info and examples <https://vuetifyjs.com/api/v-dialog>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-dialog>`_.
 
     Args:
       activator (any):
@@ -4994,7 +4994,7 @@ class VDialog(HtmlElement):
 class VDivider(HtmlElement):
     """
     Vuetify's VDivider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-divider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-divider>`_.
 
     Args:
       dark (boolean):
@@ -5024,7 +5024,7 @@ class VDivider(HtmlElement):
 class VExpansionPanels(HtmlElement):
     """
     Vuetify's VExpansionPanels component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expansion-panels>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expansion-panels>`_.
 
     Args:
       accordion (boolean):
@@ -5099,7 +5099,7 @@ class VExpansionPanels(HtmlElement):
 class VExpansionPanel(HtmlElement):
     """
     Vuetify's VExpansionPanel component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expansion-panel>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expansion-panel>`_.
 
     Args:
       active_class (string):
@@ -5131,7 +5131,7 @@ class VExpansionPanel(HtmlElement):
 class VExpansionPanelHeader(HtmlElement):
     """
     Vuetify's VExpansionPanelHeader component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expansion-panel-header>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expansion-panel-header>`_.
 
     Args:
       color (string):
@@ -5166,7 +5166,7 @@ class VExpansionPanelHeader(HtmlElement):
 class VExpansionPanelContent(HtmlElement):
     """
     Vuetify's VExpansionPanelContent component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expansion-panel-content>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expansion-panel-content>`_.
 
     Args:
       color (string):
@@ -5192,7 +5192,7 @@ class VExpansionPanelContent(HtmlElement):
 class VFileInput(HtmlElement):
     """
     Vuetify's VFileInput component.
-    See more `info and examples <https://vuetifyjs.com/api/v-file-input>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-file-input>`_.
 
     Args:
       append_icon (string):
@@ -5437,7 +5437,7 @@ class VFileInput(HtmlElement):
 class VFooter(HtmlElement):
     """
     Vuetify's VFooter component.
-    See more `info and examples <https://vuetifyjs.com/api/v-footer>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-footer>`_.
 
     Args:
       absolute (boolean):
@@ -5526,7 +5526,7 @@ class VFooter(HtmlElement):
 class VForm(HtmlElement):
     """
     Vuetify's VForm component.
-    See more `info and examples <https://vuetifyjs.com/api/v-form>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-form>`_.
 
     Args:
       disabled (boolean):
@@ -5562,7 +5562,7 @@ class VForm(HtmlElement):
 class VContainer(HtmlElement):
     """
     Vuetify's VContainer component.
-    See more `info and examples <https://vuetifyjs.com/api/v-container>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-container>`_.
 
     Args:
       fluid (boolean):
@@ -5586,7 +5586,7 @@ class VContainer(HtmlElement):
 class VCol(HtmlElement):
     """
     Vuetify's VCol component.
-    See more `info and examples <https://vuetifyjs.com/api/v-col>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-col>`_.
 
     Args:
       align_self (string):
@@ -5656,7 +5656,7 @@ class VCol(HtmlElement):
 class VRow(HtmlElement):
     """
     Vuetify's VRow component.
-    See more `info and examples <https://vuetifyjs.com/api/v-row>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-row>`_.
 
     Args:
       align (string):
@@ -5731,7 +5731,7 @@ class VRow(HtmlElement):
 class VSpacer(HtmlElement):
     """
     Vuetify's VSpacer component.
-    See more `info and examples <https://vuetifyjs.com/api/v-spacer>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-spacer>`_.
 
     Args:
       tag (string):
@@ -5749,7 +5749,7 @@ class VSpacer(HtmlElement):
 class VLayout(HtmlElement):
     """
     Vuetify's VLayout component.
-    See more `info and examples <https://vuetifyjs.com/api/v-layout>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-layout>`_.
 
     Args:
       align_baseline (Boolean):
@@ -5830,7 +5830,7 @@ class VLayout(HtmlElement):
 class VFlex(HtmlElement):
     """
     Vuetify's VFlex component.
-    See more `info and examples <https://vuetifyjs.com/api/v-flex>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-flex>`_.
 
     Args:
       (size)(1_12) (boolean):
@@ -6023,7 +6023,7 @@ class VFlex(HtmlElement):
 class VHover(HtmlElement):
     """
     Vuetify's VHover component.
-    See more `info and examples <https://vuetifyjs.com/api/v-hover>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-hover>`_.
 
     Args:
       close_delay (['number', 'string']):
@@ -6052,7 +6052,7 @@ class VHover(HtmlElement):
 class VIcon(HtmlElement):
     """
     Vuetify's VIcon component.
-    See more `info and examples <https://vuetifyjs.com/api/v-icon>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-icon>`_.
 
     Args:
       color (string):
@@ -6113,7 +6113,7 @@ class VIcon(HtmlElement):
 class VImg(HtmlElement):
     """
     Vuetify's VImg component.
-    See more `info and examples <https://vuetifyjs.com/api/v-img>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-img>`_.
 
     Args:
       alt (string):
@@ -6214,7 +6214,7 @@ class VImg(HtmlElement):
 class VInput(HtmlElement):
     """
     Vuetify's VInput component.
-    See more `info and examples <https://vuetifyjs.com/api/v-input>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-input>`_.
 
     Args:
       append_icon (string):
@@ -6343,7 +6343,7 @@ class VInput(HtmlElement):
 class VItem(HtmlElement):
     """
     Vuetify's VItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-item>`_.
 
     Args:
       active_class (string):
@@ -6371,7 +6371,7 @@ class VItem(HtmlElement):
 class VItemGroup(HtmlElement):
     """
     Vuetify's VItemGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-item-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-item-group>`_.
 
     Args:
       active_class (string):
@@ -6422,7 +6422,7 @@ class VItemGroup(HtmlElement):
 class VLazy(HtmlElement):
     """
     Vuetify's VLazy component.
-    See more `info and examples <https://vuetifyjs.com/api/v-lazy>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-lazy>`_.
 
     Args:
       height (['number', 'string']):
@@ -6469,7 +6469,7 @@ class VLazy(HtmlElement):
 class VListItemActionText(HtmlElement):
     """
     Vuetify's VListItemActionText component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-action-text>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-action-text>`_.
 
     Args:
       tag (string):
@@ -6487,7 +6487,7 @@ class VListItemActionText(HtmlElement):
 class VListItemContent(HtmlElement):
     """
     Vuetify's VListItemContent component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-content>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-content>`_.
 
     Args:
       tag (string):
@@ -6505,7 +6505,7 @@ class VListItemContent(HtmlElement):
 class VListItemTitle(HtmlElement):
     """
     Vuetify's VListItemTitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-title>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-title>`_.
 
     Args:
       tag (string):
@@ -6523,7 +6523,7 @@ class VListItemTitle(HtmlElement):
 class VListItemSubtitle(HtmlElement):
     """
     Vuetify's VListItemSubtitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-subtitle>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-subtitle>`_.
 
     Args:
       tag (string):
@@ -6541,7 +6541,7 @@ class VListItemSubtitle(HtmlElement):
 class VList(HtmlElement):
     """
     Vuetify's VList component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list>`_.
 
     Args:
       color (string):
@@ -6636,7 +6636,7 @@ class VList(HtmlElement):
 class VListGroup(HtmlElement):
     """
     Vuetify's VListGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-group>`_.
 
     Args:
       active_class (string):
@@ -6695,7 +6695,7 @@ class VListGroup(HtmlElement):
 class VListItem(HtmlElement):
     """
     Vuetify's VListItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item>`_.
 
     Args:
       active_class (string):
@@ -6822,7 +6822,7 @@ class VListItem(HtmlElement):
 class VListItemAction(HtmlElement):
     """
     Vuetify's VListItemAction component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-action>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-action>`_.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6834,7 +6834,7 @@ class VListItemAction(HtmlElement):
 class VListItemAvatar(HtmlElement):
     """
     Vuetify's VListItemAvatar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-avatar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-avatar>`_.
 
     Args:
       color (string):
@@ -6896,7 +6896,7 @@ class VListItemAvatar(HtmlElement):
 class VListItemIcon(HtmlElement):
     """
     Vuetify's VListItemIcon component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-icon>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-icon>`_.
     """
 
     def __init__(self, children=None, **kwargs):
@@ -6908,7 +6908,7 @@ class VListItemIcon(HtmlElement):
 class VListItemGroup(HtmlElement):
     """
     Vuetify's VListItemGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-list-item-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-list-item-group>`_.
 
     Args:
       active_class (string):
@@ -6962,7 +6962,7 @@ class VListItemGroup(HtmlElement):
 class VMain(HtmlElement):
     """
     Vuetify's VMain component.
-    See more `info and examples <https://vuetifyjs.com/api/v-main>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-main>`_.
 
     Args:
       tag (string):
@@ -6980,7 +6980,7 @@ class VMain(HtmlElement):
 class VMenu(HtmlElement):
     """
     Vuetify's VMenu component.
-    See more `info and examples <https://vuetifyjs.com/api/v-menu>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-menu>`_.
 
     Args:
       absolute (boolean):
@@ -7154,7 +7154,7 @@ class VMenu(HtmlElement):
 class VNavigationDrawer(HtmlElement):
     """
     Vuetify's VNavigationDrawer component.
-    See more `info and examples <https://vuetifyjs.com/api/v-navigation-drawer>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-navigation-drawer>`_.
 
     Args:
       absolute (boolean):
@@ -7284,7 +7284,7 @@ class VNavigationDrawer(HtmlElement):
 class VOtpInput(HtmlElement):
     """
     Vuetify's VOtpInput component.
-    See more `info and examples <https://vuetifyjs.com/api/v-otp-input>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-otp-input>`_.
 
     Args:
       dark (boolean):
@@ -7339,7 +7339,7 @@ class VOtpInput(HtmlElement):
 class VOverflowBtn(HtmlElement):
     """
     Vuetify's VOverflowBtn component.
-    See more `info and examples <https://vuetifyjs.com/api/v-overflow-btn>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-overflow-btn>`_.
 
     Args:
       append_icon (string):
@@ -7664,7 +7664,7 @@ class VOverflowBtn(HtmlElement):
 class VOverlay(HtmlElement):
     """
     Vuetify's VOverlay component.
-    See more `info and examples <https://vuetifyjs.com/api/v-overlay>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-overlay>`_.
 
     Args:
       absolute (boolean):
@@ -7705,7 +7705,7 @@ class VOverlay(HtmlElement):
 class VPagination(HtmlElement):
     """
     Vuetify's VPagination component.
-    See more `info and examples <https://vuetifyjs.com/api/v-pagination>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-pagination>`_.
 
     Args:
       circle (boolean):
@@ -7786,7 +7786,7 @@ class VPagination(HtmlElement):
 class VSheet(HtmlElement):
     """
     Vuetify's VSheet component.
-    See more `info and examples <https://vuetifyjs.com/api/v-sheet>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-sheet>`_.
 
     Args:
       color (string):
@@ -7853,7 +7853,7 @@ class VSheet(HtmlElement):
 class VParallax(HtmlElement):
     """
     Vuetify's VParallax component.
-    See more `info and examples <https://vuetifyjs.com/api/v-parallax>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-parallax>`_.
 
     Args:
       alt (string):
@@ -7881,7 +7881,7 @@ class VParallax(HtmlElement):
 class VProgressCircular(HtmlElement):
     """
     Vuetify's VProgressCircular component.
-    See more `info and examples <https://vuetifyjs.com/api/v-progress-circular>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-progress-circular>`_.
 
     Args:
       button (boolean):
@@ -7920,7 +7920,7 @@ class VProgressCircular(HtmlElement):
 class VProgressLinear(HtmlElement):
     """
     Vuetify's VProgressLinear component.
-    See more `info and examples <https://vuetifyjs.com/api/v-progress-linear>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-progress-linear>`_.
 
     Args:
       absolute (boolean):
@@ -8003,7 +8003,7 @@ class VProgressLinear(HtmlElement):
 class VRadioGroup(HtmlElement):
     """
     Vuetify's VRadioGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-radio-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-radio-group>`_.
 
     Args:
       active_class (string):
@@ -8139,7 +8139,7 @@ class VRadioGroup(HtmlElement):
 class VRadio(HtmlElement):
     """
     Vuetify's VRadio component.
-    See more `info and examples <https://vuetifyjs.com/api/v-radio>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-radio>`_.
 
     Args:
       active_class (string):
@@ -8218,7 +8218,7 @@ class VRadio(HtmlElement):
 class VRangeSlider(HtmlElement):
     """
     Vuetify's VRangeSlider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-range-slider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-range-slider>`_.
 
     Args:
       append_icon (string):
@@ -8399,7 +8399,7 @@ class VRangeSlider(HtmlElement):
 class VRating(HtmlElement):
     """
     Vuetify's VRating component.
-    See more `info and examples <https://vuetifyjs.com/api/v-rating>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-rating>`_.
 
     Args:
       background_color (string):
@@ -8495,7 +8495,7 @@ class VRating(HtmlElement):
 class VResponsive(HtmlElement):
     """
     Vuetify's VResponsive component.
-    See more `info and examples <https://vuetifyjs.com/api/v-responsive>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-responsive>`_.
 
     Args:
       aspect_ratio (['string', 'number']):
@@ -8536,7 +8536,7 @@ class VResponsive(HtmlElement):
 class VSelect(HtmlElement):
     """
     Vuetify's VSelect component.
-    See more `info and examples <https://vuetifyjs.com/api/v-select>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-select>`_.
 
     Args:
       append_icon (string):
@@ -8837,7 +8837,7 @@ class VSelect(HtmlElement):
 class VSkeletonLoader(HtmlElement):
     """
     Vuetify's VSkeletonLoader component.
-    See more `info and examples <https://vuetifyjs.com/api/v-skeleton-loader>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-skeleton-loader>`_.
 
     Args:
       boilerplate (boolean):
@@ -8914,7 +8914,7 @@ class VSkeletonLoader(HtmlElement):
 class VSlider(HtmlElement):
     """
     Vuetify's VSlider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slider>`_.
 
     Args:
       append_icon (string):
@@ -9095,7 +9095,7 @@ class VSlider(HtmlElement):
 class VSlideGroup(HtmlElement):
     """
     Vuetify's VSlideGroup component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-group>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-group>`_.
 
     Args:
       active_class (string):
@@ -9173,7 +9173,7 @@ class VSlideGroup(HtmlElement):
 class VSlideItem(HtmlElement):
     """
     Vuetify's VSlideItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-item>`_.
 
     Args:
       active_class (string):
@@ -9201,7 +9201,7 @@ class VSlideItem(HtmlElement):
 class VSnackbar(HtmlElement):
     """
     Vuetify's VSnackbar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-snackbar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-snackbar>`_.
 
     Args:
       absolute (boolean):
@@ -9319,7 +9319,7 @@ class VSnackbar(HtmlElement):
 class VSparkline(HtmlElement):
     """
     Vuetify's VSparkline component.
-    See more `info and examples <https://vuetifyjs.com/api/v-sparkline>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-sparkline>`_.
 
     Args:
       auto_draw (boolean):
@@ -9394,7 +9394,7 @@ class VSparkline(HtmlElement):
 class VSpeedDial(HtmlElement):
     """
     Vuetify's VSpeedDial component.
-    See more `info and examples <https://vuetifyjs.com/api/v-speed-dial>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-speed-dial>`_.
 
     Args:
       absolute (boolean):
@@ -9450,7 +9450,7 @@ class VSpeedDial(HtmlElement):
 class VStepper(HtmlElement):
     """
     Vuetify's VStepper component.
-    See more `info and examples <https://vuetifyjs.com/api/v-stepper>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-stepper>`_.
 
     Args:
       alt_labels (boolean):
@@ -9536,7 +9536,7 @@ class VStepper(HtmlElement):
 class VStepperContent(HtmlElement):
     """
     Vuetify's VStepperContent component.
-    See more `info and examples <https://vuetifyjs.com/api/v-stepper-content>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-stepper-content>`_.
 
     Args:
       step (['number', 'string']):
@@ -9554,7 +9554,7 @@ class VStepperContent(HtmlElement):
 class VStepperStep(HtmlElement):
     """
     Vuetify's VStepperStep component.
-    See more `info and examples <https://vuetifyjs.com/api/v-stepper-step>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-stepper-step>`_.
 
     Args:
       color (string):
@@ -9602,7 +9602,7 @@ class VStepperStep(HtmlElement):
 class VStepperHeader(HtmlElement):
     """
     Vuetify's VStepperHeader component.
-    See more `info and examples <https://vuetifyjs.com/api/v-stepper-header>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-stepper-header>`_.
 
     Args:
       tag (string):
@@ -9620,7 +9620,7 @@ class VStepperHeader(HtmlElement):
 class VStepperItems(HtmlElement):
     """
     Vuetify's VStepperItems component.
-    See more `info and examples <https://vuetifyjs.com/api/v-stepper-items>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-stepper-items>`_.
 
     Args:
       tag (string):
@@ -9638,7 +9638,7 @@ class VStepperItems(HtmlElement):
 class VSubheader(HtmlElement):
     """
     Vuetify's VSubheader component.
-    See more `info and examples <https://vuetifyjs.com/api/v-subheader>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-subheader>`_.
 
     Args:
       dark (boolean):
@@ -9664,7 +9664,7 @@ class VSubheader(HtmlElement):
 class VSwitch(HtmlElement):
     """
     Vuetify's VSwitch component.
-    See more `info and examples <https://vuetifyjs.com/api/v-switch>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-switch>`_.
 
     Args:
       append_icon (string):
@@ -9812,7 +9812,7 @@ class VSwitch(HtmlElement):
 class VSystemBar(HtmlElement):
     """
     Vuetify's VSystemBar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-system-bar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-system-bar>`_.
 
     Args:
       absolute (boolean):
@@ -9866,7 +9866,7 @@ class VSystemBar(HtmlElement):
 class VTabs(HtmlElement):
     """
     Vuetify's VTabs component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tabs>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tabs>`_.
 
     Args:
       active_class (string):
@@ -9963,7 +9963,7 @@ class VTabs(HtmlElement):
 class VTab(HtmlElement):
     """
     Vuetify's VTab component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tab>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tab>`_.
 
     Args:
       active_class (string):
@@ -10062,7 +10062,7 @@ class VTab(HtmlElement):
 class VTabItem(HtmlElement):
     """
     Vuetify's VTabItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tab-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tab-item>`_.
 
     Args:
       active_class (string):
@@ -10105,7 +10105,7 @@ class VTabItem(HtmlElement):
 class VTabsItems(HtmlElement):
     """
     Vuetify's VTabsItems component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tabs-items>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tabs-items>`_.
 
     Args:
       active_class (string):
@@ -10181,7 +10181,7 @@ class VTabsItems(HtmlElement):
 class VTabsSlider(HtmlElement):
     """
     Vuetify's VTabsSlider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tabs-slider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tabs-slider>`_.
 
     Args:
       color (string):
@@ -10202,7 +10202,7 @@ class VTabsSlider(HtmlElement):
 class VTextarea(HtmlElement):
     """
     Vuetify's VTextarea component.
-    See more `info and examples <https://vuetifyjs.com/api/v-textarea>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-textarea>`_.
 
     Args:
       append_icon (string):
@@ -10433,7 +10433,7 @@ class VTextarea(HtmlElement):
 class VTextField(HtmlElement):
     """
     Vuetify's VTextField component.
-    See more `info and examples <https://vuetifyjs.com/api/v-text-field>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-text-field>`_.
 
     Args:
       append_icon (string):
@@ -10658,7 +10658,7 @@ class VTextField(HtmlElement):
 class VThemeProvider(HtmlElement):
     """
     Vuetify's VThemeProvider component.
-    See more `info and examples <https://vuetifyjs.com/api/v-theme-provider>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-theme-provider>`_.
 
     Args:
       dark (boolean):
@@ -10684,7 +10684,7 @@ class VThemeProvider(HtmlElement):
 class VTimeline(HtmlElement):
     """
     Vuetify's VTimeline component.
-    See more `info and examples <https://vuetifyjs.com/api/v-timeline>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-timeline>`_.
 
     Args:
       align_top (boolean):
@@ -10716,7 +10716,7 @@ class VTimeline(HtmlElement):
 class VTimelineItem(HtmlElement):
     """
     Vuetify's VTimelineItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-timeline-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-timeline-item>`_.
 
     Args:
       color (string):
@@ -10772,7 +10772,7 @@ class VTimelineItem(HtmlElement):
 class VTimePicker(HtmlElement):
     """
     Vuetify's VTimePicker component.
-    See more `info and examples <https://vuetifyjs.com/api/v-time-picker>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-time-picker>`_.
 
     Args:
       active_picker (string):
@@ -10888,7 +10888,7 @@ class VTimePicker(HtmlElement):
 class VToolbar(HtmlElement):
     """
     Vuetify's VToolbar component.
-    See more `info and examples <https://vuetifyjs.com/api/v-toolbar>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-toolbar>`_.
 
     Args:
       absolute (boolean):
@@ -10996,7 +10996,7 @@ class VToolbar(HtmlElement):
 class VToolbarItems(HtmlElement):
     """
     Vuetify's VToolbarItems component.
-    See more `info and examples <https://vuetifyjs.com/api/v-toolbar-items>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-toolbar-items>`_.
 
     Args:
       tag (string):
@@ -11014,7 +11014,7 @@ class VToolbarItems(HtmlElement):
 class VToolbarTitle(HtmlElement):
     """
     Vuetify's VToolbarTitle component.
-    See more `info and examples <https://vuetifyjs.com/api/v-toolbar-title>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-toolbar-title>`_.
 
     Args:
       tag (string):
@@ -11032,7 +11032,7 @@ class VToolbarTitle(HtmlElement):
 class VTooltip(HtmlElement):
     """
     Vuetify's VTooltip component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tooltip>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tooltip>`_.
 
     Args:
       absolute (boolean):
@@ -11159,7 +11159,7 @@ class VTooltip(HtmlElement):
 class VTreeview(HtmlElement):
     """
     Vuetify's VTreeview component.
-    See more `info and examples <https://vuetifyjs.com/api/v-treeview>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-treeview>`_.
 
     Args:
       activatable (boolean):
@@ -11311,7 +11311,7 @@ class VTreeview(HtmlElement):
 class VVirtualScroll(HtmlElement):
     """
     Vuetify's VVirtualScroll component.
-    See more `info and examples <https://vuetifyjs.com/api/v-virtual-scroll>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-virtual-scroll>`_.
 
     Args:
       bench (['number', 'string']):
@@ -11355,7 +11355,7 @@ class VVirtualScroll(HtmlElement):
 class VWindow(HtmlElement):
     """
     Vuetify's VWindow component.
-    See more `info and examples <https://vuetifyjs.com/api/v-window>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-window>`_.
 
     Args:
       active_class (string):
@@ -11422,7 +11422,7 @@ class VWindow(HtmlElement):
 class VWindowItem(HtmlElement):
     """
     Vuetify's VWindowItem component.
-    See more `info and examples <https://vuetifyjs.com/api/v-window-item>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-window-item>`_.
 
     Args:
       active_class (string):
@@ -11464,7 +11464,7 @@ class VWindowItem(HtmlElement):
 class VCarouselTransition(HtmlElement):
     """
     Vuetify's VCarouselTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-carousel-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-carousel-transition>`_.
 
     Args:
       group (boolean):
@@ -11497,7 +11497,7 @@ class VCarouselTransition(HtmlElement):
 class VCarouselReverseTransition(HtmlElement):
     """
     Vuetify's VCarouselReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-carousel-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-carousel-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -11530,7 +11530,7 @@ class VCarouselReverseTransition(HtmlElement):
 class VTabTransition(HtmlElement):
     """
     Vuetify's VTabTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tab-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tab-transition>`_.
 
     Args:
       group (boolean):
@@ -11563,7 +11563,7 @@ class VTabTransition(HtmlElement):
 class VTabReverseTransition(HtmlElement):
     """
     Vuetify's VTabReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-tab-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-tab-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -11596,7 +11596,7 @@ class VTabReverseTransition(HtmlElement):
 class VMenuTransition(HtmlElement):
     """
     Vuetify's VMenuTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-menu-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-menu-transition>`_.
 
     Args:
       group (boolean):
@@ -11629,7 +11629,7 @@ class VMenuTransition(HtmlElement):
 class VFabTransition(HtmlElement):
     """
     Vuetify's VFabTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-fab-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-fab-transition>`_.
 
     Args:
       group (boolean):
@@ -11662,7 +11662,7 @@ class VFabTransition(HtmlElement):
 class VDialogTransition(HtmlElement):
     """
     Vuetify's VDialogTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-dialog-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-dialog-transition>`_.
 
     Args:
       group (boolean):
@@ -11695,7 +11695,7 @@ class VDialogTransition(HtmlElement):
 class VDialogBottomTransition(HtmlElement):
     """
     Vuetify's VDialogBottomTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-dialog-bottom-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-dialog-bottom-transition>`_.
 
     Args:
       group (boolean):
@@ -11728,7 +11728,7 @@ class VDialogBottomTransition(HtmlElement):
 class VDialogTopTransition(HtmlElement):
     """
     Vuetify's VDialogTopTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-dialog-top-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-dialog-top-transition>`_.
 
     Args:
       group (boolean):
@@ -11761,7 +11761,7 @@ class VDialogTopTransition(HtmlElement):
 class VFadeTransition(HtmlElement):
     """
     Vuetify's VFadeTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-fade-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-fade-transition>`_.
 
     Args:
       group (boolean):
@@ -11794,7 +11794,7 @@ class VFadeTransition(HtmlElement):
 class VScaleTransition(HtmlElement):
     """
     Vuetify's VScaleTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-scale-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-scale-transition>`_.
 
     Args:
       group (boolean):
@@ -11827,7 +11827,7 @@ class VScaleTransition(HtmlElement):
 class VScrollXTransition(HtmlElement):
     """
     Vuetify's VScrollXTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-scroll-x-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-scroll-x-transition>`_.
 
     Args:
       group (boolean):
@@ -11860,7 +11860,7 @@ class VScrollXTransition(HtmlElement):
 class VScrollXReverseTransition(HtmlElement):
     """
     Vuetify's VScrollXReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-scroll-x-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-scroll-x-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -11893,7 +11893,7 @@ class VScrollXReverseTransition(HtmlElement):
 class VScrollYTransition(HtmlElement):
     """
     Vuetify's VScrollYTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-scroll-y-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-scroll-y-transition>`_.
 
     Args:
       group (boolean):
@@ -11926,7 +11926,7 @@ class VScrollYTransition(HtmlElement):
 class VScrollYReverseTransition(HtmlElement):
     """
     Vuetify's VScrollYReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-scroll-y-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-scroll-y-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -11959,7 +11959,7 @@ class VScrollYReverseTransition(HtmlElement):
 class VSlideXTransition(HtmlElement):
     """
     Vuetify's VSlideXTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-x-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-x-transition>`_.
 
     Args:
       group (boolean):
@@ -11992,7 +11992,7 @@ class VSlideXTransition(HtmlElement):
 class VSlideXReverseTransition(HtmlElement):
     """
     Vuetify's VSlideXReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-x-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-x-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -12025,7 +12025,7 @@ class VSlideXReverseTransition(HtmlElement):
 class VSlideYTransition(HtmlElement):
     """
     Vuetify's VSlideYTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-y-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-y-transition>`_.
 
     Args:
       group (boolean):
@@ -12058,7 +12058,7 @@ class VSlideYTransition(HtmlElement):
 class VSlideYReverseTransition(HtmlElement):
     """
     Vuetify's VSlideYReverseTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-slide-y-reverse-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-slide-y-reverse-transition>`_.
 
     Args:
       group (boolean):
@@ -12091,7 +12091,7 @@ class VSlideYReverseTransition(HtmlElement):
 class VExpandTransition(HtmlElement):
     """
     Vuetify's VExpandTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expand-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expand-transition>`_.
 
     Args:
       mode (string):
@@ -12111,7 +12111,7 @@ class VExpandTransition(HtmlElement):
 class VExpandXTransition(HtmlElement):
     """
     Vuetify's VExpandXTransition component.
-    See more `info and examples <https://vuetifyjs.com/api/v-expand-x-transition>`_.
+    See more `info and examples <https://v2.vuetifyjs.com/api/v-expand-x-transition>`_.
 
     Args:
       mode (string):
