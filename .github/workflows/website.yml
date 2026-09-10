@@ -27,15 +27,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0 # Not needed if lastUpdated is not enabled
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version: 18
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v6
       - name: Install dependencies
         working-directory: docs
         run: npm ci
@@ -48,7 +48,7 @@ jobs:
           cp -rf .vitepress/dist/logos .vitepress/dist/trame-vuetify/logos
           cp -rf .vitepress/dist/assets .vitepress/dist/trame-vuetify/assets
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: docs/.vitepress/dist
 
@@ -66,4 +66,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
