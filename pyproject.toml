@@ -6,9 +6,9 @@ authors = [
     {name = "Kitware Inc."},
 ]
 dependencies = [
-    "trame-client>=3.7,<4",
+    "trame-client>=3.7,<5",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 readme = "README.rst"
 license = {text = "MIT"}
 keywords = ["Python", "Interactive", "Web", "Application", "Framework"]
