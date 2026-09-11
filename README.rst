@@ -1,4 +1,4 @@
-.. |pypi_download| image:: https://img.shields.io/pypi/dm/trame-vuetify
+.. |pypi_download| image:: https://kitware.github.io/trame/downloads/trame-vuetify.svg
 
 trame-vuetify: Material Design widgets |pypi_download|
 ===========================================================================
