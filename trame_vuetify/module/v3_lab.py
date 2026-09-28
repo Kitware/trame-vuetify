@@ -12,7 +12,7 @@ serve = {
 
 scripts = [f"__trame_vuetify3_lab_{__version__}/trame-vuetify-lab.umd.js"]
 styles = [
-    f"__trame_vuetify3_lab_{__version__}/style.css",
+    f"__trame_vuetify3_lab_{__version__}/trame-vuetify-lab.css",
     f"__trame_vuetify3_lab_{__version__}/css/mdi.css",
     f"__trame_roboto_{__version__}/roboto.css",
 ]

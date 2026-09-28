@@ -18,4 +18,10 @@ export default {
     outDir: "../../trame_vuetify/module/v3-lab-serve/",
     assetsDir: ".",
   },
+  define: {
+    // Needed from migrating Vite v4 -> v8, process is no longer globally injected at runtime
+    "process.env.NODE_ENV": JSON.stringify(
+      process.env.NODE_EV ?? "development",
+    ),
+  },
 };
