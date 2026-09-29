@@ -96,6 +96,25 @@ jobs:
           mkdir -p v3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vuetify 4 Components
+        run: |
+          mkdir -p trame_vuetify/module/v4-serve/{fonts,css}
+          cd trame_vuetify/module/v4-serve
+          curl https://cdn.jsdelivr.net/npm/vuetify@4.2.1/dist/vuetify.min.css -Lo vuetify4.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@4.2.1/dist/vuetify.min.js -Lo vuetify4.js
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vuetify 4 Lab Components
+        run: |
+          cd js-libs/v4-lab
+          npm ci
+          npm run build
+          cd ../../trame_vuetify/module
+          mkdir -p v4-lab-serve/{fonts,css}
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v4-lab-serve/css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v4-lab-serve/fonts/materialdesignicons-webfont.woff2
   release:
     needs: [pre-commit, pytest, test-npm-build]
     runs-on: ubuntu-latest
@@ -142,6 +161,25 @@ jobs:
           mkdir -p v3-lab-serve/{fonts,css}
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v3-lab-serve/css/mdi.css
           curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v3-lab-serve/fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vuetify 4 Components
+        run: |
+          mkdir -p trame_vuetify/module/v4-serve/{fonts,css}
+          cd trame_vuetify/module/v4-serve
+          curl https://cdn.jsdelivr.net/npm/vuetify@4.2.1/dist/vuetify.min.css -Lo vuetify4.css
+          curl https://cdn.jsdelivr.net/npm/vuetify@4.2.1/dist/vuetify.min.js -Lo vuetify4.js
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo fonts/materialdesignicons-webfont.woff2
+
+      - name: Build Vuetify4-lab Components
+        run: |
+          cd js-libs/v4-lab
+          npm ci
+          npm run build
+          cd ../../trame_vuetify/module
+          mkdir -p v4-lab-serve/{fonts,css}
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/css/materialdesignicons.min.css -Lo v4-lab-serve/css/mdi.css
+          curl https://cdn.jsdelivr.net/npm/@mdi/font@7.x/fonts/materialdesignicons-webfont.woff2 -Lo v4-lab-serve/fonts/materialdesignicons-webfont.woff2
 
       - name: Python Semantic Release
         id: release

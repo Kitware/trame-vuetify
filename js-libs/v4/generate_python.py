@@ -7,8 +7,8 @@ import sys
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent.parent
-DEST_FILE = BASE_DIR / Path("trame_vuetify/widgets/vuetify3.py")
-INPUT_JSON = BASE_DIR / Path("js-libs/v3/web-types.json")
+DEST_FILE = BASE_DIR / Path("trame_vuetify/widgets/vuetify4.py")
+INPUT_JSON = BASE_DIR / Path("js-libs/v4/web-types.json")
 HEADER_FILE = Path(__file__).with_name(".header.py")
 
 # ----------------------------------------
@@ -137,7 +137,7 @@ def get_docs(tag):
     url = tag.get("doc-url", "https://vuetifyjs.com/en/introduction/why-vuetify/")
     url = url.replace("www.", "")  # www redirects to start page
     url = url.replace(
-        "/vuetifyjs", "/v3.vuetifyjs"
+        "/vuetifyjs", "/v4.vuetifyjs"
     )  # the hosted file points to v4 docs
 
     name = tag.get("name")
@@ -290,7 +290,7 @@ class {class_name}(HtmlElement):{docs}
             "##########################################################\n"
         )
         vuetify_module.write("# DO NOT EDIT: GENERATED FILE\n")
-        vuetify_module.write("# => instead run: $ROOT/js-libs/v3/generate_python.py\n")
+        vuetify_module.write("# => instead run: $ROOT/js-libs/v4/generate_python.py\n")
         vuetify_module.write(
             "##########################################################\n\n"
         )

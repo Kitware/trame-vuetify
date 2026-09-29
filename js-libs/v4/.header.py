@@ -13,13 +13,13 @@ class HtmlElement(AbstractElement):
         super().__init__(_elem_name, children, **kwargs)
         if self.server:
             if USE_LAB:
-                from trame_vuetify.module import v3_lab
+                from trame_vuetify.module import v4_lab
 
-                self.server.enable_module(v3_lab)
+                self.server.enable_module(v4_lab)
             else:
-                from trame_vuetify.module import v3
+                from trame_vuetify.module import v4
 
-                self.server.enable_module(v3)
+                self.server.enable_module(v4)
 
 
 try:
