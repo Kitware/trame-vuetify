@@ -17,7 +17,7 @@ class MonthPickerExample(TrameApp):
         self._build_ui()
 
     def _build_ui(self) -> None:
-        with VAppLayout(self.server):
+        with VAppLayout(self.server) as self.ui:
             with v4.VMain():
                 with html.Div(classes="d-flex flex-column align-center ga-5 mt-3"):
                     html.Span(

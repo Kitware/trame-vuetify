@@ -22,7 +22,7 @@ class ProgressExample(TrameApp):
         self.build_ui()
 
     def build_ui(self) -> None:
-        with VAppLayout(self.server):
+        with VAppLayout(self.server) as self.ui:
             with v4.VMain():
                 v4.VProgress(
                     model_value=("migration_progress",),

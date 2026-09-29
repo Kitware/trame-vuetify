@@ -58,7 +58,7 @@ class HighlightsExample(TrameApp):
         self._build_ui()
 
     def _build_ui(self) -> None:
-        with VAppLayout(self.server):
+        with VAppLayout(self.server) as self.ui:
             with v4.VMain():
                 v4.VCombobox(
                     v_model="terms",
