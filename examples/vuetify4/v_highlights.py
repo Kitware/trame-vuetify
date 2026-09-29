@@ -1,5 +1,6 @@
-from trame.app import get_server
-from trame.decorators import TrameApp, change
+import trame_server
+from trame.app import TrameApp
+from trame.decorators import change
 
 from trame.ui.vuetify4 import SinglePageLayout
 from trame.widgets import html
@@ -14,11 +15,9 @@ def fuzzy(text: str, query: str) -> bool:
     return all(ch in it for ch in query.lower())
 
 
-@TrameApp()
-class HighlightsExample:
-    def __init__(self) -> None:
-        self.server = get_server(None)
-        self.state = self.server.state
+class HighlightsExample(TrameApp):
+    def __init__(self, server: trame_server.Server | str | None = None) -> None:
+        super().__init__(server)
 
         self.state.terms = []
         self.state.matching_profile = ""
@@ -80,7 +79,7 @@ class HighlightsExample:
                     html.P(v_for="profile in profiles", children="{{ profile }}")
 
     @change("terms")
-    def update_results(self, **kwargs):
+    def update_results(self, **_kwargs):
         queries = [q.strip() for q in self.state.terms if q and q.strip()]
         if not queries:
             self.state.matching_profile = ""

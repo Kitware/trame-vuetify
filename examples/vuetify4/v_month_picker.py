@@ -1,5 +1,5 @@
-from trame.app import get_server
-from trame.decorators import TrameApp
+import trame_server
+from trame.app import TrameApp
 
 from trame.ui.vuetify4 import SinglePageLayout
 from trame.widgets import html
@@ -8,11 +8,9 @@ from trame.widgets import vuetify4 as v4
 v4.enable_lab()
 
 
-@TrameApp()
-class MonthPickerExample:
-    def __init__(self) -> None:
-        self.server = get_server(None)
-        self.state = self.server.state
+class MonthPickerExample(TrameApp):
+    def __init__(self, server: trame_server.Server | str | None = None) -> None:
+        super().__init__(server)
 
         self.state.month_range = ["2026-09", "2026-12"]
 

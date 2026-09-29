@@ -1,8 +1,8 @@
 import asyncio
 
-from trame.app import get_server
+import trame_server
+from trame.app import TrameApp
 from trame.app.asynchronous import create_task
-from trame.decorators import TrameApp
 
 from trame.ui.vuetify4 import SinglePageLayout
 from trame.widgets import html
@@ -11,11 +11,9 @@ from trame.widgets import vuetify4 as v4
 v4.enable_lab()
 
 
-@TrameApp()
-class ProgressExample:
-    def __init__(self) -> None:
-        self.server = get_server(None)
-        self.state = self.server.state
+class ProgressExample(TrameApp):
+    def __init__(self, server: trame_server.Server | str | None = None) -> None:
+        super().__init__(server)
 
         self.state.indeterminate = False
         self.state.loading = False
@@ -77,7 +75,6 @@ class ProgressExample:
             self.state.migration_progress = (i + 1) * end_value / steps
             self.state.flush()
             await asyncio.sleep(sleep_time)
-            print(int(self.state.migration_progress))
 
         self.state.loading = False
         self.state.flush()

@@ -1,5 +1,5 @@
-from trame.app import get_server
-from trame.decorators import TrameApp
+import trame_server
+from trame.app import TrameApp
 
 from trame.ui.vuetify4 import SinglePageLayout
 from trame.widgets import html
@@ -8,11 +8,9 @@ from trame.widgets import vuetify4 as v4
 v4.enable_lab()
 
 
-@TrameApp()
-class HeatmapExample:
-    def __init__(self) -> None:
-        self.server = get_server(None)
-        self.state = self.server.state
+class HeatmapExample(TrameApp):
+    def __init__(self, server: trame_server.Server | str | None = None) -> None:
+        super().__init__(server)
 
         self.state.week_rows = ["Mon", "Tue", "Wed", "Thu", "Fri"]
         self.state.week_columns = [f"W{i + 1}" for i in range(12)]
