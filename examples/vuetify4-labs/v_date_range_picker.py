@@ -1,7 +1,7 @@
 import trame_server
 from trame.app import TrameApp
 
-from trame.ui.vuetify4 import SinglePageLayout
+from trame.ui.vuetify4 import VAppLayout
 from trame.widgets import html
 from trame.widgets import vuetify4 as v4
 
@@ -17,8 +17,8 @@ class MonthPickerExample(TrameApp):
         self._build_ui()
 
     def _build_ui(self) -> None:
-        with SinglePageLayout(self.server) as layout:
-            with layout.content:
+        with VAppLayout(self.server):
+            with v4.VMain():
                 with html.Div(classes="d-flex flex-column align-center ga-5 mt-3"):
                     html.Span(
                         "Selected range: {{date_range.map(d => d.toISOString().slice(0, 10)).join(' - ')}}"

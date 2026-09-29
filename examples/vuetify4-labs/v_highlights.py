@@ -2,7 +2,7 @@ import trame_server
 from trame.app import TrameApp
 from trame.decorators import change
 
-from trame.ui.vuetify4 import SinglePageLayout
+from trame.ui.vuetify4 import VAppLayout
 from trame.widgets import html
 from trame.widgets import vuetify4 as v4
 
@@ -58,8 +58,8 @@ class HighlightsExample(TrameApp):
         self._build_ui()
 
     def _build_ui(self) -> None:
-        with SinglePageLayout(self.server) as layout:
-            with layout.content:
+        with VAppLayout(self.server):
+            with v4.VMain():
                 v4.VCombobox(
                     v_model="terms",
                     label="Highlight terms",

@@ -4,7 +4,7 @@ import trame_server
 from trame.app import TrameApp
 from trame.app.asynchronous import create_task
 
-from trame.ui.vuetify4 import SinglePageLayout
+from trame.ui.vuetify4 import VAppLayout
 from trame.widgets import html
 from trame.widgets import vuetify4 as v4
 
@@ -22,8 +22,8 @@ class ProgressExample(TrameApp):
         self.build_ui()
 
     def build_ui(self) -> None:
-        with SinglePageLayout(self.server) as layout:
-            with layout.content:
+        with VAppLayout(self.server):
+            with v4.VMain():
                 v4.VProgress(
                     model_value=("migration_progress",),
                     label=(

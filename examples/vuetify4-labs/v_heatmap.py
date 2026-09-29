@@ -1,7 +1,7 @@
 import trame_server
 from trame.app import TrameApp
 
-from trame.ui.vuetify4 import SinglePageLayout
+from trame.ui.vuetify4 import VAppLayout
 from trame.widgets import html
 from trame.widgets import vuetify4 as v4
 
@@ -47,8 +47,8 @@ class HeatmapExample(TrameApp):
         self._build_ui()
 
     def _build_ui(self) -> None:
-        with SinglePageLayout(self.server) as layout:
-            with layout.content:
+        with VAppLayout(self.server):
+            with v4.VMain():
                 with html.Div(classes="d-flex flex-column align-center ga-5 mt-3"):
                     v4.VHeatmap(
                         classes="w-66",
