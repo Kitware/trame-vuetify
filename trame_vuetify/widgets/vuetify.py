@@ -3,7 +3,12 @@
 # => instead run: $ROOT/vue-components/generate_python.py
 ##########################################################
 
-from trame_client.widgets.core import AbstractElement, Template  # noqa
+from trame_client.widgets.core import AbstractElement  # noqa
+
+try:
+    from trame_client.widgets.vue import Template  # noqa
+except ImportError:
+    from trame_client.widgets.core import Template  # noqa
 from trame_vuetify.module import v2
 
 

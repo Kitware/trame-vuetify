@@ -5,7 +5,12 @@
 
 # ruff: noqa: E501
 
-from trame_client.widgets.core import AbstractElement, Template  # noqa
+from trame_client.widgets.core import AbstractElement  # noqa
+
+try:
+    from trame_client.widgets.vue import Template  # noqa
+except ImportError:
+    from trame_client.widgets.core import Template  # noqa
 
 USE_LAB = False
 
